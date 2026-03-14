@@ -340,41 +340,46 @@ export default function Home({ tools }) {
 
           {/* Stats Section */}
           <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: 'clamp(16px, 4vw, 48px)',
-            flexWrap: 'nowrap',
-            overflowX: 'auto',
-            padding: '0 16px',
-            marginBottom: 48,
+            display: "grid",
+            gridTemplateColumns: 
+              "repeat(auto-fit, minmax(120px, 1fr))",
+            gap: "clamp(8px, 2vw, 16px)",
+            margin: "24px auto",
+            maxWidth: 640,
+            width: "100%",
+            padding: "0 16px",
+            boxSizing: "border-box",
           }}>
             {[
-              { num: '100+', label: t.found.split(' ')[0] + ' Tools' },
+              { num: '100+', label: 'AI Tools' },
               { num: visitorCount.toLocaleString('en-IN'), 
                 label: 'Students Visited' },
               { num: '100%', label: 'Free' },
               { num: '🇮🇳', label: 'India First' },
             ].map(s => (
               <div key={s.label} style={{
-                textAlign: 'center',
-                flexShrink: 0,
-                background: 'var(--bg2)',
-                border: '0.5px solid var(--border)',
+                background: "rgba(255,255,255,0.05)",
                 borderRadius: 12,
-                padding: '16px 24px',
-                minWidth: 100,
+                padding: "clamp(12px, 3vw, 20px)",
+                textAlign: "center",
+                border: "0.5px solid rgba(255,255,255,0.08)",
+                minWidth: 0,
               }}>
                 <div style={{
-                  fontSize: 'clamp(20px, 5vw, 32px)',
-                  fontWeight: 800,
-                  color: 'var(--accent)',
+                  fontSize: "clamp(18px, 4vw, 28px)",
+                  fontWeight: 700,
+                  color: "#FF6B35",
+                  lineHeight: 1.2,
                 }}>
                   {s.num}
                 </div>
                 <div style={{
-                  fontSize: 11,
-                  color: 'var(--text3)',
+                  fontSize: "clamp(10px, 2vw, 12px)",
+                  color: "rgba(240,237,232,0.4)",
                   marginTop: 4,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
                 }}>
                   {s.label}
                 </div>
