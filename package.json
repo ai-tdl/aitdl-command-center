@@ -1,0 +1,36 @@
+{
+  "name": "aitdl-command-center",
+  "version": "5.0.0",
+  "description": "AITDL — India's AI Command Center. 100+ verified AI tools for Indian students.",
+  "author": "Jawahar Ramkripal Mallah <hello@aitdl.com>",
+  "homepage": "https://aitdl.com",
+  "keywords": [
+    "ai-tools",
+    "india",
+    "jee",
+    "neet",
+    "upsc",
+    "students",
+    "nextjs",
+    "hindi"
+  ],
+  "license": "© 2025 Jawahar Ramkripal Mallah",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "firebase": "^12.10.0",
+    "next": "16.1.6",
+    "next-seo": "^7.2.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6"
+  }
+}
