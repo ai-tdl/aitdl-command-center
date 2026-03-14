@@ -206,7 +206,7 @@ export default function Footer() {
             fontFamily: 'Outfit',
             letterSpacing: '0.05em',
           }}>
-            Jawahar Ramkripal Mallah
+            JRM
           </span>
           <br />
           <span style={{ fontSize: 11, opacity: 0.8 }}>{t.dev}</span>

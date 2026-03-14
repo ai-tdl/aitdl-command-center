@@ -26,7 +26,8 @@ import { useState, useRef } from 'react'
 export default function ToolCard({ 
   tool, 
   onCompare, 
-  isSelected 
+  isSelected,
+  viewMode = 'grid'
 }) {
   const cardRef = useRef(null)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
@@ -40,124 +41,139 @@ export default function ToolCard({
     })
   }
 
+  const isList = viewMode === 'list'
+
   return (
     <div 
       ref={cardRef}
       onMouseMove={handleMouseMove}
       style={{
-        background: 'var(--bg2)',
-        border: tool.featured
-          ? '1.5px solid var(--accent)'
-          : '1px solid var(--border)',
-        borderRadius: 16,
-        padding: 24,
+        borderRadius: 20,
+        padding: '32px',
         display: 'flex',
-        flexDirection: 'column',
-        gap: 12,
-        transition: 'transform 0.3s var(--ease), box-shadow 0.3s var(--ease)',
+        flexDirection: isList ? 'row' : 'column',
+        alignItems: isList ? 'center' : 'stretch',
+        gap: '24px',
+        transition: 'all 0.4s var(--ease)',
         position: 'relative',
         overflow: 'hidden',
-        animation: 'slide-up 0.4s var(--ease) forwards',
+        animation: 'slide-up 0.5s var(--ease) forwards',
+        border: tool.featured ? '1.5px solid var(--accent)' : '1px solid rgba(255,255,255,0.05)',
       }}
-      className="premium-card"
+      className="premium-glass-card"
     >
       {/* Spotlight Effect */}
       <div style={{
         position: 'absolute',
         top: 0, left: 0,
         right: 0, bottom: 0,
-        background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 107, 53, 0.08), transparent 80%)`,
+        background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 107, 53, 0.1), transparent 70%)`,
         pointerEvents: 'none',
         zIndex: 0,
-      }} />
+        opacity: 0,
+        transition: 'opacity 0.4s ease',
+      }} className="spotlight" />
 
       {/* Top badges */}
       <div style={{
         display: 'flex',
-        gap: 8,
-        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        width: '100%',
         position: 'relative',
         zIndex: 1,
       }}>
-        {tool.featured && (
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          {tool.featured && (
+            <span style={{
+              fontSize: 10,
+              padding: '5px 12px',
+              borderRadius: 30,
+              background: 'linear-gradient(135deg, #FF8E64, #FF6B35)',
+              color: '#fff',
+              fontWeight: 800,
+              letterSpacing: '0.05em',
+              boxShadow: '0 4px 12px rgba(255,107,53,0.3)',
+            }}>FEATURED</span>
+          )}
           <span style={{
             fontSize: 10,
-            padding: '4px 10px',
-            borderRadius: 12,
-            background: 'var(--accent)',
-            color: '#fff',
-            fontWeight: 700,
-            letterSpacing: '0.02em',
-          }}>FEATURED</span>
-        )}
+            padding: '5px 12px',
+            borderRadius: 30,
+            background: tool.pricing === 'free'
+              ? 'rgba(34,197,94,0.08)'
+              : tool.pricing === 'freemium'
+              ? 'rgba(251,191,36,0.08)'
+              : 'rgba(239,68,68,0.08)',
+            color: tool.pricing === 'free'
+              ? '#4ADE80'
+              : tool.pricing === 'freemium'
+              ? '#FBBF24'
+              : '#F87171',
+            fontWeight: 800,
+            textTransform: 'uppercase',
+            border: `1px solid ${
+              tool.pricing === 'free' ? 'rgba(74, 222, 128, 0.2)' 
+              : tool.pricing === 'freemium' ? 'rgba(251, 191, 36, 0.2)' 
+              : 'rgba(248, 113, 113, 0.2)'
+            }`,
+          }}>
+            {tool.pricing}
+          </span>
+        </div>
         {tool.verified && (
           <span style={{
+            width: 20, height: 20,
+            borderRadius: '50%',
+            background: '#4ADE80',
+            color: '#030306',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             fontSize: 10,
-            padding: '4px 10px',
-            borderRadius: 12,
-            background: 'rgba(34,197,94,0.1)',
-            color: '#4ADE80',
-            fontWeight: 600,
-            border: '1px solid rgba(74, 222, 128, 0.2)',
-          }}>✓ Verified</span>
+            fontWeight: 900,
+          }} title="Verified Tool">✓</span>
         )}
-        <span style={{
-          fontSize: 10,
-          padding: '4px 10px',
-          borderRadius: 12,
-          background: tool.pricing === 'free'
-            ? 'rgba(34,197,94,0.1)'
-            : tool.pricing === 'freemium'
-            ? 'rgba(251,191,36,0.1)'
-            : 'rgba(239,68,68,0.1)',
-          color: tool.pricing === 'free'
-            ? '#4ADE80'
-            : tool.pricing === 'freemium'
-            ? '#FBBF24'
-            : '#F87171',
-          fontWeight: 700,
-          textTransform: 'uppercase',
-          border: `1px solid ${
-            tool.pricing === 'free' ? 'rgba(74, 222, 128, 0.2)' 
-            : tool.pricing === 'freemium' ? 'rgba(251, 191, 36, 0.2)' 
-            : 'rgba(248, 113, 113, 0.2)'
-          }`,
-        }}>
-          {tool.pricing}
-        </span>
       </div>
 
       {/* Tool Info */}
       <div style={{ flex: 1, position: 'relative', zIndex: 1 }}>
         <div style={{ 
-          marginBottom: 10,
+          marginBottom: 16,
           display: 'flex',
           alignItems: 'center',
-          gap: 14
+          gap: 16
         }}>
-          <span style={{ 
-            fontSize: 32,
-            filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))'
-          }}>{tool.emoji}</span>
+          <div style={{ 
+            fontSize: 42,
+            filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.5))',
+            background: 'rgba(255,255,255,0.03)',
+            padding: 12,
+            borderRadius: 16,
+            border: '1px solid rgba(255,255,255,0.05)',
+            transition: 'all 0.3s ease',
+          }} className="emoji-box">{tool.emoji}</div>
           <h3 style={{ 
-            fontSize: 20, 
-            fontWeight: 800, 
+            fontSize: 22, 
+            fontWeight: 900, 
             color: 'var(--text)',
             margin: 0,
-            lineHeight: 1.2,
+            lineHeight: 1.1,
+            letterSpacing: '-0.02em',
           }}>
             {tool.name}
           </h3>
         </div>
         <p style={{
-          fontSize: 14,
+          fontSize: 15,
           color: 'var(--text2)',
-          lineHeight: 1.6,
-          marginBottom: 20,
+          lineHeight: 1.7,
+          marginBottom: 24,
           display: '-webkit-box',
           WebkitLineClamp: 2,
           WebkitBoxOrient: 'vertical',
           overflow: 'hidden',
+          fontWeight: 500,
         }}>
           {tool.description}
         </p>
@@ -167,18 +183,19 @@ export default function ToolCard({
           display: 'flex',
           gap: 8,
           flexWrap: 'wrap',
-          marginBottom: 20,
+          marginBottom: 24,
         }}>
           {tool.category.slice(0, 3).map(cat => (
             <span key={cat} style={{
               fontSize: 11,
-              padding: '3px 10px',
-              borderRadius: 8,
-              background: 'var(--bg3)',
+              padding: '4px 14px',
+              borderRadius: 12,
+              background: 'rgba(255,255,255,0.03)',
               color: 'var(--text3)',
-              fontWeight: 500,
-              textTransform: 'capitalize',
-              border: '1px solid var(--border)',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              border: '1px solid rgba(255,255,255,0.05)',
             }}>
               {cat}
             </span>
@@ -189,7 +206,7 @@ export default function ToolCard({
       {/* Actions */}
       <div style={{
         display: 'flex',
-        gap: 12,
+        gap: 16,
         marginTop: 'auto',
         position: 'relative',
         zIndex: 1,
@@ -197,18 +214,18 @@ export default function ToolCard({
         <Link href={`/tools/${tool.slug}`}
           style={{
             flex: 1.5,
-            padding: '10px',
-            background: 'var(--bg3)',
-            border: '1px solid var(--border)',
-            borderRadius: 10,
-            fontSize: 13,
-            fontWeight: 600,
+            padding: '14px',
+            background: 'rgba(255,255,255,0.03)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            borderRadius: 14,
+            fontSize: 14,
+            fontWeight: 800,
             color: 'var(--text)',
             textDecoration: 'none',
             textAlign: 'center',
-            transition: 'all 0.2s var(--ease)',
-          }} className="btn-secondary">
-          Details →
+            transition: 'all 0.3s var(--ease)',
+          }} className="btn-details">
+          View Concept →
         </Link>
 
         <button
@@ -218,30 +235,38 @@ export default function ToolCard({
           }}
           style={{
             flex: 1,
-            padding: '10px 14px',
+            padding: '14px',
             background: isSelected 
               ? 'var(--accent)' 
               : 'transparent',
-            border: `1px solid ${isSelected ? 'var(--accent)' : 'var(--border)'}`,
-            borderRadius: 10,
+            border: `1px solid ${isSelected ? 'var(--accent)' : 'rgba(255,255,255,0.1)'}`,
+            borderRadius: 14,
             fontSize: 13,
-            fontWeight: 600,
+            fontWeight: 800,
             color: isSelected ? '#fff' : 'var(--text2)',
             cursor: 'pointer',
-            transition: 'all 0.2s var(--ease)',
+            transition: 'all 0.3s var(--ease)',
           }}>
-          {isSelected ? '✓ Added' : '+ Compare'}
+          {isSelected ? '✓ Ready' : 'Compare'}
         </button>
       </div>
 
       <style jsx>{`
-        .premium-card:hover {
-          transform: translateY(-4px) scale(1.01);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-          border-color: rgba(255, 107, 53, 0.3);
+        .premium-glass-card:hover {
+          transform: translateY(-8px) scale(1.02);
+          border-color: rgba(255, 107, 53, 0.4) !important;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 107, 53, 0.1);
         }
-        .btn-secondary:hover {
-          background: var(--bg2);
+        .premium-glass-card:hover .spotlight {
+          opacity: 1 !important;
+        }
+        .premium-glass-card:hover .emoji-box {
+          background: rgba(255, 107, 53, 0.1);
+          border-color: rgba(255, 107, 53, 0.2);
+          transform: scale(1.1) rotate(5deg);
+        }
+        .btn-details:hover {
+          background: rgba(255,255,255,0.08);
           border-color: var(--accent);
           color: var(--accent);
         }

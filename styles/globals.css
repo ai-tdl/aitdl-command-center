@@ -16,6 +16,11 @@
   --border: rgba(255, 255, 255, 0.06);
   --radius: 16px;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Dynamic Density Variables */
+  --card-padding: 24px;
+  --card-gap: 16px;
+  --grid-gap: 24px;
 }
 
 body {
@@ -74,6 +79,21 @@ h1, h2, h3, .heading {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.premium-text-gradient {
+  background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.premium-glass-card {
+  background: rgba(13, 13, 21, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 107, 53, 0.15);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
 .ambient-glow {

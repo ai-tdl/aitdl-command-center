@@ -22,6 +22,7 @@
 
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import SettingsPanel from './SettingsPanel'
 
 const LANG = {
   en: {
@@ -44,43 +45,18 @@ const LANG = {
 export default function Header({ 
   lang, setLang 
 }) {
-  const [theme, setTheme] = useState('dark')
-  const [viewMode, setViewMode] = useState('directory')
-  const [origin, setOrigin] = useState('all')
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [settingsOpen, setSettingsOpen] = useState(false)
+  const [uiMode, setUiMode] = useState('directory')
 
   useEffect(() => {
-    const saved = localStorage
-      .getItem('aitdl_theme') || 'dark'
-    setTheme(saved)
-    const mode = localStorage
-      .getItem('aitdl_viewmode') || 'directory'
-    setViewMode(mode)
-    const ori = localStorage
-      .getItem('aitdl_origin') || 'all'
-    setOrigin(ori)
+    const handleStorage = () => {
+      const mode = localStorage.getItem('aitdl_uimode') || 'directory'
+      setUiMode(mode)
+    }
+    handleStorage()
+    window.addEventListener('storage', handleStorage)
+    return () => window.removeEventListener('storage', handleStorage)
   }, [])
-
-  const toggleViewMode = () => {
-    const next = viewMode === 'directory' ? 'command' : 'directory'
-    setViewMode(next)
-    localStorage.setItem('aitdl_viewmode', next)
-    window.dispatchEvent(new Event('storage'))
-  }
-
-  const toggleOrigin = () => {
-    const next = origin === 'all' ? 'bharat' : 'all'
-    setOrigin(next)
-    localStorage.setItem('aitdl_origin', next)
-    window.dispatchEvent(new Event('storage'))
-  }
-
-  const changeTheme = (t) => {
-    setTheme(t)
-    localStorage.setItem('aitdl_theme', t)
-    document.documentElement
-      .setAttribute('data-theme', t)
-  }
 
   const t = LANG[lang]
 
@@ -102,7 +78,7 @@ export default function Header({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        height: 64,
+        height: 80,
       }}>
         {/* Logo */}
         <Link href="/" style={{
@@ -112,7 +88,7 @@ export default function Header({
           textDecoration: 'none',
         }} title="Artificial Intelligence Technology & Deep Learning">
           <div style={{
-            width: 42, height: 42,
+            width: 48, height: 48,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -122,23 +98,23 @@ export default function Header({
               width: '100%',
               height: '100%',
               objectFit: 'contain',
-              filter: 'drop-shadow(0 0 8px rgba(0, 180, 216, 0.4))',
+              filter: 'drop-shadow(0 0 10px var(--accent-glow))',
             }} />
           </div>
-          <div>
+          <div className="logo-text">
             <div style={{
-              fontSize: 18,
-              fontWeight: 900,
+              fontSize: 22,
+              fontWeight: 950,
               color: 'var(--text)',
-              letterSpacing: '-0.02em',
+              letterSpacing: '-0.03em',
               fontFamily: 'Outfit',
               lineHeight: 1,
             }}>AITDL<span style={{ color: 'var(--accent)' }}>.</span></div>
             <div style={{
-              fontSize: 8,
-              fontWeight: 700,
+              fontSize: 9,
+              fontWeight: 800,
               color: 'var(--text3)',
-              letterSpacing: '0.05em',
+              letterSpacing: '0.08em',
               marginTop: 4,
               textTransform: 'uppercase',
             }}>Artificial Intelligence Technology & Deep Learning</div>
@@ -149,186 +125,114 @@ export default function Header({
         <nav style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 8,
+          gap: 24,
         }}>
-          {/* Language toggle */}
-          <div style={{
-            display: 'flex',
-            background: 'var(--bg3)',
-            borderRadius: 20,
-            padding: 3,
-            gap: 2,
-            border: '0.5px solid var(--border)',
-          }}>
-            {['en','hi','sa'].map(l => (
-              <button key={l}
-                onClick={() => {
-                  setLang(l)
-                  localStorage.setItem(
-                    'aitdl_lang', l
-                  )
-                }}
-                style={{
-                  padding: '5px 12px',
-                  borderRadius: 16,
-                  border: 'none',
-                  fontSize: 11,
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  background: lang === l 
-                    ? 'var(--accent)' 
-                    : 'transparent',
-                  color: lang === l 
-                    ? '#fff' 
-                    : 'var(--text3)',
-                }}>
-                {l === 'en' ? 'EN' 
-                  : l === 'hi' ? 'हि' 
-                  : 'सं'}
-              </button>
-            ))}
-          </div>
-
-          {/* Theme toggle */}
-          <div style={{
-            display: 'flex',
-            background: 'var(--bg3)',
-            borderRadius: 12,
-            padding: 2,
-            gap: 2,
-            border: '1px solid var(--border)',
-          }}>
-            {['dark','light','glass','midnight'].map(th => (
-              <button key={th}
-                onClick={() => changeTheme(th)}
-                style={{
-                  padding: '6px 12px',
-                  borderRadius: 10,
-                  border: 'none',
-                  fontSize: 10,
-                  fontWeight: 800,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s var(--ease)',
-                  background: theme === th 
-                    ? 'var(--accent)' 
-                    : 'transparent',
-                  color: theme === th 
-                    ? '#fff' 
-                    : 'var(--text3)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                }}>
-                {th === 'midnight' ? '🌌' : th === 'glass' ? '💎' : th.charAt(0).toUpperCase() + th.slice(1)}
-              </button>
-            ))}
-          </div>
-
-          {/* Nav links */}
-          <Link href="/ai-battle" style={{
-            fontSize: 13,
-            color: 'var(--text2)',
-            textDecoration: 'none',
-            padding: '6px 12px',
-            borderRadius: 8,
-            border: '0.5px solid var(--border)',
-          }}>
-            ⚔️ {t.battle}
-          </Link>
-
-          <Link href="/compare" style={{
-            fontSize: 13,
-            color: 'var(--text2)',
-            textDecoration: 'none',
-            padding: '6px 12px',
-            borderRadius: 8,
-            border: '0.5px solid var(--border)',
-          }}>
-            🔄 {t.compare}
-          </Link>
-
-          {/* Bharat AI Switch */}
-          <button 
-            onClick={toggleOrigin}
-            style={{
-              padding: '8px 16px',
-              borderRadius: 30,
-              border: `1.5px solid ${origin === 'bharat' ? '#FF6B35' : 'rgba(255,107,53,0.3)'}`,
-              background: origin === 'bharat' ? 'rgba(255,107,53,0.1)' : 'transparent',
-              color: origin === 'bharat' ? '#FF6B35' : 'var(--text3)',
-              fontSize: 11,
-              fontWeight: 900,
-              cursor: 'pointer',
-              fontFamily: 'Outfit',
-              letterSpacing: '0.08em',
-              transition: 'all 0.4s var(--ease)',
-              textTransform: 'uppercase',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 10,
-              boxShadow: origin === 'bharat' ? '0 0 20px rgba(255,107,53,0.15)' : 'none',
-            }}>
-            <span>🇮🇳 {lang === 'sa' ? 'भारत AI' : lang === 'hi' ? 'भारत AI' : 'BHARAT AI'}</span>
-            <div style={{
-              width: 32,
-              height: 16,
-              borderRadius: 20,
-              background: origin === 'bharat' ? '#FF6B35' : 'rgba(255,255,255,0.1)',
-              position: 'relative',
-              transition: 'all 0.3s ease',
-            }}>
-              <div style={{
-                width: 10,
-                height: 10,
-                borderRadius: '50%',
-                background: '#fff',
-                position: 'absolute',
-                top: 3,
-                left: origin === 'bharat' ? 19 : 3,
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              }} />
-            </div>
-          </button>
-
-          {/* View mode toggle */}
-          <button 
-            onClick={toggleViewMode}
-            style={{
+          {/* Main Links */}
+          <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+            <Link href="/ai-battle" style={{
+              fontSize: 14,
+              fontWeight: 700,
+              color: 'var(--text2)',
+              textDecoration: 'none',
               padding: '8px 16px',
               borderRadius: 12,
-              border: '1px solid var(--accent)',
-              background: viewMode === 'command' ? 'var(--accent)' : 'transparent',
-              color: viewMode === 'command' ? '#fff' : 'var(--accent)',
-              fontSize: 11,
-              fontWeight: 800,
-              cursor: 'pointer',
-              fontFamily: 'Outfit',
-              letterSpacing: '0.05em',
-              transition: 'all 0.3s var(--ease)',
-              textTransform: 'uppercase',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-            }}>
-            {viewMode === 'command' ? '🚀 COMMAND' : '🔎 TOOLS'}
-          </button>
+              transition: 'all 0.2s',
+            }} className="nav-link">
+              ⚔️ {t.battle}
+            </Link>
 
-          {/* Login / Auth - Simulated as per image */}
-          <div style={{
-            padding: '8px 24px',
-            background: 'linear-gradient(to bottom, #FF8E64, #FF6B35)',
-            color: '#fff',
-            borderRadius: 12,
-            fontSize: 13,
-            fontWeight: 800,
-            cursor: 'pointer',
-            boxShadow: '0 4px 12px rgba(255,107,53,0.3)',
-            animation: 'float 4s infinite ease-in-out',
-          }}>
-            {viewMode === 'command' ? 'Sign Up' : 'Log In'}
+            <Link href="/compare" style={{
+              fontSize: 14,
+              fontWeight: 700,
+              color: 'var(--text2)',
+              textDecoration: 'none',
+              padding: '8px 16px',
+              borderRadius: 12,
+              transition: 'all 0.2s',
+            }} className="nav-link">
+              🔄 {t.compare}
+            </Link>
+
+            <Link href="/about" style={{
+              fontSize: 14,
+              fontWeight: 700,
+              color: 'var(--text2)',
+              textDecoration: 'none',
+              padding: '8px 16px',
+              borderRadius: 12,
+              transition: 'all 0.2s',
+            }} className="nav-link">
+              ✨ {t.about}
+            </Link>
+          </div>
+
+          <div style={{ width: 1, height: 24, background: 'var(--border)' }} />
+
+          {/* Action Hub */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            {/* Command HUD Switch */}
+            <div style={{
+              padding: '8px 20px',
+              background: 'linear-gradient(to bottom, #FF8E64, #FF6B35)',
+              color: '#fff',
+              borderRadius: 12,
+              fontSize: 13,
+              fontWeight: 900,
+              cursor: 'pointer',
+              boxShadow: '0 4px 20px var(--accent-glow)',
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+            }}>
+              {uiMode === 'command' ? 'Sign Up' : 'Log In'}
+            </div>
+
+            {/* GEAR BUTTON */}
+            <button 
+              onClick={() => setSettingsOpen(true)}
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: 12,
+                border: '1px solid var(--border)',
+                background: 'var(--bg3)',
+                color: 'var(--text)',
+                cursor: 'pointer',
+                fontSize: 20,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.3s var(--ease)',
+              }}
+              className="gear-btn"
+            >
+              ⚙️
+            </button>
           </div>
         </nav>
       </div>
+
+      {/* Settings Panel Portal */}
+      <SettingsPanel 
+        isOpen={settingsOpen} 
+        onClose={() => setSettingsOpen(false)}
+        lang={lang}
+        setLang={setLang}
+      />
+
+      <style jsx>{`
+        .nav-link:hover {
+          color: var(--accent);
+          background: rgba(255,255,255,0.03);
+        }
+        .gear-btn:hover {
+          border-color: var(--accent);
+          transform: rotate(45deg);
+          box-shadow: 0 0 15px var(--accent-glow);
+        }
+        @media (max-width: 768px) {
+          .logo-text, nav { display: none; }
+        }
+      `}</style>
     </header>
   )
 }

@@ -1,39 +1,36 @@
 # AITDL
-## Artificial Intelligence Technology & Deep Learning
-### India's #1 AI Tools Platform for Students
+## India's No. 1 AI Command Center
+### Artificial Intelligence Technology & Deep Learning
+
+A premium, high-performance portal curating the best AI tools for India's future leaders. Empowering 1.4 billion minds with the right AI at the right time.
 
 ## Author
 
 **Jawahar Ramkripal Mallah**  
 Software Developer & Service Provider since 2007  
 Published Author | Tech Entrepreneur  
-🌐 https://aitdl.com | 📧 hello@aitdl.com
+🌐 [aitdl.com](https://aitdl.com) | 📧 hello@aitdl.com
 
 ## Published Works
 
-- 📖 When Code Learned to Feel: 
-  The Day Code Took a Breath — Kindle Edition
-- 📖 Code Without Limits: 
-  The End of Human Coding — Upcoming
-- 📖 Gaṇitsūtram: 
-  Golden Book of Vedic Mathematics — Upcoming
+- 📖 **When Code Learned to Feel**: The Day Code Took a Breath — Kindle Edition
+- 📖 **Code Without Limits**: The End of Human Coding — Upcoming
+- 📖 **Gaṇitsūtram**: Golden Book of Vedic Mathematics — Upcoming
 
 ## Tech Stack
 
-- Next.js (SSG)
-- Firebase Auth + Firestore
-- GitHub Pages
-- Vanilla CSS
+- **Framework**: Next.js (SSG)
+- **Database**: Firebase Auth + Firestore (for AI Battle)
+- **Deployment**: GitHub Pages
+- **Styling**: Vanilla CSS (Premium Glassmorphism)
 
-## Features
+## Premium Features
 
-- 100+ verified AI tools
-- JEE, NEET, UPSC, SSC filters
-- Hindi & Sanskrit UI
-- Made in India AI section
-- AI Battle — weekly voting
-- Compare tools side by side
-- Individual tool SEO pages
+- 💎 **100+ Verified AI Tools**: Curated across study, writing, coding, and research.
+- 🇮🇳 **Bharat AI**: Dedicated section for Made-in-India AI innovations.
+- ⚔️ **AI Battle**: Weekly community voting for the best tools.
+- 🔄 **Comparison Engine**: Side-by-side analysis of AI capabilities.
+- 📱 **Command HUD**: Multilingual UI (English, Hindi, Sanskrit).
+- ⚡ **Performance**: Static site generation for near-instant load times.
 
-© 2025 Jawahar Ramkripal Mallah. 
-All Rights Reserved.
+© 2025 Jawahar Ramkripal Mallah. All Rights Reserved.
