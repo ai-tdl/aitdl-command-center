@@ -179,7 +179,7 @@ export default function Footer() {
         }}>
           {t.built} 
           <span style={{ color: 'var(--text)', fontWeight: 700, marginLeft: 6 }}>
-            Jawahar Ramkripal Mallah
+            JRM
           </span>
           <br />
           {t.dev}
