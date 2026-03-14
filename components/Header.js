@@ -58,7 +58,7 @@ export default function Header({
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
       borderBottom: '1px solid var(--border)',
-      padding: '0 24px',
+      padding: '0 var(--header-px, 24px)',
       transition: 'all 0.3s var(--ease)',
     }}>
       <div style={{
@@ -67,7 +67,7 @@ export default function Header({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        height: 80,
+        height: 'var(--header-height, 80px)',
       }}>
         {/* Logo */}
         <Link href="/" style={{
@@ -114,10 +114,10 @@ export default function Header({
         <nav style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 24,
+          gap: 'var(--nav-gap, 24px)',
         }}>
           {/* Main Links */}
-          <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: 'var(--nav-gap, 16px)', alignItems: 'center' }}>
             <Link href="/ai-battle" style={{
               fontSize: 14,
               fontWeight: 700,
@@ -201,7 +201,21 @@ export default function Header({
           box-shadow: 0 0 15px var(--accent-glow);
         }
         @media (max-width: 768px) {
-          .logo-text, nav { display: none; }
+          :root {
+            --header-height: 64px;
+            --header-px: 12px;
+            --nav-gap: 8px;
+          }
+          .logo-text { display: none; }
+          .nav-link { 
+            padding: 6px 8px !important; 
+            font-size: 12px !important; 
+          }
+          .gear-btn {
+            width: 36px !important;
+            height: 36px !important;
+            font-size: 16px !important;
+          }
         }
       `}</style>
     </header>
