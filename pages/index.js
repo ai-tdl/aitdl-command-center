@@ -58,7 +58,11 @@ const LANG_TEXT = {
       visited: 'Students Visited',
       free: 'Free',
       india: 'India First'
-    }
+    },
+    cmdHero: "EMPOWERING INDIA'S FUTURE WITH ADVANCED AI",
+    cmdSub: "Command, Control, and Scale your AI potential with India's leading AI Command Center.",
+    explore: 'EXPLORE PLATFORM',
+    learn: 'LEARN MORE'
   },
   hi: {
     hero: 'भारत का No. 1 AI कमांड सेंटर',
@@ -73,11 +77,15 @@ const LANG_TEXT = {
     freemium: 'फ्रीमियम',
     paid: 'पेड',
     stats: {
-      tools: 'AI टूल्स',
+      tools: 'AI Tools',
       visited: 'छात्र आए',
       free: 'मुफ्त',
       india: 'भारत प्रथम'
-    }
+    },
+    cmdHero: 'उन्नत AI के साथ भारत के भविष्य को सशक्त बनाना',
+    cmdSub: 'भारत के अग्रणी AI कमांड सेंटर के साथ अपनी AI क्षमता को कमांड, कंट्रोल और स्केल करें।',
+    explore: 'प्लेटफॉर्म देखें',
+    learn: 'अधिक जानें'
   },
   sa: {
     hero: 'भारतस्य No. 1 AI कमांड केंद्रम्',
@@ -96,7 +104,11 @@ const LANG_TEXT = {
       visited: 'छात्राः आगताः',
       free: 'निःशुल्कम्',
       india: 'भारतम् प्रथमम्'
-    }
+    },
+    cmdHero: 'प्रगत-AI-तन्त्रेण भारतस्य भविष्यं सक्षमीकरणम्',
+    cmdSub: 'भारतस्य प्रमुख-एआइ-आदेशकेन्द्रेण सह स्वकीय-एआइ-क्षमतायाः आदेशं, नियन्त्रणं, मापनं च कुर्वन्तु।',
+    explore: 'मञ्चं अन्वेषयन्तु',
+    learn: 'अधिकं जानन्तु'
   }
 }
 
@@ -189,6 +201,7 @@ const NeuralBackground = () => {
 
 export default function Home({ tools }) {
   const [lang, setLang] = useState('en')
+  const [viewMode, setViewMode] = useState('directory')
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All')
   const [exam, setExam] = useState('All')
@@ -200,9 +213,13 @@ export default function Home({ tools }) {
   const t = LANG_TEXT[lang]
 
   useEffect(() => {
-    const saved = localStorage
+    const savedLang = localStorage
       .getItem('aitdl_lang') || 'en'
-    setLang(saved)
+    setLang(savedLang)
+
+    const savedMode = localStorage
+      .getItem('aitdl_viewmode') || 'directory'
+    setViewMode(savedMode)
 
     const savedVisitors = localStorage
       .getItem('aitdl_visitors')
@@ -213,6 +230,16 @@ export default function Home({ tools }) {
     localStorage.setItem(
       'aitdl_visitors', count
     )
+
+    // Listener for viewMode changes from Header
+    const handleStorage = () => {
+      const mode = localStorage.getItem('aitdl_viewmode') || 'directory'
+      setViewMode(mode)
+      const l = localStorage.getItem('aitdl_lang') || 'en'
+      setLang(l)
+    }
+    window.addEventListener('storage', handleStorage)
+    return () => window.removeEventListener('storage', handleStorage)
   }, [])
 
   useEffect(() => {
@@ -340,41 +367,95 @@ export default function Home({ tools }) {
 
           {/* Main heading */}
           <h1 style={{
-            fontSize: 'clamp(42px, 10vw, 84px)',
+            fontSize: viewMode === 'command' 
+              ? 'clamp(48px, 12vw, 96px)' 
+              : 'clamp(42px, 10vw, 84px)',
             fontWeight: 950,
             lineHeight: 1,
-            marginBottom: 20,
+            marginBottom: 24,
             letterSpacing: '-0.04em',
             animation: 'slide-up 0.5s var(--ease) 0.1s both',
+            textTransform: viewMode === 'command' ? 'uppercase' : 'none',
           }}>
-            <span style={{ color: 'var(--text)', filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.5))' }}>
-              Right AI Tool
-            </span>
-            <br/>
-            <span style={{ 
-              color: 'var(--accent)',
-              background: 'linear-gradient(to bottom, #FF8E64, #FF6B35)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              filter: 'drop-shadow(0 4px 12px rgba(255,107,53,0.2))'
-            }}>
-              At The Right Time
-            </span>
+            {viewMode === 'command' ? (
+              <span style={{ 
+                color: 'var(--text)', 
+                filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.5))' 
+              }}>
+                {t.cmdHero}
+              </span>
+            ) : (
+              <>
+                <span style={{ color: 'var(--text)', filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.5))' }}>
+                  Right AI Tool
+                </span>
+                <br/>
+                <span style={{ 
+                  color: 'var(--accent)',
+                  background: 'linear-gradient(to bottom, #FF8E64, #FF6B35)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  filter: 'drop-shadow(0 4px 12px rgba(255,107,53,0.2))'
+                }}>
+                  At The Right Time
+                </span>
+              </>
+            )}
           </h1>
 
           {/* Subtitle */}
           <p style={{
-            fontSize: 18,
+            fontSize: viewMode === 'command' ? 20 : 18,
             color: 'var(--text2)',
-            marginBottom: 48,
-            maxWidth: 540,
+            marginBottom: viewMode === 'command' ? 48 : 48,
+            maxWidth: viewMode === 'command' ? 700 : 540,
             margin: '0 auto 48px',
             lineHeight: 1.6,
             animation: 'slide-up 0.5s var(--ease) 0.2s both',
           }}>
-            JEE, NEET, UPSC — the definitive collection of 
-            free AI tools for India's future leaders.
+            {viewMode === 'command' ? t.cmdSub : (
+              <>JEE, NEET, UPSC — the definitive collection of free AI tools for India's future leaders.</>
+            )}
           </p>
+
+          {/* Command Mode Buttons */}
+          {viewMode === 'command' && (
+            <div style={{
+              display: 'flex',
+              gap: 16,
+              justifyContent: 'center',
+              marginBottom: 64,
+              animation: 'slide-up 0.5s var(--ease) 0.3s both',
+            }}>
+              <button style={{
+                padding: '16px 32px',
+                background: 'var(--accent)',
+                color: '#fff',
+                border: 'none',
+                borderRadius: 12,
+                fontSize: 14,
+                fontWeight: 800,
+                cursor: 'pointer',
+                boxShadow: '0 8px 32px rgba(255,107,53,0.3)',
+                transition: 'all 0.3s var(--ease)',
+              }} className="btn-primary">
+                {t.explore}
+              </button>
+              <button style={{
+                padding: '16px 32px',
+                background: 'rgba(255,255,255,0.05)',
+                color: 'var(--text)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                borderRadius: 12,
+                fontSize: 14,
+                fontWeight: 800,
+                cursor: 'pointer',
+                transition: 'all 0.3s var(--ease)',
+              }} className="btn-secondary">
+                {t.learn}
+              </button>
+            </div>
+          )}
 
           {/* Stats Section */}
           <div style={{
@@ -458,41 +539,43 @@ export default function Home({ tools }) {
         </div>
 
         {/* Search Bar - Premium Glow Input */}
-        <div style={{
-          maxWidth: 640,
-          margin: '0 auto 48px',
-          position: 'relative',
-          animation: 'slide-up 0.5s var(--ease) 0.3s both',
-        }}>
+        {viewMode === 'directory' && (
           <div style={{
-            position: 'absolute',
-            inset: -1,
-            background: 'linear-gradient(90deg, transparent, var(--accent), transparent)',
-            borderRadius: 18,
-            opacity: 0.15,
-            pointerEvents: 'none',
-          }} />
-          <input
-            type="text"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            placeholder={t.search}
-            style={{
-              width: '100%',
-              padding: '20px 28px',
-              background: 'rgba(13, 13, 21, 0.8)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              borderRadius: 16,
-              fontSize: 16,
-              color: 'var(--text)',
-              outline: 'none',
-              transition: 'all 0.3s var(--ease)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
-            }}
-            className="premium-search"
-          />
-        </div>
+            maxWidth: 640,
+            margin: '0 auto 48px',
+            position: 'relative',
+            animation: 'slide-up 0.5s var(--ease) 0.3s both',
+          }}>
+            <div style={{
+              position: 'absolute',
+              inset: -1,
+              background: 'linear-gradient(90deg, transparent, var(--accent), transparent)',
+              borderRadius: 18,
+              opacity: 0.15,
+              pointerEvents: 'none',
+            }} />
+            <input
+              type="text"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder={t.search}
+              style={{
+                width: '100%',
+                padding: '20px 28px',
+                background: 'rgba(13, 13, 21, 0.8)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                borderRadius: 16,
+                fontSize: 16,
+                color: 'var(--text)',
+                outline: 'none',
+                transition: 'all 0.3s var(--ease)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+              }}
+              className="premium-search"
+            />
+          </div>
+        )}
 
         {/* Filter Section - Floating Dock */}
         <div className="floating-dock" style={{

@@ -45,13 +45,24 @@ export default function Header({
   lang, setLang 
 }) {
   const [theme, setTheme] = useState('dark')
+  const [viewMode, setViewMode] = useState('directory')
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const saved = localStorage
       .getItem('aitdl_theme') || 'dark'
     setTheme(saved)
+    const mode = localStorage
+      .getItem('aitdl_viewmode') || 'directory'
+    setViewMode(mode)
   }, [])
+
+  const toggleViewMode = () => {
+    const next = viewMode === 'directory' ? 'command' : 'directory'
+    setViewMode(next)
+    localStorage.setItem('aitdl_viewmode', next)
+    window.dispatchEvent(new Event('storage'))
+  }
 
   const changeTheme = (t) => {
     setTheme(t)
@@ -220,16 +231,43 @@ export default function Header({
             🔄 {t.compare}
           </Link>
 
-          <Link href="/about" style={{
+          {/* View mode toggle */}
+          <button 
+            onClick={toggleViewMode}
+            style={{
+              padding: '8px 16px',
+              borderRadius: 12,
+              border: '1px solid var(--accent)',
+              background: viewMode === 'command' ? 'var(--accent)' : 'transparent',
+              color: viewMode === 'command' ? '#fff' : 'var(--accent)',
+              fontSize: 11,
+              fontWeight: 800,
+              cursor: 'pointer',
+              fontFamily: 'Outfit',
+              letterSpacing: '0.05em',
+              transition: 'all 0.3s var(--ease)',
+              textTransform: 'uppercase',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+            }}>
+            {viewMode === 'command' ? '🚀 COMMAND' : '🔎 TOOLS'}
+          </button>
+
+          {/* Login / Auth - Simulated as per image */}
+          <div style={{
+            padding: '8px 24px',
+            background: 'linear-gradient(to bottom, #FF8E64, #FF6B35)',
+            color: '#fff',
+            borderRadius: 12,
             fontSize: 13,
-            color: 'var(--text2)',
-            textDecoration: 'none',
-            padding: '6px 12px',
-            borderRadius: 8,
-            border: '0.5px solid var(--border)',
+            fontWeight: 800,
+            cursor: 'pointer',
+            boxShadow: '0 4px 12px rgba(255,107,53,0.3)',
+            animation: 'float 4s infinite ease-in-out',
           }}>
-            {t.about}
-          </Link>
+            {viewMode === 'command' ? 'Sign Up' : 'Log In'}
+          </div>
         </nav>
       </div>
     </header>
