@@ -43,7 +43,7 @@ const EXAMS = [
 const LANG_TEXT = {
   en: {
     hero: "India's No. 1 AI Command Center",
-    sub: 'Empowering 1.4 Billion minds',
+    sub: "Artificial Intelligence Technology & Deep Learning",
     search: 'Search 100+ AI tools...',
     category: 'Category',
     exam: 'Target Exam',
