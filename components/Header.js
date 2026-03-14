@@ -46,6 +46,7 @@ export default function Header({
 }) {
   const [theme, setTheme] = useState('dark')
   const [viewMode, setViewMode] = useState('directory')
+  const [origin, setOrigin] = useState('all')
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -55,12 +56,22 @@ export default function Header({
     const mode = localStorage
       .getItem('aitdl_viewmode') || 'directory'
     setViewMode(mode)
+    const ori = localStorage
+      .getItem('aitdl_origin') || 'all'
+    setOrigin(ori)
   }, [])
 
   const toggleViewMode = () => {
     const next = viewMode === 'directory' ? 'command' : 'directory'
     setViewMode(next)
     localStorage.setItem('aitdl_viewmode', next)
+    window.dispatchEvent(new Event('storage'))
+  }
+
+  const toggleOrigin = () => {
+    const next = origin === 'all' ? 'bharat' : 'all'
+    setOrigin(next)
+    localStorage.setItem('aitdl_origin', next)
     window.dispatchEvent(new Event('storage'))
   }
 
@@ -230,6 +241,30 @@ export default function Header({
           }}>
             🔄 {t.compare}
           </Link>
+
+          {/* Bharat AI toggle */}
+          <button 
+            onClick={toggleOrigin}
+            style={{
+              padding: '8px 16px',
+              borderRadius: 12,
+              border: '1px solid #FF6B35',
+              background: origin === 'bharat' ? '#FF6B35' : 'transparent',
+              color: origin === 'bharat' ? '#fff' : '#FF6B35',
+              fontSize: 11,
+              fontWeight: 900,
+              cursor: 'pointer',
+              fontFamily: 'Outfit',
+              letterSpacing: '0.05em',
+              transition: 'all 0.3s var(--ease)',
+              textTransform: 'uppercase',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              boxShadow: origin === 'bharat' ? '0 4px 12px rgba(255,107,53,0.3)' : 'none',
+            }}>
+            {origin === 'bharat' ? '🇮🇳 BHARAT AI' : '🌍 GLOBAL AI'}
+          </button>
 
           {/* View mode toggle */}
           <button 

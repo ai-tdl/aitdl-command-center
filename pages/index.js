@@ -62,7 +62,10 @@ const LANG_TEXT = {
     cmdHero: "EMPOWERING INDIA'S FUTURE WITH ADVANCED AI",
     cmdSub: "Command, Control, and Scale your AI potential with India's leading AI Command Center.",
     explore: 'EXPLORE PLATFORM',
-    learn: 'LEARN MORE'
+    learn: 'LEARN MORE',
+    originAll: 'All AI',
+    originBharat: 'Bharat AI',
+    originGlobal: 'Global AI'
   },
   hi: {
     hero: 'भारत का No. 1 AI कमांड सेंटर',
@@ -85,7 +88,10 @@ const LANG_TEXT = {
     cmdHero: 'उन्नत AI के साथ भारत के भविष्य को सशक्त बनाना',
     cmdSub: 'भारत के अग्रणी AI कमांड सेंटर के साथ अपनी AI क्षमता को कमांड, कंट्रोल और स्केल करें।',
     explore: 'प्लेटफॉर्म देखें',
-    learn: 'अधिक जानें'
+    learn: 'अधिक जानें',
+    originAll: 'सभी AI',
+    originBharat: 'भारत AI',
+    originGlobal: 'वैश्विक AI'
   },
   sa: {
     hero: 'भारतस्य No. 1 AI कमांड केंद्रम्',
@@ -108,7 +114,10 @@ const LANG_TEXT = {
     cmdHero: 'प्रगत-AI-तन्त्रेण भारतस्य भविष्यं सक्षमीकरणम्',
     cmdSub: 'भारतस्य प्रमुख-एआइ-आदेशकेन्द्रेण सह स्वकीय-एआइ-क्षमतायाः आदेशं, नियन्त्रणं, मापनं च कुर्वन्तु।',
     explore: 'मञ्चं अन्वेषयन्तु',
-    learn: 'अधिकं जानन्तु'
+    learn: 'अधिकं जानन्तु',
+    originAll: 'सर्वाणि AI',
+    originBharat: 'भारत AI',
+    originGlobal: 'वैश्विक AI'
   }
 }
 
@@ -116,6 +125,7 @@ const LANG_TEXT = {
 export default function Home({ tools }) {
   const [lang, setLang] = useState('en')
   const [viewMode, setViewMode] = useState('directory')
+  const [origin, setOrigin] = useState('all')
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All')
   const [exam, setExam] = useState('All')
@@ -135,6 +145,10 @@ export default function Home({ tools }) {
       .getItem('aitdl_viewmode') || 'directory'
     setViewMode(savedMode)
 
+    const savedOrigin = localStorage
+      .getItem('aitdl_origin') || 'all'
+    setOrigin(savedOrigin)
+
     const savedVisitors = localStorage
       .getItem('aitdl_visitors')
     const count = savedVisitors 
@@ -149,6 +163,8 @@ export default function Home({ tools }) {
     const handleStorage = () => {
       const mode = localStorage.getItem('aitdl_viewmode') || 'directory'
       setViewMode(mode)
+      const ori = localStorage.getItem('aitdl_origin') || 'all'
+      setOrigin(ori)
       const l = localStorage.getItem('aitdl_lang') || 'en'
       setLang(l)
     }
@@ -158,6 +174,12 @@ export default function Home({ tools }) {
 
   useEffect(() => {
     let result = tools
+
+    if (origin === 'bharat') {
+      result = result.filter(tool =>
+        tool.category.includes('india')
+      )
+    }
 
     if (category !== 'All') {
       result = result.filter(tool =>
