@@ -46,17 +46,6 @@ export default function Header({
   lang, setLang 
 }) {
   const [settingsOpen, setSettingsOpen] = useState(false)
-  const [uiMode, setUiMode] = useState('directory')
-
-  useEffect(() => {
-    const handleStorage = () => {
-      const mode = localStorage.getItem('aitdl_uimode') || 'directory'
-      setUiMode(mode)
-    }
-    handleStorage()
-    window.addEventListener('storage', handleStorage)
-    return () => window.removeEventListener('storage', handleStorage)
-  }, [])
 
   const t = LANG[lang]
 
@@ -166,26 +155,8 @@ export default function Header({
             </Link>
           </div>
 
-          <div style={{ width: 1, height: 24, background: 'var(--border)' }} />
-
           {/* Action Hub */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            {/* Command HUD Switch */}
-            <div style={{
-              padding: '8px 20px',
-              background: 'linear-gradient(to bottom, #FF8E64, #FF6B35)',
-              color: '#fff',
-              borderRadius: 12,
-              fontSize: 13,
-              fontWeight: 900,
-              cursor: 'pointer',
-              boxShadow: '0 4px 20px var(--accent-glow)',
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
-            }}>
-              {uiMode === 'command' ? 'Sign Up' : 'Log In'}
-            </div>
-
             {/* GEAR BUTTON */}
             <button 
               onClick={() => setSettingsOpen(true)}

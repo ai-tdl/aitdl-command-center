@@ -142,9 +142,7 @@ export default function Home({ tools }) {
     // Initial load from storage
     const savedLang = localStorage.getItem('aitdl_lang') || 'en'
     setLang(savedLang)
-    const savedUi = localStorage.getItem('aitdl_uimode') || 'directory'
-    setUiMode(savedUi)
-    const savedView = localStorage.getItem('aitdl_viewmode') || 'grid'
+    const savedView = localStorage.getItem('aitdl_view') || 'grid'
     setViewMode(savedView)
     const savedOrigin = localStorage.getItem('aitdl_origin') || 'all'
     setOrigin(savedOrigin)
@@ -157,8 +155,7 @@ export default function Home({ tools }) {
 
     const handleStorage = () => {
       setLang(localStorage.getItem('aitdl_lang') || 'en')
-      setUiMode(localStorage.getItem('aitdl_uimode') || 'directory')
-      setViewMode(localStorage.getItem('aitdl_viewmode') || 'grid')
+      setViewMode(localStorage.getItem('aitdl_view') || 'grid')
       setOrigin(localStorage.getItem('aitdl_origin') || 'all')
     }
     window.addEventListener('storage', handleStorage)
@@ -252,8 +249,8 @@ export default function Home({ tools }) {
             fontWeight: 800,
             letterSpacing: '0.15em',
             color: 'var(--accent)',
-            background: 'rgba(255,107,53,0.08)',
-            border: '1px solid rgba(255,107,53,0.2)',
+            background: 'var(--accent-glow)',
+            border: '1px solid var(--accent)',
             borderRadius: 30,
             padding: '6px 20px',
             marginBottom: 32,
@@ -283,7 +280,7 @@ export default function Home({ tools }) {
                 <br/>
                 <span style={{ 
                   color: 'var(--accent)',
-                  background: 'linear-gradient(to bottom, #FF8E64, #FF6B35)',
+                  background: 'linear-gradient(to bottom, var(--text), var(--accent))',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}>At The Right Time</span>
@@ -292,27 +289,23 @@ export default function Home({ tools }) {
           </h1>
 
           <p style={{
-            fontSize: uiMode === 'command' ? 20 : 18,
+            fontSize: 20,
             color: 'var(--text2)',
-            maxWidth: uiMode === 'command' ? 700 : 540,
+            maxWidth: 700,
             margin: '0 auto 48px',
             lineHeight: 1.6,
           }}>
-            {uiMode === 'command' ? t.cmdSub : (
-              <>JEE, NEET, UPSC — the definitive collection of free AI tools for India's future leaders.</>
-            )}
+            {t.cmdSub}
           </p>
 
-          {uiMode === 'command' && (
             <div style={{ display: 'flex', gap: 20, justifyContent: 'center', marginBottom: 64 }}>
-              <button style={{ padding: '20px 48px', background: 'linear-gradient(135deg, #FF8E64, #FF6B35)', color: '#fff', border: 'none', borderRadius: 50, fontSize: 13, fontWeight: 900, cursor: 'pointer', boxShadow: '0 10px 40px rgba(255,107,53,0.4)' }} className="btn-primary-glow">
+              <button style={{ padding: '20px 48px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 50, fontSize: 13, fontWeight: 900, cursor: 'pointer', boxShadow: '0 10px 40px var(--accent-glow)' }} className="btn-primary-glow">
                 {t.explore}
               </button>
               <button style={{ padding: '20px 48px', background: 'transparent', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 50, fontSize: 13, fontWeight: 800, cursor: 'pointer' }} className="btn-secondary-border">
                 {t.learn}
               </button>
             </div>
-          )}
         </div>
 
         <TrustBar />

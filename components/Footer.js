@@ -86,8 +86,8 @@ export default function Footer() {
       borderTop: '1px solid var(--border)',
       padding: '64px 24px',
       marginTop: 80,
-      background: 'rgba(0,0,0,0.3)',
-      backdropFilter: 'blur(10px)',
+      background: 'var(--bg)',
+      backdropFilter: 'blur(20px)',
     }}>
       <div style={{
         maxWidth: 1200,
@@ -102,7 +102,7 @@ export default function Footer() {
             <img src="/logo-horizontal.svg" alt="AITDL Branding" style={{
               height: 60,
               width: 'auto',
-              filter: 'drop-shadow(0 0 10px rgba(0, 180, 216, 0.2))',
+              filter: 'drop-shadow(0 0 10px var(--accent-glow))',
             }} />
           </div>
           <p style={{

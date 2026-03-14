@@ -49,16 +49,16 @@ export default function ToolCard({
       onMouseMove={handleMouseMove}
       style={{
         borderRadius: 20,
-        padding: '32px',
+        padding: 'var(--card-padding)',
         display: 'flex',
         flexDirection: isList ? 'row' : 'column',
         alignItems: isList ? 'center' : 'stretch',
-        gap: '24px',
+        gap: 'var(--card-gap, 24px)',
         transition: 'all 0.4s var(--ease)',
         position: 'relative',
         overflow: 'hidden',
         animation: 'slide-up 0.5s var(--ease) forwards',
-        border: tool.featured ? '1.5px solid var(--accent)' : '1px solid rgba(255,255,255,0.05)',
+        border: tool.featured ? '1.5px solid var(--accent)' : '1px solid var(--border)',
       }}
       className="premium-glass-card"
     >
@@ -67,7 +67,7 @@ export default function ToolCard({
         position: 'absolute',
         top: 0, left: 0,
         right: 0, bottom: 0,
-        background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 107, 53, 0.1), transparent 70%)`,
+        background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, var(--accent-glow), transparent 70%)`,
         pointerEvents: 'none',
         zIndex: 0,
         opacity: 0,
@@ -89,11 +89,11 @@ export default function ToolCard({
               fontSize: 10,
               padding: '5px 12px',
               borderRadius: 30,
-              background: 'linear-gradient(135deg, #FF8E64, #FF6B35)',
+              background: 'var(--accent)',
               color: '#fff',
               fontWeight: 800,
               letterSpacing: '0.05em',
-              boxShadow: '0 4px 12px rgba(255,107,53,0.3)',
+              boxShadow: '0 4px 12px var(--accent-glow)',
             }}>FEATURED</span>
           )}
           <span style={{
@@ -254,15 +254,15 @@ export default function ToolCard({
       <style jsx>{`
         .premium-glass-card:hover {
           transform: translateY(-8px) scale(1.02);
-          border-color: rgba(255, 107, 53, 0.4) !important;
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 107, 53, 0.1);
+          border-color: var(--accent) !important;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 20px var(--accent-glow);
         }
         .premium-glass-card:hover .spotlight {
           opacity: 1 !important;
         }
         .premium-glass-card:hover .emoji-box {
-          background: rgba(255, 107, 53, 0.1);
-          border-color: rgba(255, 107, 53, 0.2);
+          background: var(--accent-glow);
+          border-color: var(--accent);
           transform: scale(1.1) rotate(5deg);
         }
         .btn-details:hover {
