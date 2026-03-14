@@ -1,7 +1,7 @@
 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <circle cx="50" cy="50" r="48" fill="#060610"/>
-  <circle cx="50" cy="50" r="46" fill="none" stroke="#00B4D8" stroke-width="3" opacity="0.9"/>
-  <circle cx="50" cy="50" r="32" fill="none" stroke="#FF6B35" stroke-width="2" opacity="0.7"/>
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#00B4D8" stroke-width="6" opacity="0.95"/>
+  <circle cx="50" cy="50" r="32" fill="none" stroke="#FF6B35" stroke-width="4" opacity="0.8"/>
   <circle cx="50" cy="50" r="15" fill="#00B4D8"/>
   <circle cx="50" cy="50" r="8" fill="#F0EDE8"/>
 </svg>
