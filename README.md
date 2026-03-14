@@ -33,4 +33,4 @@ Published Author | Tech Entrepreneur
 - 📱 **Command HUD**: Multilingual UI (English, Hindi, Sanskrit).
 - ⚡ **Performance**: Static site generation for near-instant load times.
 
-© 2025 Jawahar Ramkripal Mallah. All Rights Reserved.
+© 2025 AITDL - Artificial Intelligence Technology & Deep Learning. All Rights Reserved.

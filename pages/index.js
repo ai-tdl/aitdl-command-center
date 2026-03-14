@@ -8,7 +8,7 @@
  *            Published Author | Tech Entrepreneur
  * @website   https://aitdl.com
  * @email     hello@aitdl.com
- * @copyright © 2025 All Rights Reserved
+ * @copyright © 2025 AITDL - Artificial Intelligence Technology & Deep Learning
  * ============================================
  * @books
  * - When Code Learned to Feel:
