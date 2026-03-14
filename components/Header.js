@@ -112,15 +112,22 @@ export default function Header({
           textDecoration: 'none',
         }} title="Artificial Intelligence Technology & Deep Learning">
           <div style={{
-            width: 36, height: 36,
-            borderRadius: 10,
-            background: 'linear-gradient(135deg, #FF8E64, #FF6B35)',
+            width: 40, height: 40,
+            borderRadius: '50%',
+            overflow: 'hidden',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: 20,
-            boxShadow: '0 4px 12px rgba(255,107,53,0.3)',
-          }}>⚡</div>
+            border: '1.5px solid rgba(255,107,53,0.3)',
+            boxShadow: '0 0 20px rgba(255,107,53,0.2)',
+            transition: 'all 0.5s var(--ease)',
+          }} className="logo-glow">
+            <img src="/logo-chakra.png" alt="AITDL Chakra" style={{
+              width: '120%',
+              height: '120%',
+              objectFit: 'cover',
+            }} />
+          </div>
           <div>
             <div style={{
               fontSize: 18,
