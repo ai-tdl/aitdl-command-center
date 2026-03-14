@@ -169,22 +169,29 @@ export default function Footer() {
 
       <div style={{
         borderTop: '1px solid var(--border)',
-        paddingTop: 32,
+        paddingTop: 48,
         textAlign: 'center',
       }}>
         <div style={{
-          fontSize: 12,
+          fontSize: 13,
           color: 'var(--text3)',
           lineHeight: 2,
+          fontWeight: 500,
         }}>
           {t.built} 
-          <span style={{ color: 'var(--text)', fontWeight: 700, marginLeft: 6 }}>
+          <span style={{ 
+            color: 'var(--text)', 
+            fontWeight: 800, 
+            marginLeft: 6,
+            fontFamily: 'Outfit',
+            letterSpacing: '0.05em',
+          }}>
             JRM
           </span>
           <br />
-          {t.dev}
+          <span style={{ fontSize: 11, opacity: 0.8 }}>{t.dev}</span>
           <br />
-          <span style={{ opacity: 0.6 }}>{t.rights}</span>
+          <span style={{ fontSize: 11, opacity: 0.5, marginTop: 8, display: 'block' }}>{t.rights}</span>
         </div>
       </div>
     </footer>

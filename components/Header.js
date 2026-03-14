@@ -67,9 +67,12 @@ export default function Header({
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      background: 'var(--bg)',
-      borderBottom: '0.5px solid var(--border)',
+      background: 'rgba(3, 3, 6, 0.7)',
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
       padding: '0 24px',
+      transition: 'all 0.3s var(--ease)',
     }}>
       <div style={{
         maxWidth: 1200,
@@ -77,35 +80,40 @@ export default function Header({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        height: 56,
+        height: 64,
       }}>
         {/* Logo */}
         <Link href="/" style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 10,
+          gap: 12,
           textDecoration: 'none',
         }}>
           <div style={{
-            width: 32, height: 32,
-            borderRadius: '50%',
-            background: 'var(--accent)',
+            width: 36, height: 36,
+            borderRadius: 10,
+            background: 'linear-gradient(135deg, #FF8E64, #FF6B35)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: 16,
+            fontSize: 20,
+            boxShadow: '0 4px 12px rgba(255,107,53,0.3)',
           }}>⚡</div>
           <div>
             <div style={{
-              fontSize: 16,
-              fontWeight: 700,
+              fontSize: 18,
+              fontWeight: 900,
               color: 'var(--text)',
-              letterSpacing: '0.05em',
-            }}>AITDL</div>
+              letterSpacing: '-0.02em',
+              fontFamily: 'Outfit',
+              lineHeight: 1,
+            }}>AITDL<span style={{ color: 'var(--accent)' }}>.</span></div>
             <div style={{
               fontSize: 9,
+              fontWeight: 700,
               color: 'var(--text3)',
-              letterSpacing: '0.1em',
+              letterSpacing: '0.15em',
+              marginTop: 2,
             }}>COMMAND CENTER</div>
           </div>
         </Link>
@@ -158,31 +166,34 @@ export default function Header({
           {/* Theme toggle */}
           <div style={{
             display: 'flex',
-            background: 'var(--bg3)',
-            borderRadius: 20,
-            padding: 3,
+            background: 'rgba(255,255,255,0.03)',
+            borderRadius: 12,
+            padding: 2,
             gap: 2,
+            border: '1px solid rgba(255,255,255,0.05)',
           }}>
             {['dark','light','glass','midnight'].map(th => (
               <button key={th}
                 onClick={() => changeTheme(th)}
                 style={{
-                  padding: '4px 10px',
-                  borderRadius: 16,
+                  padding: '6px 12px',
+                  borderRadius: 10,
                   border: 'none',
                   fontSize: 11,
-                  fontWeight: 600,
+                  fontWeight: 700,
                   cursor: 'pointer',
+                  transition: 'all 0.2s var(--ease)',
                   background: theme === th 
-                    ? 'var(--bg2)' 
+                    ? 'rgba(255,255,255,0.05)' 
                     : 'transparent',
                   color: theme === th 
                     ? 'var(--text)' 
                     : 'var(--text3)',
                 }}>
                 {th === 'midnight' 
-                  ? '🌌 Midnight' 
-                  : th.charAt(0).toUpperCase() + th.slice(1)}
+                  ? '🌌' 
+                  : th === 'glass' ? '💎'
+                  : th === 'dark' ? '🌙' : '☀️'}
               </button>
             ))}
           </div>

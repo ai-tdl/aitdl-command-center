@@ -265,24 +265,27 @@ export default function Home({ tools }) {
       key={val}
       onClick={() => setter(val)}
       style={{
-        padding: '6px 16px',
-        borderRadius: 20,
-        border: current === val
-          ? '1.5px solid var(--accent)'
-          : '0.5px solid var(--border)',
-        background: current === val
+        padding: '8px 20px',
+        borderRadius: 12,
+        border: '1px solid',
+        borderColor: current === val
           ? 'var(--accent)'
-          : 'rgba(255,255,255,0.05)',
+          : 'rgba(255,255,255,0.1)',
+        background: current === val
+          ? 'rgba(255,107,53,0.1)'
+          : 'rgba(255,255,255,0.03)',
         color: current === val
-          ? '#fff'
-          : 'rgba(240,237,232,0.75)',
-        fontSize: 12,
-        fontWeight: current === val ? 700 : 400,
+          ? 'var(--accent)'
+          : 'var(--text2)',
+        fontSize: 13,
+        fontWeight: 600,
         cursor: 'pointer',
         whiteSpace: 'nowrap',
         flexShrink: 0,
-        transition: 'all 0.15s ease',
-      }}>
+        transition: 'all 0.3s var(--ease)',
+      }}
+      className="premium-filter-btn"
+    >
       {val === 'india' 
         ? '🇮🇳 Made in India'
         : val}
@@ -309,51 +312,68 @@ export default function Home({ tools }) {
         {/* Hero Section */}
         <div style={{
           textAlign: 'center',
-          padding: '80px 16px 40px',
+          padding: '120px 16px 60px',
           position: 'relative',
           zIndex: 1,
         }}>
+          {/* Ambient Glows */}
+          <div className="ambient-glow" style={{ top: '-10%', left: '30%' }} />
+          <div className="ambient-glow" style={{ top: '20%', right: '20%', background: 'radial-gradient(circle, #00B4D8 0%, transparent 70%)', opacity: 0.1 }} />
+
           {/* Badge */}
           <div style={{
             display: 'inline-block',
-            fontSize: 11,
-            fontWeight: 700,
+            fontSize: 12,
+            fontWeight: 800,
             letterSpacing: '0.15em',
             color: 'var(--accent)',
-            border: '1px solid var(--accent)',
-            borderRadius: 20,
-            padding: '5px 16px',
-            marginBottom: 24,
+            background: 'rgba(255,107,53,0.08)',
+            border: '1px solid rgba(255,107,53,0.2)',
+            borderRadius: 30,
+            padding: '6px 20px',
+            marginBottom: 32,
+            boxShadow: '0 4px 20px rgba(255,107,53,0.1)',
+            animation: 'slide-up 0.4s var(--ease)',
           }}>
             INDIA'S #1 AI TOOLS PLATFORM
           </div>
 
           {/* Main heading */}
           <h1 style={{
-            fontSize: 'clamp(36px, 8vw, 72px)',
-            fontWeight: 900,
-            lineHeight: 1.1,
-            marginBottom: 16,
+            fontSize: 'clamp(42px, 10vw, 84px)',
+            fontWeight: 950,
+            lineHeight: 1,
+            marginBottom: 20,
+            letterSpacing: '-0.04em',
+            animation: 'slide-up 0.5s var(--ease) 0.1s both',
           }}>
-            <span style={{ color: 'var(--text)' }}>
+            <span style={{ color: 'var(--text)', filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.5))' }}>
               Right AI Tool
             </span>
             <br/>
-            <span style={{ color: 'var(--accent)' }}>
+            <span style={{ 
+              color: 'var(--accent)',
+              background: 'linear-gradient(to bottom, #FF8E64, #FF6B35)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              filter: 'drop-shadow(0 4px 12px rgba(255,107,53,0.2))'
+            }}>
               At The Right Time
             </span>
           </h1>
 
           {/* Subtitle */}
           <p style={{
-            fontSize: 16,
+            fontSize: 18,
             color: 'var(--text2)',
-            marginBottom: 40,
-            maxWidth: 500,
-            margin: '0 auto 40px',
+            marginBottom: 48,
+            maxWidth: 540,
+            margin: '0 auto 48px',
+            lineHeight: 1.6,
+            animation: 'slide-up 0.5s var(--ease) 0.2s both',
           }}>
-            JEE, NEET, UPSC — best free AI tools
-            for every exam, in one place.
+            JEE, NEET, UPSC — the definitive collection of 
+            free AI tools for India's future leaders.
           </p>
 
           {/* Stats Section */}
@@ -374,27 +394,34 @@ export default function Home({ tools }) {
                 label: t.stats.visited },
               { num: '100%', label: t.stats.free },
               { num: '🇮🇳', label: t.stats.india },
-            ].map(s => (
+            ].map((s, idx) => (
               <div key={s.label} style={{
-                background: "rgba(255,255,255,0.05)",
-                borderRadius: 12,
-                padding: "clamp(12px, 3vw, 20px)",
+                background: "rgba(255,255,255,0.03)",
+                borderRadius: 20,
+                padding: "24px 16px",
                 textAlign: "center",
-                border: "0.5px solid rgba(255,255,255,0.08)",
+                border: "1px solid rgba(255,255,255,0.05)",
                 minWidth: 0,
-              }}>
+                backdropFilter: 'blur(10px)',
+                animation: `slide-up 0.5s var(--ease) ${0.4 + idx * 0.1}s both`,
+                transition: 'all 0.3s var(--ease)',
+              }} className="stat-card">
                 <div style={{
-                  fontSize: "clamp(18px, 4vw, 28px)",
-                  fontWeight: 700,
-                  color: "#FF6B35",
-                  lineHeight: 1.2,
+                  fontSize: "clamp(24px, 5vw, 36px)",
+                  fontWeight: 900,
+                  color: "var(--accent)",
+                  lineHeight: 1,
+                  fontFamily: 'Outfit',
+                  marginBottom: 8,
                 }}>
                   {s.num}
                 </div>
                 <div style={{
-                  fontSize: "clamp(10px, 2vw, 12px)",
-                  color: "rgba(240,237,232,0.4)",
-                  marginTop: 4,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  color: "var(--text3)",
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase',
                   whiteSpace: "nowrap",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
@@ -430,12 +457,21 @@ export default function Home({ tools }) {
           ))}
         </div>
 
-        {/* Search Bar - DARK Mode Style */}
+        {/* Search Bar - Premium Glow Input */}
         <div style={{
-          maxWidth: 600,
-          margin: '0 auto 32px',
+          maxWidth: 640,
+          margin: '0 auto 48px',
           position: 'relative',
+          animation: 'slide-up 0.5s var(--ease) 0.3s both',
         }}>
+          <div style={{
+            position: 'absolute',
+            inset: -1,
+            background: 'linear-gradient(90deg, transparent, var(--accent), transparent)',
+            borderRadius: 18,
+            opacity: 0.15,
+            pointerEvents: 'none',
+          }} />
           <input
             type="text"
             value={search}
@@ -443,46 +479,50 @@ export default function Home({ tools }) {
             placeholder={t.search}
             style={{
               width: '100%',
-              padding: '16px 24px',
-              background: '#0D0D15',
-              border: '1px solid var(--border)',
-              borderRadius: 12,
-              fontSize: 14,
+              padding: '20px 28px',
+              background: 'rgba(13, 13, 21, 0.8)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: 16,
+              fontSize: 16,
               color: 'var(--text)',
               outline: 'none',
-              transition: 'border-color 0.2s',
+              transition: 'all 0.3s var(--ease)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
             }}
+            className="premium-search"
           />
         </div>
 
-        {/* Filter Section */}
-        <div style={{
-          background: 'rgba(255,255,255,0.02)',
-          border: '1px solid var(--border)',
-          borderRadius: 16,
-          padding: '24px',
-          marginBottom: 32,
+        {/* Filter Section - Floating Dock */}
+        <div className="floating-dock" style={{
+          maxWidth: 900,
+          margin: '0 auto 48px',
           display: 'flex',
           flexDirection: 'column',
-          gap: 20,
+          gap: 24,
+          padding: 24,
+          animation: 'slide-up 0.5s var(--ease) 0.4s both',
         }}>
           {/* Category */}
           <div>
             <div style={{
-              fontSize: 10,
-              fontWeight: 600,
-              letterSpacing: '0.08em',
+              fontSize: 11,
+              fontWeight: 800,
+              letterSpacing: '0.1em',
               color: 'var(--text3)',
-              marginBottom: 8,
+              marginBottom: 12,
+              paddingLeft: 4,
             }}>
               {t.category.toUpperCase()}
             </div>
             <div style={{
               display: 'flex',
-              gap: 8,
+              gap: 10,
               overflowX: 'auto',
               scrollbarWidth: 'none',
               paddingBottom: 4,
+              paddingLeft: 4,
             }}>
               {CATEGORIES.map(c => 
                 filterBtn(c, category, setCategory)
@@ -490,47 +530,53 @@ export default function Home({ tools }) {
             </div>
           </div>
 
-          {/* Exam */}
-          <div>
-            <div style={{
-              fontSize: 10,
-              fontWeight: 600,
-              letterSpacing: '0.08em',
-              color: 'var(--text3)',
-              marginBottom: 8,
-            }}>
-              {t.exam.toUpperCase()}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24 }}>
+            {/* Exam */}
+            <div>
+              <div style={{
+                fontSize: 11,
+                fontWeight: 800,
+                letterSpacing: '0.1em',
+                color: 'var(--text3)',
+                marginBottom: 12,
+                paddingLeft: 4,
+              }}>
+                {t.exam.toUpperCase()}
+              </div>
+              <div style={{
+                display: 'flex',
+                gap: 8,
+                flexWrap: 'wrap',
+                paddingLeft: 4,
+              }}>
+                {EXAMS.map(e => 
+                  filterBtn(e, exam, setExam)
+                )}
+              </div>
             </div>
-            <div style={{
-              display: 'flex',
-              gap: 8,
-              flexWrap: 'wrap',
-            }}>
-              {EXAMS.map(e => 
-                filterBtn(e, exam, setExam)
-              )}
-            </div>
-          </div>
 
-          {/* Pricing */}
-          <div>
-            <div style={{
-              fontSize: 10,
-              fontWeight: 600,
-              letterSpacing: '0.08em',
-              color: 'var(--text3)',
-              marginBottom: 8,
-            }}>
-              {t.pricing.toUpperCase()}
-            </div>
-            <div style={{
-              display: 'flex',
-              gap: 8,
-            }}>
-              {['All','Free','Freemium','Paid']
-                .map(p => 
-                filterBtn(p, pricing, setPricing)
-              )}
+            {/* Pricing */}
+            <div>
+              <div style={{
+                fontSize: 11,
+                fontWeight: 800,
+                letterSpacing: '0.1em',
+                color: 'var(--text3)',
+                marginBottom: 12,
+                paddingLeft: 4,
+              }}>
+                {t.pricing.toUpperCase()}
+              </div>
+              <div style={{
+                display: 'flex',
+                gap: 8,
+                paddingLeft: 4,
+              }}>
+                {['All','Free','Freemium','Paid']
+                  .map(p => 
+                  filterBtn(p, pricing, setPricing)
+                )}
+              </div>
             </div>
           </div>
         </div>

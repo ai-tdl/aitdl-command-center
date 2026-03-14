@@ -51,11 +51,14 @@ export default function About() {
   return (
     <>
       <Header lang={lang} setLang={setLang} />
-      <main style={{ maxWidth: 800, margin: '0 auto', padding: '60px 20px', textAlign: 'center' }}>
-        <h1 style={{ fontSize: 32, marginBottom: 20 }}>{t.title}</h1>
-        <p style={{ color: 'var(--text2)', lineHeight: 1.6 }}>
-          {t.desc}
-        </p>
+      <main style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="ambient-glow" style={{ top: '-10%', left: '30%' }} />
+        <div style={{ maxWidth: 800, margin: '0 auto', padding: '120px 24px', textAlign: 'center' }}>
+          <h1 style={{ fontSize: 'clamp(32px, 8vw, 56px)', fontWeight: 900, marginBottom: 24, letterSpacing: '-0.03em' }}>{t.title}</h1>
+          <p style={{ color: 'var(--text2)', lineHeight: 1.8, fontSize: 18 }}>
+            {t.desc}
+          </p>
+        </div>
       </main>
       <Footer />
     </>
