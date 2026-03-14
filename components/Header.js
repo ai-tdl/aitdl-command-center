@@ -54,10 +54,10 @@ export default function Header({
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      background: 'rgba(3, 3, 6, 0.7)',
+      background: 'var(--bg-primary-blur, rgba(3, 3, 6, 0.7))',
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+      borderBottom: '1px solid var(--border)',
       padding: '0 24px',
       transition: 'all 0.3s var(--ease)',
     }}>
@@ -94,7 +94,7 @@ export default function Header({
             <div style={{
               fontSize: 22,
               fontWeight: 950,
-              color: 'var(--text)',
+              color: 'var(--text-primary)',
               letterSpacing: '-0.03em',
               fontFamily: 'Outfit',
               lineHeight: 1,
@@ -102,7 +102,7 @@ export default function Header({
             <div style={{
               fontSize: 9,
               fontWeight: 800,
-              color: 'var(--text3)',
+              color: 'var(--text-tertiary)',
               letterSpacing: '0.08em',
               marginTop: 4,
               textTransform: 'uppercase',
@@ -121,7 +121,7 @@ export default function Header({
             <Link href="/ai-battle" style={{
               fontSize: 14,
               fontWeight: 700,
-              color: 'var(--text2)',
+              color: 'var(--text-secondary)',
               textDecoration: 'none',
               padding: '8px 16px',
               borderRadius: 12,
@@ -133,7 +133,7 @@ export default function Header({
             <Link href="/compare" style={{
               fontSize: 14,
               fontWeight: 700,
-              color: 'var(--text2)',
+              color: 'var(--text-secondary)',
               textDecoration: 'none',
               padding: '8px 16px',
               borderRadius: 12,
@@ -145,7 +145,7 @@ export default function Header({
             <Link href="/about" style={{
               fontSize: 14,
               fontWeight: 700,
-              color: 'var(--text2)',
+              color: 'var(--text-secondary)',
               textDecoration: 'none',
               padding: '8px 16px',
               borderRadius: 12,
@@ -165,8 +165,8 @@ export default function Header({
                 height: 44,
                 borderRadius: 12,
                 border: '1px solid var(--border)',
-                background: 'var(--bg3)',
-                color: 'var(--text)',
+                background: 'var(--bg-tertiary)',
+                color: 'var(--text-primary)',
                 cursor: 'pointer',
                 fontSize: 20,
                 display: 'flex',

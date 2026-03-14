@@ -22,7 +22,7 @@ export default function TrustBar() {
       maxWidth: 1000,
       padding: '20px',
       borderRadius: 24,
-      background: 'var(--bg2)',
+      background: 'var(--bg-secondary)',
       border: '1px solid var(--border)',
       display: 'flex',
       justifyContent: 'space-around',

@@ -250,7 +250,7 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
         .panel {
           width: 280px;
           max-height: 85vh;
-          background: var(--bg2);
+          background: var(--bg-secondary);
           border: 1px solid var(--border);
           border-radius: 24px;
           display: flex;
@@ -302,8 +302,8 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
           padding: 10px;
           border-radius: 12px;
           border: 1px solid var(--border);
-          background: var(--bg3);
-          color: var(--text2);
+          background: var(--bg-tertiary);
+          color: var(--text-secondary);
           font-size: 12px;
           font-weight: 700;
           cursor: pointer;
@@ -330,7 +330,7 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
           position: absolute;
           cursor: pointer;
           inset: 0;
-          background: var(--bg3);
+          background: var(--bg-tertiary);
           border: 1px solid var(--border);
           transition: .4s;
           border-radius: 34px;

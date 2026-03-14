@@ -63,6 +63,21 @@ export default function ToolPage({
         <link rel="canonical"
           href={`https://aitdl.com/tools/${tool.slug}`}
         />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": tool.name,
+            "description": tool.description,
+            "url": tool.url,
+            "applicationCategory": "AIApplication",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "INR"
+            }
+          })
+        }} />
       </Head>
 
       <Header lang={lang} setLang={setLang}/>

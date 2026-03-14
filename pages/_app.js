@@ -22,21 +22,20 @@
 
 import '../styles/globals.css'
 import { useEffect } from 'react'
+import ErrorBoundary from '../components/ErrorBoundary'
 
 export default function App({ 
   Component, pageProps 
 }) {
   useEffect(() => {
-    // Always dark by default
-    const saved = localStorage
-      .getItem('aitdl_theme') || 'dark'
-    document.documentElement
-      .setAttribute('data-theme', saved)
-    document.body.style.background = 
-      saved === 'dark' ? '#0A0A0F' 
-      : saved === 'light' ? '#F8F7F4'
-      : 'rgba(10,10,15,0.85)'
+    // Initial theme loading
+    const saved = localStorage.getItem('aitdl_theme') || 'dark'
+    document.documentElement.setAttribute('data-theme', saved)
   }, [])
 
-  return <Component {...pageProps} />
+  return (
+    <ErrorBoundary>
+      <Component {...pageProps} />
+    </ErrorBoundary>
+  )
 }

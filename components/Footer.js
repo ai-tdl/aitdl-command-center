@@ -86,7 +86,7 @@ export default function Footer() {
       borderTop: '1px solid var(--border)',
       padding: '64px 24px',
       marginTop: 80,
-      background: 'var(--bg)',
+      background: 'var(--bg-primary)',
       backdropFilter: 'blur(20px)',
     }}>
       <div style={{
@@ -107,11 +107,11 @@ export default function Footer() {
           </div>
           <p style={{
             fontSize: 14,
-            color: 'var(--text3)',
+            color: 'var(--text-tertiary)',
             lineHeight: 1.8,
             maxWidth: 300,
           }}>
-            <span style={{ color: 'var(--text2)', fontWeight: 600, display: 'block', marginBottom: 4 }}>
+            <span style={{ color: 'var(--text-secondary)', fontWeight: 600, display: 'block', marginBottom: 4 }}>
               Artificial Intelligence Technology & Deep Learning
             </span>
             {t.desc}
@@ -136,7 +136,7 @@ export default function Footer() {
             ].map(([label, href]) => (
               <a key={label} href={href} style={{
                 fontSize: 14,
-                color: 'var(--text2)',
+                color: 'var(--text-secondary)',
                 textDecoration: 'none',
                 transition: 'color 0.2s',
               }} className="footer-link">{label}</a>
@@ -168,7 +168,7 @@ export default function Footer() {
             }} className="contact-btn">
               hello@aitdl.com
             </a>
-            <a href="https://forms.gle/aitdl-suggest" target="_blank" rel="noopener noreferrer" style={{
+            <a href="https://forms.gle/aitdl-beta-suggest" target="_blank" rel="noopener noreferrer" style={{
               fontSize: 12,
               color: 'var(--text)',
               fontWeight: 800,
@@ -200,7 +200,7 @@ export default function Footer() {
         }}>
           {t.built} 
           <span style={{ 
-            color: 'var(--text)', 
+            color: 'var(--text-primary)', 
             fontWeight: 800, 
             marginLeft: 6,
             fontFamily: 'Outfit',

@@ -123,17 +123,39 @@ const LANG_TEXT = {
 }
 
 
+const SkeletonCard = () => (
+  <div style={{
+    background: 'var(--card-bg)',
+    borderRadius: 24,
+    padding: 'var(--card-padding)',
+    height: 280,
+    animation: 'pulse 1.5s infinite ease-in-out',
+    border: '1px solid var(--border)',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 16
+  }}>
+    <div style={{ height: 40, width: 40, background: 'rgba(255,255,255,0.05)', borderRadius: 12 }} />
+    <div style={{ height: 24, width: '60%', background: 'rgba(255,255,255,0.08)', borderRadius: 4 }} />
+    <div style={{ height: 16, width: '90%', background: 'rgba(255,255,255,0.04)', borderRadius: 4 }} />
+    <div style={{ height: 16, width: '70%', background: 'rgba(255,255,255,0.04)', borderRadius: 4 }} />
+    <div style={{ marginTop: 'auto', height: 44, width: '100%', background: 'rgba(255,255,255,0.02)', borderRadius: 12 }} />
+  </div>
+)
+
 export default function Home({ tools }) {
   const [lang, setLang] = useState('en')
   const [uiMode, setUiMode] = useState('directory')
   const [viewMode, setViewMode] = useState('grid')
   const [origin, setOrigin] = useState('all')
   const [search, setSearch] = useState('')
+  const [debouncedSearch, setDebouncedSearch] = useState('')
   const [category, setCategory] = useState('All')
   const [exam, setExam] = useState('All')
   const [pricing, setPricing] = useState('All')
   const [compareList, setCompareList] = useState([])
-  const [filtered, setFiltered] = useState(tools || [])
+  const [filtered, setFiltered] = useState([])
+  const [loading, setLoading] = useState(true)
   const [visitorCount, setVisitorCount] = useState(8506)
   const router = useRouter()
   const t = LANG_TEXT[lang] || LANG_TEXT.en
@@ -159,8 +181,22 @@ export default function Home({ tools }) {
       setOrigin(localStorage.getItem('aitdl_origin') || 'all')
     }
     window.addEventListener('storage', handleStorage)
-    return () => window.removeEventListener('storage', handleStorage)
+    
+    // Initial loading simulation
+    const timer = setTimeout(() => setLoading(false), 800)
+    
+    return () => {
+      window.removeEventListener('storage', handleStorage)
+      clearTimeout(timer)
+    }
   }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search)
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [search])
 
   useEffect(() => {
     let result = tools || []
@@ -177,8 +213,8 @@ export default function Home({ tools }) {
     if (pricing !== 'All') {
       result = result.filter(tool => tool.pricing === pricing.toLowerCase())
     }
-    if (search) {
-      const q = search.toLowerCase()
+    if (debouncedSearch) {
+      const q = debouncedSearch.toLowerCase()
       result = result.filter(tool =>
         tool.name.toLowerCase().includes(q) ||
         tool.description.toLowerCase().includes(q) ||
@@ -187,7 +223,7 @@ export default function Home({ tools }) {
       )
     }
     setFiltered(result)
-  }, [search, category, exam, pricing, tools, origin])
+  }, [debouncedSearch, category, exam, pricing, tools, origin])
 
   const handleCompare = (tool) => {
     setCompareList(prev => {
@@ -207,9 +243,9 @@ export default function Home({ tools }) {
         padding: '8px 20px',
         borderRadius: 12,
         border: '1px solid',
-        borderColor: current === val ? 'var(--accent)' : 'rgba(255,255,255,0.1)',
-        background: current === val ? 'rgba(255,107,53,0.1)' : 'rgba(255,255,255,0.03)',
-        color: current === val ? 'var(--accent)' : 'var(--text2)',
+        borderColor: current === val ? 'var(--accent)' : 'var(--border)',
+        background: current === val ? 'var(--accent-glow)' : 'var(--card-bg)',
+        color: current === val ? 'var(--accent)' : 'var(--text-secondary)',
         fontSize: 13,
         fontWeight: 600,
         cursor: 'pointer',
@@ -224,7 +260,7 @@ export default function Home({ tools }) {
   )
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', color: 'var(--text)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
       <Head>
         <title>AITDL — India's AI Command Center</title>
         <meta name="description" content="Artificial Intelligence Technology & Deep Learning - Empowering India's Future with Advanced AI" />
@@ -267,7 +303,7 @@ export default function Home({ tools }) {
           }}>
             {uiMode === 'command' ? (
               <span className="pulse-glow" style={{ 
-                color: 'var(--text)', 
+                color: 'var(--text-primary)', 
                 background: 'linear-gradient(to bottom, #fff, #888)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -276,11 +312,11 @@ export default function Home({ tools }) {
               </span>
             ) : (
               <>
-                <span style={{ color: 'var(--text)' }}>Right AI Tool</span>
+                <span style={{ color: 'var(--text-primary)' }}>Right AI Tool</span>
                 <br/>
                 <span style={{ 
                   color: 'var(--accent)',
-                  background: 'linear-gradient(to bottom, var(--text), var(--accent))',
+                  background: 'linear-gradient(to bottom, var(--text-primary), var(--accent))',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}>At The Right Time</span>
@@ -290,7 +326,7 @@ export default function Home({ tools }) {
 
           <p style={{
             fontSize: 20,
-            color: 'var(--text2)',
+            color: 'var(--text-secondary)',
             maxWidth: 700,
             margin: '0 auto 48px',
             lineHeight: 1.6,
@@ -302,7 +338,7 @@ export default function Home({ tools }) {
               <button style={{ padding: '20px 48px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 50, fontSize: 13, fontWeight: 900, cursor: 'pointer', boxShadow: '0 10px 40px var(--accent-glow)' }} className="btn-primary-glow">
                 {t.explore}
               </button>
-              <button style={{ padding: '20px 48px', background: 'transparent', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 50, fontSize: 13, fontWeight: 800, cursor: 'pointer' }} className="btn-secondary-border">
+              <button style={{ padding: '20px 48px', background: 'transparent', color: 'var(--text-primary)', border: '1px solid var(--border)', borderRadius: 50, fontSize: 13, fontWeight: 800, cursor: 'pointer' }} className="btn-secondary-border">
                 {t.learn}
               </button>
             </div>
@@ -320,21 +356,21 @@ export default function Home({ tools }) {
           zIndex: 1,
         }}>
           {[
-            { label: t.stats.tools, val: '100+', color: 'var(--accent)' },
+            { label: t.stats.tools, val: `${tools.length}+`, color: 'var(--accent)' },
             { label: t.stats.visited, val: visitorCount.toLocaleString(), color: '#00B4D8' },
             { label: t.stats.free, val: 'FREE', color: '#22C55E' },
             { label: t.stats.india, val: '🇮🇳 BHARAT', color: '#FF6B35' },
           ].map((stat, i) => (
             <div key={i} className="stat-card" style={{
               padding: 32,
-              background: 'var(--bg2)',
+              background: 'var(--bg-secondary)',
               border: '1px solid var(--border)',
               borderRadius: 24,
               textAlign: 'center',
               transition: 'all 0.4s var(--ease)',
             }}>
               <div style={{ fontSize: 36, fontWeight: 950, color: stat.color, marginBottom: 8, fontFamily: 'Outfit' }}>{stat.val}</div>
-              <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--text3)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{stat.label}</div>
+              <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{stat.label}</div>
             </div>
           ))}
         </div>
@@ -349,8 +385,8 @@ export default function Home({ tools }) {
               placeholder={t.search}
               style={{
                 width: '100%', padding: '20px 28px', background: 'rgba(13, 13, 21, 0.8)',
-                backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)',
-                borderRadius: 16, fontSize: 16, color: 'var(--text)', outline: 'none',
+                backdropFilter: 'blur(10px)', border: '1px solid var(--border)',
+                borderRadius: 16, fontSize: 16, color: 'var(--text-primary)', outline: 'none',
                 transition: 'all 0.3s var(--ease)', boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
               }}
               className="premium-search"
@@ -361,20 +397,20 @@ export default function Home({ tools }) {
         {/* Filters */}
         <div className="floating-dock" style={{ maxWidth: 900, margin: '0 auto 48px', padding: 24, display: 'flex', flexDirection: 'column', gap: 24 }}>
           <div>
-            <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--text3)', marginBottom: 12, textTransform: 'uppercase' }}>{t.category}</div>
+            <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--text-tertiary)', marginBottom: 12, textTransform: 'uppercase' }}>{t.category}</div>
             <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 4 }}>
               {CATEGORIES.map(c => filterBtn(c, category, setCategory))}
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24 }}>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--text3)', marginBottom: 12, textTransform: 'uppercase' }}>{t.exam}</div>
+              <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--text-tertiary)', marginBottom: 12, textTransform: 'uppercase' }}>{t.exam}</div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {EXAMS.map(e => filterBtn(e, exam, setExam))}
               </div>
             </div>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--text3)', marginBottom: 12, textTransform: 'uppercase' }}>{t.pricing}</div>
+              <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--text-tertiary)', marginBottom: 12, textTransform: 'uppercase' }}>{t.pricing}</div>
               <div style={{ display: 'flex', gap: 8 }}>
                 {['All','Free','Freemium','Paid'].map(p => filterBtn(p, pricing, setPricing))}
               </div>
@@ -383,7 +419,7 @@ export default function Home({ tools }) {
         </div>
 
         {/* Tools Count */}
-        <div style={{ fontSize: 13, color: 'var(--text3)', marginBottom: 16 }}>
+        <div style={{ fontSize: 13, color: 'var(--text-tertiary)', marginBottom: 16 }}>
           <span style={{ color: 'var(--accent)', fontWeight: 700 }}>{filtered.length}</span> {t.found}
         </div>
 
@@ -393,22 +429,26 @@ export default function Home({ tools }) {
           gridTemplateColumns: viewMode === 'list' ? '1fr' : 'repeat(auto-fill, minmax(300px, 1fr))',
           gap: 'var(--grid-gap)',
         }}>
-          {filtered.map(tool => (
-            <ToolCard
-              key={tool.id}
-              tool={tool}
-              viewMode={viewMode}
-              onCompare={handleCompare}
-              isSelected={compareList.some(t => t.id === tool.id)}
-            />
-          ))}
+          {loading ? (
+            Array(6).fill(0).map((_, i) => <SkeletonCard key={i} />)
+          ) : (
+            filtered.map(tool => (
+              <ToolCard
+                key={tool.id}
+                tool={tool}
+                viewMode={viewMode}
+                onCompare={handleCompare}
+                isSelected={compareList.some(t => t.id === tool.id)}
+              />
+            ))
+          )}
         </div>
 
         {/* Coming Soon */}
-        <div style={{ margin: '48px auto', maxWidth: 600, textAlign: 'center', padding: '36px 32px', borderRadius: 16, border: '0.5px solid var(--border)', background: 'var(--bg2)' }}>
+        <div style={{ margin: '48px auto', maxWidth: 600, textAlign: 'center', padding: '36px 32px', borderRadius: 16, border: '0.5px solid var(--border)', background: 'var(--bg-secondary)' }}>
           <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--accent)', border: '0.5px solid var(--accent)', borderRadius: 20, padding: '4px 14px', display: 'inline-block', marginBottom: 16 }}>Coming Soon</div>
-          <h3 style={{ fontSize: 20, fontWeight: 600, color: 'var(--text)', marginBottom: 10 }}>200+ tools being added</h3>
-          <p style={{ fontSize: 13, color: 'var(--text2)', lineHeight: 1.7 }}>
+          <h3 style={{ fontSize: 20, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 10 }}>200+ tools being added</h3>
+          <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.7 }}>
             Curating best AI tools across design, productivity, coding, research — verified for Indian users.
           </p>
         </div>
@@ -416,10 +456,10 @@ export default function Home({ tools }) {
 
       {/* Compare sticky bar */}
       {compareList.length >= 2 && (
-        <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: 'var(--bg2)', borderTop: '1px solid var(--accent)', padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, zIndex: 200 }}>
-          <span style={{ fontSize: 13, color: 'var(--text2)' }}>{compareList.length} tools selected</span>
+        <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: 'var(--bg-secondary)', borderTop: '1px solid var(--accent)', padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, zIndex: 200 }}>
+          <span style={{ fontSize: 13, color: 'var(--text-secondary)' }}>{compareList.length} tools selected</span>
           <button onClick={() => router.push('/compare')} style={{ padding: '8px 20px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Compare Now →</button>
-          <button onClick={() => setCompareList([])} style={{ padding: '8px 12px', background: 'transparent', color: 'var(--text3)', border: '0.5px solid var(--border)', borderRadius: 8, fontSize: 12, cursor: 'pointer' }}>Clear</button>
+          <button onClick={() => setCompareList([])} style={{ padding: '8px 12px', background: 'transparent', color: 'var(--text-tertiary)', border: '0.5px solid var(--border)', borderRadius: 8, fontSize: 12, cursor: 'pointer' }}>Clear</button>
         </div>
       )}
 

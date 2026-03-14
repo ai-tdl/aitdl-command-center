@@ -126,7 +126,7 @@ export default function ToolCard({
             width: 20, height: 20,
             borderRadius: '50%',
             background: '#4ADE80',
-            color: '#030306',
+            color: 'var(--bg-primary)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -156,7 +156,7 @@ export default function ToolCard({
           <h3 style={{ 
             fontSize: 22, 
             fontWeight: 900, 
-            color: 'var(--text)',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: 1.1,
             letterSpacing: '-0.02em',
@@ -166,7 +166,7 @@ export default function ToolCard({
         </div>
         <p style={{
           fontSize: 15,
-          color: 'var(--text2)',
+          color: 'var(--text-secondary)',
           lineHeight: 1.7,
           marginBottom: 24,
           display: '-webkit-box',
@@ -191,7 +191,7 @@ export default function ToolCard({
               padding: '4px 14px',
               borderRadius: 12,
               background: 'rgba(255,255,255,0.03)',
-              color: 'var(--text3)',
+              color: 'var(--text-tertiary)',
               fontWeight: 700,
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
@@ -243,7 +243,7 @@ export default function ToolCard({
             borderRadius: 14,
             fontSize: 13,
             fontWeight: 800,
-            color: isSelected ? '#fff' : 'var(--text2)',
+            color: isSelected ? '#fff' : 'var(--text-secondary)',
             cursor: 'pointer',
             transition: 'all 0.3s var(--ease)',
           }}>
