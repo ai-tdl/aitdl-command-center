@@ -112,92 +112,6 @@ const LANG_TEXT = {
   }
 }
 
-// Neural network background component
-const NeuralBackground = () => {
-  useEffect(() => {
-    const canvas = document.getElementById('neural-bg')
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-
-    const nodes = Array.from({length: 50}, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-      r: Math.random() * 3 + 1,
-      color: Math.random() > 0.5 
-        ? '#FF6B35' : '#00B4D8'
-    }))
-
-    const animate = () => {
-      ctx.clearRect(0, 0, 
-        canvas.width, canvas.height)
-
-      // Draw connections
-      nodes.forEach((n, i) => {
-        nodes.slice(i+1).forEach(m => {
-          const dist = Math.hypot(
-            n.x-m.x, n.y-m.y
-          )
-          if (dist < 150) {
-            ctx.beginPath()
-            ctx.strokeStyle = 
-              `rgba(255,107,53,${
-                0.15 * (1 - dist/150)
-              })`
-            ctx.lineWidth = 0.5
-            ctx.moveTo(n.x, n.y)
-            ctx.lineTo(m.x, m.y)
-            ctx.stroke()
-          }
-        })
-      })
-
-      // Draw nodes
-      nodes.forEach(n => {
-        ctx.beginPath()
-        ctx.arc(n.x, n.y, n.r, 0, Math.PI*2)
-        ctx.fillStyle = n.color + '80'
-        ctx.fill()
-
-        n.x += n.vx
-        n.y += n.vy
-
-        if (n.x < 0 || n.x > canvas.width) 
-          n.vx *= -1
-        if (n.y < 0 || n.y > canvas.height) 
-          n.vy *= -1
-      })
-
-      requestAnimationFrame(animate)
-    }
-    animate()
-
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-    window.addEventListener('resize', resize)
-    return () => 
-      window.removeEventListener('resize', resize)
-  }, [])
-
-  return (
-    <canvas
-      id="neural-bg"
-      style={{
-        position: 'fixed',
-        top: 0, left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 0,
-        pointerEvents: 'none',
-      }}
-    />
-  )
-}
 
 export default function Home({ tools }) {
   const [lang, setLang] = useState('en')
@@ -326,7 +240,7 @@ export default function Home({ tools }) {
         <meta name="description" content="India's AI Command Center — Explore 100+ AI tools for every need." />
       </Head>
 
-      <NeuralBackground />
+      <NeuralNetwork />
       <Header lang={lang} setLang={setLang}/>
 
       <main style={{
@@ -368,19 +282,21 @@ export default function Home({ tools }) {
           {/* Main heading */}
           <h1 style={{
             fontSize: viewMode === 'command' 
-              ? 'clamp(48px, 12vw, 96px)' 
+              ? 'clamp(48px, 10vw, 112px)' 
               : 'clamp(42px, 10vw, 84px)',
             fontWeight: 950,
-            lineHeight: 1,
+            lineHeight: 0.95,
             marginBottom: 24,
-            letterSpacing: '-0.04em',
-            animation: 'slide-up 0.5s var(--ease) 0.1s both',
-            textTransform: viewMode === 'command' ? 'uppercase' : 'none',
+            letterSpacing: '-0.05em',
+            animation: 'slide-up 0.8s var(--ease) 0.1s both',
           }}>
             {viewMode === 'command' ? (
-              <span style={{ 
+              <span className="pulse-glow" style={{ 
                 color: 'var(--text)', 
-                filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.5))' 
+                filter: 'drop-shadow(0 0 30px rgba(255,255,255,0.15))',
+                background: 'linear-gradient(to bottom, #fff, #888)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
               }}>
                 {t.cmdHero}
               </span>
@@ -422,36 +338,44 @@ export default function Home({ tools }) {
           {viewMode === 'command' && (
             <div style={{
               display: 'flex',
-              gap: 16,
+              gap: 20,
               justifyContent: 'center',
               marginBottom: 64,
-              animation: 'slide-up 0.5s var(--ease) 0.3s both',
+              animation: 'slide-up 0.8s var(--ease) 0.3s both',
             }}>
               <button style={{
-                padding: '16px 32px',
-                background: 'var(--accent)',
+                padding: '20px 48px',
+                background: 'linear-gradient(135deg, #FF8E64, #FF6B35)',
                 color: '#fff',
                 border: 'none',
-                borderRadius: 12,
-                fontSize: 14,
-                fontWeight: 800,
+                borderRadius: 50,
+                fontSize: 13,
+                fontWeight: 900,
+                letterSpacing: '0.1em',
                 cursor: 'pointer',
-                boxShadow: '0 8px 32px rgba(255,107,53,0.3)',
-                transition: 'all 0.3s var(--ease)',
-              }} className="btn-primary">
-                {t.explore}
+                boxShadow: '0 10px 40px rgba(255,107,53,0.4)',
+                transition: 'all 0.4s var(--ease)',
+                textTransform: 'uppercase',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 12,
+                animation: 'float 4s infinite ease-in-out',
+              }} className="btn-primary-glow">
+                {t.explore} 🚀
               </button>
               <button style={{
-                padding: '16px 32px',
-                background: 'rgba(255,255,255,0.05)',
+                padding: '20px 48px',
+                background: 'rgba(255,255,255,0.03)',
                 color: 'var(--text)',
                 border: '1px solid rgba(255,255,255,0.1)',
-                borderRadius: 12,
-                fontSize: 14,
+                borderRadius: 50,
+                fontSize: 13,
                 fontWeight: 800,
+                letterSpacing: '0.1em',
                 cursor: 'pointer',
-                transition: 'all 0.3s var(--ease)',
-              }} className="btn-secondary">
+                transition: 'all 0.4s var(--ease)',
+                textTransform: 'uppercase',
+              }} className="btn-secondary-border">
                 {t.learn}
               </button>
             </div>

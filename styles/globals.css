@@ -117,6 +117,29 @@ h1, h2, h3, .heading {
   background: rgba(13, 13, 21, 0.95) !important;
 }
 
+/* Cinematic Animations */
+.btn-primary-glow:hover {
+  transform: translateY(-5px) scale(1.02) !important;
+  box-shadow: 0 15px 50px rgba(255, 107, 53, 0.6) !important;
+  filter: brightness(1.2);
+}
+
+.btn-secondary-border:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-2px);
+}
+
+@keyframes cinematic-pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; filter: brightness(1.2); }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+.pulse-glow {
+  animation: cinematic-pulse 3s infinite ease-in-out;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
