@@ -25,18 +25,29 @@ import { Html, Head, Main,
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html>
       <Head>
         <meta name="author" 
-          content="Jawahar Ramkripal Mallah"/>
+          content="JRM - AITDL"/>
         <meta name="copyright"
-          content="© 2025 Jawahar Ramkripal Mallah. All Rights Reserved."/>
+          content="© 2025 JRM. All Rights Reserved."/>
         <meta name="robots" 
           content="index, follow"/>
         <meta name="theme-color" 
           content="#FF6B35"/>
-        <meta name="google-site-verification"
-          content="YOUR_GSC_CODE"/>
+        
+        {/* Open Graph / Social Media */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://aitdl.com" />
+        <meta property="og:title" content="AITDL — India's No. 1 AI Command Center" />
+        <meta property="og:description" content="100+ verified AI tools for Indian students. Empowering 1.4 Billion minds." />
+        <meta property="og:image" content="https://aitdl.com/og-image.png" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="AITDL — India's AI Command Center" />
+        <meta name="twitter:description" content="100+ verified AI tools for Indian students." />
+
         <link rel="icon" href="/favicon.svg"/>
         <link rel="canonical" 
           href="https://aitdl.com"/>

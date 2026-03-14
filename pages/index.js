@@ -42,7 +42,7 @@ const EXAMS = [
 
 const LANG_TEXT = {
   en: {
-    hero: 'India\'s AI Command Center',
+    hero: "India's No. 1 AI Command Center",
     sub: 'Empowering 1.4 Billion minds',
     search: 'Search 100+ AI tools...',
     category: 'Category',
@@ -61,7 +61,7 @@ const LANG_TEXT = {
     }
   },
   hi: {
-    hero: 'भारत का AI कमांड सेंटर',
+    hero: 'भारत का No. 1 AI कमांड सेंटर',
     sub: '1.4 अरब दिमागों को सशक्त बनाना',
     search: '100+ AI टूल्स खोजें...',
     category: 'श्रेणी',
@@ -80,7 +80,7 @@ const LANG_TEXT = {
     }
   },
   sa: {
-    hero: 'भारतस्य AI कमांड केंद्रम्',
+    hero: 'भारतस्य No. 1 AI कमांड केंद्रम्',
     sub: '१.४ अरब मेधाविनाम् शक्तिकरणम्',
     search: '100+ AI उपकरणानि अन्विष्यतु...',
     category: 'वर्गः',
