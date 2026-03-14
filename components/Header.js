@@ -166,11 +166,11 @@ export default function Header({
           {/* Theme toggle */}
           <div style={{
             display: 'flex',
-            background: 'rgba(255,255,255,0.03)',
+            background: 'var(--bg3)',
             borderRadius: 12,
             padding: 2,
             gap: 2,
-            border: '1px solid rgba(255,255,255,0.05)',
+            border: '1px solid var(--border)',
           }}>
             {['dark','light','glass','midnight'].map(th => (
               <button key={th}
@@ -179,21 +179,20 @@ export default function Header({
                   padding: '6px 12px',
                   borderRadius: 10,
                   border: 'none',
-                  fontSize: 11,
-                  fontWeight: 700,
+                  fontSize: 10,
+                  fontWeight: 800,
                   cursor: 'pointer',
                   transition: 'all 0.2s var(--ease)',
                   background: theme === th 
-                    ? 'rgba(255,255,255,0.05)' 
+                    ? 'var(--accent)' 
                     : 'transparent',
                   color: theme === th 
-                    ? 'var(--text)' 
+                    ? '#fff' 
                     : 'var(--text3)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
                 }}>
-                {th === 'midnight' 
-                  ? '🌌' 
-                  : th === 'glass' ? '💎'
-                  : th === 'dark' ? '🌙' : '☀️'}
+                {th === 'midnight' ? '🌌' : th === 'glass' ? '💎' : th.charAt(0).toUpperCase() + th.slice(1)}
               </button>
             ))}
           </div>
