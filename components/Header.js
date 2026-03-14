@@ -110,7 +110,7 @@ export default function Header({
           alignItems: 'center',
           gap: 12,
           textDecoration: 'none',
-        }}>
+        }} title="Artificial Intelligence Technology & Deep Learning">
           <div style={{
             width: 36, height: 36,
             borderRadius: 10,
@@ -131,12 +131,13 @@ export default function Header({
               lineHeight: 1,
             }}>AITDL<span style={{ color: 'var(--accent)' }}>.</span></div>
             <div style={{
-              fontSize: 9,
+              fontSize: 8,
               fontWeight: 700,
               color: 'var(--text3)',
-              letterSpacing: '0.15em',
-              marginTop: 2,
-            }}>COMMAND CENTER</div>
+              letterSpacing: '0.05em',
+              marginTop: 4,
+              textTransform: 'uppercase',
+            }}>Artificial Intelligence Technology & Deep Learning</div>
           </div>
         </Link>
 
@@ -242,28 +243,47 @@ export default function Header({
             🔄 {t.compare}
           </Link>
 
-          {/* Bharat AI toggle */}
+          {/* Bharat AI Switch */}
           <button 
             onClick={toggleOrigin}
             style={{
               padding: '8px 16px',
-              borderRadius: 12,
-              border: '1px solid #FF6B35',
-              background: origin === 'bharat' ? '#FF6B35' : 'transparent',
-              color: origin === 'bharat' ? '#fff' : '#FF6B35',
+              borderRadius: 30,
+              border: `1.5px solid ${origin === 'bharat' ? '#FF6B35' : 'rgba(255,107,53,0.3)'}`,
+              background: origin === 'bharat' ? 'rgba(255,107,53,0.1)' : 'transparent',
+              color: origin === 'bharat' ? '#FF6B35' : 'var(--text3)',
               fontSize: 11,
               fontWeight: 900,
               cursor: 'pointer',
               fontFamily: 'Outfit',
-              letterSpacing: '0.05em',
-              transition: 'all 0.3s var(--ease)',
+              letterSpacing: '0.08em',
+              transition: 'all 0.4s var(--ease)',
               textTransform: 'uppercase',
               display: 'flex',
               alignItems: 'center',
-              gap: 8,
-              boxShadow: origin === 'bharat' ? '0 4px 12px rgba(255,107,53,0.3)' : 'none',
+              gap: 10,
+              boxShadow: origin === 'bharat' ? '0 0 20px rgba(255,107,53,0.15)' : 'none',
             }}>
-            {origin === 'bharat' ? '🇮🇳 BHARAT AI' : '🌍 GLOBAL AI'}
+            <span>🇮🇳 {lang === 'sa' ? 'भारत AI' : lang === 'hi' ? 'भारत AI' : 'BHARAT AI'}</span>
+            <div style={{
+              width: 32,
+              height: 16,
+              borderRadius: 20,
+              background: origin === 'bharat' ? '#FF6B35' : 'rgba(255,255,255,0.1)',
+              position: 'relative',
+              transition: 'all 0.3s ease',
+            }}>
+              <div style={{
+                width: 10,
+                height: 10,
+                borderRadius: '50%',
+                background: '#fff',
+                position: 'absolute',
+                top: 3,
+                left: origin === 'bharat' ? 19 : 3,
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              }} />
+            </div>
           </button>
 
           {/* View mode toggle */}

@@ -33,7 +33,8 @@ const LANG = {
     connect: 'Connect',
     built: 'Built with ❤️ for Bharat by',
     dev: 'Software Developer since 2007 | Published Author',
-    rights: '© 2025 AITDL — All Rights Reserved'
+    rights: '© 2025 AITDL — All Rights Reserved',
+    suggest: 'Suggest a Tool'
   },
   hi: {
     desc: "भारत का सबसे बहुमुखी AI तकनीक पारिस्थितिकी तंत्र। 1.4 अरब दिमागों को सही उपकरणों के साथ सशक्त बनाना।",
@@ -45,7 +46,8 @@ const LANG = {
     connect: 'संपर्क',
     built: 'भारत के लिए ❤️ के साथ निर्मित',
     dev: '2007 से सॉफ्टवेयर डेवलपर | प्रकाशित लेखक',
-    rights: '© 2025 AITDL — सर्वाधिकार सुरक्षित'
+    rights: '© 2025 AITDL — सर्वाधिकार सुरक्षित',
+    suggest: 'टूल का सुझाव दें'
   },
   sa: {
     desc: "भारतस्य सर्वाधिकं बहुमुखी AI तन्त्रज्ञानव्यवस्था। १.४ अरब मेधाविनाम् उचितसाधनैः शक्तिकरणम्।",
@@ -57,7 +59,8 @@ const LANG = {
     connect: 'सम्पर्कः',
     built: 'भारताय ❤️ सह निर्मितम्',
     dev: '२००७ तः सॉफ्टवेयर विकसकः | प्रकाशितः लेखकः',
-    rights: '© २०२५ AITDL — सर्वे अधिकाराः सुरक्षिताः'
+    rights: '© २०२५ AITDL — सर्वे अधिकाराः सुरक्षिताः',
+    suggest: 'उपकरणं सूचयन्तु'
   }
 }
 
@@ -109,6 +112,9 @@ export default function Footer() {
             lineHeight: 1.8,
             maxWidth: 300,
           }}>
+            <span style={{ color: 'var(--text2)', fontWeight: 600, display: 'block', marginBottom: 4 }}>
+              Artificial Intelligence Technology & Deep Learning
+            </span>
             {t.desc}
           </p>
         </div>
@@ -163,6 +169,21 @@ export default function Footer() {
             }} className="contact-btn">
               hello@aitdl.com
             </a>
+            <a href="https://forms.gle/aitdl-suggest" target="_blank" rel="noopener noreferrer" style={{
+              fontSize: 12,
+              color: 'var(--text)',
+              fontWeight: 800,
+              textDecoration: 'none',
+              padding: '10px 20px',
+              background: 'rgba(255,255,255,0.05)',
+              borderRadius: 8,
+              textAlign: 'center',
+              display: 'inline-block',
+              border: '1px dashed var(--border)',
+              transition: 'all 0.3s',
+            }}>
+              ➕ {t.suggest}
+            </a>
           </div>
         </div>
       </div>
@@ -186,12 +207,14 @@ export default function Footer() {
             fontFamily: 'Outfit',
             letterSpacing: '0.05em',
           }}>
-            JRM
+            Jawahar Ramkripal Mallah
           </span>
           <br />
           <span style={{ fontSize: 11, opacity: 0.8 }}>{t.dev}</span>
           <br />
-          <span style={{ fontSize: 11, opacity: 0.5, marginTop: 8, display: 'block' }}>{t.rights}</span>
+          <span style={{ fontSize: 11, opacity: 0.5, marginTop: 12, display: 'block' }}>
+            © {new Date().getFullYear()} AITDL — Artificial Intelligence Technology & Deep Learning | All Rights Reserved
+          </span>
         </div>
       </div>
     </footer>

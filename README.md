@@ -1,6 +1,6 @@
-# AITDL — India's AI Command Center
-
-> India's #1 AI Tools Platform for Students
+# AITDL
+## Artificial Intelligence Technology & Deep Learning
+### India's #1 AI Tools Platform for Students
 
 ## Author
 

@@ -211,7 +211,7 @@ export default function Home({ tools }) {
     }
 
     setFiltered(result)
-  }, [search, category, exam, pricing, tools])
+  }, [search, category, exam, pricing, tools, origin])
 
   const handleCompare = (tool) => {
     setCompareList(prev => {
@@ -258,8 +258,10 @@ export default function Home({ tools }) {
   return (
     <div className="layout">
       <Head>
-        <title>AITDL — Right AI Tool At The Right Time</title>
-        <meta name="description" content="India's AI Command Center — Explore 100+ AI tools for every need." />
+        <title>AITDL — Artificial Intelligence Technology & Deep Learning</title>
+        <meta name="description" content="AITDL — Artificial Intelligence Technology & Deep Learning. India's #1 AI Tools Platform for students, developers & professionals." />
+        <meta property="og:title" content="AITDL — Artificial Intelligence Technology & Deep Learning" />
+        <meta property="og:description" content="India's #1 AI Tools Platform for students, developers & professionals." />
       </Head>
 
       <NeuralNetwork />
@@ -422,36 +424,34 @@ export default function Home({ tools }) {
               { num: '100%', label: t.stats.free },
               { num: '🇮🇳', label: t.stats.india },
             ].map((s, idx) => (
-              <div key={s.label} style={{
-                background: "rgba(255,255,255,0.03)",
-                borderRadius: 20,
-                padding: "24px 16px",
+              <div key={idx} style={{
+                background: "rgba(255,255,255,0.05)",
+                borderRadius: 12,
+                padding: "clamp(12px, 3vw, 20px)",
                 textAlign: "center",
-                border: "1px solid rgba(255,255,255,0.05)",
+                border: "0.5px solid rgba(255,255,255,0.08)",
                 minWidth: 0,
-                backdropFilter: 'blur(10px)',
                 animation: `slide-up 0.5s var(--ease) ${0.4 + idx * 0.1}s both`,
-                transition: 'all 0.3s var(--ease)',
-              }} className="stat-card">
+              }}>
                 <div style={{
-                  fontSize: "clamp(24px, 5vw, 36px)",
-                  fontWeight: 900,
-                  color: "var(--accent)",
-                  lineHeight: 1,
+                  fontSize: "clamp(18px, 4vw, 28px)",
+                  fontWeight: 700,
+                  color: "#FF6B35",
+                  lineHeight: 1.2,
                   fontFamily: 'Outfit',
-                  marginBottom: 8,
                 }}>
                   {s.num}
                 </div>
                 <div style={{
-                  fontSize: 12,
-                  fontWeight: 600,
-                  color: "var(--text3)",
-                  letterSpacing: '0.05em',
-                  textTransform: 'uppercase',
+                  fontSize: "clamp(10px, 2vw, 12px)",
+                  color: "rgba(240,237,232,0.4)",
+                  marginTop: 4,
                   whiteSpace: "nowrap",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
                 }}>
                   {s.label}
                 </div>
