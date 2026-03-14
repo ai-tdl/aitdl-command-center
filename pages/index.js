@@ -285,6 +285,26 @@ export default function Home({ tools }) {
           <div className="ambient-glow" style={{ top: '-10%', left: '30%' }} />
           <div className="ambient-glow" style={{ top: '20%', right: '20%', background: 'radial-gradient(circle, #00B4D8 0%, transparent 70%)', opacity: 0.1 }} />
 
+          {/* Central Logo Mark */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: 40,
+            animation: 'slide-up 0.6s var(--ease)',
+          }}>
+            <div style={{
+              width: 'clamp(120px, 20vw, 200px)',
+              height: 'clamp(120px, 20vw, 200px)',
+              filter: 'drop-shadow(0 0 40px rgba(0, 180, 216, 0.2))',
+            }}>
+              <img src="/logo-singularity.svg" alt="AITDL Singularity" style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
+              }} />
+            </div>
+          </div>
+
           {/* Badge */}
           <div style={{
             display: 'inline-block',
