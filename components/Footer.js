@@ -98,23 +98,12 @@ export default function Footer() {
         marginBottom: 64,
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-            <div style={{
-              width: 32, height: 32,
-              borderRadius: '50%',
-              overflow: 'hidden',
-              border: '1px solid rgba(255,107,53,0.3)',
-            }}>
-              <img src="/logo-chakra.png" alt="AITDL Chakra" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            </div>
-            <div style={{
-              fontSize: 24,
-              fontWeight: 900,
-              color: 'var(--text)',
-              letterSpacing: '0.05em',
-            }}>
-              AITDL<span style={{ color: 'var(--accent)' }}>.</span>
-            </div>
+          <div style={{ marginBottom: 20 }}>
+            <img src="/logo-horizontal.svg" alt="AITDL Branding" style={{
+              height: 60,
+              width: 'auto',
+              filter: 'drop-shadow(0 0 10px rgba(0, 180, 216, 0.2))',
+            }} />
           </div>
           <p style={{
             fontSize: 14,
