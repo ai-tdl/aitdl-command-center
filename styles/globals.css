@@ -1,0 +1,65 @@
+/* 
+ * AITDL — India's AI Command Center
+ * Author: Jawahar Ramkripal Mallah
+ * © 2025 All Rights Reserved
+ */
+
+:root {
+  --bg: #0A0A0F;
+  --bg2: #12121A;
+  --bg3: #1A1A25;
+  --accent: #FF6B35;
+  --text: #F0EDE8;
+  --text2: rgba(240,237,232,0.6);
+  --text3: rgba(240,237,232,0.3);
+  --border: rgba(255,255,255,0.08);
+  --radius: 12px;
+}
+
+[data-theme="light"] {
+  --bg: #F8F7F4;
+  --bg2: #FFFFFF;
+  --bg3: #F0EEE9;
+  --text: #1A1A1A;
+  --text2: rgba(26,26,26,0.6);
+  --text3: rgba(26,26,26,0.3);
+  --border: rgba(0,0,0,0.08);
+}
+
+[data-theme="glass"] {
+  --bg: rgba(10,10,15,0.85);
+  --bg2: rgba(255,255,255,0.05);
+  --bg3: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.1);
+}
+
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 
+    BlinkMacSystemFont, 
+    'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes celebrate {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(2); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}
