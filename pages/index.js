@@ -53,6 +53,12 @@ const LANG_TEXT = {
     free: 'Free',
     freemium: 'Freemium',
     paid: 'Paid',
+    stats: {
+      tools: 'AI Tools',
+      visited: 'Students Visited',
+      free: 'Free',
+      india: 'India First'
+    }
   },
   hi: {
     hero: 'भारत का AI कमांड सेंटर',
@@ -66,6 +72,12 @@ const LANG_TEXT = {
     free: 'मुफ्त',
     freemium: 'फ्रीमियम',
     paid: 'पेड',
+    stats: {
+      tools: 'AI टूल्स',
+      visited: 'छात्र आए',
+      free: 'मुफ्त',
+      india: 'भारत प्रथम'
+    }
   },
   sa: {
     hero: 'भारतस्य AI कमांड केंद्रम्',
@@ -79,6 +91,12 @@ const LANG_TEXT = {
     free: 'निःशुल्कम्',
     freemium: 'फ्रीमियम्',
     paid: 'सशुल्कम्',
+    stats: {
+      tools: 'AI उपकरणानि',
+      visited: 'छात्राः आगताः',
+      free: 'निःशुल्कम्',
+      india: 'भारतम् प्रथमम्'
+    }
   }
 }
 
@@ -351,11 +369,11 @@ export default function Home({ tools }) {
             boxSizing: "border-box",
           }}>
             {[
-              { num: '100+', label: 'AI Tools' },
-              { num: visitorCount.toLocaleString('en-IN'), 
-                label: 'Students Visited' },
-              { num: '100%', label: 'Free' },
-              { num: '🇮🇳', label: 'India First' },
+              { num: '100+', label: t.stats.tools },
+              { num: visitorCount.toLocaleString(lang === 'hi' ? 'en-IN' : 'en-US'), 
+                label: t.stats.visited },
+              { num: '100%', label: t.stats.free },
+              { num: '🇮🇳', label: t.stats.india },
             ].map(s => (
               <div key={s.label} style={{
                 background: "rgba(255,255,255,0.05)",

@@ -20,7 +20,64 @@
  * ============================================
  */
 
+import { useState, useEffect } from 'react'
+
+const LANG = {
+  en: {
+    desc: "India's most versatile AI technology ecosystem. Empowering 1.4 Billion minds with the right tools.",
+    platform: 'Platform',
+    tools: 'Explore Tools',
+    battle: 'AI Battle',
+    compare: 'Comparison Engine',
+    about: 'About the Project',
+    connect: 'Connect',
+    built: 'Built with ❤️ for Bharat by',
+    dev: 'Software Developer since 2007 | Published Author',
+    rights: '© 2025 AITDL — All Rights Reserved'
+  },
+  hi: {
+    desc: "भारत का सबसे बहुमुखी AI तकनीक पारिस्थितिकी तंत्र। 1.4 अरब दिमागों को सही उपकरणों के साथ सशक्त बनाना।",
+    platform: 'प्लेटफॉर्म',
+    tools: 'टूल्स देखें',
+    battle: 'AI युद्ध',
+    compare: 'तुलना इंजन',
+    about: 'परियोजना के बारे में',
+    connect: 'संपर्क',
+    built: 'भारत के लिए ❤️ के साथ निर्मित',
+    dev: '2007 से सॉफ्टवेयर डेवलपर | प्रकाशित लेखक',
+    rights: '© 2025 AITDL — सर्वाधिकार सुरक्षित'
+  },
+  sa: {
+    desc: "भारतस्य सर्वाधिकं बहुमुखी AI तन्त्रज्ञानव्यवस्था। १.४ अरब मेधाविनाम् उचितसाधनैः शक्तिकरणम्।",
+    platform: 'मञ्चः',
+    tools: 'उपकरणानि अन्वेषयन्तु',
+    battle: 'AI युद्धम्',
+    compare: 'तुलना यन्त्रम्',
+    about: 'परियोजनायाः विषये',
+    connect: 'सम्पर्कः',
+    built: 'भारताय ❤️ सह निर्मितम्',
+    dev: '२००७ तः सॉफ्टवेयर विकसकः | प्रकाशितः लेखकः',
+    rights: '© २०२५ AITDL — सर्वे अधिकाराः सुरक्षिताः'
+  }
+}
+
 export default function Footer() {
+  const [lang, setLang] = useState('en')
+
+  useEffect(() => {
+    const saved = localStorage.getItem('aitdl_lang') || 'en'
+    setLang(saved)
+    
+    // Listen for storage changes to sync across tabs/components
+    const handleStorage = () => {
+      setLang(localStorage.getItem('aitdl_lang') || 'en')
+    }
+    window.addEventListener('storage', handleStorage)
+    return () => window.removeEventListener('storage', handleStorage)
+  }, [])
+
+  const t = LANG[lang]
+
   return (
     <footer style={{
       borderTop: '1px solid var(--border)',
@@ -52,8 +109,7 @@ export default function Footer() {
             lineHeight: 1.8,
             maxWidth: 300,
           }}>
-            India's most versatile AI technology ecosystem. 
-            Empowering 1.4 Billion minds with the right tools.
+            {t.desc}
           </p>
         </div>
 
@@ -65,13 +121,13 @@ export default function Footer() {
             textTransform: 'uppercase',
             letterSpacing: '0.2em',
             marginBottom: 24,
-          }}>Platform</div>
+          }}>{t.platform}</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {[
-              ['Explore Tools', '/'],
-              ['AI Battle', '/ai-battle'],
-              ['Comparison Engine', '/compare'],
-              ['About the Project', '/about'],
+              [t.tools, '/'],
+              [t.battle, '/ai-battle'],
+              [t.compare, '/compare'],
+              [t.about, '/about'],
             ].map(([label, href]) => (
               <a key={label} href={href} style={{
                 fontSize: 14,
@@ -91,7 +147,7 @@ export default function Footer() {
             textTransform: 'uppercase',
             letterSpacing: '0.2em',
             marginBottom: 24,
-          }}>Connect</div>
+          }}>{t.connect}</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <a href="mailto:hello@aitdl.com" style={{
               fontSize: 14,
@@ -121,14 +177,14 @@ export default function Footer() {
           color: 'var(--text3)',
           lineHeight: 2,
         }}>
-          Built with ❤️ for Bharat by 
+          {t.built} 
           <span style={{ color: 'var(--text)', fontWeight: 700, marginLeft: 6 }}>
             Jawahar Ramkripal Mallah
           </span>
           <br />
-          Software Developer since 2007 | Published Author
+          {t.dev}
           <br />
-          <span style={{ opacity: 0.6 }}>© 2025 AITDL — All Rights Reserved</span>
+          <span style={{ opacity: 0.6 }}>{t.rights}</span>
         </div>
       </div>
     </footer>

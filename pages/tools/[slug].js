@@ -25,12 +25,17 @@ import Link from 'next/link'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import ToolCard from '../../components/ToolCard'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function ToolPage({ 
   tool, similarTools 
 }) {
   const [lang, setLang] = useState('en')
+
+  useEffect(() => {
+    const saved = localStorage.getItem('aitdl_lang') || 'en'
+    setLang(saved)
+  }, [])
 
   if (!tool) return (
     <div style={{

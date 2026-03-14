@@ -17,18 +17,33 @@
 }
 
 body {
-  background: #0A0A0F !important;
-  color: #F0EDE8 !important;
+  background: var(--bg);
+  color: var(--text);
   font-family: -apple-system,
     BlinkMacSystemFont,
     'Segoe UI', sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 [data-theme="light"] body {
-  background: #F8F7F4 !important;
-  color: #1A1A1A !important;
+  --bg: #F8F7F4;
+  --text: #1A1A1A;
+  --text2: rgba(0,0,0,0.6);
+  --text3: rgba(0,0,0,0.3);
+  --border: rgba(0,0,0,0.08);
+}
+
+[data-theme="glass"] body {
+  --bg: rgba(10,10,15,0.85);
+  backdrop-filter: blur(20px);
+}
+
+[data-theme="midnight"] body {
+  --bg: #020205;
+  --bg2: #05050A;
+  --bg3: #080810;
 }
 
 @keyframes float {

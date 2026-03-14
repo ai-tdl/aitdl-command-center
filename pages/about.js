@@ -24,6 +24,21 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { useState, useEffect } from 'react'
 
+const LANG = {
+  en: {
+    title: 'About AITDL',
+    desc: "AITDL (AI Tools Directory for Learners) is India's premier AI Command Center. Our mission is to empower 1.4 billion minds by providing easy access to the best AI tools."
+  },
+  hi: {
+    title: 'AITDL के बारे में',
+    desc: "AITDL (शिक्षार्थियों के लिए AI टूल्स निर्देशिका) भारत का प्रमुख AI कमांड सेंटर है। हमारा मिशन सर्वोत्तम AI टूल तक आसान पहुंच प्रदान करके 1.4 अरब दिमागों को सशक्त बनाना है।"
+  },
+  sa: {
+    title: 'AITDL विषये',
+    desc: "AITDL (शिक्षार्थिनां कृते AI उपकरणनिर्देशिका) भारतस्य प्रमुखं एआइ आदेशकेन्द्रम् अस्ति। अस्माकं लक्ष्यं सर्वोत्तम-AI-उपकरणानां सुलभप्रवेशं प्रदाय १.४ अब्जजनानाम् सक्षमीकरणं अस्ति।"
+  }
+}
+
 export default function About() {
   const [lang, setLang] = useState('en')
   useEffect(() => {
@@ -31,14 +46,15 @@ export default function About() {
     setLang(saved)
   }, [])
 
+  const t = LANG[lang]
+
   return (
     <>
       <Header lang={lang} setLang={setLang} />
       <main style={{ maxWidth: 800, margin: '0 auto', padding: '60px 20px', textAlign: 'center' }}>
-        <h1 style={{ fontSize: 32, marginBottom: 20 }}>About AITDL</h1>
+        <h1 style={{ fontSize: 32, marginBottom: 20 }}>{t.title}</h1>
         <p style={{ color: 'var(--text2)', lineHeight: 1.6 }}>
-          AITDL (AI Tools Directory for Learners) is India's premier AI Command Center.
-          Our mission is to empower 1.4 billion minds by providing easy access to the best AI tools.
+          {t.desc}
         </p>
       </main>
       <Footer />
