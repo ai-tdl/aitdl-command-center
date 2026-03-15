@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #030306;
+  --card-bg: rgba(13, 13, 21, 0.95);
+  --accent: #5e11ff;
+  --border: rgba(255, 255, 255, 0.08);
+  --text-primary: #ffffff;
+}
+
+@theme {
+  --color-premium-bg: var(--bg-primary);
+  --color-premium-card: var(--card-bg);
+  --color-premium-accent: var(--accent);
+  --color-premium-border: var(--border);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #fff 0%, #a855f7 50%, #5e11ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
