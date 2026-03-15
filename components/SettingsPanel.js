@@ -36,10 +36,7 @@ const ACCENTS = [
 ]
 
 export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
-  const [theme, setTheme] = useState('dark')
-  const [view, setView] = useState('grid')
-  const [density, setDensity] = useState('comfortable')
-  const [fontSize, setFontSize] = useState('medium')
+  const [uiMode, setUiMode] = useState('directory')
   const [indiaMode, setIndiaMode] = useState(false)
   const [accent, setAccent] = useState('#FF6B35')
   const panelRef = useRef(null)
@@ -49,6 +46,7 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
     const sTheme = localStorage.getItem('aitdl_theme') || 'dark'
     const sLang = localStorage.getItem('aitdl_lang') || 'en'
     const sView = localStorage.getItem('aitdl_view') || 'grid'
+    const sUiMode = localStorage.getItem('aitdl_ui_mode') || 'directory'
     const sDensity = localStorage.getItem('aitdl_density') || 'comfortable'
     const sFontSize = localStorage.getItem('aitdl_fontsize') || 'medium'
     const sIndiaMode = localStorage.getItem('aitdl_india_mode') === 'true'
@@ -57,6 +55,7 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
     setTheme(sTheme)
     setLang(sLang)
     setView(sView)
+    setUiMode(sUiMode)
     setDensity(sDensity)
     setFontSize(sFontSize)
     setIndiaMode(sIndiaMode)
@@ -104,6 +103,12 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
     window.dispatchEvent(new Event('storage'))
   }
 
+  const applyUiMode = (m) => {
+    setUiMode(m)
+    localStorage.setItem('aitdl_ui_mode', m)
+    window.dispatchEvent(new Event('storage'))
+  }
+
   const applyFontSize = (fs) => {
     const conf = FONT_SIZES.find(x => x.id === fs)
     if (conf) document.documentElement.style.setProperty('--font-base', conf.size)
@@ -131,6 +136,7 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
     applyTheme('dark')
     applyLang('en')
     applyView('grid')
+    applyUiMode('directory')
     applyDensity('comfortable')
     applyFontSize('medium')
     applyIndiaMode(false)
@@ -176,10 +182,19 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
 
           {/* Section 3: View Mode */}
           <section>
-            <h4>View Mode</h4>
+            <h4>View Type</h4>
             <div className="row-btns">
               <button className={view === 'grid' ? 'active' : ''} onClick={() => applyView('grid')}>🗂 Grid</button>
               <button className={view === 'list' ? 'active' : ''} onClick={() => applyView('list')}>📝 List</button>
+            </div>
+          </section>
+
+          {/* Section 4: UI Mode */}
+          <section>
+            <h4>Platform Mode</h4>
+            <div className="row-btns">
+              <button className={uiMode === 'directory' ? 'active' : ''} onClick={() => applyUiMode('directory')}>📂 Directory</button>
+              <button className={uiMode === 'command' ? 'active' : ''} onClick={() => applyUiMode('command')}>⚡ Command</button>
             </div>
           </section>
 

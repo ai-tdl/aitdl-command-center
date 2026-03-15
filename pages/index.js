@@ -167,6 +167,8 @@ export default function Home({ tools }) {
     setLang(savedLang)
     const savedView = localStorage.getItem('aitdl_view') || 'grid'
     setViewMode(savedView)
+    const savedUiMode = localStorage.getItem('aitdl_ui_mode') || 'directory'
+    setUiMode(savedUiMode)
     const savedOrigin = localStorage.getItem('aitdl_origin') || 'all'
     setOrigin(savedOrigin)
 
@@ -179,6 +181,7 @@ export default function Home({ tools }) {
     const handleStorage = () => {
       setLang(localStorage.getItem('aitdl_lang') || 'en')
       setViewMode(localStorage.getItem('aitdl_view') || 'grid')
+      setUiMode(localStorage.getItem('aitdl_ui_mode') || 'directory')
       setOrigin(localStorage.getItem('aitdl_origin') || 'all')
     }
     window.addEventListener('storage', handleStorage)
@@ -216,11 +219,11 @@ export default function Home({ tools }) {
     }
     if (debouncedSearch) {
       const q = debouncedSearch.toLowerCase()
-      result = result.filter(tool =>
-        tool.name.toLowerCase().includes(q) ||
-        tool.description.toLowerCase().includes(q) ||
-        tool.exam_tags.some(tag => tag.toLowerCase().includes(q)) ||
-        tool.category.some(cat => cat.toLowerCase().includes(q))
+      result = result.filter(t =>
+        t.name.toLowerCase().includes(q) ||
+        t.description.toLowerCase().includes(q) ||
+        t.exam_tags.some(tag => tag.toLowerCase().includes(q)) ||
+        t.category.some(cat => cat.toLowerCase().includes(q))
       )
     }
     setFiltered(result)
@@ -402,8 +405,36 @@ export default function Home({ tools }) {
         <div className="floating-dock" style={{ maxWidth: 900, margin: '0 auto 48px', padding: 24, display: 'flex', flexDirection: 'column', gap: 24 }}>
           <div>
             <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--text-tertiary)', marginBottom: 12, textTransform: 'uppercase' }}>{t.category}</div>
-            <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 4 }}>
-              {CATEGORIES.map(c => filterBtn(c, category, setCategory))}
+            <div style={{ 
+              display: 'flex', 
+              gap: 10, 
+              overflowX: 'auto', 
+              paddingBottom: 8,
+              WebkitOverflowScrolling: 'touch'
+            }}>
+              {CATEGORIES.map(c => (
+                <button
+                  key={c}
+                  onClick={() => setCategory(c)}
+                  style={{
+                    padding: '8px 20px',
+                    borderRadius: 12,
+                    border: '1px solid',
+                    borderColor: category === c ? 'var(--accent)' : 'var(--border)',
+                    background: category === c ? 'var(--accent-glow)' : 'var(--card-bg)',
+                    color: category === c ? 'var(--accent)' : 'var(--text-secondary)',
+                    fontSize: 13,
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    whiteSpace: 'nowrap',
+                    flexShrink: 0,
+                    transition: 'all 0.3s var(--ease)',
+                  }}
+                  className="premium-filter-btn"
+                >
+                  {c}
+                </button>
+              ))}
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24 }}>
