@@ -27,7 +27,6 @@ import ErrorBoundary from '../components/ErrorBoundary'
 import SidebarCard from '../components/SidebarCard'
 import { GlobalSEO } from '../lib/seo'
 import { HomeJsonLD } from '../lib/jsonld'
-import { Analytics } from '@vercel/analytics/react'
 
 export default function App({ Component, pageProps }) {
   const [theme, setTheme] = useState(null)
@@ -99,7 +98,6 @@ export default function App({ Component, pageProps }) {
       <HomeJsonLD toolCount={100} />
       <Component {...pageProps} />
       <SidebarCard />
-      <Analytics />
     </ErrorBoundary>
   )
 }
