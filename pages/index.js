@@ -268,11 +268,15 @@ export default function Home({ tools }) {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
       <Head>
-        {PageSEO({
-          title: "AITDL — India's #1 AI Command Center",
-          description: "100+ verified AI tools for Indian students. JEE, NEET, UPSC ke liye best free AI tools — ek jagah. Artificial Intelligence Technology & Deep Learning.",
-          slug: "/"
-        })}
+        <title>AITDL — Best Free AI Tools for JEE, NEET, UPSC Students India</title>
+        <meta name="description" content="India's #1 free AI tools directory for students. 100+ verified AI tools for JEE, NEET, UPSC, CBSE. No signup required. Made for Bharat." />
+        <link rel="canonical" href="https://aitdl.com" />
+        
+        <meta property="og:title" content="AITDL — Right AI Tool At The Right Time" />
+        <meta property="og:description" content="India's #1 free AI tools platform for students. 100+ tools for JEE, NEET, UPSC." />
+        <meta property="og:url" content="https://aitdl.com" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <Header lang={lang} setLang={setLang} />

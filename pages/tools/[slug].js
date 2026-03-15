@@ -54,6 +54,7 @@ export default function ToolPage({
     <>
       <Head>
         {ToolSEO({ tool })}
+        <link rel="canonical" href={`https://aitdl.com/tools/${tool.slug}/`} />
       </Head>
       <ToolJsonLD tool={tool} />
 

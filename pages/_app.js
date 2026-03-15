@@ -41,6 +41,8 @@ export default function App({
     <ErrorBoundary>
       <Head>
         {GlobalSEO()}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+        <link rel="canonical" href="https://aitdl.com" />
       </Head>
       <HomeJsonLD toolCount={100} />
       <Component {...pageProps} />

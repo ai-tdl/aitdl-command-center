@@ -21,7 +21,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "export": "next build",
+    "postbuild": "next-sitemap",
     "deploy:dev": "git checkout dev && git push origin dev",
     "deploy:beta": "git checkout beta && git merge dev && git push origin beta",
     "deploy:prod": "git checkout main && git merge beta && git push origin main"
@@ -31,6 +31,7 @@
     "firebase": "^12.10.0",
     "next": "16.1.6",
     "next-seo": "^7.2.0",
+    "next-sitemap": "^4.2.3",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
