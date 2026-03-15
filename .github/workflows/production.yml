@@ -16,3 +16,11 @@ jobs:
       - name: Deploy to GitHub Pages
         run: |
           echo "Deploying to aitdl.com"
+
+      - name: Send deploy log to Firestore
+        if: success()
+        run: |
+          curl -s -X POST ${{ secrets.FIREBASE_LOG_URL }} \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.FIREBASE_ADMIN_TOKEN }}" \
+            -d "{\"branch\":\"main\",\"status\":\"success\",\"commit\":\"$GITHUB_SHA\"}"

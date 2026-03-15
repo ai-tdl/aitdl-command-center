@@ -1,0 +1,9 @@
+{
+  "indexes": [
+    { "collectionGroup": "deployments", "queryScope": "COLLECTION",
+      "fields": [{"fieldPath":"branch","order":"ASCENDING"},{"fieldPath":"timestamp","order":"DESCENDING"}] },
+    { "collectionGroup": "metrics", "queryScope": "COLLECTION",
+      "fields": [{"fieldPath":"timestamp","order":"DESCENDING"}] }
+  ],
+  "fieldOverrides": []
+}
