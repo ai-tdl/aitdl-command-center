@@ -34,3 +34,10 @@ Published Author | Tech Entrepreneur
 - ⚡ **Performance**: Static site generation for near-instant load times.
 
 © 2026 AITDL - Artificial Intelligence Technology & Deep Learning. All Rights Reserved.
+
+## License
+
+MIT License — Copyright (c) 2026 
+Jawahar Ramkripal Mallah
+
+See [LICENSE](./LICENSE) for full details.
