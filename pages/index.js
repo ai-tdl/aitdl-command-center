@@ -505,14 +505,13 @@ export default function Home({ tools }) {
 
           {/* Right Panel — desktop only */}
           <div style={{
-            display: 'none',
             width: '240px',
             flexShrink: 0,
             position: 'sticky',
             top: '80px',
             marginLeft: '24px',
           }}
-          className="lg:block hidden"
+          className="lg-block hidden"
           >
             <RightPanel />
           </div>
