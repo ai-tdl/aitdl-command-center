@@ -21,7 +21,7 @@
  */
 
 import { useState, useEffect } from 'react'
-import FooterHistory from './FooterHistory'
+
 
 const LANG = {
   en: {
@@ -233,7 +233,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <FooterHistory />
+        
         <p style={{ 
           fontSize: 11, 
           color: 'var(--text-tertiary)', 
