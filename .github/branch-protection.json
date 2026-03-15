@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "main": {
+      "required_pull_request_reviews": true,
+      "required_status_checks": ["build"],
+      "block_direct_pushes": true,
+      "block_force_pushes": true
+    },
+    "beta": {
+      "required_status_checks": ["build"],
+      "block_direct_pushes": true
+    },
+    "dev": {
+      "allow_direct_pushes": true
+    }
+  }
+}

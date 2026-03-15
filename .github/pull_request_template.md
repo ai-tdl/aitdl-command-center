@@ -1,17 +1,25 @@
-## Changes
-- [ ] Kya kiya describe karo
+## 📋 Changes
+<!-- Kya kiya describe karo -->
 
-## Type
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Cleanup
-- [ ] Upgrade
+## 🏷️ Type
+- [ ] 🐛 Bug fix
+- [ ] ✨ New feature
+- [ ] 🧹 Cleanup
+- [ ] ⬆️ Upgrade
+- [ ] 📝 Content (tools add)
 
-## Testing
-- [ ] dev pe test kiya
-- [ ] beta pe test kiya
+## ✅ Testing Checklist
+- [ ] dev pe build pass hua
 - [ ] Mobile pe check kiya
+- [ ] Search kaam kar raha hai
 - [ ] No console.log
+- [ ] No "Rahul Sharma" 
+- [ ] hello@aitdl.com correct
 
-## Screenshots
-(Before/After screenshots)
+## 📸 Screenshots
+| Before | After |
+|--------|-------|
+|        |       |
+
+## 🔗 Related Issue
+Closes #
