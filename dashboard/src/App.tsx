@@ -7,6 +7,7 @@ import Timeline from './components/Timeline';
 import RepoActivity from './components/RepoActivity';
 import HealthMonitor from './components/HealthMonitor';
 import BuildLogs from './components/BuildLogs';
+import IncidentTracker from './components/IncidentTracker';
 
 function App() {
   const [user, setUser] = useState<any>(null);
@@ -83,6 +84,9 @@ function App() {
         <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           <DeploymentStatus />
           <HealthMonitor />
+          <div className="md:col-span-2">
+            <IncidentTracker />
+          </div>
           <div className="md:col-span-2">
             <BuildLogs />
           </div>

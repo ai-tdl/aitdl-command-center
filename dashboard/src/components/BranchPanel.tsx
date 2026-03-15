@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { triggerDeploy, mergeBranch } from '../lib/api';
+import { triggerDeploy, mergeBranch, rollbackDeploy } from '../lib/api';
 
 const BranchPanel = () => {
   const [loading, setLoading] = useState<string | null>(null);
@@ -13,6 +13,11 @@ const BranchPanel = () => {
       } else if (type === 'merge') {
         await mergeBranch(payload.from, payload.to);
         alert(`Merged ${payload.from} into ${payload.to}`);
+      } else if (type === 'rollback') {
+        if (confirm("Are you sure you want to ROLLBACK Production to the previous version?")) {
+          await rollbackDeploy();
+          alert("Rollback initiated successfully.");
+        }
       }
     } catch (err: any) {
       alert(`Error: ${err.message}`);
@@ -31,13 +36,22 @@ const BranchPanel = () => {
             <span className="font-bold">main</span>
             <span className="text-xs bg-green-500/10 text-green-500 px-2 py-0.5 rounded-full">v5.0.0</span>
           </div>
-          <button 
-            onClick={() => handleAction('deploy', 'production')}
-            disabled={!!loading}
-            className="w-full py-2 bg-premium-accent rounded-lg text-sm font-bold hover:opacity-80 disabled:opacity-30 transition-all"
-          >
-            {loading === 'deploy' ? 'Deploying...' : 'Deploy to Production'}
-          </button>
+          <div className="grid grid-cols-2 gap-2">
+            <button 
+              onClick={() => handleAction('deploy', 'production')}
+              disabled={!!loading}
+              className="py-2 bg-premium-accent rounded-lg text-sm font-bold hover:opacity-80 disabled:opacity-30 transition-all"
+            >
+              {loading === 'deploy' ? 'Deploying...' : 'Deploy'}
+            </button>
+            <button 
+              onClick={() => handleAction('rollback', null)}
+              disabled={!!loading}
+              className="py-2 border border-red-500/30 text-red-500 bg-red-500/5 rounded-lg text-sm font-bold hover:bg-red-500/10 disabled:opacity-30 transition-all"
+            >
+              {loading === 'rollback' ? 'Rolling back...' : 'Rollback'}
+            </button>
+          </div>
         </div>
 
         {/* Development Control */}

@@ -3,3 +3,5 @@ export { triggerDeploy } from "./triggerDeploy";
 export { mergeBranch } from "./mergeBranch";
 export { checkSiteHealth } from "./checkSiteHealth";
 export { getGithubActivity } from "./getGithubActivity";
+export { rollbackDeploy } from "./rollbackDeploy";
+export { logEvent } from "./logEvent";

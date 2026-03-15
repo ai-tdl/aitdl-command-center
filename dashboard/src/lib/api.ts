@@ -40,3 +40,7 @@ export async function triggerDeploy(branch: string) {
 export async function mergeBranch(from: string, to: string) {
   return await callFunction("mergeBranch", { from, to });
 }
+
+export async function rollbackDeploy() {
+  return await callFunction("rollbackDeploy");
+}
