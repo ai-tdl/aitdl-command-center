@@ -1,147 +1,161 @@
 import { useState, useEffect, useRef } from 'react'
 
+// ─── Config ────────────────────────────────────────────────────────────────
 const THEMES = [
-  { id: 'dark', label: 'Dark', icon: '🌙' },
-  { id: 'light', label: 'Light', icon: '☀️' },
-  { id: 'glass', label: 'Glass', icon: '💎' },
-  { id: 'midnight', label: 'Midnight', icon: '🌌' },
+  {
+    id: 'dark',
+    label: 'Dark',
+    icon: '🌙',
+    preview: ['#030306', '#080812', '#FF6B35'],
+    desc: 'Classic dark mode',
+  },
+  {
+    id: 'midnight',
+    label: 'Midnight',
+    icon: '🌌',
+    preview: ['#000000', '#05050A', '#FF6B35'],
+    desc: 'Pure black OLED',
+  },
+  {
+    id: 'glass',
+    label: 'Glass',
+    icon: '💎',
+    preview: ['#030306', 'rgba(255,255,255,0.05)', '#FF6B35'],
+    desc: 'Frosted glass',
+  },
+  {
+    id: 'light',
+    label: 'Light',
+    icon: '☀️',
+    preview: ['#F8F7F4', '#FFFFFF', '#FF6B35'],
+    desc: 'Clean & bright',
+  },
 ]
 
 const LANGUAGES = [
-  { id: 'en', label: 'EN' },
-  { id: 'hi', label: 'हि' },
-  { id: 'sa', label: 'सं' },
-]
-
-const DENSITIES = [
-  { id: 'compact', label: 'Compact', padding: '12px' },
-  { id: 'comfortable', label: 'Comfortable', padding: '24px' },
-  { id: 'spacious', label: 'Spacious', padding: '40px' },
+  { id: 'en', label: 'English', flag: '🇬🇧' },
+  { id: 'hi', label: 'हिंदी', flag: '🇮🇳' },
+  { id: 'sa', label: 'संस्कृत', flag: '🕉️' },
 ]
 
 const FONT_SIZES = [
-  { id: 'small', label: 'A-', size: '13px' },
-  { id: 'medium', label: 'A', size: '15px' },
-  { id: 'large', label: 'A+', size: '17px' },
+  { id: 'small',  label: 'A',  size: '13px', scale: 0.87 },
+  { id: 'medium', label: 'A',  size: '15px', scale: 1    },
+  { id: 'large',  label: 'A',  size: '17px', scale: 1.13 },
+]
+
+const VIEWS = [
+  { id: 'grid', icon: '⊞', label: 'Grid' },
+  { id: 'list', icon: '☰', label: 'List' },
+]
+
+const MODES = [
+  { id: 'directory', icon: '📂', label: 'Directory' },
+  { id: 'command',   icon: '⚡', label: 'Command'   },
 ]
 
 const ACCENTS = [
-  '#FF6B35', // Orange (Default)
-  '#00B4D8', // Cyan
-  '#34C759', // Green
-  '#FFD700', // Gold
-  '#BF5AF2', // Purple
-  '#FF2D55', // Red
-  '#ffffff', // White
+  { hex: '#FF6B35', name: 'Ember'   },
+  { hex: '#00B4D8', name: 'Cyan'    },
+  { hex: '#34C759', name: 'Leaf'    },
+  { hex: '#FFD700', name: 'Gold'    },
+  { hex: '#BF5AF2', name: 'Violet'  },
+  { hex: '#FF2D55', name: 'Rose'    },
+  { hex: '#ffffff', name: 'White'   },
 ]
 
+// ─── Helpers ───────────────────────────────────────────────────────────────
+const ls = {
+  get: (k, def) => { try { return localStorage.getItem(k) || def } catch { return def } },
+  set: (k, v)  => { try { localStorage.setItem(k, v) } catch {} },
+}
+
 export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
-  const [theme, setTheme] = useState('dark')
-  const [view, setView] = useState('grid')
-  const [uiMode, setUiMode] = useState('directory')
-  const [density, setDensity] = useState('comfortable')
+  const [theme,    setTheme]    = useState('dark')
+  const [view,     setView]     = useState('grid')
+  const [uiMode,   setUiMode]   = useState('directory')
   const [fontSize, setFontSize] = useState('medium')
   const [indiaMode, setIndiaMode] = useState(false)
-  const [accent, setAccent] = useState('#FF6B35')
+  const [accent,   setAccent]   = useState('#FF6B35')
+  const [tab,      setTab]      = useState('appearance') // appearance | language | more
   const panelRef = useRef(null)
 
+  // ── Load from storage ──────────────────────────────────────────────────
   useEffect(() => {
-    // Initial Load
-    const sTheme = localStorage.getItem('aitdl_theme') || 'dark'
-    const sLang = localStorage.getItem('aitdl_lang') || 'en'
-    const sView = localStorage.getItem('aitdl_view') || 'grid'
-    const sUiMode = localStorage.getItem('aitdl_ui_mode') || 'directory'
-    const sDensity = localStorage.getItem('aitdl_density') || 'comfortable'
-    const sFontSize = localStorage.getItem('aitdl_fontsize') || 'medium'
-    const sIndiaMode = localStorage.getItem('aitdl_india_mode') === 'true'
-    const sAccent = localStorage.getItem('aitdl_accent') || '#FF6B35'
+    const sTheme    = ls.get('aitdl_theme',     'dark')
+    const sLang     = ls.get('aitdl_lang',      'en')
+    const sView     = ls.get('aitdl_view',      'grid')
+    const sUiMode   = ls.get('aitdl_ui_mode',   'directory')
+    const sFontSize = ls.get('aitdl_fontsize',  'medium')
+    const sIndia    = ls.get('aitdl_india_mode','false') === 'true'
+    const sAccent   = ls.get('aitdl_accent',    '#FF6B35')
 
-    setTheme(sTheme)
+    setTheme(sTheme);    applyTheme(sTheme, false)
     setLang(sLang)
     setView(sView)
     setUiMode(sUiMode)
-    setDensity(sDensity)
-    setFontSize(sFontSize)
-    setIndiaMode(sIndiaMode)
-    setAccent(sAccent)
-
-    // Apply immediately
-    applyTheme(sTheme)
-    applyDensity(sDensity)
-    applyFontSize(sFontSize)
-    applyAccent(sAccent)
+    setFontSize(sFontSize); applyFontSize(sFontSize, false)
+    setIndiaMode(sIndia)
+    setAccent(sAccent);  applyAccent(sAccent, false)
   }, [])
 
+  // ── ESC to close ──────────────────────────────────────────────────────
   useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === 'Escape') onClose()
-    }
-    if (isOpen) window.addEventListener('keydown', handleEsc)
-    return () => window.removeEventListener('keydown', handleEsc)
+    const fn = e => { if (e.key === 'Escape') onClose() }
+    if (isOpen) window.addEventListener('keydown', fn)
+    return () => window.removeEventListener('keydown', fn)
   }, [isOpen])
 
-  const applyTheme = (t) => {
+  // ── Apply fns ─────────────────────────────────────────────────────────
+  const applyTheme = (t, save = true) => {
     document.documentElement.setAttribute('data-theme', t)
-    localStorage.setItem('aitdl_theme', t)
     setTheme(t)
-    window.dispatchEvent(new Event('storage'))
+    if (save) { ls.set('aitdl_theme', t); dispatch() }
+  }
+
+  const applyFontSize = (fs, save = true) => {
+    const conf = FONT_SIZES.find(f => f.id === fs)
+    if (conf) document.documentElement.style.setProperty('--font-base', conf.size)
+    setFontSize(fs)
+    if (save) { ls.set('aitdl_fontsize', fs); dispatch() }
+  }
+
+  const applyAccent = (a, save = true) => {
+    const glow = a === '#ffffff'
+      ? 'rgba(255,255,255,0.2)'
+      : a + '40'
+    document.documentElement.style.setProperty('--accent', a)
+    document.documentElement.style.setProperty('--accent-glow', glow)
+    setAccent(a)
+    if (save) { ls.set('aitdl_accent', a); dispatch() }
   }
 
   const applyLang = (l) => {
-    setLang(l)
-    localStorage.setItem('aitdl_lang', l)
-    window.dispatchEvent(new Event('storage'))
+    setLang(l); ls.set('aitdl_lang', l); dispatch()
   }
 
   const applyView = (v) => {
-    setView(v)
-    localStorage.setItem('aitdl_view', v)
-    window.dispatchEvent(new Event('storage'))
-  }
-
-  const applyDensity = (d) => {
-    const conf = DENSITIES.find(x => x.id === d)
-    if (conf) document.documentElement.style.setProperty('--card-padding', conf.padding)
-    setDensity(d)
-    localStorage.setItem('aitdl_density', d)
-    window.dispatchEvent(new Event('storage'))
+    setView(v); ls.set('aitdl_view', v); dispatch()
   }
 
   const applyUiMode = (m) => {
-    setUiMode(m)
-    localStorage.setItem('aitdl_ui_mode', m)
-    window.dispatchEvent(new Event('storage'))
-  }
-
-  const applyFontSize = (fs) => {
-    const conf = FONT_SIZES.find(x => x.id === fs)
-    if (conf) document.documentElement.style.setProperty('--font-base', conf.size)
-    setFontSize(fs)
-    localStorage.setItem('aitdl_fontsize', fs)
-    window.dispatchEvent(new Event('storage'))
+    setUiMode(m); ls.set('aitdl_ui_mode', m); dispatch()
   }
 
   const applyIndiaMode = (val) => {
     setIndiaMode(val)
-    localStorage.setItem('aitdl_india_mode', val)
-    // Synchronize with origin for index.js logic
-    localStorage.setItem('aitdl_origin', val ? 'bharat' : 'all')
-    window.dispatchEvent(new Event('storage'))
+    ls.set('aitdl_india_mode', val)
+    ls.set('aitdl_origin', val ? 'bharat' : 'all')
+    dispatch()
   }
 
-  const applyAccent = (a) => {
-    document.documentElement.style.setProperty('--accent', a)
-    setAccent(a)
-    localStorage.setItem('aitdl_accent', a)
-    window.dispatchEvent(new Event('storage'))
-  }
+  const dispatch = () => window.dispatchEvent(new Event('storage'))
 
   const resetAll = () => {
     applyTheme('dark')
     applyLang('en')
     applyView('grid')
     applyUiMode('directory')
-    applyDensity('comfortable')
     applyFontSize('medium')
     applyIndiaMode(false)
     applyAccent('#FF6B35')
@@ -149,265 +163,613 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
 
   if (!isOpen) return null
 
+  // ── Render ────────────────────────────────────────────────────────────
   return (
-    <div className="overlay" onClick={onClose}>
-      <div className="panel" onClick={e => e.stopPropagation()} ref={panelRef}>
-        <div className="mobile-handle" />
-        
-        <header>
-          <h3>⚙️ Settings</h3>
-          <button className="reset-link" onClick={resetAll}>↺ Reset all</button>
-        </header>
+    <div className="sp-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label="Settings">
+      <div className="sp-panel" onClick={e => e.stopPropagation()} ref={panelRef}>
 
-        <div className="content">
-          {/* Section 1: Theme */}
-          <section>
-            <h4>Interface Theme</h4>
-            <div className="grid-btns">
-              {THEMES.map(t => (
-                <button key={t.id} className={theme === t.id ? 'active' : ''} onClick={() => applyTheme(t.id)}>
-                  {t.icon} {t.label}
-                </button>
-              ))}
-            </div>
-          </section>
+        {/* ── Header ── */}
+        <div className="sp-header">
+          <div className="sp-title">
+            <span className="sp-title-icon">⚙️</span>
+            <span>Settings</span>
+          </div>
+          <div className="sp-header-actions">
+            <button className="sp-reset" onClick={resetAll} title="Reset all to defaults">↺ Reset</button>
+            <button className="sp-close" onClick={onClose} aria-label="Close settings">✕</button>
+          </div>
+        </div>
 
-          {/* Section 2: Language */}
-          <section>
-            <h4>Language</h4>
-            <div className="row-btns">
-              {LANGUAGES.map(l => (
-                <button key={l.id} className={lang === l.id ? 'active' : ''} onClick={() => applyLang(l.id)}>
-                  {l.label}
-                </button>
-              ))}
-            </div>
-          </section>
+        {/* ── Tabs ── */}
+        <div className="sp-tabs">
+          {[
+            { id: 'appearance', icon: '🎨', label: 'Theme' },
+            { id: 'language',   icon: '🌐', label: 'Language' },
+            { id: 'more',       icon: '⊞',  label: 'More' },
+          ].map(t => (
+            <button
+              key={t.id}
+              className={`sp-tab ${tab === t.id ? 'active' : ''}`}
+              onClick={() => setTab(t.id)}
+            >
+              <span>{t.icon}</span>
+              <span>{t.label}</span>
+            </button>
+          ))}
+        </div>
 
-          {/* Section 3: View Mode */}
-          <section>
-            <h4>View Type</h4>
-            <div className="row-btns">
-              <button className={view === 'grid' ? 'active' : ''} onClick={() => applyView('grid')}>🗂 Grid</button>
-              <button className={view === 'list' ? 'active' : ''} onClick={() => applyView('list')}>📝 List</button>
-            </div>
-          </section>
+        {/* ── Content ── */}
+        <div className="sp-content">
 
-          {/* Section 4: UI Mode */}
-          <section>
-            <h4>Platform Mode</h4>
-            <div className="row-btns">
-              <button className={uiMode === 'directory' ? 'active' : ''} onClick={() => applyUiMode('directory')}>📂 Directory</button>
-              <button className={uiMode === 'command' ? 'active' : ''} onClick={() => applyUiMode('command')}>⚡ Command</button>
-            </div>
-          </section>
+          {/* ══════════ APPEARANCE TAB ══════════ */}
+          {tab === 'appearance' && (
+            <>
+              {/* Theme Cards */}
+              <section>
+                <h4 className="sp-section-label">Interface Theme</h4>
+                <div className="sp-theme-grid">
+                  {THEMES.map(t => (
+                    <button
+                      key={t.id}
+                      className={`sp-theme-card ${theme === t.id ? 'active' : ''}`}
+                      onClick={() => applyTheme(t.id)}
+                      title={t.desc}
+                    >
+                      {/* Mini preview */}
+                      <div className="sp-theme-preview" style={{ background: t.preview[0] }}>
+                        <div className="sp-prev-bar" style={{ background: t.preview[1] }}>
+                          <div className="sp-prev-dot" style={{ background: t.preview[2] }} />
+                          <div className="sp-prev-dot" style={{ background: t.preview[2], opacity: 0.4 }} />
+                        </div>
+                        <div className="sp-prev-card" style={{ background: t.preview[1] }} />
+                        <div className="sp-prev-card" style={{ background: t.preview[1] }} />
+                      </div>
+                      <div className="sp-theme-card-footer">
+                        <span className="sp-theme-icon">{t.icon}</span>
+                        <span className="sp-theme-label">{t.label}</span>
+                        {theme === t.id && <span className="sp-check">✓</span>}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </section>
 
-          {/* Section 4: Density */}
-          <section>
-            <h4>Density</h4>
-            <div className="row-btns">
-              {DENSITIES.map(d => (
-                <button key={d.id} className={density === d.id ? 'active' : ''} onClick={() => applyDensity(d.id)}>
-                  {d.label}
-                </button>
-              ))}
-            </div>
-          </section>
+              {/* Font Size */}
+              <section>
+                <h4 className="sp-section-label">Font Size</h4>
+                <div className="sp-font-row">
+                  {FONT_SIZES.map((f, i) => (
+                    <button
+                      key={f.id}
+                      className={`sp-font-btn ${fontSize === f.id ? 'active' : ''}`}
+                      onClick={() => applyFontSize(f.id)}
+                      style={{ fontSize: 12 + i * 3 }}
+                      title={f.size}
+                    >
+                      {f.label}
+                      <span className="sp-font-size-hint">{f.size}</span>
+                    </button>
+                  ))}
+                </div>
+              </section>
 
-          {/* Section 5: Font Size */}
-          <section>
-            <h4>Font Size</h4>
-            <div className="row-btns">
-              {FONT_SIZES.map(f => (
-                <button key={f.id} className={fontSize === f.id ? 'active' : ''} onClick={() => applyFontSize(f.id)}>
-                  {f.label}
-                </button>
-              ))}
-            </div>
-          </section>
+              {/* Accent Color */}
+              <section>
+                <h4 className="sp-section-label">Accent Color</h4>
+                <div className="sp-accent-row">
+                  {ACCENTS.map(a => (
+                    <button
+                      key={a.hex}
+                      className={`sp-accent-dot ${accent === a.hex ? 'active' : ''}`}
+                      style={{ background: a.hex }}
+                      onClick={() => applyAccent(a.hex)}
+                      title={a.name}
+                      aria-label={`Accent: ${a.name}`}
+                    >
+                      {accent === a.hex && <span className="sp-dot-check">✓</span>}
+                    </button>
+                  ))}
+                </div>
+                <div className="sp-accent-name">
+                  {ACCENTS.find(a => a.hex === accent)?.name || 'Custom'}
+                </div>
+              </section>
+            </>
+          )}
 
-          {/* Section 6: India Mode */}
-          <section className="flex-row">
-            <h4>India Mode</h4>
-            <label className="switch">
-              <input type="checkbox" checked={indiaMode} onChange={(e) => applyIndiaMode(e.target.checked)} />
-              <span className="slider" />
-            </label>
-          </section>
+          {/* ══════════ LANGUAGE TAB ══════════ */}
+          {tab === 'language' && (
+            <>
+              <section>
+                <h4 className="sp-section-label">Display Language</h4>
+                <div className="sp-lang-list">
+                  {LANGUAGES.map(l => (
+                    <button
+                      key={l.id}
+                      className={`sp-lang-card ${lang === l.id ? 'active' : ''}`}
+                      onClick={() => applyLang(l.id)}
+                    >
+                      <span className="sp-lang-flag">{l.flag}</span>
+                      <span className="sp-lang-label">{l.label}</span>
+                      {lang === l.id && <span className="sp-check-right">✓</span>}
+                    </button>
+                  ))}
+                </div>
+              </section>
+            </>
+          )}
 
-          {/* Section 7: Accent Color */}
-          <section>
-            <h4>Accent Colour</h4>
-            <div className="color-row">
-              {ACCENTS.map(a => (
-                <div key={a} className={`color-dot ${accent === a ? 'active' : ''}`} 
-                  style={{ background: a }} onClick={() => applyAccent(a)} />
-              ))}
-            </div>
-          </section>
+          {/* ══════════ MORE TAB ══════════ */}
+          {tab === 'more' && (
+            <>
+              {/* View Mode */}
+              <section>
+                <h4 className="sp-section-label">Card View</h4>
+                <div className="sp-pill-row">
+                  {VIEWS.map(v => (
+                    <button
+                      key={v.id}
+                      className={`sp-pill ${view === v.id ? 'active' : ''}`}
+                      onClick={() => applyView(v.id)}
+                    >
+                      {v.icon} {v.label}
+                    </button>
+                  ))}
+                </div>
+              </section>
 
-          {/* Section 8: Final Reset */}
-          <button className="full-reset" onClick={resetAll}>↺ Reset all to default</button>
+              {/* Platform Mode */}
+              <section>
+                <h4 className="sp-section-label">Platform Mode</h4>
+                <div className="sp-pill-row">
+                  {MODES.map(m => (
+                    <button
+                      key={m.id}
+                      className={`sp-pill ${uiMode === m.id ? 'active' : ''}`}
+                      onClick={() => applyUiMode(m.id)}
+                    >
+                      {m.icon} {m.label}
+                    </button>
+                  ))}
+                </div>
+              </section>
+
+              {/* India Mode */}
+              <section className="sp-toggle-row">
+                <div>
+                  <h4 className="sp-section-label" style={{ marginBottom: 2 }}>🇮🇳 India Mode</h4>
+                  <p className="sp-toggle-desc">Show only India-optimized tools</p>
+                </div>
+                <label className="sp-switch">
+                  <input
+                    type="checkbox"
+                    checked={indiaMode}
+                    onChange={e => applyIndiaMode(e.target.checked)}
+                  />
+                  <span className="sp-slider" />
+                </label>
+              </section>
+            </>
+          )}
+        </div>
+
+        {/* ── Footer ── */}
+        <div className="sp-footer">
+          <button className="sp-full-reset" onClick={resetAll}>↺ Reset all to defaults</button>
         </div>
       </div>
 
+      {/* ── All CSS ── */}
       <style jsx>{`
-        .overlay {
+        /* ── Overlay ── */
+        .sp-overlay {
           position: fixed;
           inset: 0;
           z-index: 2000;
-          background: rgba(0,0,0,0.4);
-          backdrop-filter: blur(8px);
+          background: rgba(0, 0, 0, 0.5);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
           display: flex;
           justify-content: flex-end;
-          padding: 20px;
-          opacity: 0;
-          animation: fade-in 0.2s forwards;
+          align-items: flex-start;
+          padding: 16px;
+          animation: sp-fade 0.18s ease forwards;
         }
-        @keyframes fade-in { to { opacity: 1; } }
+        @keyframes sp-fade { from { opacity: 0 } to { opacity: 1 } }
 
-        .panel {
-          width: 280px;
-          max-height: 85vh;
+        /* ── Panel ── */
+        .sp-panel {
+          width: 340px;
+          max-height: calc(100vh - 32px);
           background: var(--bg-secondary);
           border: 1px solid var(--border);
-          border-radius: 24px;
+          border-radius: 20px;
           display: flex;
           flex-direction: column;
-          box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-          transform: translateY(-8px);
-          animation: slide-in 0.2s forwards;
           overflow: hidden;
+          box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+          animation: sp-slide 0.2s cubic-bezier(0.34,1.56,0.64,1) forwards;
+          transform-origin: top right;
         }
-        @keyframes slide-in { to { opacity: 1; transform: translateY(0); } }
+        @keyframes sp-slide {
+          from { opacity: 0; transform: scale(0.92) translateY(-8px); }
+          to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
 
-        .mobile-handle { display: none; }
-
-        header {
-          padding: 20px 24px;
+        /* ── Header ── */
+        .sp-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          padding: 18px 20px 14px;
           border-bottom: 1px solid var(--border);
+          flex-shrink: 0;
         }
-        header h3 { font-size: 16px; font-weight: 800; margin: 0; }
-        .reset-link { 
-          background: none; border: none; color: var(--accent); 
-          font-size: 12px; font-weight: 700; cursor: pointer; 
+        .sp-title {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 16px;
+          font-weight: 800;
+          color: var(--text-primary);
+          letter-spacing: -0.02em;
+        }
+        .sp-title-icon { font-size: 18px; }
+        .sp-header-actions { display: flex; gap: 8px; align-items: center; }
+        .sp-reset {
+          background: none;
+          border: 1px solid var(--border);
+          color: var(--text-tertiary);
+          font-size: 11px;
+          font-weight: 700;
+          cursor: pointer;
+          padding: 5px 10px;
+          border-radius: 8px;
+          transition: all 0.2s;
+          letter-spacing: 0.02em;
+        }
+        .sp-reset:hover { color: var(--accent); border-color: var(--accent); }
+        .sp-close {
+          background: var(--bg-tertiary);
+          border: 1px solid var(--border);
+          color: var(--text-secondary);
+          width: 28px;
+          height: 28px;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.2s;
+        }
+        .sp-close:hover { background: rgba(255,0,0,0.1); color: #ff4444; border-color: rgba(255,0,0,0.2); }
+
+        /* ── Tabs ── */
+        .sp-tabs {
+          display: flex;
+          gap: 4px;
+          padding: 10px 12px 4px;
+          flex-shrink: 0;
+        }
+        .sp-tab {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2px;
+          padding: 8px 4px;
+          background: none;
+          border: 1px solid transparent;
+          border-radius: 12px;
+          color: var(--text-tertiary);
+          font-size: 11px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.2s;
+          letter-spacing: 0.02em;
+        }
+        .sp-tab span:first-child { font-size: 16px; }
+        .sp-tab:hover { color: var(--text-secondary); background: var(--bg-tertiary); }
+        .sp-tab.active {
+          background: var(--bg-tertiary);
+          border-color: var(--border);
+          color: var(--accent);
+          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
-        .content { 
-          padding: 24px; 
-          overflow-y: auto; 
-          display: flex; 
-          flex-direction: column; 
-          gap: 24px; 
+        /* ── Content ── */
+        .sp-content {
+          flex: 1;
+          overflow-y: auto;
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+        .sp-content::-webkit-scrollbar { width: 4px; }
+        .sp-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+        .sp-section-label {
+          font-size: 10px;
+          font-weight: 800;
+          color: var(--text-tertiary);
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+          margin-bottom: 10px;
         }
 
-        section h4 { 
-          font-size: 10px; 
-          font-weight: 800; 
-          color: var(--text3); 
-          text-transform: uppercase; 
-          letter-spacing: 0.1em; 
-          margin-bottom: 12px; 
+        /* ── Theme Grid (Claude.ai style 2×2) ── */
+        .sp-theme-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+        }
+        .sp-theme-card {
+          background: var(--bg-tertiary);
+          border: 2px solid var(--border);
+          border-radius: 14px;
+          padding: 0;
+          cursor: pointer;
+          transition: all 0.2s;
+          overflow: hidden;
+          text-align: left;
+        }
+        .sp-theme-card:hover {
+          border-color: rgba(255,255,255,0.15);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .sp-theme-card.active {
+          border-color: var(--accent);
+          box-shadow: 0 0 0 1px var(--accent), 0 8px 24px var(--accent-glow);
         }
 
-        .grid-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .row-btns { display: flex; gap: 8px; }
+        /* Mini Browser-style Preview */
+        .sp-theme-preview {
+          height: 64px;
+          padding: 6px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          border-radius: 12px 12px 0 0;
+        }
+        .sp-prev-bar {
+          height: 10px;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          gap: 3px;
+          padding: 0 5px;
+        }
+        .sp-prev-dot {
+          width: 4px; height: 4px;
+          border-radius: 50%;
+          flex-shrink: 0;
+        }
+        .sp-prev-card {
+          height: 12px;
+          border-radius: 4px;
+          opacity: 0.7;
+        }
 
-        button:not(.reset-link, .full-reset) {
+        .sp-theme-card-footer {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 8px 10px;
+        }
+        .sp-theme-icon { font-size: 14px; }
+        .sp-theme-label {
+          font-size: 12px;
+          font-weight: 700;
+          color: var(--text-secondary);
+          flex: 1;
+        }
+        .sp-theme-card.active .sp-theme-label { color: var(--accent); }
+        .sp-check {
+          font-size: 11px;
+          color: var(--accent);
+          font-weight: 900;
+        }
+
+        /* ── Font Size ── */
+        .sp-font-row {
+          display: flex;
+          gap: 8px;
+        }
+        .sp-font-btn {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2px;
+          padding: 12px 8px;
+          background: var(--bg-tertiary);
+          border: 1.5px solid var(--border);
+          border-radius: 12px;
+          color: var(--text-secondary);
+          font-weight: 800;
+          font-family: serif;
+          cursor: pointer;
+          transition: all 0.2s;
+          line-height: 1;
+        }
+        .sp-font-btn:hover { border-color: rgba(255,255,255,0.2); }
+        .sp-font-btn.active {
+          border-color: var(--accent);
+          background: var(--accent-glow);
+          color: var(--accent);
+        }
+        .sp-font-size-hint {
+          font-size: 9px;
+          font-weight: 600;
+          font-family: monospace;
+          opacity: 0.5;
+          letter-spacing: 0.05em;
+        }
+
+        /* ── Accent Colors ── */
+        .sp-accent-row {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+        .sp-accent-dot {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          border: 2px solid transparent;
+          cursor: pointer;
+          transition: all 0.2s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 11px;
+          font-weight: 900;
+          color: #000;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .sp-accent-dot:hover { transform: scale(1.15); }
+        .sp-accent-dot.active {
+          border-color: #fff;
+          transform: scale(1.15);
+          box-shadow: 0 0 0 4px rgba(255,255,255,0.15), 0 4px 12px rgba(0,0,0,0.4);
+        }
+        .sp-dot-check { font-size: 10px; color: #000; mix-blend-mode: difference; }
+        .sp-accent-name {
+          font-size: 11px;
+          font-weight: 700;
+          color: var(--accent);
+          margin-top: 6px;
+          letter-spacing: 0.04em;
+        }
+
+        /* ── Language ── */
+        .sp-lang-list { display: flex; flex-direction: column; gap: 6px; }
+        .sp-lang-card {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 12px 14px;
+          background: var(--bg-tertiary);
+          border: 1.5px solid var(--border);
+          border-radius: 12px;
+          cursor: pointer;
+          transition: all 0.2s;
+          text-align: left;
+        }
+        .sp-lang-card:hover { border-color: rgba(255,255,255,0.15); }
+        .sp-lang-card.active {
+          border-color: var(--accent);
+          background: var(--accent-glow);
+        }
+        .sp-lang-flag { font-size: 20px; }
+        .sp-lang-label {
+          font-size: 14px;
+          font-weight: 700;
+          color: var(--text-secondary);
+          flex: 1;
+        }
+        .sp-lang-card.active .sp-lang-label { color: var(--accent); }
+        .sp-check-right { font-size: 14px; color: var(--accent); font-weight: 900; }
+
+        /* ── Pill Buttons ── */
+        .sp-pill-row { display: flex; gap: 8px; }
+        .sp-pill {
           flex: 1;
           padding: 10px;
-          border-radius: 12px;
-          border: 1px solid var(--border);
           background: var(--bg-tertiary);
+          border: 1.5px solid var(--border);
+          border-radius: 12px;
           color: var(--text-secondary);
           font-size: 12px;
           font-weight: 700;
           cursor: pointer;
           transition: all 0.2s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
         }
-        button.active {
-          background: var(--accent);
-          color: #fff;
+        .sp-pill:hover { border-color: rgba(255,255,255,0.2); }
+        .sp-pill.active {
           border-color: var(--accent);
-          box-shadow: 0 4px 12px var(--accent-glow);
+          background: var(--accent-glow);
+          color: var(--accent);
         }
 
-        .flex-row { display: flex; justify-content: space-between; align-items: center; }
-        .flex-row h4 { margin: 0; }
-
-        .switch {
+        /* ── Toggle ── */
+        .sp-toggle-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 16px;
+        }
+        .sp-toggle-desc { font-size: 11px; color: var(--text-tertiary); }
+        .sp-switch {
           position: relative;
           display: inline-block;
           width: 44px;
           height: 24px;
+          flex-shrink: 0;
         }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider {
+        .sp-switch input { opacity: 0; width: 0; height: 0; }
+        .sp-slider {
           position: absolute;
           cursor: pointer;
           inset: 0;
           background: var(--bg-tertiary);
           border: 1px solid var(--border);
-          transition: .4s;
           border-radius: 34px;
+          transition: .3s;
         }
-        .slider:before {
+        .sp-slider:before {
           position: absolute;
           content: "";
           height: 16px;
           width: 16px;
-          left: 4px;
+          left: 3px;
           bottom: 3px;
-          background-color: white;
-          transition: .4s;
+          background: var(--text-tertiary);
           border-radius: 50%;
+          transition: .3s;
         }
-        input:checked + .slider { background-color: var(--accent); border-color: var(--accent); }
-        input:checked + .slider:before { transform: translateX(18px); }
+        input:checked + .sp-slider { background: var(--accent); border-color: var(--accent); }
+        input:checked + .sp-slider:before { transform: translateX(20px); background: #fff; }
 
-        .color-row { display: flex; gap: 8px; flex-wrap: wrap; }
-        .color-dot {
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          cursor: pointer;
-          border: 2px solid transparent;
-          transition: transform 0.2s;
+        /* ── Footer ── */
+        .sp-footer {
+          padding: 12px 16px;
+          border-top: 1px solid var(--border);
+          flex-shrink: 0;
         }
-        .color-dot.active { border-color: #fff; transform: scale(1.1); box-shadow: 0 0 10px rgba(255,255,255,0.3); }
-
-        .full-reset {
-          margin-top: 12px;
-          padding: 12px;
+        .sp-full-reset {
+          width: 100%;
+          padding: 10px;
           background: none;
           border: 1px solid var(--border);
-          color: var(--text3);
-          border-radius: 12px;
+          border-radius: 10px;
+          color: var(--text-tertiary);
           font-size: 12px;
           font-weight: 700;
           cursor: pointer;
+          transition: all 0.2s;
         }
+        .sp-full-reset:hover { border-color: #ff4444; color: #ff4444; background: rgba(255,68,68,0.05); }
 
-        @media (max-width: 768px) {
-          .overlay { align-items: flex-end; padding: 0; }
-          .panel { 
-            width: 100%; 
-            border-radius: 20px 20px 0 0; 
-            max-height: 70vh; 
-            transform: translateY(100%); 
-            animation: slide-up-mobile 0.3s forwards;
+        /* ── Mobile ── */
+        @media (max-width: 480px) {
+          .sp-overlay { padding: 0; align-items: flex-end; justify-content: stretch; }
+          .sp-panel {
+            width: 100%;
+            border-radius: 20px 20px 0 0;
+            max-height: 80vh;
+            animation: sp-slide-up 0.25s cubic-bezier(0.34,1.56,0.64,1) forwards;
           }
-          @keyframes slide-up-mobile { to { transform: translateY(0); opacity: 1; } }
-          .mobile-handle { 
-            display: block; 
-            width: 40px; 
-            height: 4px; 
-            background: var(--border); 
-            margin: 12px auto 0; 
-            border-radius: 2px; 
+          @keyframes sp-slide-up {
+            from { transform: translateY(100%); }
+            to   { transform: translateY(0); }
           }
         }
       `}</style>
