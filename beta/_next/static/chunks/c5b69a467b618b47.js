@@ -1,8 +1,0 @@
-__turbopack_load_page_chunks__("/compare", [
-  "static/chunks/11c5a6bcb481c542.js",
-  "static/chunks/3833322252b952de.js",
-  "static/chunks/335f432084c21ae1.js",
-  "static/chunks/2693285ab0e91410.js",
-  "static/chunks/f3ad13bcc19f0e90.js",
-  "static/chunks/turbopack-f3916f4479011454.js"
-])
