@@ -134,6 +134,7 @@ export default function Footer() {
               [t.battle, '/ai-battle'],
               [t.compare, '/compare'],
               [t.about, '/about'],
+              ['About Founder', '/about-founder'],
             ].map(([label, href]) => (
               <a key={label} href={href} style={{
                 fontSize: 14,
@@ -194,24 +195,15 @@ export default function Footer() {
         textAlign: 'center',
       }}>
         <div style={{
-          fontSize: 14,
+          fontSize: 16,
           color: 'var(--text-primary)',
-          fontWeight: 700,
-          marginBottom: 8,
+          fontWeight: 800,
+          marginBottom: 12,
           fontFamily: 'Outfit',
-          letterSpacing: '0.05em',
+          letterSpacing: '0.1em',
         }}>
-          Jawahar Ramkripal Mallah
+          AITDL
         </div>
-        
-        <p style={{ 
-          fontSize: 11, 
-          color: 'var(--text-tertiary)', 
-          marginBottom: 20,
-          lineHeight: 1.6
-        }}>
-          Software Developer & Service Provider since 2007 · Published Author
-        </p>
 
         <div style={{
           display: 'flex',

@@ -24,6 +24,7 @@ import Head from 'next/head'
 import '../styles/globals.css'
 import { useEffect } from 'react'
 import ErrorBoundary from '../components/ErrorBoundary'
+import SidebarCard from '../components/SidebarCard'
 import { GlobalSEO } from '../lib/seo'
 import { HomeJsonLD } from '../lib/jsonld'
 import { Analytics } from '@vercel/analytics/react'
@@ -46,6 +47,7 @@ export default function App({
       </Head>
       <HomeJsonLD toolCount={100} />
       <Component {...pageProps} />
+      <SidebarCard />
       <Analytics />
     </ErrorBoundary>
   )
