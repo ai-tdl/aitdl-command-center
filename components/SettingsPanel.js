@@ -36,7 +36,11 @@ const ACCENTS = [
 ]
 
 export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
+  const [theme, setTheme] = useState('dark')
+  const [view, setView] = useState('grid')
   const [uiMode, setUiMode] = useState('directory')
+  const [density, setDensity] = useState('comfortable')
+  const [fontSize, setFontSize] = useState('medium')
   const [indiaMode, setIndiaMode] = useState(false)
   const [accent, setAccent] = useState('#FF6B35')
   const panelRef = useRef(null)
