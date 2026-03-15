@@ -5,9 +5,9 @@
     "website": "https://aitdl.com",
     "email": "hello@aitdl.com",
     "copyright": "© 2026 AITDL - Artificial Intelligence Technology & Deep Learning",
-    "version": "4.6.2",
-    "lastUpdated": "2026-03-15",
-    "totalTools": 100
+    "version": "5.0.0",
+    "lastUpdated": "2026-03-16",
+    "totalTools": 178
   },
   "tools": [
     {
@@ -2047,6 +2047,1571 @@
       "low_data": true,
       "exam_tags": [],
       "featured": true,
+      "verified": true
+    },
+    {
+      "id": 102,
+      "name": "DeepSeek",
+      "slug": "deepseek",
+      "description": "China ka powerful open-source AI — maths, coding, reasoning mein ChatGPT ke barabar.",
+      "category": [
+        "study",
+        "coding"
+      ],
+      "pricing": "free",
+      "url": "https://chat.deepseek.com",
+      "emoji": "🔭",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [
+        "JEE",
+        "NEET"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 103,
+      "name": "Grok (xAI)",
+      "slug": "grok",
+      "description": "Elon Musk ka AI — real-time web access ke saath sarcastic aur smart.",
+      "category": [
+        "study",
+        "research"
+      ],
+      "pricing": "freemium",
+      "url": "https://grok.x.ai",
+      "emoji": "🤖",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 104,
+      "name": "Poe by Quora",
+      "slug": "poe",
+      "description": "Ek jagah pe ChatGPT, Claude, Gemini sab — free mein.",
+      "category": [
+        "study",
+        "writing"
+      ],
+      "pricing": "freemium",
+      "url": "https://poe.com",
+      "emoji": "💬",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [
+        "JEE",
+        "NEET",
+        "UPSC"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 105,
+      "name": "You.com",
+      "slug": "you-com",
+      "description": "AI search engine — privacy-first, sources ke saath accurate answers.",
+      "category": [
+        "search",
+        "research"
+      ],
+      "pricing": "freemium",
+      "url": "https://you.com",
+      "emoji": "🔍",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 108,
+      "name": "Chegg Study AI",
+      "slug": "chegg",
+      "description": "Textbook solutions aur 24/7 AI tutor — engineering students ke liye.",
+      "category": [
+        "study"
+      ],
+      "pricing": "paid",
+      "url": "https://chegg.com",
+      "emoji": "📖",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "JEE",
+        "NEET"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 109,
+      "name": "Doubtnut",
+      "slug": "doubtnut",
+      "description": "Photo khicho — Indian curriculum ke questions instantly solve. Hinglish mein.",
+      "category": [
+        "study",
+        "india"
+      ],
+      "pricing": "freemium",
+      "url": "https://doubtnut.com",
+      "emoji": "📷",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": true,
+      "exam_tags": [
+        "JEE",
+        "NEET",
+        "Boards"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 110,
+      "name": "BYJU'S AI Tutor",
+      "slug": "byjus-ai",
+      "description": "India ka #1 ed-tech AI tutor — adaptive learning for JEE, NEET, Boards.",
+      "category": [
+        "study",
+        "india"
+      ],
+      "pricing": "freemium",
+      "url": "https://byjus.com",
+      "emoji": "🎓",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": false,
+      "exam_tags": [
+        "JEE",
+        "NEET",
+        "Boards"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 111,
+      "name": "Embibe AI",
+      "slug": "embibe",
+      "description": "IIT-powered AI for JEE/NEET — personalized weak area analysis.",
+      "category": [
+        "study",
+        "india"
+      ],
+      "pricing": "freemium",
+      "url": "https://embibe.com",
+      "emoji": "📊",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": false,
+      "exam_tags": [
+        "JEE",
+        "NEET"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 112,
+      "name": "Vedantu AI",
+      "slug": "vedantu",
+      "description": "Live classes + AI tutoring — JEE, NEET, CBSE ke liye India ka trusted platform.",
+      "category": [
+        "study",
+        "india"
+      ],
+      "pricing": "freemium",
+      "url": "https://vedantu.com",
+      "emoji": "🏫",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": false,
+      "exam_tags": [
+        "JEE",
+        "NEET",
+        "Boards"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 113,
+      "name": "Unacademy AI",
+      "slug": "unacademy",
+      "description": "India ke top educators + AI — UPSC, JEE, NEET sab ek jagah.",
+      "category": [
+        "study",
+        "india"
+      ],
+      "pricing": "freemium",
+      "url": "https://unacademy.com",
+      "emoji": "📚",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": false,
+      "exam_tags": [
+        "JEE",
+        "NEET",
+        "UPSC"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 114,
+      "name": "Windsurf AI",
+      "slug": "windsurf",
+      "description": "Free AI code autocomplete — VS Code mein GitHub Copilot ka best free alternative.",
+      "category": [
+        "coding"
+      ],
+      "pricing": "free",
+      "url": "https://codeium.com",
+      "emoji": "🌊",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [
+        "JEE"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 116,
+      "name": "Amazon CodeWhisperer",
+      "slug": "codewhisperer",
+      "description": "AWS ka free AI coder — security scans bhi karta hai.",
+      "category": [
+        "coding"
+      ],
+      "pricing": "free",
+      "url": "https://aws.amazon.com/codewhisperer",
+      "emoji": "☁️",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "JEE"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 117,
+      "name": "Bolt.new",
+      "slug": "bolt-new",
+      "description": "Prompt se full-stack web app minutes mein — deploy bhi instantly.",
+      "category": [
+        "coding"
+      ],
+      "pricing": "freemium",
+      "url": "https://bolt.new",
+      "emoji": "⚡",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [
+        "JEE"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 118,
+      "name": "Lovable.dev",
+      "slug": "lovable-dev",
+      "description": "Describe your app — AI builds the full React frontend for you.",
+      "category": [
+        "coding"
+      ],
+      "pricing": "freemium",
+      "url": "https://lovable.dev",
+      "emoji": "💜",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 119,
+      "name": "v0.dev (Vercel)",
+      "slug": "v0-vercel",
+      "description": "Text se UI components banao — React, shadcn/ui code ready milta hai.",
+      "category": [
+        "coding"
+      ],
+      "pricing": "freemium",
+      "url": "https://v0.dev",
+      "emoji": "🎨",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 120,
+      "name": "Phind",
+      "slug": "phind",
+      "description": "Developers ke liye AI search — code snippets aur explanations milte hain.",
+      "category": [
+        "coding",
+        "research"
+      ],
+      "pricing": "free",
+      "url": "https://phind.com",
+      "emoji": "🔎",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [
+        "JEE"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 121,
+      "name": "LeetCode AI",
+      "slug": "leetcode-ai",
+      "description": "DSA problems ke liye AI hints aur explanations — JEE CS + placements.",
+      "category": [
+        "coding",
+        "career"
+      ],
+      "pricing": "freemium",
+      "url": "https://leetcode.com",
+      "emoji": "💻",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [
+        "JEE"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 122,
+      "name": "Ollama",
+      "slug": "ollama",
+      "description": "One command mein local LLMs run karo — Llama, Mistral, Gemma sab.",
+      "category": [
+        "coding"
+      ],
+      "pricing": "free",
+      "url": "https://ollama.com",
+      "emoji": "🦙",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": true,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 123,
+      "name": "LM Studio",
+      "slug": "lm-studio",
+      "description": "Local AI models run karo — internet ki zaroorat nahi, privacy 100%.",
+      "category": [
+        "coding"
+      ],
+      "pricing": "free",
+      "url": "https://lmstudio.ai",
+      "emoji": "🖥️",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": true,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 125,
+      "name": "Google AI Studio",
+      "slug": "google-ai-studio",
+      "description": "Gemini API free mein explore karo — prototyping ke liye best.",
+      "category": [
+        "coding",
+        "research"
+      ],
+      "pricing": "free",
+      "url": "https://aistudio.google.com",
+      "emoji": "🔭",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [
+        "JEE"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 126,
+      "name": "Mistral AI",
+      "slug": "mistral-ai",
+      "description": "Lightweight open-source LLM — low-end devices pe bhi chalta hai.",
+      "category": [
+        "coding",
+        "study"
+      ],
+      "pricing": "free",
+      "url": "https://mistral.ai",
+      "emoji": "🌬️",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 127,
+      "name": "Streamlit",
+      "slug": "streamlit",
+      "description": "Python se AI/ML dashboards banao instantly — no frontend needed.",
+      "category": [
+        "coding"
+      ],
+      "pricing": "free",
+      "url": "https://streamlit.io",
+      "emoji": "⚡",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [
+        "JEE"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 131,
+      "name": "Wordtune",
+      "slug": "wordtune",
+      "description": "Sentences instantly rephrase karo — academic writing ke liye perfect.",
+      "category": [
+        "writing",
+        "study"
+      ],
+      "pricing": "freemium",
+      "url": "https://wordtune.com",
+      "emoji": "🔤",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "Boards",
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 132,
+      "name": "DeepL Write",
+      "slug": "deepl-write",
+      "description": "Text rephrase karo — perfect grammar aur tone ke saath.",
+      "category": [
+        "writing"
+      ],
+      "pricing": "freemium",
+      "url": "https://deepl.com/write",
+      "emoji": "🌐",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "Boards"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 136,
+      "name": "Fireflies.ai",
+      "slug": "fireflies",
+      "description": "Meetings record, transcribe aur summarize karo — Hindi mein bhi.",
+      "category": [
+        "productivity"
+      ],
+      "pricing": "freemium",
+      "url": "https://fireflies.ai",
+      "emoji": "🔥",
+      "hindi_support": true,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 137,
+      "name": "Zapier AI",
+      "slug": "zapier-ai",
+      "description": "5000+ apps automate karo — no code AI workflows banao.",
+      "category": [
+        "productivity"
+      ],
+      "pricing": "freemium",
+      "url": "https://zapier.com",
+      "emoji": "⚡",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 138,
+      "name": "Connected Papers",
+      "slug": "connected-papers",
+      "description": "Research papers ka visual graph — related work explore karo.",
+      "category": [
+        "research"
+      ],
+      "pricing": "freemium",
+      "url": "https://connectedpapers.com",
+      "emoji": "🕸️",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 142,
+      "name": "Leonardo AI",
+      "slug": "leonardo-ai",
+      "description": "Game assets, concept art, illustrations — high quality AI image generation.",
+      "category": [
+        "image"
+      ],
+      "pricing": "freemium",
+      "url": "https://leonardo.ai",
+      "emoji": "🎨",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 144,
+      "name": "Microsoft Designer",
+      "slug": "ms-designer",
+      "description": "Microsoft ka free AI design tool — social media posts, posters banao.",
+      "category": [
+        "image",
+        "productivity"
+      ],
+      "pricing": "free",
+      "url": "https://designer.microsoft.com",
+      "emoji": "🎨",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [
+        "Boards"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 147,
+      "name": "CapCut AI",
+      "slug": "capcut",
+      "description": "Free video editor with AI tools — auto captions, background remove, effects.",
+      "category": [
+        "video"
+      ],
+      "pricing": "free",
+      "url": "https://capcut.com",
+      "emoji": "🎞️",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 150,
+      "name": "Speechify",
+      "slug": "speechify",
+      "description": "Any text ko voice mein convert karo — study ke liye listen karo.",
+      "category": [
+        "study",
+        "video"
+      ],
+      "pricing": "freemium",
+      "url": "https://speechify.com",
+      "emoji": "🔊",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "UPSC",
+        "Boards"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 151,
+      "name": "Invideo AI",
+      "slug": "invideo-ai",
+      "description": "Text se YouTube-ready videos banao — India mein popular creator tool.",
+      "category": [
+        "video"
+      ],
+      "pricing": "freemium",
+      "url": "https://invideo.io",
+      "emoji": "📹",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 152,
+      "name": "Opus Clip",
+      "slug": "opus-clip",
+      "description": "Long video se viral short clips AI extract karta hai automatically.",
+      "category": [
+        "video"
+      ],
+      "pricing": "freemium",
+      "url": "https://opus.pro",
+      "emoji": "✂️",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 153,
+      "name": "Veed.io AI",
+      "slug": "veed-io",
+      "description": "Online video editor — AI subtitles, translation, background remove.",
+      "category": [
+        "video"
+      ],
+      "pricing": "freemium",
+      "url": "https://veed.io",
+      "emoji": "🎬",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 156,
+      "name": "Pramp",
+      "slug": "pramp",
+      "description": "Free mock interviews — peers ke saath practice, AI feedback.",
+      "category": [
+        "career",
+        "coding"
+      ],
+      "pricing": "free",
+      "url": "https://pramp.com",
+      "emoji": "🎯",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 157,
+      "name": "Doubtnut (Hindi Maths)",
+      "slug": "doubtnut-maths",
+      "description": "Photo khicho sawaal ka — JEE/NEET maths AI step-by-step solve karta hai.",
+      "category": [
+        "maths",
+        "india"
+      ],
+      "pricing": "freemium",
+      "url": "https://doubtnut.com",
+      "emoji": "📸",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": true,
+      "exam_tags": [
+        "JEE",
+        "NEET",
+        "Boards"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 158,
+      "name": "Drishti IAS AI",
+      "slug": "drishti-ias",
+      "description": "UPSC preparation ke liye India's #1 IAS coaching with AI tools.",
+      "category": [
+        "study",
+        "india"
+      ],
+      "pricing": "freemium",
+      "url": "https://drishtiias.com",
+      "emoji": "🎯",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": true,
+      "exam_tags": [
+        "UPSC"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 159,
+      "name": "ClearIAS AI",
+      "slug": "clear-ias",
+      "description": "UPSC mock tests + AI study plan — free aur premium both.",
+      "category": [
+        "study",
+        "india"
+      ],
+      "pricing": "freemium",
+      "url": "https://clearias.com",
+      "emoji": "🏆",
+      "hindi_support": false,
+      "india_score": 5,
+      "low_data": true,
+      "exam_tags": [
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 160,
+      "name": "iNeuron AI",
+      "slug": "ineuron",
+      "description": "Indian data science aur AI courses — placement guarantee ke saath.",
+      "category": [
+        "india",
+        "study"
+      ],
+      "pricing": "freemium",
+      "url": "https://ineuron.ai",
+      "emoji": "🧠",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": false,
+      "exam_tags": [
+        "JEE"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 161,
+      "name": "Teachmint AI",
+      "slug": "teachmint",
+      "description": "Teachers ke liye Indian AI edtech — digital classroom aur assessments.",
+      "category": [
+        "study",
+        "india"
+      ],
+      "pricing": "freemium",
+      "url": "https://teachmint.com",
+      "emoji": "🖊️",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": true,
+      "exam_tags": [
+        "Boards"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 162,
+      "name": "AgriStar AI",
+      "slug": "agristar",
+      "description": "Farmers ke liye AI crop advisory — Hindi mein WhatsApp pe.",
+      "category": [
+        "india"
+      ],
+      "pricing": "free",
+      "url": "https://agristar.in",
+      "emoji": "🌾",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": true,
+      "exam_tags": [
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 163,
+      "name": "Wadhwani AI",
+      "slug": "wadhwani-ai",
+      "description": "Non-profit Indian AI for agriculture, health, education — social impact.",
+      "category": [
+        "india",
+        "research"
+      ],
+      "pricing": "free",
+      "url": "https://wadhwaniai.org",
+      "emoji": "🌍",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": true,
+      "exam_tags": [
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 164,
+      "name": "Ada Health",
+      "slug": "ada-health",
+      "description": "AI symptom checker — doctor jaisi assessment, free mein.",
+      "category": [
+        "study"
+      ],
+      "pricing": "free",
+      "url": "https://ada.com",
+      "emoji": "🩺",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": true,
+      "exam_tags": [
+        "NEET"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 165,
+      "name": "Medscape AI",
+      "slug": "medscape",
+      "description": "Medical professionals + NEET PG ke liye drug info aur clinical tools.",
+      "category": [
+        "study",
+        "research"
+      ],
+      "pricing": "free",
+      "url": "https://medscape.com",
+      "emoji": "💊",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [
+        "NEET"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 166,
+      "name": "Meta AI",
+      "slug": "meta-ai",
+      "description": "WhatsApp, Instagram mein built-in AI — India mein millions use karte hain.",
+      "category": [
+        "study",
+        "india"
+      ],
+      "pricing": "free",
+      "url": "https://meta.ai",
+      "emoji": "🔵",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": true,
+      "exam_tags": [
+        "JEE",
+        "NEET",
+        "UPSC",
+        "Boards"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 167,
+      "name": "Poe by Quora",
+      "slug": "poe-quora",
+      "description": "Ek jagah pe ChatGPT, Claude, Gemini sab free mein — multiple AI bots.",
+      "category": [
+        "study",
+        "writing"
+      ],
+      "pricing": "freemium",
+      "url": "https://poe.com",
+      "emoji": "💬",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [
+        "JEE",
+        "NEET",
+        "UPSC"
+      ],
+      "featured": true,
+      "verified": true
+    },
+    {
+      "id": 168,
+      "name": "Kolo AI",
+      "slug": "kolo-ai",
+      "description": "Vedic aur traditional Indian knowledge ka AI assistant — Sanskrit support.",
+      "category": [
+        "study",
+        "india"
+      ],
+      "pricing": "free",
+      "url": "https://koloai.com",
+      "emoji": "🕉️",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": true,
+      "exam_tags": [
+        "UPSC",
+        "Boards"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 169,
+      "name": "Magicschool AI",
+      "slug": "magicschool",
+      "description": "Teachers ke liye AI — lesson plans, quizzes, rubrics seconds mein.",
+      "category": [
+        "study"
+      ],
+      "pricing": "freemium",
+      "url": "https://magicschool.ai",
+      "emoji": "🏫",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [
+        "Boards"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 170,
+      "name": "Liner AI",
+      "slug": "liner",
+      "description": "Web highlight karo, AI summarize karta hai — research ke liye.",
+      "category": [
+        "research",
+        "study"
+      ],
+      "pricing": "freemium",
+      "url": "https://getliner.com",
+      "emoji": "🖊️",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 171,
+      "name": "Explainpaper",
+      "slug": "explainpaper",
+      "description": "Research paper upload karo — AI highlight karke explain karta hai.",
+      "category": [
+        "research",
+        "study"
+      ],
+      "pricing": "freemium",
+      "url": "https://explainpaper.com",
+      "emoji": "🔬",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "JEE",
+        "NEET",
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 173,
+      "name": "Reclaim.ai",
+      "slug": "reclaim-ai",
+      "description": "Calendar AI — meetings aur focus time automatically schedule karta hai.",
+      "category": [
+        "productivity"
+      ],
+      "pricing": "freemium",
+      "url": "https://reclaim.ai",
+      "emoji": "📅",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 174,
+      "name": "Freepik AI",
+      "slug": "freepik-ai",
+      "description": "Free AI image generator — stock photos, vectors, templates saath mein.",
+      "category": [
+        "image"
+      ],
+      "pricing": "freemium",
+      "url": "https://freepik.com/ai",
+      "emoji": "🖌️",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 175,
+      "name": "Recraft AI",
+      "slug": "recraft-ai",
+      "description": "Vector images, icons, UI elements AI se — designers ke liye.",
+      "category": [
+        "image"
+      ],
+      "pricing": "freemium",
+      "url": "https://recraft.ai",
+      "emoji": "🔷",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 176,
+      "name": "AIVA",
+      "slug": "aiva",
+      "description": "AI music composer — background music for videos, studying.",
+      "category": [
+        "video"
+      ],
+      "pricing": "freemium",
+      "url": "https://aiva.ai",
+      "emoji": "🎵",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 177,
+      "name": "Kaiber AI",
+      "slug": "kaiber",
+      "description": "Videos aur animations prompt se banao — artists ke liye.",
+      "category": [
+        "video"
+      ],
+      "pricing": "freemium",
+      "url": "https://kaiber.ai",
+      "emoji": "🌀",
+      "hindi_support": false,
+      "india_score": 2,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 178,
+      "name": "Rezi.ai",
+      "slug": "rezi-ai",
+      "description": "ATS resume builder — keyword optimization ke saath.",
+      "category": [
+        "career"
+      ],
+      "pricing": "freemium",
+      "url": "https://rezi.ai",
+      "emoji": "📝",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 179,
+      "name": "Interviewer.ai",
+      "slug": "interviewer-ai",
+      "description": "AI video interviews — practice karo, feedback pao asli jaise.",
+      "category": [
+        "career"
+      ],
+      "pricing": "freemium",
+      "url": "https://interviewer.ai",
+      "emoji": "🎤",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 180,
+      "name": "Gradio",
+      "slug": "gradio",
+      "description": "AI demos web apps mein 3 lines mein banao — ML engineers ke liye.",
+      "category": [
+        "coding",
+        "research"
+      ],
+      "pricing": "free",
+      "url": "https://gradio.app",
+      "emoji": "🔧",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 181,
+      "name": "Chatbase",
+      "slug": "chatbase",
+      "description": "Apne documents pe AI chatbot banao — notes se instant Q&A.",
+      "category": [
+        "research",
+        "productivity"
+      ],
+      "pricing": "freemium",
+      "url": "https://chatbase.co",
+      "emoji": "💬",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 182,
+      "name": "Pieces for Developers",
+      "slug": "pieces-dev",
+      "description": "AI-powered code snippet manager — context-aware search aur reuse.",
+      "category": [
+        "coding"
+      ],
+      "pricing": "freemium",
+      "url": "https://pieces.app",
+      "emoji": "🧩",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 183,
+      "name": "Make (Integromat)",
+      "slug": "make-integromat",
+      "description": "Visual AI automation — complex workflows drag-and-drop se banao.",
+      "category": [
+        "productivity"
+      ],
+      "pricing": "freemium",
+      "url": "https://make.com",
+      "emoji": "🔗",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 184,
+      "name": "Submagic",
+      "slug": "submagic",
+      "description": "AI auto captions — animated subtitles social media videos ke liye.",
+      "category": [
+        "video"
+      ],
+      "pricing": "freemium",
+      "url": "https://submagic.co",
+      "emoji": "💬",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 185,
+      "name": "Lumen5",
+      "slug": "lumen5",
+      "description": "Blog ya script se automatically video banao — marketers ke liye.",
+      "category": [
+        "video"
+      ],
+      "pricing": "freemium",
+      "url": "https://lumen5.com",
+      "emoji": "📹",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 186,
+      "name": "Scite.ai",
+      "slug": "scite-ai",
+      "description": "Papers cite hue hain ya refuted — supporting evidence ke saath.",
+      "category": [
+        "research"
+      ],
+      "pricing": "freemium",
+      "url": "https://scite.ai",
+      "emoji": "📖",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 187,
+      "name": "Mem.ai",
+      "slug": "mem-ai",
+      "description": "AI-powered personal knowledge base — notes automatically organize ho jaate hain.",
+      "category": [
+        "productivity"
+      ],
+      "pricing": "freemium",
+      "url": "https://mem.ai",
+      "emoji": "🧠",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 188,
+      "name": "Elicit",
+      "slug": "elicit-research",
+      "description": "AI research assistant — academic papers summarize karta hai.",
+      "category": [
+        "research"
+      ],
+      "pricing": "freemium",
+      "url": "https://elicit.com",
+      "emoji": "🔬",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 189,
+      "name": "Krea AI",
+      "slug": "krea",
+      "description": "Real-time AI image generation — canvas pe draw karte waqt instantly.",
+      "category": [
+        "image"
+      ],
+      "pricing": "freemium",
+      "url": "https://krea.ai",
+      "emoji": "🎨",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 191,
+      "name": "Pixtral (Mistral)",
+      "slug": "pixtral",
+      "description": "Mistral ka vision model — images analyze karo aur questions pucho.",
+      "category": [
+        "research",
+        "coding"
+      ],
+      "pricing": "free",
+      "url": "https://mistral.ai/news/pixtral-12b",
+      "emoji": "👁️",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 192,
+      "name": "Perplexity Pages",
+      "slug": "perplexity-pages",
+      "description": "AI se researched articles publish karo — Wikipedia jaisi quality.",
+      "category": [
+        "writing",
+        "research"
+      ],
+      "pricing": "freemium",
+      "url": "https://perplexity.ai/pages",
+      "emoji": "📰",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 193,
+      "name": "Ideogram v2",
+      "slug": "ideogram-v2",
+      "description": "Text-to-image with perfect typography — Hindi posters ke liye bhi.",
+      "category": [
+        "image"
+      ],
+      "pricing": "freemium",
+      "url": "https://ideogram.ai",
+      "emoji": "🖌️",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 194,
+      "name": "Napkin AI",
+      "slug": "napkin-ai",
+      "description": "Text se visual diagrams instantly — presentations ke liye best.",
+      "category": [
+        "productivity",
+        "writing"
+      ],
+      "pricing": "freemium",
+      "url": "https://napkin.ai",
+      "emoji": "📊",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": false,
+      "exam_tags": [
+        "UPSC",
+        "Boards"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 196,
+      "name": "Class Companion",
+      "slug": "class-companion",
+      "description": "Essay feedback AI — writing skills improve karo instantly.",
+      "category": [
+        "writing",
+        "study"
+      ],
+      "pricing": "freemium",
+      "url": "https://classcompanion.com",
+      "emoji": "✍️",
+      "hindi_support": false,
+      "india_score": 3,
+      "low_data": false,
+      "exam_tags": [
+        "Boards",
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 199,
+      "name": "CareerVillage AI",
+      "slug": "careervillage",
+      "description": "Students ke career sawaalon ke AI answers — India ke liye relevant.",
+      "category": [
+        "career",
+        "study"
+      ],
+      "pricing": "free",
+      "url": "https://careervillage.org",
+      "emoji": "🏢",
+      "hindi_support": false,
+      "india_score": 4,
+      "low_data": true,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 200,
+      "name": "iSPEAK (C-DAC)",
+      "slug": "ispeak-cdac",
+      "description": "C-DAC ka Hindi TTS tool — free government initiative.",
+      "category": [
+        "india",
+        "study"
+      ],
+      "pricing": "free",
+      "url": "https://www.cdac.in",
+      "emoji": "🏛️",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": true,
+      "exam_tags": [
+        "UPSC",
+        "Boards"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 201,
+      "name": "INSIGHTS IAS AI",
+      "slug": "insights-ias",
+      "description": "UPSC Mains answer writing AI feedback — daily practice.",
+      "category": [
+        "study",
+        "india"
+      ],
+      "pricing": "freemium",
+      "url": "https://insightsonindia.com",
+      "emoji": "💡",
+      "hindi_support": false,
+      "india_score": 5,
+      "low_data": true,
+      "exam_tags": [
+        "UPSC"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 202,
+      "name": "Leap.club AI",
+      "slug": "leap-club",
+      "description": "Indian women professionals ke liye AI-powered career community.",
+      "category": [
+        "india",
+        "career"
+      ],
+      "pricing": "freemium",
+      "url": "https://leap.club",
+      "emoji": "🌸",
+      "hindi_support": false,
+      "india_score": 5,
+      "low_data": false,
+      "exam_tags": [],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 203,
+      "name": "HealthPlix AI",
+      "slug": "healthplix",
+      "description": "Doctors ke liye Indian AI EMR — vernacular prescription support.",
+      "category": [
+        "india"
+      ],
+      "pricing": "freemium",
+      "url": "https://healthplix.com",
+      "emoji": "🏥",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": false,
+      "exam_tags": [
+        "NEET"
+      ],
+      "featured": false,
+      "verified": true
+    },
+    {
+      "id": 204,
+      "name": "Niramai",
+      "slug": "niramai",
+      "description": "IIT Bombay startup — AI-based breast cancer detection for India.",
+      "category": [
+        "india"
+      ],
+      "pricing": "paid",
+      "url": "https://niramai.com",
+      "emoji": "❤️",
+      "hindi_support": true,
+      "india_score": 5,
+      "low_data": false,
+      "exam_tags": [
+        "NEET"
+      ],
+      "featured": false,
       "verified": true
     }
   ]
