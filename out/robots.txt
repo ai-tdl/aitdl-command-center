@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /dev/
+Disallow: /beta/
+
+Sitemap: https://aitdl.com/sitemap.xml

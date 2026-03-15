@@ -1,0 +1,12 @@
+__turbopack_load_page_chunks__("/about-founder", [
+  "static/chunks/db90b_next_dist_compiled_deed7559._.js",
+  "static/chunks/db90b_next_dist_shared_lib_36ae8c57._.js",
+  "static/chunks/db90b_next_dist_client_a2da877f._.js",
+  "static/chunks/db90b_next_dist_34fdbc4e._.js",
+  "static/chunks/db90b_next_ddd0ee3a._.js",
+  "static/chunks/db90b_react-dom_93d6a851._.js",
+  "static/chunks/db90b_a213c286._.js",
+  "static/chunks/[root-of-the-server]__f12b63dd._.js",
+  "static/chunks/aitdl4_pages_about-founder_2da965e7._.js",
+  "static/chunks/turbopack-aitdl4_pages_about-founder_d23ca9df._.js"
+])

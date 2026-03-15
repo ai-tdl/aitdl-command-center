@@ -1,0 +1,3617 @@
+module.exports = [
+"[externals]/styled-jsx/style.js [external] (styled-jsx/style.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("styled-jsx/style.js", () => require("styled-jsx/style.js"));
+
+module.exports = mod;
+}),
+"[project]/aitdl4/components/SettingsPanel.js [ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>SettingsPanel
+]);
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$jsx$2f$style$2e$js__$5b$external$5d$__$28$styled$2d$jsx$2f$style$2e$js$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/styled-jsx/style.js [external] (styled-jsx/style.js, cjs)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+;
+;
+;
+// ─── Config ────────────────────────────────────────────────────────────────
+const THEMES = [
+    {
+        id: 'dark',
+        label: 'Dark',
+        icon: '🌙',
+        preview: [
+            '#030306',
+            '#080812',
+            '#FF6B35'
+        ],
+        desc: 'Classic dark mode'
+    },
+    {
+        id: 'midnight',
+        label: 'Midnight',
+        icon: '🌌',
+        preview: [
+            '#000000',
+            '#05050A',
+            '#FF6B35'
+        ],
+        desc: 'Pure black OLED'
+    },
+    {
+        id: 'glass',
+        label: 'Glass',
+        icon: '💎',
+        preview: [
+            '#030306',
+            'rgba(255,255,255,0.05)',
+            '#FF6B35'
+        ],
+        desc: 'Frosted glass'
+    },
+    {
+        id: 'light',
+        label: 'Light',
+        icon: '☀️',
+        preview: [
+            '#F8F7F4',
+            '#FFFFFF',
+            '#FF6B35'
+        ],
+        desc: 'Clean & bright'
+    }
+];
+const LANGUAGES = [
+    {
+        id: 'en',
+        label: 'English',
+        flag: '🇬🇧'
+    },
+    {
+        id: 'hi',
+        label: 'हिंदी',
+        flag: '🇮🇳'
+    },
+    {
+        id: 'sa',
+        label: 'संस्कृत',
+        flag: '🕉️'
+    }
+];
+const FONT_SIZES = [
+    {
+        id: 'small',
+        label: 'A',
+        size: '13px',
+        scale: 0.87
+    },
+    {
+        id: 'medium',
+        label: 'A',
+        size: '15px',
+        scale: 1
+    },
+    {
+        id: 'large',
+        label: 'A',
+        size: '17px',
+        scale: 1.13
+    }
+];
+const VIEWS = [
+    {
+        id: 'grid',
+        icon: '⊞',
+        label: 'Grid'
+    },
+    {
+        id: 'list',
+        icon: '☰',
+        label: 'List'
+    }
+];
+const MODES = [
+    {
+        id: 'directory',
+        icon: '📂',
+        label: 'Directory'
+    },
+    {
+        id: 'command',
+        icon: '⚡',
+        label: 'Command'
+    }
+];
+const ACCENTS = [
+    {
+        hex: '#FF6B35',
+        name: 'Ember'
+    },
+    {
+        hex: '#00B4D8',
+        name: 'Cyan'
+    },
+    {
+        hex: '#34C759',
+        name: 'Leaf'
+    },
+    {
+        hex: '#FFD700',
+        name: 'Gold'
+    },
+    {
+        hex: '#BF5AF2',
+        name: 'Violet'
+    },
+    {
+        hex: '#FF2D55',
+        name: 'Rose'
+    },
+    {
+        hex: '#ffffff',
+        name: 'White'
+    }
+];
+// ─── Helpers ───────────────────────────────────────────────────────────────
+const ls = {
+    get: (k, def)=>{
+        try {
+            const key = k === 'aitdl_theme' ? 'theme' : k;
+            return localStorage.getItem(key) || def;
+        } catch  {
+            return def;
+        }
+    },
+    set: (k, v)=>{
+        try {
+            const key = k === 'aitdl_theme' ? 'theme' : k;
+            localStorage.setItem(key, v);
+        } catch  {}
+    }
+};
+function SettingsPanel({ isOpen, onClose, lang, setLang }) {
+    const [theme, setTheme] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('light');
+    const [view, setView] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('grid');
+    const [uiMode, setUiMode] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('directory');
+    const [fontSize, setFontSize] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('medium');
+    const [indiaMode, setIndiaMode] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(false);
+    const [indiaOrigin, setIndiaOrigin] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('all');
+    const [accent, setAccent] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('#FF6B35');
+    const [tab, setTab] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('appearance') // appearance | language | more
+    ;
+    const panelRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useRef"])(null);
+    // ── Load from storage ──────────────────────────────────────────────────
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        const savedTheme = localStorage.getItem('theme');
+        let sTheme = savedTheme;
+        if (!savedTheme) {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            sTheme = prefersDark ? 'dark' : 'light';
+        }
+        const sLang = ls.get('aitdl_lang', 'en');
+        const sView = ls.get('aitdl_view', 'grid');
+        const sUiMode = ls.get('aitdl_ui_mode', 'directory');
+        const sFontSize = ls.get('aitdl_fontsize', 'medium');
+        const sIndia = ls.get('aitdl_india_mode', 'false') === 'true';
+        const sAccent = ls.get('aitdl_accent', '#FF6B35');
+        setTheme(sTheme);
+        applyTheme(sTheme, !!savedTheme);
+        setLang(sLang);
+        setView(sView);
+        setUiMode(sUiMode);
+        setFontSize(sFontSize);
+        applyFontSize(sFontSize, false);
+        setIndiaMode(sIndia);
+        setAccent(sAccent);
+        applyAccent(sAccent, false);
+    }, []);
+    // ── ESC to close ──────────────────────────────────────────────────────
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        const fn = (e)=>{
+            if (e.key === 'Escape') onClose();
+        };
+        if (isOpen) window.addEventListener('keydown', fn);
+        return ()=>window.removeEventListener('keydown', fn);
+    }, [
+        isOpen
+    ]);
+    // ── Apply fns ─────────────────────────────────────────────────────────
+    const applyTheme = (t, save = true)=>{
+        document.documentElement.setAttribute('data-theme', t);
+        document.documentElement.classList.remove('dark', 'glass', 'midnight');
+        if (t === 'dark' || t === 'midnight') {
+            document.documentElement.classList.add('dark');
+        }
+        setTheme(t);
+        if (save) {
+            localStorage.setItem('theme', t);
+            dispatch();
+        }
+    };
+    const resetTheme = ()=>{
+        // 1. Clear saved preference
+        localStorage.removeItem('theme');
+        // 2. Remove all theme classes/attrs
+        document.documentElement.classList.remove('dark', 'light', 'glass', 'midnight');
+        document.documentElement.removeAttribute('data-theme');
+        // 3. Follow OS preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
+            setTheme('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.setAttribute('data-theme', 'light');
+            setTheme('light');
+        }
+    };
+    const applyFontSize = (fs, save = true)=>{
+        const conf = FONT_SIZES.find((f)=>f.id === fs);
+        if (conf) document.documentElement.style.setProperty('--font-base', conf.size);
+        setFontSize(fs);
+        if (save) {
+            ls.set('aitdl_fontsize', fs);
+            dispatch();
+        }
+    };
+    const applyAccent = (a, save = true)=>{
+        const glow = a === '#ffffff' ? 'rgba(255,255,255,0.2)' : a + '40';
+        document.documentElement.style.setProperty('--accent', a);
+        document.documentElement.style.setProperty('--accent-glow', glow);
+        setAccent(a);
+        if (save) {
+            ls.set('aitdl_accent', a);
+            dispatch();
+        }
+    };
+    const applyLang = (l)=>{
+        setLang(l);
+        ls.set('aitdl_lang', l);
+        dispatch();
+    };
+    const applyView = (v)=>{
+        setView(v);
+        ls.set('aitdl_view', v);
+        dispatch();
+    };
+    const applyUiMode = (m)=>{
+        setUiMode(m);
+        ls.set('aitdl_ui_mode', m);
+        dispatch();
+    };
+    const applyIndiaMode = (val)=>{
+        setIndiaMode(val);
+        ls.set('aitdl_india_mode', val);
+        ls.set('aitdl_origin', val ? 'bharat' : 'all');
+        dispatch();
+    };
+    const dispatch = ()=>window.dispatchEvent(new Event('storage'));
+    const resetAll = ()=>{
+        resetTheme();
+        applyLang('en');
+        applyView('grid');
+        applyUiMode('directory');
+        applyFontSize('medium');
+        applyIndiaMode(false);
+        applyAccent('#FF6B35');
+    };
+    if (!isOpen) return null;
+    // ── Render ────────────────────────────────────────────────────────────
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+        onClick: onClose,
+        role: "dialog",
+        "aria-modal": "true",
+        "aria-label": "Settings",
+        className: "jsx-d4ec30e04add670" + " " + "sp-overlay",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                onClick: (e)=>e.stopPropagation(),
+                ref: panelRef,
+                className: "jsx-d4ec30e04add670" + " " + "sp-panel",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        className: "jsx-d4ec30e04add670" + " " + "sp-header",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                className: "jsx-d4ec30e04add670" + " " + "sp-title",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                        className: "jsx-d4ec30e04add670" + " " + "sp-title-icon",
+                                        children: "⚙️"
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                        lineNumber: 231,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                        className: "jsx-d4ec30e04add670",
+                                        children: "Settings"
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                        lineNumber: 232,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                lineNumber: 230,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                className: "jsx-d4ec30e04add670" + " " + "sp-header-actions",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                        onClick: resetAll,
+                                        title: "Reset all to defaults",
+                                        className: "jsx-d4ec30e04add670" + " " + "sp-reset",
+                                        children: "↺ Reset"
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                        lineNumber: 235,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                        onClick: onClose,
+                                        "aria-label": "Close settings",
+                                        className: "jsx-d4ec30e04add670" + " " + "sp-close",
+                                        children: "✕"
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                        lineNumber: 236,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                lineNumber: 234,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                        lineNumber: 229,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        className: "jsx-d4ec30e04add670" + " " + "sp-tabs",
+                        children: [
+                            {
+                                id: 'appearance',
+                                icon: '🎨',
+                                label: 'Theme'
+                            },
+                            {
+                                id: 'language',
+                                icon: '🌐',
+                                label: 'Language'
+                            },
+                            {
+                                id: 'more',
+                                icon: '⊞',
+                                label: 'More'
+                            }
+                        ].map((t)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setTab(t.id),
+                                className: "jsx-d4ec30e04add670" + " " + `sp-tab ${tab === t.id ? 'active' : ''}`,
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                        className: "jsx-d4ec30e04add670",
+                                        children: t.icon
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                        lineNumber: 252,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                        className: "jsx-d4ec30e04add670",
+                                        children: t.label
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                        lineNumber: 253,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, t.id, true, {
+                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                lineNumber: 247,
+                                columnNumber: 13
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                        lineNumber: 241,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        className: "jsx-d4ec30e04add670" + " " + "sp-content",
+                        children: [
+                            tab === 'appearance' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["Fragment"], {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
+                                        className: "jsx-d4ec30e04add670",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h4", {
+                                                className: "jsx-d4ec30e04add670" + " " + "sp-section-label",
+                                                children: "Interface Theme"
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                lineNumber: 266,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                className: "jsx-d4ec30e04add670" + " " + "sp-theme-grid",
+                                                children: THEMES.map((t)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                                        onClick: ()=>applyTheme(t.id),
+                                                        title: t.desc,
+                                                        className: "jsx-d4ec30e04add670" + " " + `sp-theme-card ${theme === t.id ? 'active' : ''}`,
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                                style: {
+                                                                    background: t.preview[0]
+                                                                },
+                                                                className: "jsx-d4ec30e04add670" + " " + "sp-theme-preview",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                                        style: {
+                                                                            background: t.preview[1]
+                                                                        },
+                                                                        className: "jsx-d4ec30e04add670" + " " + "sp-prev-bar",
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                                                style: {
+                                                                                    background: t.preview[2]
+                                                                                },
+                                                                                className: "jsx-d4ec30e04add670" + " " + "sp-prev-dot"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                                                lineNumber: 278,
+                                                                                columnNumber: 27
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                                                style: {
+                                                                                    background: t.preview[2],
+                                                                                    opacity: 0.4
+                                                                                },
+                                                                                className: "jsx-d4ec30e04add670" + " " + "sp-prev-dot"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                                                lineNumber: 279,
+                                                                                columnNumber: 27
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                                        lineNumber: 277,
+                                                                        columnNumber: 25
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                                        style: {
+                                                                            background: t.preview[1]
+                                                                        },
+                                                                        className: "jsx-d4ec30e04add670" + " " + "sp-prev-card"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                                        lineNumber: 281,
+                                                                        columnNumber: 25
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                                        style: {
+                                                                            background: t.preview[1]
+                                                                        },
+                                                                        className: "jsx-d4ec30e04add670" + " " + "sp-prev-card"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                                        lineNumber: 282,
+                                                                        columnNumber: 25
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                                lineNumber: 276,
+                                                                columnNumber: 23
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                                className: "jsx-d4ec30e04add670" + " " + "sp-theme-card-footer",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                                                        className: "jsx-d4ec30e04add670" + " " + "sp-theme-icon",
+                                                                        children: t.icon
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                                        lineNumber: 285,
+                                                                        columnNumber: 25
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                                                        className: "jsx-d4ec30e04add670" + " " + "sp-theme-label",
+                                                                        children: t.label
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                                        lineNumber: 286,
+                                                                        columnNumber: 25
+                                                                    }, this),
+                                                                    theme === t.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                                                        className: "jsx-d4ec30e04add670" + " " + "sp-check",
+                                                                        children: "✓"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                                        lineNumber: 287,
+                                                                        columnNumber: 44
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                                lineNumber: 284,
+                                                                columnNumber: 23
+                                                            }, this)
+                                                        ]
+                                                    }, t.id, true, {
+                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                        lineNumber: 269,
+                                                        columnNumber: 21
+                                                    }, this))
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                lineNumber: 267,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                        lineNumber: 265,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
+                                        className: "jsx-d4ec30e04add670",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h4", {
+                                                className: "jsx-d4ec30e04add670" + " " + "sp-section-label",
+                                                children: "Font Size"
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                lineNumber: 296,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                className: "jsx-d4ec30e04add670" + " " + "sp-font-row",
+                                                children: FONT_SIZES.map((f, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                                        onClick: ()=>applyFontSize(f.id),
+                                                        style: {
+                                                            fontSize: 12 + i * 3
+                                                        },
+                                                        title: f.size,
+                                                        className: "jsx-d4ec30e04add670" + " " + `sp-font-btn ${fontSize === f.id ? 'active' : ''}`,
+                                                        children: [
+                                                            f.label,
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                                                className: "jsx-d4ec30e04add670" + " " + "sp-font-size-hint",
+                                                                children: f.size
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                                lineNumber: 307,
+                                                                columnNumber: 23
+                                                            }, this)
+                                                        ]
+                                                    }, f.id, true, {
+                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                        lineNumber: 299,
+                                                        columnNumber: 21
+                                                    }, this))
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                lineNumber: 297,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                        lineNumber: 295,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
+                                        className: "jsx-d4ec30e04add670",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h4", {
+                                                className: "jsx-d4ec30e04add670" + " " + "sp-section-label",
+                                                children: "Accent Color"
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                lineNumber: 315,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                className: "jsx-d4ec30e04add670" + " " + "sp-accent-row",
+                                                children: ACCENTS.map((a)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                                        style: {
+                                                            background: a.hex
+                                                        },
+                                                        onClick: ()=>applyAccent(a.hex),
+                                                        title: a.name,
+                                                        "aria-label": `Accent: ${a.name}`,
+                                                        className: "jsx-d4ec30e04add670" + " " + `sp-accent-dot ${accent === a.hex ? 'active' : ''}`,
+                                                        children: accent === a.hex && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                                            className: "jsx-d4ec30e04add670" + " " + "sp-dot-check",
+                                                            children: "✓"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                            lineNumber: 326,
+                                                            columnNumber: 44
+                                                        }, this)
+                                                    }, a.hex, false, {
+                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                        lineNumber: 318,
+                                                        columnNumber: 21
+                                                    }, this))
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                lineNumber: 316,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                className: "jsx-d4ec30e04add670" + " " + "sp-accent-name",
+                                                children: ACCENTS.find((a)=>a.hex === accent)?.name || 'Custom'
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                lineNumber: 330,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                        lineNumber: 314,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true),
+                            tab === 'language' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["Fragment"], {
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
+                                    className: "jsx-d4ec30e04add670",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h4", {
+                                            className: "jsx-d4ec30e04add670" + " " + "sp-section-label",
+                                            children: "Display Language"
+                                        }, void 0, false, {
+                                            fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                            lineNumber: 341,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                            className: "jsx-d4ec30e04add670" + " " + "sp-lang-list",
+                                            children: LANGUAGES.map((l)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                                    onClick: ()=>applyLang(l.id),
+                                                    className: "jsx-d4ec30e04add670" + " " + `sp-lang-card ${lang === l.id ? 'active' : ''}`,
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                                            className: "jsx-d4ec30e04add670" + " " + "sp-lang-flag",
+                                                            children: l.flag
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                            lineNumber: 349,
+                                                            columnNumber: 23
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                                            className: "jsx-d4ec30e04add670" + " " + "sp-lang-label",
+                                                            children: l.label
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                            lineNumber: 350,
+                                                            columnNumber: 23
+                                                        }, this),
+                                                        lang === l.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                                            className: "jsx-d4ec30e04add670" + " " + "sp-check-right",
+                                                            children: "✓"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                            lineNumber: 351,
+                                                            columnNumber: 41
+                                                        }, this)
+                                                    ]
+                                                }, l.id, true, {
+                                                    fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                    lineNumber: 344,
+                                                    columnNumber: 21
+                                                }, this))
+                                        }, void 0, false, {
+                                            fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                            lineNumber: 342,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                    lineNumber: 340,
+                                    columnNumber: 15
+                                }, this)
+                            }, void 0, false),
+                            tab === 'more' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["Fragment"], {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
+                                        className: "jsx-d4ec30e04add670",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h4", {
+                                                className: "jsx-d4ec30e04add670" + " " + "sp-section-label",
+                                                children: "Card View"
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                lineNumber: 364,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                className: "jsx-d4ec30e04add670" + " " + "sp-pill-row",
+                                                children: VIEWS.map((v)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                                        onClick: ()=>applyView(v.id),
+                                                        className: "jsx-d4ec30e04add670" + " " + `sp-pill ${view === v.id ? 'active' : ''}`,
+                                                        children: [
+                                                            v.icon,
+                                                            " ",
+                                                            v.label
+                                                        ]
+                                                    }, v.id, true, {
+                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                        lineNumber: 367,
+                                                        columnNumber: 21
+                                                    }, this))
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                lineNumber: 365,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                        lineNumber: 363,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
+                                        className: "jsx-d4ec30e04add670",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h4", {
+                                                className: "jsx-d4ec30e04add670" + " " + "sp-section-label",
+                                                children: "Platform Mode"
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                lineNumber: 380,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                className: "jsx-d4ec30e04add670" + " " + "sp-pill-row",
+                                                children: MODES.map((m)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                                        onClick: ()=>applyUiMode(m.id),
+                                                        className: "jsx-d4ec30e04add670" + " " + `sp-pill ${uiMode === m.id ? 'active' : ''}`,
+                                                        children: [
+                                                            m.icon,
+                                                            " ",
+                                                            m.label
+                                                        ]
+                                                    }, m.id, true, {
+                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                        lineNumber: 383,
+                                                        columnNumber: 21
+                                                    }, this))
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                lineNumber: 381,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                        lineNumber: 379,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
+                                        className: "jsx-d4ec30e04add670" + " " + "sp-toggle-row",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                className: "jsx-d4ec30e04add670",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h4", {
+                                                        style: {
+                                                            marginBottom: 2
+                                                        },
+                                                        className: "jsx-d4ec30e04add670" + " " + "sp-section-label",
+                                                        children: "🇮🇳 India Mode"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                        lineNumber: 397,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
+                                                        className: "jsx-d4ec30e04add670" + " " + "sp-toggle-desc",
+                                                        children: "Show only India-optimized tools"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                        lineNumber: 398,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                lineNumber: 396,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("label", {
+                                                className: "jsx-d4ec30e04add670" + " " + "sp-switch",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
+                                                        type: "checkbox",
+                                                        checked: indiaMode,
+                                                        onChange: (e)=>applyIndiaMode(e.target.checked),
+                                                        className: "jsx-d4ec30e04add670"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                        lineNumber: 401,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                                        className: "jsx-d4ec30e04add670" + " " + "sp-slider"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                        lineNumber: 406,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                                lineNumber: 400,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                                        lineNumber: 395,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                        lineNumber: 259,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        className: "jsx-d4ec30e04add670" + " " + "sp-footer",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                            onClick: resetAll,
+                            className: "jsx-d4ec30e04add670" + " " + "sp-full-reset",
+                            children: "↺ Reset all to defaults"
+                        }, void 0, false, {
+                            fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                            lineNumber: 415,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                        lineNumber: 414,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/aitdl4/components/SettingsPanel.js",
+                lineNumber: 226,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$jsx$2f$style$2e$js__$5b$external$5d$__$28$styled$2d$jsx$2f$style$2e$js$2c$__cjs$29$__["default"], {
+                id: "d4ec30e04add670",
+                children: '.sp-overlay.jsx-d4ec30e04add670{z-index:2000;-webkit-backdrop-filter:blur(6px);background:#00000080;justify-content:flex-end;align-items:flex-start;padding:16px;animation:.18s forwards sp-fade;display:flex;position:fixed;inset:0}@keyframes sp-fade{0%{opacity:0}to{opacity:1}}.sp-panel.jsx-d4ec30e04add670{background:var(--bg-secondary);border:1px solid var(--border);transform-origin:100% 0;border-radius:20px;flex-direction:column;width:340px;max-height:calc(100vh - 32px);animation:.2s cubic-bezier(.34,1.56,.64,1) forwards sp-slide;display:flex;overflow:hidden;box-shadow:0 24px 80px #0009,0 0 0 1px #ffffff0a}@keyframes sp-slide{0%{opacity:0;transform:scale(.92)translateY(-8px)}to{opacity:1;transform:scale(1)translateY(0)}}.sp-header.jsx-d4ec30e04add670{border-bottom:1px solid var(--border);flex-shrink:0;justify-content:space-between;align-items:center;padding:18px 20px 14px;display:flex}.sp-title.jsx-d4ec30e04add670{color:var(--text-primary);letter-spacing:-.02em;align-items:center;gap:10px;font-size:16px;font-weight:800;display:flex}.sp-title-icon.jsx-d4ec30e04add670{font-size:18px}.sp-header-actions.jsx-d4ec30e04add670{align-items:center;gap:8px;display:flex}.sp-reset.jsx-d4ec30e04add670{border:1px solid var(--border);color:var(--text-tertiary);cursor:pointer;letter-spacing:.02em;background:0 0;border-radius:8px;padding:5px 10px;font-size:11px;font-weight:700;transition:all .2s}.sp-reset.jsx-d4ec30e04add670:hover{color:var(--accent);border-color:var(--accent)}.sp-close.jsx-d4ec30e04add670{background:var(--bg-tertiary);border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;border-radius:8px;justify-content:center;align-items:center;width:28px;height:28px;font-size:12px;transition:all .2s;display:flex}.sp-close.jsx-d4ec30e04add670:hover{color:#f44;background:#ff00001a;border-color:#f003}.sp-tabs.jsx-d4ec30e04add670{flex-shrink:0;gap:4px;padding:10px 12px 4px;display:flex}.sp-tab.jsx-d4ec30e04add670{color:var(--text-tertiary);cursor:pointer;letter-spacing:.02em;background:0 0;border:1px solid #0000;border-radius:12px;flex-direction:column;flex:1;align-items:center;gap:2px;padding:8px 4px;font-size:11px;font-weight:700;transition:all .2s;display:flex}.sp-tab.jsx-d4ec30e04add670 span.jsx-d4ec30e04add670:first-child{font-size:16px}.sp-tab.jsx-d4ec30e04add670:hover{color:var(--text-secondary);background:var(--bg-tertiary)}.sp-tab.active.jsx-d4ec30e04add670{background:var(--bg-tertiary);border-color:var(--border);color:var(--accent);box-shadow:0 2px 8px #0003}.sp-content.jsx-d4ec30e04add670{flex-direction:column;flex:1;gap:24px;padding:16px;display:flex;overflow-y:auto}.sp-content.jsx-d4ec30e04add670::-webkit-scrollbar{width:4px}.sp-content.jsx-d4ec30e04add670::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}.sp-section-label.jsx-d4ec30e04add670{color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;font-size:10px;font-weight:800}.sp-theme-grid.jsx-d4ec30e04add670{grid-template-columns:1fr 1fr;gap:8px;display:grid}.sp-theme-card.jsx-d4ec30e04add670{background:var(--bg-tertiary);border:2px solid var(--border);cursor:pointer;text-align:left;border-radius:14px;padding:0;transition:all .2s;overflow:hidden}.sp-theme-card.jsx-d4ec30e04add670:hover{border-color:#ffffff26;transform:translateY(-2px);box-shadow:0 8px 20px #0000004d}.sp-theme-card.active.jsx-d4ec30e04add670{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 8px 24px var(--accent-glow)}.sp-theme-preview.jsx-d4ec30e04add670{border-radius:12px 12px 0 0;flex-direction:column;gap:4px;height:64px;padding:6px;display:flex}.sp-prev-bar.jsx-d4ec30e04add670{border-radius:4px;align-items:center;gap:3px;height:10px;padding:0 5px;display:flex}.sp-prev-dot.jsx-d4ec30e04add670{border-radius:50%;flex-shrink:0;width:4px;height:4px}.sp-prev-card.jsx-d4ec30e04add670{opacity:.7;border-radius:4px;height:12px}.sp-theme-card-footer.jsx-d4ec30e04add670{align-items:center;gap:6px;padding:8px 10px;display:flex}.sp-theme-icon.jsx-d4ec30e04add670{font-size:14px}.sp-theme-label.jsx-d4ec30e04add670{color:var(--text-secondary);flex:1;font-size:12px;font-weight:700}.sp-theme-card.active.jsx-d4ec30e04add670 .sp-theme-label.jsx-d4ec30e04add670{color:var(--accent)}.sp-check.jsx-d4ec30e04add670{color:var(--accent);font-size:11px;font-weight:900}.sp-font-row.jsx-d4ec30e04add670{gap:8px;display:flex}.sp-font-btn.jsx-d4ec30e04add670{background:var(--bg-tertiary);border:1.5px solid var(--border);color:var(--text-secondary);cursor:pointer;border-radius:12px;flex-direction:column;flex:1;align-items:center;gap:2px;padding:12px 8px;font-family:serif;font-weight:800;line-height:1;transition:all .2s;display:flex}.sp-font-btn.jsx-d4ec30e04add670:hover{border-color:#fff3}.sp-font-btn.active.jsx-d4ec30e04add670{border-color:var(--accent);background:var(--accent-glow);color:var(--accent)}.sp-font-size-hint.jsx-d4ec30e04add670{opacity:.5;letter-spacing:.05em;font-family:monospace;font-size:9px;font-weight:600}.sp-accent-row.jsx-d4ec30e04add670{flex-wrap:wrap;gap:8px;display:flex}.sp-accent-dot.jsx-d4ec30e04add670{cursor:pointer;color:#000;border:2px solid #0000;border-radius:50%;justify-content:center;align-items:center;width:32px;height:32px;font-size:11px;font-weight:900;transition:all .2s;display:flex;box-shadow:0 2px 8px #0000004d}.sp-accent-dot.jsx-d4ec30e04add670:hover{transform:scale(1.15)}.sp-accent-dot.active.jsx-d4ec30e04add670{border-color:#fff;transform:scale(1.15);box-shadow:0 0 0 4px #ffffff26,0 4px 12px #0006}.sp-dot-check.jsx-d4ec30e04add670{color:#000;mix-blend-mode:difference;font-size:10px}.sp-accent-name.jsx-d4ec30e04add670{color:var(--accent);letter-spacing:.04em;margin-top:6px;font-size:11px;font-weight:700}.sp-lang-list.jsx-d4ec30e04add670{flex-direction:column;gap:6px;display:flex}.sp-lang-card.jsx-d4ec30e04add670{background:var(--bg-tertiary);border:1.5px solid var(--border);cursor:pointer;text-align:left;border-radius:12px;align-items:center;gap:12px;padding:12px 14px;transition:all .2s;display:flex}.sp-lang-card.jsx-d4ec30e04add670:hover{border-color:#ffffff26}.sp-lang-card.active.jsx-d4ec30e04add670{border-color:var(--accent);background:var(--accent-glow)}.sp-lang-flag.jsx-d4ec30e04add670{font-size:20px}.sp-lang-label.jsx-d4ec30e04add670{color:var(--text-secondary);flex:1;font-size:14px;font-weight:700}.sp-lang-card.active.jsx-d4ec30e04add670 .sp-lang-label.jsx-d4ec30e04add670{color:var(--accent)}.sp-check-right.jsx-d4ec30e04add670{color:var(--accent);font-size:14px;font-weight:900}.sp-pill-row.jsx-d4ec30e04add670{gap:8px;display:flex}.sp-pill.jsx-d4ec30e04add670{background:var(--bg-tertiary);border:1.5px solid var(--border);color:var(--text-secondary);cursor:pointer;border-radius:12px;flex:1;justify-content:center;align-items:center;gap:5px;padding:10px;font-size:12px;font-weight:700;transition:all .2s;display:flex}.sp-pill.jsx-d4ec30e04add670:hover{border-color:#fff3}.sp-pill.active.jsx-d4ec30e04add670{border-color:var(--accent);background:var(--accent-glow);color:var(--accent)}.sp-toggle-row.jsx-d4ec30e04add670{justify-content:space-between;align-items:center;gap:16px;display:flex}.sp-toggle-desc.jsx-d4ec30e04add670{color:var(--text-tertiary);font-size:11px}.sp-switch.jsx-d4ec30e04add670{flex-shrink:0;width:44px;height:24px;display:inline-block;position:relative}.sp-switch.jsx-d4ec30e04add670 input.jsx-d4ec30e04add670{opacity:0;width:0;height:0}.sp-slider.jsx-d4ec30e04add670{cursor:pointer;background:var(--bg-tertiary);border:1px solid var(--border);border-radius:34px;transition:all .3s;position:absolute;inset:0}.sp-slider.jsx-d4ec30e04add670:before{content:"";background:var(--text-tertiary);border-radius:50%;width:16px;height:16px;transition:all .3s;position:absolute;bottom:3px;left:3px}input.jsx-d4ec30e04add670:checked+.sp-slider.jsx-d4ec30e04add670{background:var(--accent);border-color:var(--accent)}input.jsx-d4ec30e04add670:checked+.sp-slider.jsx-d4ec30e04add670:before{background:#fff;transform:translate(20px)}.sp-footer.jsx-d4ec30e04add670{border-top:1px solid var(--border);flex-shrink:0;padding:12px 16px}.sp-full-reset.jsx-d4ec30e04add670{border:1px solid var(--border);width:100%;color:var(--text-tertiary);cursor:pointer;background:0 0;border-radius:10px;padding:10px;font-size:12px;font-weight:700;transition:all .2s}.sp-full-reset.jsx-d4ec30e04add670:hover{color:#f44;background:#ff44440d;border-color:#f44}@media (width<=480px){.sp-overlay.jsx-d4ec30e04add670{justify-content:stretch;align-items:flex-end;padding:0}.sp-panel.jsx-d4ec30e04add670{border-radius:20px 20px 0 0;width:100%;max-height:80vh;animation:.25s cubic-bezier(.34,1.56,.64,1) forwards sp-slide-up}@keyframes sp-slide-up{0%{transform:translateY(100%)}to{transform:translateY(0)}}}'
+            }, void 0, false, void 0, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/aitdl4/components/SettingsPanel.js",
+        lineNumber: 225,
+        columnNumber: 5
+    }, this);
+}
+}),
+"[project]/aitdl4/lib/firebase.js [ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+return __turbopack_context__.a(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
+
+__turbopack_context__.s([
+    "auth",
+    ()=>auth,
+    "db",
+    ()=>db,
+    "emailProvider",
+    ()=>emailProvider,
+    "githubProvider",
+    ()=>githubProvider,
+    "googleProvider",
+    ()=>googleProvider
+]);
+/**
+ * AITDL — India's AI Command Center
+ * @author Jawahar Ramkripal Mallah
+ * @copyright © 2026 All Rights Reserved
+ */ var __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$app__$5b$external$5d$__$28$firebase$2f$app$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__ = __turbopack_context__.i("[externals]/firebase/app [external] (firebase/app, esm_import, [project]/aitdl4/node_modules/firebase)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$auth__$5b$external$5d$__$28$firebase$2f$auth$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__ = __turbopack_context__.i("[externals]/firebase/auth [external] (firebase/auth, esm_import, [project]/aitdl4/node_modules/firebase)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__ = __turbopack_context__.i("[externals]/firebase/firestore [external] (firebase/firestore, esm_import, [project]/aitdl4/node_modules/firebase)");
+var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
+    __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$app__$5b$external$5d$__$28$firebase$2f$app$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__,
+    __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$auth__$5b$external$5d$__$28$firebase$2f$auth$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__,
+    __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__
+]);
+[__TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$app__$5b$external$5d$__$28$firebase$2f$app$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$auth__$5b$external$5d$__$28$firebase$2f$auth$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__] = __turbopack_async_dependencies__.then ? (await __turbopack_async_dependencies__)() : __turbopack_async_dependencies__;
+;
+;
+;
+const firebaseConfig = {
+    apiKey: ("TURBOPACK compile-time value", "AIzaSyDTVVGIjuL_fP5xA709LVi93pTMfkefLHs"),
+    authDomain: ("TURBOPACK compile-time value", "aitdl-83536321-fd75b.firebaseapp.com"),
+    projectId: ("TURBOPACK compile-time value", "aitdl-83536321-fd75b"),
+    storageBucket: ("TURBOPACK compile-time value", "aitdl-83536321-fd75b.firebasestorage.app"),
+    messagingSenderId: ("TURBOPACK compile-time value", "826189370678"),
+    appId: ("TURBOPACK compile-time value", "1:826189370678:web:cf902e77fe8ff6d8ad8f97")
+};
+const app = !(0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$app__$5b$external$5d$__$28$firebase$2f$app$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__["getApps"])().length ? (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$app__$5b$external$5d$__$28$firebase$2f$app$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__["initializeApp"])(firebaseConfig) : (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$app__$5b$external$5d$__$28$firebase$2f$app$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__["getApps"])()[0];
+const auth = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$auth__$5b$external$5d$__$28$firebase$2f$auth$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__["getAuth"])(app);
+const db = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__["getFirestore"])(app);
+const googleProvider = new __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$auth__$5b$external$5d$__$28$firebase$2f$auth$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__["GoogleAuthProvider"]();
+const githubProvider = new __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$auth__$5b$external$5d$__$28$firebase$2f$auth$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__["GithubAuthProvider"]();
+const emailProvider = new __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$auth__$5b$external$5d$__$28$firebase$2f$auth$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__["EmailAuthProvider"]();
+__turbopack_async_result__();
+} catch(e) { __turbopack_async_result__(e); } }, false);}),
+"[project]/aitdl4/lib/useAuth.js [ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+return __turbopack_context__.a(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
+
+__turbopack_context__.s([
+    "useAuth",
+    ()=>useAuth
+]);
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$auth__$5b$external$5d$__$28$firebase$2f$auth$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__ = __turbopack_context__.i("[externals]/firebase/auth [external] (firebase/auth, esm_import, [project]/aitdl4/node_modules/firebase)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$lib$2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/aitdl4/lib/firebase.js [ssr] (ecmascript)");
+var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
+    __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$auth__$5b$external$5d$__$28$firebase$2f$auth$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__,
+    __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$lib$2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__
+]);
+[__TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$auth__$5b$external$5d$__$28$firebase$2f$auth$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$lib$2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__] = __turbopack_async_dependencies__.then ? (await __turbopack_async_dependencies__)() : __turbopack_async_dependencies__;
+;
+;
+;
+function useAuth() {
+    const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(null);
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(true);
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        const unsub = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$auth__$5b$external$5d$__$28$firebase$2f$auth$2c$__esm_import$2c$__$5b$project$5d2f$aitdl4$2f$node_modules$2f$firebase$29$__["onAuthStateChanged"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$lib$2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["auth"], (u)=>{
+            setUser(u);
+            setLoading(false);
+        });
+        return ()=>unsub();
+    }, []);
+    return {
+        user,
+        loading
+    };
+}
+__turbopack_async_result__();
+} catch(e) { __turbopack_async_result__(e); } }, false);}),
+"[project]/aitdl4/components/Header.js [ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+return __turbopack_context__.a(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
+
+__turbopack_context__.s([
+    "default",
+    ()=>Header
+]);
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$jsx$2f$style$2e$js__$5b$external$5d$__$28$styled$2d$jsx$2f$style$2e$js$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/styled-jsx/style.js [external] (styled-jsx/style.js, cjs)");
+/**
+ * ============================================
+ * AITDL — India's AI Command Center
+ * ============================================
+ * @author    Jawahar Ramkripal Mallah
+ * @role      Software Developer & Service 
+ *            Provider since 2007
+ *            Published Author | Tech Entrepreneur
+ * @website   https://aitdl.com
+ * @email     hello@aitdl.com
+ * @copyright © 2026 All Rights Reserved
+ * ============================================
+ * @books
+ * - When Code Learned to Feel:
+ *   The Day Code Took a Breath (Kindle)
+ * - Code Without Limits:
+ *   The End of Human Coding (Upcoming)
+ * - Gaṇitsūtram:
+ *   Golden Book of Vedic Mathematics (Upcoming)
+ * ============================================
+ */ var __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/aitdl4/node_modules/next/link.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$SettingsPanel$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/aitdl4/components/SettingsPanel.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$lib$2f$useAuth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/aitdl4/lib/useAuth.js [ssr] (ecmascript)");
+var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
+    __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$lib$2f$useAuth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__
+]);
+[__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$lib$2f$useAuth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__] = __turbopack_async_dependencies__.then ? (await __turbopack_async_dependencies__)() : __turbopack_async_dependencies__;
+;
+;
+;
+;
+;
+;
+const LANG = {
+    en: {
+        battle: 'AI Battle',
+        compare: 'Compare',
+        about: 'About'
+    },
+    hi: {
+        battle: 'AI युद्ध',
+        compare: 'तुलना',
+        about: 'हमारे बारे में'
+    },
+    sa: {
+        battle: 'AI युद्धम्',
+        compare: 'तुलना',
+        about: 'अस्माकं विषये'
+    }
+};
+function Header({ lang, setLang }) {
+    const [settingsOpen, setSettingsOpen] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(false);
+    const { user } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$lib$2f$useAuth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useAuth"])();
+    const t = LANG[lang];
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("header", {
+        style: {
+            position: 'sticky',
+            top: 0,
+            zIndex: 100,
+            background: 'var(--bg-primary-blur)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderBottom: '1px solid var(--border)',
+            padding: '0 var(--header-px, 24px)',
+            transition: 'background 0.3s ease, border-color 0.3s ease'
+        },
+        className: "jsx-f0fc774571372071",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                style: {
+                    maxWidth: 1200,
+                    margin: '0 auto',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    height: 'var(--header-height, 80px)'
+                },
+                className: "jsx-f0fc774571372071",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                        href: "/",
+                        style: {
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 12,
+                            textDecoration: 'none'
+                        },
+                        title: "AITDL — India's AI Command Center Home",
+                        "aria-label": "AITDL Home",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    width: 48,
+                                    height: 48,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    transition: 'all 0.5s var(--ease)'
+                                },
+                                className: "jsx-f0fc774571372071" + " " + "logo-glow",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("img", {
+                                    src: "/logo-singularity.svg",
+                                    alt: "AITDL Singularity",
+                                    style: {
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'contain',
+                                        filter: 'drop-shadow(0 0 10px var(--accent-glow))'
+                                    },
+                                    className: "jsx-f0fc774571372071"
+                                }, void 0, false, {
+                                    fileName: "[project]/aitdl4/components/Header.js",
+                                    lineNumber: 88,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/components/Header.js",
+                                lineNumber: 81,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                className: "jsx-f0fc774571372071" + " " + "logo-text",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                        style: {
+                                            fontSize: 22,
+                                            fontWeight: 950,
+                                            color: 'var(--text-primary)',
+                                            letterSpacing: '-0.03em',
+                                            fontFamily: 'Outfit',
+                                            lineHeight: 1
+                                        },
+                                        className: "jsx-f0fc774571372071",
+                                        children: [
+                                            "AITDL",
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                                style: {
+                                                    color: 'var(--accent)'
+                                                },
+                                                className: "jsx-f0fc774571372071",
+                                                children: "."
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/components/Header.js",
+                                                lineNumber: 103,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/aitdl4/components/Header.js",
+                                        lineNumber: 96,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                        style: {
+                                            fontSize: 9,
+                                            fontWeight: 800,
+                                            color: 'var(--text-tertiary)',
+                                            letterSpacing: '0.08em',
+                                            marginTop: 4,
+                                            textTransform: 'uppercase'
+                                        },
+                                        className: "jsx-f0fc774571372071",
+                                        children: "Artificial Intelligence Technology & Deep Learning"
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/components/Header.js",
+                                        lineNumber: 104,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/aitdl4/components/Header.js",
+                                lineNumber: 95,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/components/Header.js",
+                        lineNumber: 75,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("nav", {
+                        style: {
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 'var(--nav-gap, 24px)'
+                        },
+                        className: "jsx-f0fc774571372071",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    display: 'flex',
+                                    gap: 'var(--nav-gap, 16px)',
+                                    alignItems: 'center'
+                                },
+                                className: "jsx-f0fc774571372071",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "/ai-battle",
+                                        style: {
+                                            fontSize: 14,
+                                            fontWeight: 700,
+                                            color: 'var(--text-secondary)',
+                                            textDecoration: 'none',
+                                            padding: '8px 16px',
+                                            borderRadius: 12,
+                                            transition: 'all 0.2s'
+                                        },
+                                        className: "nav-link",
+                                        children: [
+                                            "⚔️ ",
+                                            t.battle
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/aitdl4/components/Header.js",
+                                        lineNumber: 123,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "/compare",
+                                        style: {
+                                            fontSize: 14,
+                                            fontWeight: 700,
+                                            color: 'var(--text-secondary)',
+                                            textDecoration: 'none',
+                                            padding: '8px 16px',
+                                            borderRadius: 12,
+                                            transition: 'all 0.2s'
+                                        },
+                                        className: "nav-link",
+                                        children: [
+                                            "🔄 ",
+                                            t.compare
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/aitdl4/components/Header.js",
+                                        lineNumber: 135,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "/about",
+                                        style: {
+                                            fontSize: 14,
+                                            fontWeight: 700,
+                                            color: 'var(--text-secondary)',
+                                            textDecoration: 'none',
+                                            padding: '8px 16px',
+                                            borderRadius: 12,
+                                            transition: 'all 0.2s'
+                                        },
+                                        className: "nav-link",
+                                        children: [
+                                            "✨ ",
+                                            t.about
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/aitdl4/components/Header.js",
+                                        lineNumber: 147,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/aitdl4/components/Header.js",
+                                lineNumber: 122,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: 12
+                                },
+                                className: "jsx-f0fc774571372071",
+                                children: [
+                                    user ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "/profile",
+                                        style: {
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: 6,
+                                            textDecoration: 'none'
+                                        },
+                                        children: user.photoURL ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("img", {
+                                            src: user.photoURL,
+                                            alt: user.displayName,
+                                            style: {
+                                                width: 32,
+                                                height: 32,
+                                                borderRadius: '50%',
+                                                border: '2px solid var(--accent)',
+                                                transition: 'transform 0.2s'
+                                            },
+                                            onMouseOver: (e)=>e.currentTarget.style.transform = 'scale(1.1)',
+                                            onMouseOut: (e)=>e.currentTarget.style.transform = 'scale(1)',
+                                            className: "jsx-f0fc774571372071"
+                                        }, void 0, false, {
+                                            fileName: "[project]/aitdl4/components/Header.js",
+                                            lineNumber: 170,
+                                            columnNumber: 19
+                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                            style: {
+                                                width: 32,
+                                                height: 32,
+                                                borderRadius: '50%',
+                                                background: 'var(--accent)',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                fontSize: 14,
+                                                fontWeight: 800,
+                                                color: '#fff'
+                                            },
+                                            className: "jsx-f0fc774571372071",
+                                            children: (user.displayName || user.email || 'U')[0].toUpperCase()
+                                        }, void 0, false, {
+                                            fileName: "[project]/aitdl4/components/Header.js",
+                                            lineNumber: 184,
+                                            columnNumber: 19
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/components/Header.js",
+                                        lineNumber: 163,
+                                        columnNumber: 15
+                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "/login",
+                                        style: {
+                                            fontSize: 13,
+                                            fontWeight: 700,
+                                            color: 'var(--text-secondary)',
+                                            textDecoration: 'none',
+                                            padding: '8px 16px',
+                                            border: '1px solid var(--border)',
+                                            borderRadius: 10,
+                                            transition: 'all 0.2s',
+                                            background: 'var(--bg-tertiary)'
+                                        },
+                                        className: "login-btn",
+                                        children: "Login"
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/components/Header.js",
+                                        lineNumber: 201,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>setSettingsOpen(true),
+                                        style: {
+                                            width: 44,
+                                            height: 44,
+                                            borderRadius: 12,
+                                            border: '1px solid var(--border)',
+                                            background: 'var(--bg-tertiary)',
+                                            color: 'var(--text-primary)',
+                                            cursor: 'pointer',
+                                            fontSize: 20,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            transition: 'all 0.3s var(--ease)'
+                                        },
+                                        "aria-label": "Open Settings",
+                                        className: "jsx-f0fc774571372071" + " " + "gear-btn",
+                                        children: "⚙️"
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/components/Header.js",
+                                        lineNumber: 217,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/aitdl4/components/Header.js",
+                                lineNumber: 161,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/components/Header.js",
+                        lineNumber: 116,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/aitdl4/components/Header.js",
+                lineNumber: 66,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$SettingsPanel$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                isOpen: settingsOpen,
+                onClose: ()=>setSettingsOpen(false),
+                lang: lang,
+                setLang: setLang
+            }, void 0, false, {
+                fileName: "[project]/aitdl4/components/Header.js",
+                lineNumber: 243,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$jsx$2f$style$2e$js__$5b$external$5d$__$28$styled$2d$jsx$2f$style$2e$js$2c$__cjs$29$__["default"], {
+                id: "f0fc774571372071",
+                children: ".nav-link.jsx-f0fc774571372071:hover{color:var(--accent);background:#ffffff08}.gear-btn.jsx-f0fc774571372071:hover{border-color:var(--accent);box-shadow:0 0 15px var(--accent-glow);transform:rotate(45deg)}@media (width<=768px){.jsx-f0fc774571372071:root{--header-height:64px;--header-px:12px;--nav-gap:8px}.logo-text.jsx-f0fc774571372071{display:none}.nav-link.jsx-f0fc774571372071{padding:6px 8px!important;font-size:12px!important}.gear-btn.jsx-f0fc774571372071{width:36px!important;height:36px!important;font-size:16px!important}}"
+            }, void 0, false, void 0, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/aitdl4/components/Header.js",
+        lineNumber: 55,
+        columnNumber: 5
+    }, this);
+}
+__turbopack_async_result__();
+} catch(e) { __turbopack_async_result__(e); } }, false);}),
+"[project]/aitdl4/components/Footer.js [ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>Footer
+]);
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
+/**
+ * ============================================
+ * AITDL — India's AI Command Center
+ * ============================================
+ * @author    Jawahar Ramkripal Mallah
+ * @role      Software Developer & Service 
+ *            Provider since 2007
+ *            Published Author | Tech Entrepreneur
+ * @website   https://aitdl.com
+ * @email     hello@aitdl.com
+ * @copyright © 2026 All Rights Reserved
+ * ============================================
+ * @books
+ * - When Code Learned to Feel:
+ *   The Day Code Took a Breath (Kindle)
+ * - Code Without Limits:
+ *   The End of Human Coding (Upcoming)
+ * - Gaṇitsūtram:
+ *   Golden Book of Vedic Mathematics (Upcoming)
+ * ============================================
+ */ var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+;
+;
+const LANG = {
+    en: {
+        desc: "India's most versatile AI technology ecosystem. Empowering 1.4 Billion minds with the right tools.",
+        platform: 'Platform',
+        tools: 'Explore Tools',
+        battle: 'AI Battle',
+        compare: 'Comparison Engine',
+        about: 'About the Project',
+        connect: 'Connect',
+        built: 'Built with ❤️ for Bharat by',
+        dev: 'Software Developer & Service Provider since 2007 | Published Author',
+        rights: '© 2026 AITDL — All Rights Reserved',
+        suggest: 'Suggest a Tool'
+    },
+    hi: {
+        desc: "भारत का सबसे बहुमुखी AI तकनीक पारिस्थितिकी तंत्र। 1.4 अरब दिमागों को सही उपकरणों के साथ सशक्त बनाना।",
+        platform: 'प्लेटफॉर्म',
+        tools: 'टूल्स देखें',
+        battle: 'AI युद्ध',
+        compare: 'तुलना इंजन',
+        about: 'परियोजना के बारे में',
+        connect: 'संपर्क',
+        built: 'भारत के लिए ❤️ के साथ निर्मित',
+        dev: '2007 से सॉफ्टवेयर डेवलपर | प्रकाशित लेखक',
+        rights: '© 2026 AITDL — सर्वाधिकार सुरक्षित',
+        suggest: 'टूल का सुझाव दें'
+    },
+    sa: {
+        desc: "भारतस्य सर्वाधिकं बहुमुखी AI तन्त्रज्ञानव्यवस्था। १.४ अरब मेधाविनाम् उचितसाधनैः शक्तिकरणम्।",
+        platform: 'मञ्चः',
+        tools: 'उपकरणानि अन्वेषयन्तु',
+        battle: 'AI युद्धम्',
+        compare: 'तुलना यन्त्रम्',
+        about: 'परियोजनायाः विषये',
+        connect: 'सम्पर्कः',
+        built: 'भारताय ❤️ सह निर्मितम्',
+        dev: '२००७ तः सॉफ्टवेयर विकसकः | प्रकाशितः लेखकः',
+        rights: '© २०२५ AITDL — सर्वे अधिकाराः सुरक्षिताः',
+        suggest: 'उपकरणं सूचयन्तु'
+    }
+};
+function Footer() {
+    const [lang, setLang] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('en');
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        const saved = localStorage.getItem('aitdl_lang') || 'en';
+        setLang(saved);
+        // Listen for storage changes to sync across tabs/components
+        const handleStorage = ()=>{
+            setLang(localStorage.getItem('aitdl_lang') || 'en');
+        };
+        window.addEventListener('storage', handleStorage);
+        return ()=>window.removeEventListener('storage', handleStorage);
+    }, []);
+    const t = LANG[lang];
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("footer", {
+        style: {
+            borderTop: '1px solid var(--border)',
+            padding: '64px 24px',
+            marginTop: 80,
+            background: 'var(--bg-primary)',
+            backdropFilter: 'blur(20px)'
+        },
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                style: {
+                    maxWidth: 1200,
+                    margin: '0 auto',
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                    gap: 48,
+                    marginBottom: 64
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        style: {
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 16
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    marginBottom: 20
+                                },
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("img", {
+                                    src: "/logo-horizontal.svg",
+                                    alt: "AITDL Branding",
+                                    style: {
+                                        height: 60,
+                                        width: 'auto',
+                                        filter: 'drop-shadow(0 0 10px var(--accent-glow))'
+                                    }
+                                }, void 0, false, {
+                                    fileName: "[project]/aitdl4/components/Footer.js",
+                                    lineNumber: 103,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/components/Footer.js",
+                                lineNumber: 102,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
+                                style: {
+                                    fontSize: 14,
+                                    color: 'var(--text-tertiary)',
+                                    lineHeight: 1.8,
+                                    maxWidth: 300
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                        style: {
+                                            color: 'var(--text-secondary)',
+                                            fontWeight: 600,
+                                            display: 'block',
+                                            marginBottom: 4
+                                        },
+                                        children: "Artificial Intelligence Technology & Deep Learning"
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/components/Footer.js",
+                                        lineNumber: 115,
+                                        columnNumber: 13
+                                    }, this),
+                                    t.desc
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/aitdl4/components/Footer.js",
+                                lineNumber: 109,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/components/Footer.js",
+                        lineNumber: 101,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    fontSize: 12,
+                                    fontWeight: 800,
+                                    color: 'var(--text)',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.2em',
+                                    marginBottom: 24
+                                },
+                                children: t.platform
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/components/Footer.js",
+                                lineNumber: 123,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: 12
+                                },
+                                children: [
+                                    [
+                                        t.tools,
+                                        '/'
+                                    ],
+                                    [
+                                        t.battle,
+                                        '/ai-battle'
+                                    ],
+                                    [
+                                        t.compare,
+                                        '/compare'
+                                    ],
+                                    [
+                                        t.about,
+                                        '/about'
+                                    ],
+                                    [
+                                        'About Founder',
+                                        '/about-founder'
+                                    ]
+                                ].map(([label, href])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
+                                        href: href,
+                                        style: {
+                                            fontSize: 14,
+                                            color: 'var(--text-secondary)',
+                                            textDecoration: 'none',
+                                            transition: 'color 0.2s'
+                                        },
+                                        className: "footer-link",
+                                        children: label
+                                    }, label, false, {
+                                        fileName: "[project]/aitdl4/components/Footer.js",
+                                        lineNumber: 139,
+                                        columnNumber: 15
+                                    }, this))
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/components/Footer.js",
+                                lineNumber: 131,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/components/Footer.js",
+                        lineNumber: 122,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    fontSize: 12,
+                                    fontWeight: 800,
+                                    color: 'var(--text)',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.2em',
+                                    marginBottom: 24
+                                },
+                                children: t.connect
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/components/Footer.js",
+                                lineNumber: 150,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: 16
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
+                                        href: "mailto:hello@aitdl.com",
+                                        style: {
+                                            fontSize: 14,
+                                            color: 'var(--accent)',
+                                            fontWeight: 600,
+                                            textDecoration: 'none',
+                                            padding: '12px 20px',
+                                            border: '1px solid var(--border)',
+                                            borderRadius: 8,
+                                            textAlign: 'center',
+                                            display: 'inline-block',
+                                            transition: 'all 0.3s'
+                                        },
+                                        className: "contact-btn",
+                                        children: "hello@aitdl.com"
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/components/Footer.js",
+                                        lineNumber: 159,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
+                                        href: "https://forms.gle/aitdl-beta-suggest",
+                                        target: "_blank",
+                                        rel: "noopener noreferrer",
+                                        style: {
+                                            fontSize: 12,
+                                            color: 'var(--text)',
+                                            fontWeight: 800,
+                                            textDecoration: 'none',
+                                            padding: '10px 20px',
+                                            background: 'rgba(255,255,255,0.05)',
+                                            borderRadius: 8,
+                                            textAlign: 'center',
+                                            display: 'inline-block',
+                                            border: '1px dashed var(--border)',
+                                            transition: 'all 0.3s'
+                                        },
+                                        children: [
+                                            "➕ ",
+                                            t.suggest
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/aitdl4/components/Footer.js",
+                                        lineNumber: 173,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/aitdl4/components/Footer.js",
+                                lineNumber: 158,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/components/Footer.js",
+                        lineNumber: 149,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/aitdl4/components/Footer.js",
+                lineNumber: 93,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                style: {
+                    borderTop: '1px solid var(--border)',
+                    paddingTop: 48,
+                    textAlign: 'center'
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        style: {
+                            fontSize: 16,
+                            color: 'var(--text-primary)',
+                            fontWeight: 800,
+                            marginBottom: 12,
+                            fontFamily: 'Outfit',
+                            letterSpacing: '0.1em'
+                        },
+                        children: "AITDL"
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/components/Footer.js",
+                        lineNumber: 197,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        style: {
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            gap: 8,
+                            justifyContent: 'center',
+                            marginBottom: 24
+                        },
+                        children: [
+                            'Built with ❤️ for Bharat',
+                            'MIT License 2026',
+                            'aitdl.com'
+                        ].map((pill)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                style: {
+                                    fontSize: 10,
+                                    fontWeight: 700,
+                                    padding: '4px 12px',
+                                    borderRadius: 100,
+                                    background: 'rgba(255,255,255,0.03)',
+                                    border: '1px solid var(--border)',
+                                    color: 'var(--text-secondary)',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.05em'
+                                },
+                                children: pill
+                            }, pill, false, {
+                                fileName: "[project]/aitdl4/components/Footer.js",
+                                lineNumber: 220,
+                                columnNumber: 13
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/components/Footer.js",
+                        lineNumber: 208,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
+                        style: {
+                            fontSize: 11,
+                            color: 'var(--text-tertiary)',
+                            opacity: 0.5
+                        },
+                        children: "© 2026 AITDL"
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/components/Footer.js",
+                        lineNumber: 237,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/aitdl4/components/Footer.js",
+                lineNumber: 192,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/aitdl4/components/Footer.js",
+        lineNumber: 86,
+        columnNumber: 5
+    }, this);
+}
+}),
+"[project]/aitdl4/components/ToolCard.js [ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>ToolCard
+]);
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$jsx$2f$style$2e$js__$5b$external$5d$__$28$styled$2d$jsx$2f$style$2e$js$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/styled-jsx/style.js [external] (styled-jsx/style.js, cjs)");
+/**
+ * ============================================
+ * AITDL — India's AI Command Center
+ * ============================================
+ * @author    Jawahar Ramkripal Mallah
+ * @role      Software Developer & Service 
+ *            Provider since 2007
+ *            Published Author | Tech Entrepreneur
+ * @website   https://aitdl.com
+ * @email     hello@aitdl.com
+ * @copyright © 2026 All Rights Reserved
+ * ============================================
+ * @books
+ * - When Code Learned to Feel:
+ *   The Day Code Took a Breath (Kindle)
+ * - Code Without Limits:
+ *   The End of Human Coding (Upcoming)
+ * - Gaṇitsūtram:
+ *   Golden Book of Vedic Mathematics (Upcoming)
+ * ============================================
+ */ var __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/aitdl4/node_modules/next/link.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+;
+;
+;
+;
+function ToolCard({ tool, onCompare, isSelected, viewMode = 'grid' }) {
+    const cardRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useRef"])(null);
+    const [mousePos, setMousePos] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])({
+        x: 0,
+        y: 0
+    });
+    const handleMouseMove = (e)=>{
+        if (!cardRef.current) return;
+        const rect = cardRef.current.getBoundingClientRect();
+        setMousePos({
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+        });
+    };
+    const isList = viewMode === 'list';
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+        ref: cardRef,
+        onMouseMove: handleMouseMove,
+        style: {
+            borderRadius: 20,
+            padding: 'var(--card-padding)',
+            display: 'flex',
+            flexDirection: isList ? 'row' : 'column',
+            alignItems: isList ? 'center' : 'stretch',
+            gap: 'var(--card-gap, 24px)',
+            transition: 'all 0.4s var(--ease)',
+            position: 'relative',
+            overflow: 'hidden',
+            animation: 'slide-up 0.5s var(--ease) forwards',
+            border: tool.featured ? '1.5px solid var(--accent)' : '1px solid var(--border)'
+        },
+        className: "jsx-3e61cdff78f049f4" + " " + "premium-glass-card",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                style: {
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, var(--accent-glow), transparent 70%)`,
+                    pointerEvents: 'none',
+                    zIndex: 0,
+                    opacity: 0,
+                    transition: 'opacity 0.4s ease'
+                },
+                className: "jsx-3e61cdff78f049f4" + " " + "spotlight"
+            }, void 0, false, {
+                fileName: "[project]/aitdl4/components/ToolCard.js",
+                lineNumber: 66,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                style: {
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    width: '100%',
+                    position: 'relative',
+                    zIndex: 1
+                },
+                className: "jsx-3e61cdff78f049f4",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        style: {
+                            display: 'flex',
+                            gap: 8,
+                            flexWrap: 'wrap'
+                        },
+                        className: "jsx-3e61cdff78f049f4",
+                        children: [
+                            tool.featured && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                style: {
+                                    fontSize: 10,
+                                    padding: '5px 12px',
+                                    borderRadius: 30,
+                                    background: 'var(--accent)',
+                                    color: '#fff',
+                                    fontWeight: 800,
+                                    letterSpacing: '0.05em',
+                                    boxShadow: '0 4px 12px var(--accent-glow)'
+                                },
+                                className: "jsx-3e61cdff78f049f4",
+                                children: "FEATURED"
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/components/ToolCard.js",
+                                lineNumber: 88,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                style: {
+                                    fontSize: 10,
+                                    padding: '5px 12px',
+                                    borderRadius: 30,
+                                    background: tool.pricing === 'free' ? 'rgba(34,197,94,0.08)' : tool.pricing === 'freemium' ? 'rgba(251,191,36,0.08)' : 'rgba(239,68,68,0.08)',
+                                    color: tool.pricing === 'free' ? '#4ADE80' : tool.pricing === 'freemium' ? '#FBBF24' : '#F87171',
+                                    fontWeight: 800,
+                                    textTransform: 'uppercase',
+                                    border: `1px solid ${tool.pricing === 'free' ? 'rgba(74, 222, 128, 0.2)' : tool.pricing === 'freemium' ? 'rgba(251, 191, 36, 0.2)' : 'rgba(248, 113, 113, 0.2)'}`
+                                },
+                                className: "jsx-3e61cdff78f049f4",
+                                children: tool.pricing
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/components/ToolCard.js",
+                                lineNumber: 99,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/components/ToolCard.js",
+                        lineNumber: 86,
+                        columnNumber: 9
+                    }, this),
+                    tool.verified && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                        style: {
+                            width: 20,
+                            height: 20,
+                            borderRadius: '50%',
+                            background: '#4ADE80',
+                            color: 'var(--bg-primary)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: 10,
+                            fontWeight: 900
+                        },
+                        title: "Verified Tool",
+                        className: "jsx-3e61cdff78f049f4",
+                        children: "✓"
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/components/ToolCard.js",
+                        lineNumber: 125,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/aitdl4/components/ToolCard.js",
+                lineNumber: 78,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                style: {
+                    flex: 1,
+                    position: 'relative',
+                    zIndex: 1
+                },
+                className: "jsx-3e61cdff78f049f4",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        style: {
+                            marginBottom: 16,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 16
+                        },
+                        className: "jsx-3e61cdff78f049f4",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    fontSize: 42,
+                                    filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.2))',
+                                    background: 'var(--card-bg)',
+                                    padding: 12,
+                                    borderRadius: 16,
+                                    border: '1px solid var(--border)',
+                                    transition: 'all 0.3s ease'
+                                },
+                                "aria-hidden": "true",
+                                className: "jsx-3e61cdff78f049f4" + " " + "emoji-box",
+                                children: tool.emoji
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/components/ToolCard.js",
+                                lineNumber: 147,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
+                                style: {
+                                    fontSize: 22,
+                                    fontWeight: 900,
+                                    color: 'var(--text-primary)',
+                                    margin: 0,
+                                    lineHeight: 1.1,
+                                    letterSpacing: '-0.02em'
+                                },
+                                className: "jsx-3e61cdff78f049f4",
+                                children: tool.name
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/components/ToolCard.js",
+                                lineNumber: 156,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/components/ToolCard.js",
+                        lineNumber: 141,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
+                        style: {
+                            fontSize: 15,
+                            color: 'var(--text-secondary)',
+                            lineHeight: 1.7,
+                            marginBottom: 24,
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                            fontWeight: 500
+                        },
+                        className: "jsx-3e61cdff78f049f4",
+                        children: tool.description
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/components/ToolCard.js",
+                        lineNumber: 167,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        style: {
+                            display: 'flex',
+                            gap: 8,
+                            flexWrap: 'wrap',
+                            marginBottom: 24
+                        },
+                        className: "jsx-3e61cdff78f049f4",
+                        children: tool.category.slice(0, 3).map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                style: {
+                                    fontSize: 11,
+                                    padding: '4px 14px',
+                                    borderRadius: 12,
+                                    background: 'var(--card-bg)',
+                                    color: 'var(--text-tertiary)',
+                                    fontWeight: 700,
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.05em',
+                                    border: '1px solid var(--border)'
+                                },
+                                className: "jsx-3e61cdff78f049f4",
+                                children: cat
+                            }, cat, false, {
+                                fileName: "[project]/aitdl4/components/ToolCard.js",
+                                lineNumber: 189,
+                                columnNumber: 13
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/components/ToolCard.js",
+                        lineNumber: 182,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/aitdl4/components/ToolCard.js",
+                lineNumber: 140,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                style: {
+                    display: 'flex',
+                    gap: 16,
+                    marginTop: 'auto',
+                    position: 'relative',
+                    zIndex: 1
+                },
+                className: "jsx-3e61cdff78f049f4",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                        href: `/tools/${tool.slug}`,
+                        style: {
+                            flex: 1.5,
+                            padding: '14px',
+                            background: 'var(--card-bg)',
+                            border: '1px solid var(--border)',
+                            borderRadius: 14,
+                            fontSize: 14,
+                            fontWeight: 800,
+                            color: 'var(--text)',
+                            textDecoration: 'none',
+                            textAlign: 'center',
+                            transition: 'all 0.3s var(--ease)'
+                        },
+                        className: "btn-details",
+                        children: "View Concept →"
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/components/ToolCard.js",
+                        lineNumber: 214,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                        onClick: (e)=>{
+                            e.stopPropagation();
+                            onCompare(tool);
+                        },
+                        style: {
+                            flex: 1,
+                            padding: '14px',
+                            background: isSelected ? 'var(--accent)' : 'transparent',
+                            border: `1px solid ${isSelected ? 'var(--accent)' : 'var(--border)'}`,
+                            borderRadius: 14,
+                            fontSize: 13,
+                            fontWeight: 800,
+                            color: isSelected ? '#fff' : 'var(--text-secondary)',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s var(--ease)'
+                        },
+                        className: "jsx-3e61cdff78f049f4",
+                        children: isSelected ? '✓ Ready' : 'Compare'
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/components/ToolCard.js",
+                        lineNumber: 231,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/aitdl4/components/ToolCard.js",
+                lineNumber: 207,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$jsx$2f$style$2e$js__$5b$external$5d$__$28$styled$2d$jsx$2f$style$2e$js$2c$__cjs$29$__["default"], {
+                id: "3e61cdff78f049f4",
+                children: ".premium-glass-card.jsx-3e61cdff78f049f4:hover{box-shadow:0 20px 60px #0009,0 0 20px var(--accent-glow);transform:translateY(-8px)scale(1.02);border-color:var(--accent)!important}.premium-glass-card.jsx-3e61cdff78f049f4:hover .spotlight.jsx-3e61cdff78f049f4{opacity:1!important}.premium-glass-card.jsx-3e61cdff78f049f4:hover .emoji-box.jsx-3e61cdff78f049f4{background:var(--accent-glow);border-color:var(--accent);transform:scale(1.1)rotate(5deg)}.btn-details.jsx-3e61cdff78f049f4:hover{border-color:var(--accent);color:var(--accent);background:#ffffff14}"
+            }, void 0, false, void 0, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/aitdl4/components/ToolCard.js",
+        lineNumber: 47,
+        columnNumber: 5
+    }, this);
+}
+}),
+"[project]/aitdl4/components/NeuralNetwork.js [ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
+/**
+ * ============================================
+ * AITDL — India's AI Command Center
+ * ============================================
+ * @author    Jawahar Ramkripal Mallah
+ * @role      Software Developer & Service 
+ *            Provider since 2007
+ *            Published Author | Tech Entrepreneur
+ * @website   https://aitdl.com
+ * @email     hello@aitdl.com
+ * @copyright © 2026 All Rights Reserved
+ * ============================================
+ */ var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+;
+;
+const NeuralNetwork = ()=>{
+    const canvasRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useRef"])(null);
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let nodes = [];
+        const nodeCount = 60;
+        const colors = [
+            '#FF6B35',
+            '#00B4D8',
+            '#FF8E64',
+            '#48CAE4'
+        ];
+        const init = ()=>{
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            nodes = [];
+            for(let i = 0; i < nodeCount; i++){
+                nodes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    r: Math.random() * 2 + 1,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    depth: Math.random(),
+                    pulse: 0
+                });
+            }
+        };
+        init();
+        let mouse = {
+            x: -1000,
+            y: -1000
+        };
+        const handleMouseMove = (e)=>{
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        };
+        window.addEventListener('mousemove', handleMouseMove);
+        const animate = ()=>{
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            nodes.forEach((n, i)=>{
+                nodes.slice(i + 1).forEach((m)=>{
+                    const dx = n.x - m.x;
+                    const dy = n.y - m.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 180) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - dist / 180)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(n.x, n.y);
+                        ctx.lineTo(m.x, m.y);
+                        ctx.stroke();
+                        // Random "Data Pulse"
+                        if (Math.random() > 0.998) {
+                            const pulsePos = Math.random();
+                            const px = n.x + (m.x - n.x) * pulsePos;
+                            const py = n.y + (m.y - n.y) * pulsePos;
+                            ctx.beginPath();
+                            ctx.arc(px, py, 2, 0, Math.PI * 2);
+                            ctx.fillStyle = '#fff';
+                            ctx.shadowBlur = 15;
+                            ctx.shadowColor = '#fff';
+                            ctx.fill();
+                            ctx.shadowBlur = 0;
+                        }
+                    }
+                });
+                // Mouse interaction: Pushing nodes
+                const mdx = n.x - mouse.x;
+                const mdy = n.y - mouse.y;
+                const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+                if (mdist < 150) {
+                    const angle = Math.atan2(mdy, mdx);
+                    const force = (150 - mdist) / 1500;
+                    n.vx += Math.cos(angle) * force;
+                    n.vy += Math.sin(angle) * force;
+                }
+                // Draw node
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.r * (1 + n.depth), 0, Math.PI * 2);
+                ctx.fillStyle = n.color;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = n.color;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+                // Motion physics
+                n.x += n.vx;
+                n.y += n.vy;
+                n.vx *= 0.99; // Dampen
+                n.vy *= 0.99;
+                // Bounds check
+                if (n.x < -10) n.x = canvas.width + 10;
+                if (n.x > canvas.width + 10) n.x = -10;
+                if (n.y < -10) n.y = canvas.height + 10;
+                if (n.y > canvas.height + 10) n.y = -10;
+            });
+            requestAnimationFrame(animate);
+        };
+        animate();
+        window.addEventListener('resize', init);
+        return ()=>{
+            window.removeEventListener('resize', init);
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, []);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("canvas", {
+        ref: canvasRef,
+        style: {
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none',
+            zIndex: 0,
+            opacity: 0.8
+        }
+    }, void 0, false, {
+        fileName: "[project]/aitdl4/components/NeuralNetwork.js",
+        lineNumber: 131,
+        columnNumber: 5
+    }, ("TURBOPACK compile-time value", void 0));
+};
+const __TURBOPACK__default__export__ = NeuralNetwork;
+}),
+"[project]/aitdl4/components/TrustBar.js [ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+/**
+ * ============================================
+ * AITDL — India's AI Command Center
+ * ============================================
+ * @author    Jawahar Ramkripal Mallah
+ * @copyright © 2026 All Rights Reserved
+ * ============================================
+ */ __turbopack_context__.s([
+    "default",
+    ()=>TrustBar
+]);
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$jsx$2f$style$2e$js__$5b$external$5d$__$28$styled$2d$jsx$2f$style$2e$js$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/styled-jsx/style.js [external] (styled-jsx/style.js, cjs)");
+;
+;
+function TrustBar() {
+    const items = [
+        {
+            icon: '🚀',
+            text: '100+ Verified AI Tools'
+        },
+        {
+            icon: '🇮🇳',
+            text: 'Built for Bharat'
+        },
+        {
+            icon: '💎',
+            text: 'Premium Experience'
+        },
+        {
+            icon: '🔒',
+            text: 'Secure & Verified'
+        },
+        {
+            icon: '✨',
+            text: 'Free Forever'
+        }
+    ];
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+        style: {
+            margin: '0 auto 64px',
+            maxWidth: 1000,
+            padding: '20px',
+            borderRadius: 24,
+            background: 'var(--bg-secondary)',
+            border: '1px solid var(--border)',
+            display: 'flex',
+            justifyContent: 'space-around',
+            flexWrap: 'wrap',
+            gap: 20,
+            backdropFilter: 'blur(10px)',
+            position: 'relative',
+            zIndex: 2
+        },
+        className: "jsx-9696cfc19449475e" + " " + "trust-bar",
+        children: [
+            items.map((item, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                    style: {
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 10,
+                        fontSize: 13,
+                        fontWeight: 700,
+                        color: 'var(--text2)',
+                        letterSpacing: '0.02em'
+                    },
+                    className: "jsx-9696cfc19449475e",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                            style: {
+                                fontSize: 18
+                            },
+                            className: "jsx-9696cfc19449475e",
+                            children: item.icon
+                        }, void 0, false, {
+                            fileName: "[project]/aitdl4/components/TrustBar.js",
+                            lineNumber: 45,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                            className: "jsx-9696cfc19449475e",
+                            children: item.text
+                        }, void 0, false, {
+                            fileName: "[project]/aitdl4/components/TrustBar.js",
+                            lineNumber: 46,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, i, true, {
+                    fileName: "[project]/aitdl4/components/TrustBar.js",
+                    lineNumber: 36,
+                    columnNumber: 9
+                }, this)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$jsx$2f$style$2e$js__$5b$external$5d$__$28$styled$2d$jsx$2f$style$2e$js$2c$__cjs$29$__["default"], {
+                id: "9696cfc19449475e",
+                children: ".trust-bar.jsx-9696cfc19449475e{animation:slide-up .8s var(--ease)forwards}@media (width<=768px){.trust-bar.jsx-9696cfc19449475e{justify-content:center}}"
+            }, void 0, false, void 0, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/aitdl4/components/TrustBar.js",
+        lineNumber: 20,
+        columnNumber: 5
+    }, this);
+}
+}),
+"[externals]/fs [external] (fs, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("fs", () => require("fs"));
+
+module.exports = mod;
+}),
+"[externals]/stream [external] (stream, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("stream", () => require("stream"));
+
+module.exports = mod;
+}),
+"[externals]/zlib [external] (zlib, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("zlib", () => require("zlib"));
+
+module.exports = mod;
+}),
+"[externals]/react-dom [external] (react-dom, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("react-dom", () => require("react-dom"));
+
+module.exports = mod;
+}),
+"[project]/aitdl4/data/tools.json (json)", ((__turbopack_context__) => {
+
+__turbopack_context__.v(JSON.parse("{\"_metadata\":{\"author\":\"Jawahar Ramkripal Mallah\",\"designation\":\"Software Developer & Service Provider since 2007, Published Author, Tech Entrepreneur\",\"website\":\"https://aitdl.com\",\"email\":\"hello@aitdl.com\",\"copyright\":\"© 2026 AITDL - Artificial Intelligence Technology & Deep Learning\",\"version\":\"4.6.2\",\"lastUpdated\":\"2026-03-15\",\"totalTools\":100},\"tools\":[{\"id\":1,\"name\":\"ChatGPT\",\"slug\":\"chatgpt\",\"description\":\"OpenAI's powerful AI assistant for writing, coding, and problem solving.\",\"category\":[\"study\",\"writing\",\"coding\"],\"pricing\":\"freemium\",\"url\":\"https://chatgpt.com\",\"emoji\":\"🤖\",\"hindi_support\":true,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"JEE\",\"NEET\",\"UPSC\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":2,\"name\":\"Google Gemini\",\"slug\":\"gemini\",\"description\":\"Google's multimodal AI — text, image, code sab handle karta hai.\",\"category\":[\"study\",\"writing\",\"coding\"],\"pricing\":\"free\",\"url\":\"https://gemini.google.com\",\"emoji\":\"✨\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"NEET\",\"UPSC\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":3,\"name\":\"Claude\",\"slug\":\"claude\",\"description\":\"Anthropic's AI — long documents, analysis, aur safe responses ke liye best.\",\"category\":[\"study\",\"writing\",\"coding\"],\"pricing\":\"freemium\",\"url\":\"https://claude.ai\",\"emoji\":\"🧠\",\"hindi_support\":true,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"JEE\",\"NEET\",\"UPSC\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":4,\"name\":\"Microsoft Copilot\",\"slug\":\"copilot\",\"description\":\"Microsoft ka AI — Word, Excel, PowerPoint mein seedha kaam karta hai.\",\"category\":[\"study\",\"writing\",\"productivity\"],\"pricing\":\"free\",\"url\":\"https://copilot.microsoft.com\",\"emoji\":\"💼\",\"hindi_support\":true,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"UPSC\",\"Boards\"],\"featured\":false,\"verified\":true},{\"id\":5,\"name\":\"Perplexity AI\",\"slug\":\"perplexity\",\"description\":\"AI search engine — real-time web search ke saath accurate answers deta hai.\",\"category\":[\"study\",\"research\"],\"pricing\":\"freemium\",\"url\":\"https://perplexity.ai\",\"emoji\":\"🔍\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"UPSC\",\"JEE\",\"NEET\"],\"featured\":true,\"verified\":true},{\"id\":6,\"name\":\"Wolfram Alpha\",\"slug\":\"wolfram-alpha\",\"description\":\"Maths, physics, chemistry — step by step solutions. JEE ke liye gold.\",\"category\":[\"maths\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://wolframalpha.com\",\"emoji\":\"🔢\",\"hindi_support\":false,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"NEET\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":7,\"name\":\"Photomath\",\"slug\":\"photomath\",\"description\":\"Camera se photo lo — maths solve ho jaata hai step by step.\",\"category\":[\"maths\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://photomath.com\",\"emoji\":\"📸\",\"hindi_support\":false,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":8,\"name\":\"Quizlet AI\",\"slug\":\"quizlet\",\"description\":\"Flashcards aur AI-powered revision. Exam prep ke liye best tool.\",\"category\":[\"study\"],\"pricing\":\"freemium\",\"url\":\"https://quizlet.com\",\"emoji\":\"📚\",\"hindi_support\":false,\"india_score\":4,\"low_data\":true,\"exam_tags\":[\"NEET\",\"JEE\",\"Boards\"],\"featured\":false,\"verified\":true},{\"id\":9,\"name\":\"Grammarly\",\"slug\":\"grammarly\",\"description\":\"English writing improve karo — grammar, tone, clarity sab fix karta hai.\",\"category\":[\"writing\"],\"pricing\":\"freemium\",\"url\":\"https://grammarly.com\",\"emoji\":\"✍️\",\"hindi_support\":false,\"india_score\":4,\"low_data\":true,\"exam_tags\":[\"UPSC\",\"Boards\"],\"featured\":false,\"verified\":true},{\"id\":10,\"name\":\"Google NotebookLM\",\"slug\":\"notebooklm\",\"description\":\"PDF aur notes upload karo — AI padh ke sawaalon ke jawab dega.\",\"category\":[\"study\",\"research\"],\"pricing\":\"free\",\"url\":\"https://notebooklm.google.com\",\"emoji\":\"📔\",\"hindi_support\":true,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"JEE\",\"NEET\",\"UPSC\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":11,\"name\":\"Sarvam AI — Indus\",\"slug\":\"sarvam-ai\",\"description\":\"India ka apna AI! 22 Indian languages mein baat karo. Made in India.\",\"category\":[\"study\",\"writing\",\"india\"],\"pricing\":\"free\",\"url\":\"https://www.sarvam.ai\",\"emoji\":\"🇮🇳\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"NEET\",\"UPSC\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":12,\"name\":\"Krutrim AI\",\"slug\":\"krutrim-ai\",\"description\":\"Ola founder ka Indian AI — Hindi aur regional languages ke liye best.\",\"category\":[\"study\",\"writing\",\"india\"],\"pricing\":\"free\",\"url\":\"https://krutrim.com\",\"emoji\":\"⚡\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"UPSC\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":13,\"name\":\"BHASHINI\",\"slug\":\"bhashini\",\"description\":\"Government of India ka official AI — 22 Indian languages mein translation.\",\"category\":[\"study\",\"writing\",\"india\"],\"pricing\":\"free\",\"url\":\"https://bhashini.gov.in\",\"emoji\":\"🏛️\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"UPSC\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":14,\"name\":\"BharatGPT\",\"slug\":\"bharatgpt\",\"description\":\"India ka apna GPT — 22 languages mein text aur 12 mein voice support.\",\"category\":[\"study\",\"writing\",\"india\"],\"pricing\":\"free\",\"url\":\"https://bharatgpt.ai\",\"emoji\":\"🇮🇳\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"UPSC\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":15,\"name\":\"AI4Bharat\",\"slug\":\"ai4bharat\",\"description\":\"IIT Madras ka research AI — Hindi, Tamil, Telugu, Bengali tools.\",\"category\":[\"study\",\"india\"],\"pricing\":\"free\",\"url\":\"https://ai4bharat.iitm.ac.in\",\"emoji\":\"🎓\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"NEET\",\"UPSC\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":16,\"name\":\"Anuvadini\",\"slug\":\"anuvadini\",\"description\":\"AICTE ka AI — Engineering, Medical, Law books ko Indian languages mein translate karta hai.\",\"category\":[\"study\",\"india\"],\"pricing\":\"free\",\"url\":\"https://anuvadini.aicte-india.org\",\"emoji\":\"📚\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"NEET\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":17,\"name\":\"GitHub Copilot\",\"slug\":\"github-copilot\",\"description\":\"Code likhte waqt AI suggestions — developers ka best friend.\",\"category\":[\"coding\"],\"pricing\":\"freemium\",\"url\":\"https://github.com/features/copilot\",\"emoji\":\"👨‍💻\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"JEE\"],\"featured\":true,\"verified\":true},{\"id\":18,\"name\":\"Cursor AI\",\"slug\":\"cursor\",\"description\":\"AI-powered code editor — poora codebase samjhta hai aur suggest karta hai.\",\"category\":[\"coding\"],\"pricing\":\"freemium\",\"url\":\"https://cursor.sh\",\"emoji\":\"⌨️\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"JEE\"],\"featured\":false,\"verified\":true},{\"id\":19,\"name\":\"Replit AI\",\"slug\":\"replit\",\"description\":\"Browser mein code karo — AI help ke saath. No setup needed.\",\"category\":[\"coding\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://replit.com\",\"emoji\":\"🔧\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"JEE\"],\"featured\":false,\"verified\":true},{\"id\":20,\"name\":\"Midjourney\",\"slug\":\"midjourney\",\"description\":\"World's best AI image generator — photorealistic aur artistic images.\",\"category\":[\"image\"],\"pricing\":\"paid\",\"url\":\"https://midjourney.com\",\"emoji\":\"🎨\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":21,\"name\":\"Canva AI\",\"slug\":\"canva-ai\",\"description\":\"Design + AI — posters, presentations, social media graphics minutes mein.\",\"category\":[\"image\",\"productivity\"],\"pricing\":\"freemium\",\"url\":\"https://canva.com\",\"emoji\":\"🖼️\",\"hindi_support\":true,\"india_score\":5,\"low_data\":false,\"exam_tags\":[\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":22,\"name\":\"Adobe Firefly\",\"slug\":\"adobe-firefly\",\"description\":\"Adobe ka AI image generator — commercially safe, high quality.\",\"category\":[\"image\"],\"pricing\":\"freemium\",\"url\":\"https://firefly.adobe.com\",\"emoji\":\"🔥\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":23,\"name\":\"DALL-E 3\",\"slug\":\"dalle\",\"description\":\"OpenAI ka image AI — text se realistic images banao.\",\"category\":[\"image\"],\"pricing\":\"freemium\",\"url\":\"https://openai.com/dall-e-3\",\"emoji\":\"🖌️\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":24,\"name\":\"Stable Diffusion\",\"slug\":\"stable-diffusion\",\"description\":\"Open source image AI — free mein apne computer pe chalao.\",\"category\":[\"image\"],\"pricing\":\"free\",\"url\":\"https://stability.ai\",\"emoji\":\"🌊\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":25,\"name\":\"Notion AI\",\"slug\":\"notion-ai\",\"description\":\"Notes, docs, projects — sab ek jagah, AI ke saath.\",\"category\":[\"productivity\",\"writing\"],\"pricing\":\"freemium\",\"url\":\"https://notion.so\",\"emoji\":\"📝\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"UPSC\"],\"featured\":false,\"verified\":true},{\"id\":26,\"name\":\"Otter.ai\",\"slug\":\"otter-ai\",\"description\":\"Lectures aur meetings record karo — AI automatically transcript banata hai.\",\"category\":[\"productivity\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://otter.ai\",\"emoji\":\"🎙️\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"UPSC\",\"Boards\"],\"featured\":false,\"verified\":true},{\"id\":27,\"name\":\"Consensus\",\"slug\":\"consensus\",\"description\":\"Research papers mein se AI answers dhundho — UPSC aur research ke liye best.\",\"category\":[\"research\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://consensus.app\",\"emoji\":\"📊\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"UPSC\"],\"featured\":false,\"verified\":true},{\"id\":28,\"name\":\"Elicit\",\"slug\":\"elicit\",\"description\":\"AI research assistant — academic papers summarize karta hai.\",\"category\":[\"research\"],\"pricing\":\"freemium\",\"url\":\"https://elicit.com\",\"emoji\":\"🔬\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"UPSC\"],\"featured\":false,\"verified\":true},{\"id\":29,\"name\":\"SciSpace\",\"slug\":\"scispace\",\"description\":\"Research papers padhna easy karo — AI explain karta hai complex concepts.\",\"category\":[\"research\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://typeset.io\",\"emoji\":\"🔭\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"JEE\",\"NEET\",\"UPSC\"],\"featured\":true,\"verified\":true},{\"id\":30,\"name\":\"Runway ML\",\"slug\":\"runway\",\"description\":\"AI video editor — text se video banao, background remove karo.\",\"category\":[\"video\"],\"pricing\":\"freemium\",\"url\":\"https://runwayml.com\",\"emoji\":\"🎬\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":31,\"name\":\"ElevenLabs\",\"slug\":\"elevenlabs\",\"description\":\"Text to speech — natural human voice mein convert karo. Hindi support.\",\"category\":[\"video\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://elevenlabs.io\",\"emoji\":\"🔊\",\"hindi_support\":true,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"Boards\"],\"featured\":false,\"verified\":true},{\"id\":32,\"name\":\"Descript\",\"slug\":\"descript\",\"description\":\"Video/podcast edit karo text ki tarah — AI se filler words remove karo.\",\"category\":[\"video\"],\"pricing\":\"freemium\",\"url\":\"https://descript.com\",\"emoji\":\"✂️\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":33,\"name\":\"Pictory\",\"slug\":\"pictory\",\"description\":\"Text ya script se automatically video banao — content creators ke liye.\",\"category\":[\"video\"],\"pricing\":\"freemium\",\"url\":\"https://pictory.ai\",\"emoji\":\"📹\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":34,\"name\":\"Resume.io\",\"slug\":\"resume-io\",\"description\":\"AI se professional resume banao — job seekers ke liye best.\",\"category\":[\"career\"],\"pricing\":\"freemium\",\"url\":\"https://resume.io\",\"emoji\":\"📄\",\"hindi_support\":false,\"india_score\":4,\"low_data\":true,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":35,\"name\":\"LinkedIn AI\",\"slug\":\"linkedin-ai\",\"description\":\"LinkedIn profile optimize karo, cover letters likho AI se.\",\"category\":[\"career\"],\"pricing\":\"freemium\",\"url\":\"https://linkedin.com\",\"emoji\":\"💼\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":36,\"name\":\"Interviewing.io\",\"slug\":\"interviewing-io\",\"description\":\"AI mock interviews — coding aur system design practice karo.\",\"category\":[\"career\",\"coding\"],\"pricing\":\"freemium\",\"url\":\"https://interviewing.io\",\"emoji\":\"🎯\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":37,\"name\":\"Khan Academy Khanmigo\",\"slug\":\"khanmigo\",\"description\":\"Khan Academy ka AI tutor — students ke saath step by step problem solve karta hai.\",\"category\":[\"study\"],\"pricing\":\"free\",\"url\":\"https://khanacademy.org\",\"emoji\":\"🏫\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"NEET\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":38,\"name\":\"Duolingo AI\",\"slug\":\"duolingo\",\"description\":\"Language learning AI — English improve karo gamified way mein.\",\"category\":[\"study\"],\"pricing\":\"freemium\",\"url\":\"https://duolingo.com\",\"emoji\":\"🦜\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"Boards\",\"UPSC\"],\"featured\":false,\"verified\":true},{\"id\":39,\"name\":\"Socratic by Google\",\"slug\":\"socratic\",\"description\":\"Google ka student AI — photo lo sawaal ka, explanation milega.\",\"category\":[\"study\"],\"pricing\":\"free\",\"url\":\"https://socratic.org\",\"emoji\":\"📱\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"NEET\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":40,\"name\":\"Brainly AI\",\"slug\":\"brainly\",\"description\":\"Students ke sawaalon ke AI answers — community + AI combined.\",\"category\":[\"study\"],\"pricing\":\"freemium\",\"url\":\"https://brainly.com\",\"emoji\":\"🧩\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"NEET\",\"Boards\"],\"featured\":false,\"verified\":true},{\"id\":41,\"name\":\"Copy.ai\",\"slug\":\"copy-ai\",\"description\":\"Marketing copy, blogs, social media posts AI se likho seconds mein.\",\"category\":[\"writing\"],\"pricing\":\"freemium\",\"url\":\"https://copy.ai\",\"emoji\":\"✍️\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":42,\"name\":\"Jasper AI\",\"slug\":\"jasper\",\"description\":\"Long form content AI — blogs, articles, marketing copy ke liye.\",\"category\":[\"writing\"],\"pricing\":\"paid\",\"url\":\"https://jasper.ai\",\"emoji\":\"📰\",\"hindi_support\":false,\"india_score\":2,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":43,\"name\":\"QuillBot\",\"slug\":\"quillbot\",\"description\":\"Paraphrasing AI — content rewrite karo, summarize karo.\",\"category\":[\"writing\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://quillbot.com\",\"emoji\":\"🖊️\",\"hindi_support\":false,\"india_score\":4,\"low_data\":true,\"exam_tags\":[\"UPSC\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":44,\"name\":\"Hemingway Editor\",\"slug\":\"hemingway\",\"description\":\"Writing clear aur simple banao — readability score ke saath.\",\"category\":[\"writing\"],\"pricing\":\"free\",\"url\":\"https://hemingwayapp.com\",\"emoji\":\"📖\",\"hindi_support\":false,\"india_score\":3,\"low_data\":true,\"exam_tags\":[\"UPSC\"],\"featured\":false,\"verified\":true},{\"id\":45,\"name\":\"Tabnine\",\"slug\":\"tabnine\",\"description\":\"AI code completion — sabhi languages mein, privacy-first.\",\"category\":[\"coding\"],\"pricing\":\"freemium\",\"url\":\"https://tabnine.com\",\"emoji\":\"💻\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"JEE\"],\"featured\":false,\"verified\":true},{\"id\":46,\"name\":\"Codeium\",\"slug\":\"codeium\",\"description\":\"Free AI code assistant — 70+ languages support karta hai.\",\"category\":[\"coding\"],\"pricing\":\"free\",\"url\":\"https://codeium.com\",\"emoji\":\"🚀\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"JEE\"],\"featured\":true,\"verified\":true},{\"id\":47,\"name\":\"Blackbox AI\",\"slug\":\"blackbox\",\"description\":\"Code search aur completion — developers ke liye fast AI tool.\",\"category\":[\"coding\"],\"pricing\":\"free\",\"url\":\"https://blackbox.ai\",\"emoji\":\"⬛\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"JEE\"],\"featured\":false,\"verified\":true},{\"id\":48,\"name\":\"Miro AI\",\"slug\":\"miro-ai\",\"description\":\"Visual collaboration + AI — mind maps, flowcharts, diagrams banao.\",\"category\":[\"productivity\"],\"pricing\":\"freemium\",\"url\":\"https://miro.com\",\"emoji\":\"🗺️\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"UPSC\"],\"featured\":false,\"verified\":true},{\"id\":49,\"name\":\"Todoist AI\",\"slug\":\"todoist\",\"description\":\"AI smart task manager — priorities automatically set karta hai.\",\"category\":[\"productivity\"],\"pricing\":\"freemium\",\"url\":\"https://todoist.com\",\"emoji\":\"✅\",\"hindi_support\":false,\"india_score\":3,\"low_data\":true,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":50,\"name\":\"Motion AI\",\"slug\":\"motion\",\"description\":\"AI schedule planner — automatically meetings aur tasks plan karta hai.\",\"category\":[\"productivity\"],\"pricing\":\"paid\",\"url\":\"https://usemotion.com\",\"emoji\":\"📅\",\"hindi_support\":false,\"india_score\":2,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":51,\"name\":\"Mathway\",\"slug\":\"mathway\",\"description\":\"Step by step maths solver — algebra se calculus tak sab.\",\"category\":[\"maths\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://mathway.com\",\"emoji\":\"➗\",\"hindi_support\":false,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":52,\"name\":\"Symbolab\",\"slug\":\"symbolab\",\"description\":\"Maths AI — calculus, algebra, trigonometry step by step.\",\"category\":[\"maths\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://symbolab.com\",\"emoji\":\"🔣\",\"hindi_support\":false,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":53,\"name\":\"GeoGebra AI\",\"slug\":\"geogebra\",\"description\":\"Geometry, graphs, 3D visualization — maths visually samjho.\",\"category\":[\"maths\",\"study\"],\"pricing\":\"free\",\"url\":\"https://geogebra.org\",\"emoji\":\"📐\",\"hindi_support\":false,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":54,\"name\":\"Desmos\",\"slug\":\"desmos\",\"description\":\"Free graphing calculator — functions plot karo instantly.\",\"category\":[\"maths\"],\"pricing\":\"free\",\"url\":\"https://desmos.com\",\"emoji\":\"📈\",\"hindi_support\":false,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"Boards\"],\"featured\":false,\"verified\":true},{\"id\":55,\"name\":\"Pika Labs\",\"slug\":\"pika\",\"description\":\"Text se short videos banao — AI video generation.\",\"category\":[\"video\"],\"pricing\":\"freemium\",\"url\":\"https://pika.art\",\"emoji\":\"🎥\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":56,\"name\":\"Suno AI\",\"slug\":\"suno\",\"description\":\"Text se music banao — AI generated songs in seconds.\",\"category\":[\"video\"],\"pricing\":\"freemium\",\"url\":\"https://suno.ai\",\"emoji\":\"🎵\",\"hindi_support\":true,\"india_score\":4,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":57,\"name\":\"Udio\",\"slug\":\"udio\",\"description\":\"AI music generator — professional quality songs banao free mein.\",\"category\":[\"video\"],\"pricing\":\"freemium\",\"url\":\"https://udio.com\",\"emoji\":\"🎶\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":58,\"name\":\"Murf AI\",\"slug\":\"murf\",\"description\":\"Hindi voiceover AI — 20+ Indian voices, presentations ke liye.\",\"category\":[\"video\",\"india\"],\"pricing\":\"freemium\",\"url\":\"https://murf.ai\",\"emoji\":\"🎤\",\"hindi_support\":true,\"india_score\":5,\"low_data\":false,\"exam_tags\":[\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":59,\"name\":\"Tome AI\",\"slug\":\"tome\",\"description\":\"AI presentation maker — slides automatically banata hai topic se.\",\"category\":[\"productivity\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://tome.app\",\"emoji\":\"🎭\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"Boards\",\"UPSC\"],\"featured\":false,\"verified\":true},{\"id\":60,\"name\":\"Beautiful.ai\",\"slug\":\"beautiful-ai\",\"description\":\"Smart presentation tool — AI auto-design karta hai slides.\",\"category\":[\"productivity\"],\"pricing\":\"freemium\",\"url\":\"https://beautiful.ai\",\"emoji\":\"💎\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":61,\"name\":\"Gamma AI\",\"slug\":\"gamma\",\"description\":\"Presentations, docs, webpages — AI se minutes mein banao.\",\"category\":[\"productivity\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://gamma.app\",\"emoji\":\"⚡\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":62,\"name\":\"Writesonic\",\"slug\":\"writesonic\",\"description\":\"AI writer — blogs, ads, product descriptions fast likhta hai.\",\"category\":[\"writing\"],\"pricing\":\"freemium\",\"url\":\"https://writesonic.com\",\"emoji\":\"🖋️\",\"hindi_support\":true,\"india_score\":4,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":63,\"name\":\"Anyword\",\"slug\":\"anyword\",\"description\":\"Marketing copy AI — conversion optimize karta hai automatically.\",\"category\":[\"writing\"],\"pricing\":\"freemium\",\"url\":\"https://anyword.com\",\"emoji\":\"📣\",\"hindi_support\":false,\"india_score\":2,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":64,\"name\":\"Scite AI\",\"slug\":\"scite\",\"description\":\"Research citations verify karo — papers support ya contradict karte hain.\",\"category\":[\"research\"],\"pricing\":\"freemium\",\"url\":\"https://scite.ai\",\"emoji\":\"📑\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"UPSC\"],\"featured\":false,\"verified\":true},{\"id\":65,\"name\":\"Research Rabbit\",\"slug\":\"research-rabbit\",\"description\":\"Academic papers discover karo — related papers automatically milte hain.\",\"category\":[\"research\"],\"pricing\":\"free\",\"url\":\"https://researchrabbit.ai\",\"emoji\":\"🐰\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"UPSC\"],\"featured\":false,\"verified\":true},{\"id\":66,\"name\":\"Semantic Scholar\",\"slug\":\"semantic-scholar\",\"description\":\"AI-powered academic search — free research papers dhundho.\",\"category\":[\"research\"],\"pricing\":\"free\",\"url\":\"https://semanticscholar.org\",\"emoji\":\"🔎\",\"hindi_support\":false,\"india_score\":4,\"low_data\":true,\"exam_tags\":[\"UPSC\",\"JEE\",\"NEET\"],\"featured\":false,\"verified\":true},{\"id\":67,\"name\":\"Scholarcy\",\"slug\":\"scholarcy\",\"description\":\"Research papers ko flashcards mein convert karo — quick revision.\",\"category\":[\"research\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://scholarcy.com\",\"emoji\":\"🎓\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"UPSC\",\"NEET\"],\"featured\":false,\"verified\":true},{\"id\":68,\"name\":\"Woebot\",\"slug\":\"woebot\",\"description\":\"Mental health AI chatbot — exam stress aur anxiety ke liye.\",\"category\":[\"study\"],\"pricing\":\"free\",\"url\":\"https://woebot.io\",\"emoji\":\"💚\",\"hindi_support\":false,\"india_score\":4,\"low_data\":true,\"exam_tags\":[\"JEE\",\"NEET\"],\"featured\":true,\"verified\":true},{\"id\":69,\"name\":\"Forest App\",\"slug\":\"forest\",\"description\":\"Focus timer + AI — phone addiction rokta hai, study time badhata hai.\",\"category\":[\"productivity\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://forestapp.cc\",\"emoji\":\"🌳\",\"hindi_support\":false,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"JEE\",\"NEET\",\"UPSC\"],\"featured\":true,\"verified\":true},{\"id\":70,\"name\":\"Anki AI\",\"slug\":\"anki\",\"description\":\"Spaced repetition flashcards — scientifically proven memory technique.\",\"category\":[\"study\"],\"pricing\":\"free\",\"url\":\"https://apps.ankiweb.net\",\"emoji\":\"🃏\",\"hindi_support\":false,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"NEET\",\"UPSC\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":71,\"name\":\"Explain Everything\",\"slug\":\"explain-everything\",\"description\":\"Interactive whiteboard AI — teachers aur students ke liye.\",\"category\":[\"study\"],\"pricing\":\"freemium\",\"url\":\"https://explaineverything.com\",\"emoji\":\"📋\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"Boards\"],\"featured\":false,\"verified\":true},{\"id\":72,\"name\":\"Lumosity\",\"slug\":\"lumosity\",\"description\":\"Brain training AI games — concentration aur memory improve karo.\",\"category\":[\"study\"],\"pricing\":\"freemium\",\"url\":\"https://lumosity.com\",\"emoji\":\"🧠\",\"hindi_support\":false,\"india_score\":3,\"low_data\":true,\"exam_tags\":[\"JEE\",\"NEET\"],\"featured\":false,\"verified\":true},{\"id\":73,\"name\":\"Codecademy AI\",\"slug\":\"codecademy\",\"description\":\"Coding sikhao AI tutor ke saath — beginners ke liye best.\",\"category\":[\"coding\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://codecademy.com\",\"emoji\":\"👨‍🏫\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"JEE\"],\"featured\":false,\"verified\":true},{\"id\":74,\"name\":\"Leetcode AI\",\"slug\":\"leetcode\",\"description\":\"Coding interview prep — AI hints aur solutions ke saath.\",\"category\":[\"coding\",\"career\"],\"pricing\":\"freemium\",\"url\":\"https://leetcode.com\",\"emoji\":\"🏆\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"JEE\"],\"featured\":true,\"verified\":true},{\"id\":75,\"name\":\"Hugging Face\",\"slug\":\"hugging-face\",\"description\":\"Open source AI models — developers aur researchers ke liye.\",\"category\":[\"coding\",\"research\"],\"pricing\":\"free\",\"url\":\"https://huggingface.co\",\"emoji\":\"🤗\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"JEE\"],\"featured\":false,\"verified\":true},{\"id\":76,\"name\":\"Ideogram\",\"slug\":\"ideogram\",\"description\":\"AI image generator — text ke saath accurate images banata hai.\",\"category\":[\"image\"],\"pricing\":\"freemium\",\"url\":\"https://ideogram.ai\",\"emoji\":\"🎭\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":77,\"name\":\"Leonardo AI\",\"slug\":\"leonardo\",\"description\":\"Game assets aur creative images AI se banao — free credits daily.\",\"category\":[\"image\"],\"pricing\":\"freemium\",\"url\":\"https://leonardo.ai\",\"emoji\":\"🦁\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":78,\"name\":\"Remove.bg\",\"slug\":\"remove-bg\",\"description\":\"Background remove karo instantly — AI se, free mein.\",\"category\":[\"image\"],\"pricing\":\"freemium\",\"url\":\"https://remove.bg\",\"emoji\":\"✂️\",\"hindi_support\":false,\"india_score\":5,\"low_data\":true,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":79,\"name\":\"Upscayl\",\"slug\":\"upscayl\",\"description\":\"Blurry images ko HD karo — free, open source AI upscaler.\",\"category\":[\"image\"],\"pricing\":\"free\",\"url\":\"https://upscayl.org\",\"emoji\":\"🔍\",\"hindi_support\":false,\"india_score\":5,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":80,\"name\":\"D-ID\",\"slug\":\"d-id\",\"description\":\"Photo se talking avatar banao — presentations ke liye.\",\"category\":[\"video\"],\"pricing\":\"freemium\",\"url\":\"https://d-id.com\",\"emoji\":\"👤\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":81,\"name\":\"HeyGen\",\"slug\":\"heygen\",\"description\":\"AI avatar videos — apni likhai ko video mein convert karo.\",\"category\":[\"video\"],\"pricing\":\"freemium\",\"url\":\"https://heygen.com\",\"emoji\":\"🎙️\",\"hindi_support\":true,\"india_score\":4,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":82,\"name\":\"Loom AI\",\"slug\":\"loom\",\"description\":\"Screen record karo + AI summary — teachers ke liye perfect.\",\"category\":[\"video\",\"productivity\"],\"pricing\":\"freemium\",\"url\":\"https://loom.com\",\"emoji\":\"📹\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"Boards\"],\"featured\":false,\"verified\":true},{\"id\":83,\"name\":\"Notta AI\",\"slug\":\"notta\",\"description\":\"Meeting aur lecture transcription — Hindi bhi support karta hai.\",\"category\":[\"productivity\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://notta.ai\",\"emoji\":\"📝\",\"hindi_support\":true,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"UPSC\",\"Boards\"],\"featured\":false,\"verified\":true},{\"id\":84,\"name\":\"Taskade AI\",\"slug\":\"taskade\",\"description\":\"AI project management + notes + tasks ek jagah.\",\"category\":[\"productivity\"],\"pricing\":\"freemium\",\"url\":\"https://taskade.com\",\"emoji\":\"📌\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":85,\"name\":\"Reclaim AI\",\"slug\":\"reclaim\",\"description\":\"Calendar AI — automatically study time block karta hai.\",\"category\":[\"productivity\"],\"pricing\":\"freemium\",\"url\":\"https://reclaim.ai\",\"emoji\":\"🗓️\",\"hindi_support\":false,\"india_score\":2,\"low_data\":false,\"exam_tags\":[\"JEE\",\"NEET\"],\"featured\":false,\"verified\":true},{\"id\":86,\"name\":\"Glasp AI\",\"slug\":\"glasp\",\"description\":\"Web highlights + AI summary — online padhte waqt notes banao.\",\"category\":[\"research\",\"study\"],\"pricing\":\"free\",\"url\":\"https://glasp.co\",\"emoji\":\"🖊️\",\"hindi_support\":false,\"india_score\":3,\"low_data\":true,\"exam_tags\":[\"UPSC\"],\"featured\":false,\"verified\":true},{\"id\":87,\"name\":\"Humata AI\",\"slug\":\"humata\",\"description\":\"PDF chatbot — koi bhi document upload karo, sawaal poochho.\",\"category\":[\"study\",\"research\"],\"pricing\":\"freemium\",\"url\":\"https://humata.ai\",\"emoji\":\"📄\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"UPSC\",\"NEET\"],\"featured\":true,\"verified\":true},{\"id\":88,\"name\":\"Tactiq\",\"slug\":\"tactiq\",\"description\":\"Google Meet aur Zoom mein AI notes — lectures capture karo.\",\"category\":[\"productivity\",\"study\"],\"pricing\":\"freemium\",\"url\":\"https://tactiq.io\",\"emoji\":\"🎧\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"Boards\"],\"featured\":false,\"verified\":true},{\"id\":90,\"name\":\"Wix AI\",\"slug\":\"wix-ai\",\"description\":\"AI website builder — bina coding ke professional site banao.\",\"category\":[\"coding\"],\"pricing\":\"freemium\",\"url\":\"https://wix.com\",\"emoji\":\"🌐\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":91,\"name\":\"Framer AI\",\"slug\":\"framer\",\"description\":\"AI website design — text se beautiful websites instantly.\",\"category\":[\"coding\",\"image\"],\"pricing\":\"freemium\",\"url\":\"https://framer.com\",\"emoji\":\"🖥️\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":92,\"name\":\"Interviews.ai\",\"slug\":\"interviews-ai\",\"description\":\"AI mock interview practice — HR aur technical dono.\",\"category\":[\"career\"],\"pricing\":\"freemium\",\"url\":\"https://interviews.ai\",\"emoji\":\"🤝\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":93,\"name\":\"Kickresume\",\"slug\":\"kickresume\",\"description\":\"AI resume builder — ATS-friendly professional resumes.\",\"category\":[\"career\"],\"pricing\":\"freemium\",\"url\":\"https://kickresume.com\",\"emoji\":\"📋\",\"hindi_support\":false,\"india_score\":4,\"low_data\":true,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":94,\"name\":\"Jobscan AI\",\"slug\":\"jobscan\",\"description\":\"Resume ko job description se match karo — ATS score badhao.\",\"category\":[\"career\"],\"pricing\":\"freemium\",\"url\":\"https://jobscan.co\",\"emoji\":\"🎯\",\"hindi_support\":false,\"india_score\":4,\"low_data\":true,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":95,\"name\":\"Rytr\",\"slug\":\"rytr\",\"description\":\"Affordable AI writer — emails, blogs, social posts Hindi mein bhi.\",\"category\":[\"writing\"],\"pricing\":\"freemium\",\"url\":\"https://rytr.me\",\"emoji\":\"✒️\",\"hindi_support\":true,\"india_score\":4,\"low_data\":true,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":96,\"name\":\"Sudowrite\",\"slug\":\"sudowrite\",\"description\":\"Creative writing AI — stories aur novels likhne mein help.\",\"category\":[\"writing\"],\"pricing\":\"freemium\",\"url\":\"https://sudowrite.com\",\"emoji\":\"📚\",\"hindi_support\":false,\"india_score\":2,\"low_data\":false,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":97,\"name\":\"Magic School AI\",\"slug\":\"magic-school\",\"description\":\"Teachers ke liye AI — lesson plans, quizzes, assignments banao.\",\"category\":[\"study\"],\"pricing\":\"freemium\",\"url\":\"https://magicschool.ai\",\"emoji\":\"🏫\",\"hindi_support\":false,\"india_score\":4,\"low_data\":false,\"exam_tags\":[\"Boards\"],\"featured\":false,\"verified\":true},{\"id\":98,\"name\":\"Diffit AI\",\"slug\":\"diffit\",\"description\":\"Reading materials AI se adapt karo — students ke level ke hisaab se.\",\"category\":[\"study\"],\"pricing\":\"freemium\",\"url\":\"https://diffit.me\",\"emoji\":\"📖\",\"hindi_support\":false,\"india_score\":3,\"low_data\":false,\"exam_tags\":[\"Boards\"],\"featured\":false,\"verified\":true},{\"id\":99,\"name\":\"BharatGen AI\",\"slug\":\"bharatgen\",\"description\":\"IIT Bombay ka AI — June 2026 tak 22 Indian languages cover karega.\",\"category\":[\"study\",\"india\"],\"pricing\":\"free\",\"url\":\"https://bharatgen.gov.in\",\"emoji\":\"🏛️\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[\"UPSC\",\"Boards\"],\"featured\":true,\"verified\":true},{\"id\":100,\"name\":\"iMerit AI\",\"slug\":\"imerit\",\"description\":\"India ka AI data company — Indian languages ke liye AI solutions.\",\"category\":[\"india\"],\"pricing\":\"free\",\"url\":\"https://imerit.net\",\"emoji\":\"🇮🇳\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[],\"featured\":false,\"verified\":true},{\"id\":101,\"name\":\"Zoho AI\",\"slug\":\"zoho-ai\",\"description\":\"India ka apna business AI — CRM, email, projects sab mein AI.\",\"category\":[\"productivity\",\"india\"],\"pricing\":\"freemium\",\"url\":\"https://zoho.com\",\"emoji\":\"🏢\",\"hindi_support\":true,\"india_score\":5,\"low_data\":true,\"exam_tags\":[],\"featured\":true,\"verified\":true}]}"));}),
+"[project]/aitdl4/pages/index.js [ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+return __turbopack_context__.a(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
+
+__turbopack_context__.s([
+    "default",
+    ()=>Home,
+    "getStaticProps",
+    ()=>getStaticProps
+]);
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
+/**
+ * ============================================
+ * AITDL — India's AI Command Center
+ * ============================================
+ * @author    Jawahar Ramkripal Mallah
+ * @role      Software Developer & Service 
+ *            Provider since 2007
+ *            Published Author | Tech Entrepreneur
+ * @website   https://aitdl.com
+ * @email     hello@aitdl.com
+ * @copyright © 2026 AITDL - Artificial Intelligence Technology & Deep Learning
+ * ============================================
+ * @books
+ * - When Code Learned to Feel:
+ *   The Day Code Took a Breath (Kindle)
+ * - Code Without Limits:
+ *   The End of Human Coding (Upcoming)
+ * - Gaṇitsūtram:
+ *   Golden Book of Vedic Mathematics (Upcoming)
+ * ============================================
+ * Updated: 2026-03-14 - Final UI Restoration Verified
+ */ var __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$node_modules$2f$next$2f$head$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/aitdl4/node_modules/next/head.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$lib$2f$seo$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/aitdl4/lib/seo.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$Header$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/aitdl4/components/Header.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$Footer$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/aitdl4/components/Footer.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$ToolCard$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/aitdl4/components/ToolCard.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$NeuralNetwork$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/aitdl4/components/NeuralNetwork.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$TrustBar$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/aitdl4/components/TrustBar.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$node_modules$2f$next$2f$router$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/aitdl4/node_modules/next/router.js [ssr] (ecmascript)");
+var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
+    __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$lib$2f$seo$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__,
+    __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$Header$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__
+]);
+[__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$lib$2f$seo$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$Header$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__] = __turbopack_async_dependencies__.then ? (await __turbopack_async_dependencies__)() : __turbopack_async_dependencies__;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+const CATEGORIES = [
+    'All',
+    'study',
+    'writing',
+    'coding',
+    'productivity',
+    'research',
+    'maths',
+    'india',
+    'image',
+    'video',
+    'career'
+];
+const EXAMS = [
+    'All',
+    'JEE',
+    'NEET',
+    'UPSC',
+    'SSC',
+    'CBSE',
+    'Boards'
+];
+const LANG_TEXT = {
+    en: {
+        hero: "India's No. 1 AI Command Center",
+        sub: "Artificial Intelligence Technology & Deep Learning",
+        search: 'Search 100+ AI tools...',
+        category: 'Category',
+        exam: 'Target Exam',
+        pricing: 'Pricing',
+        found: 'tools found',
+        all: 'All',
+        free: 'Free',
+        freemium: 'Freemium',
+        paid: 'Paid',
+        stats: {
+            tools: 'AI Tools',
+            visited: 'Students Visited',
+            free: 'Free',
+            india: 'India First'
+        },
+        cmdHero: "EMPOWERING INDIA'S FUTURE WITH ADVANCED AI",
+        cmdSub: "Command, Control, and Scale your AI potential with India's leading AI Command Center.",
+        explore: 'EXPLORE PLATFORM',
+        learn: 'LEARN MORE',
+        originAll: 'All AI',
+        originBharat: 'Bharat AI',
+        originGlobal: 'Global AI'
+    },
+    hi: {
+        hero: 'भारत का No. 1 AI कमांड सेंटर',
+        sub: '1.4 अरब दिमागों को सशक्त बनाना',
+        search: '100+ AI टूल्स खोजें...',
+        category: 'श्रेणी',
+        exam: 'परीक्षा',
+        pricing: 'मूल्य',
+        found: 'टूल्स मिले',
+        all: 'सभी',
+        free: 'मुफ्त',
+        freemium: 'फ्रीमियम',
+        paid: 'पेड',
+        stats: {
+            tools: 'AI Tools',
+            visited: 'छात्र आए',
+            free: 'मुफ्त',
+            india: 'भारत प्रथम'
+        },
+        cmdHero: 'उन्नत AI के साथ भारत के भविष्य को सशक्त बनाना',
+        cmdSub: 'भारत के अग्रणी AI कमांड सेंटर के साथ अपनी AI क्षमता को कमांड, कंट्रोल और स्केल करें।',
+        explore: 'प्लेटफॉर्म देखें',
+        learn: 'अधिक जानें',
+        originAll: 'सभी AI',
+        originBharat: 'भारत AI',
+        originGlobal: 'वैश्विक AI'
+    },
+    sa: {
+        hero: 'भारतस्य No. 1 AI कमांड केंद्रम्',
+        sub: '१.४ अरब मेधाविनाम् शक्तिकरणम्',
+        search: '100+ AI उपकरणानि अन्विष्यतु...',
+        category: 'वर्गः',
+        exam: 'परीक्षा',
+        pricing: 'मूल्यम्',
+        found: 'उपकरणानि',
+        all: 'सर्वे',
+        free: 'निःशुल्कम्',
+        freemium: 'फ्रीमियम्',
+        paid: 'सशुल्कम्',
+        stats: {
+            tools: 'AI उपकरणानि',
+            visited: 'छात्राः आगताः',
+            free: 'निःशुल्कम्',
+            india: 'भारतम् प्रथमम्'
+        },
+        cmdHero: 'प्रगत-AI-तन्त्रेण भारतस्य भविष्यं सक्षमीकरणम्',
+        cmdSub: 'भारतस्य प्रमुख-एआइ-आदेशकेन्द्रेण सह स्वकीय-एआइ-क्षमतायाः आदेशं, नियन्त्रणं, मापनं च कुर्वन्तु।',
+        explore: 'मञ्चं अन्वेषयन्तु',
+        learn: 'अधिकं जानन्तु',
+        originAll: 'सर्वाणि AI',
+        originBharat: 'भारत AI',
+        originGlobal: 'वैश्विक AI'
+    }
+};
+const SkeletonCard = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+        style: {
+            background: 'var(--card-bg)',
+            borderRadius: 24,
+            padding: 'var(--card-padding)',
+            height: 280,
+            animation: 'pulse 1.5s infinite ease-in-out',
+            border: '1px solid var(--border)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 16
+        },
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                style: {
+                    height: 40,
+                    width: 40,
+                    background: 'var(--border)',
+                    borderRadius: 12
+                }
+            }, void 0, false, {
+                fileName: "[project]/aitdl4/pages/index.js",
+                lineNumber: 139,
+                columnNumber: 5
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                style: {
+                    height: 24,
+                    width: '60%',
+                    background: 'var(--text-tertiary)',
+                    borderRadius: 4
+                }
+            }, void 0, false, {
+                fileName: "[project]/aitdl4/pages/index.js",
+                lineNumber: 140,
+                columnNumber: 5
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                style: {
+                    height: 16,
+                    width: '90%',
+                    background: 'var(--border)',
+                    borderRadius: 4
+                }
+            }, void 0, false, {
+                fileName: "[project]/aitdl4/pages/index.js",
+                lineNumber: 141,
+                columnNumber: 5
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                style: {
+                    height: 16,
+                    width: '70%',
+                    background: 'var(--border)',
+                    borderRadius: 4
+                }
+            }, void 0, false, {
+                fileName: "[project]/aitdl4/pages/index.js",
+                lineNumber: 142,
+                columnNumber: 5
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                style: {
+                    marginTop: 'auto',
+                    height: 44,
+                    width: '100%',
+                    background: 'var(--border)',
+                    borderRadius: 12
+                }
+            }, void 0, false, {
+                fileName: "[project]/aitdl4/pages/index.js",
+                lineNumber: 143,
+                columnNumber: 5
+            }, ("TURBOPACK compile-time value", void 0))
+        ]
+    }, void 0, true, {
+        fileName: "[project]/aitdl4/pages/index.js",
+        lineNumber: 128,
+        columnNumber: 3
+    }, ("TURBOPACK compile-time value", void 0));
+function Home({ tools }) {
+    const [lang, setLang] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('en');
+    const [uiMode, setUiMode] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('directory');
+    const [viewMode, setViewMode] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('grid');
+    const [origin, setOrigin] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('all');
+    const [search, setSearch] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('');
+    const [debouncedSearch, setDebouncedSearch] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('');
+    const [category, setCategory] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('All');
+    const [exam, setExam] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('All');
+    const [pricing, setPricing] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('All');
+    const [compareList, setCompareList] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])([]);
+    const [filtered, setFiltered] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])([]);
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(true);
+    // TODO: Replace with real Vercel Analytics pageview count via API when available
+    const [visitorCount, setVisitorCount] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(8506);
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$node_modules$2f$next$2f$router$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
+    const t = LANG_TEXT[lang] || LANG_TEXT.en;
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        // Initial load from storage
+        const savedLang = localStorage.getItem('aitdl_lang') || 'en';
+        setLang(savedLang);
+        const savedView = localStorage.getItem('aitdl_view') || 'grid';
+        setViewMode(savedView);
+        const savedUiMode = localStorage.getItem('aitdl_ui_mode') || 'directory';
+        setUiMode(savedUiMode);
+        const savedOrigin = localStorage.getItem('aitdl_origin') || 'all';
+        setOrigin(savedOrigin);
+        // Stats
+        const savedVisitors = localStorage.getItem('aitdl_visitors');
+        // TODO: Replace with real Vercel Analytics pageview count via API when available
+        const count = savedVisitors ? parseInt(savedVisitors) + 1 : 8506;
+        setVisitorCount(count);
+        localStorage.setItem('aitdl_visitors', count);
+        const handleStorage = ()=>{
+            setLang(localStorage.getItem('aitdl_lang') || 'en');
+            setViewMode(localStorage.getItem('aitdl_view') || 'grid');
+            setUiMode(localStorage.getItem('aitdl_ui_mode') || 'directory');
+            setOrigin(localStorage.getItem('aitdl_origin') || 'all');
+        };
+        window.addEventListener('storage', handleStorage);
+        // Initial loading simulation
+        const timer = setTimeout(()=>setLoading(false), 800);
+        return ()=>{
+            window.removeEventListener('storage', handleStorage);
+            clearTimeout(timer);
+        };
+    }, []);
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        const timer = setTimeout(()=>{
+            setDebouncedSearch(search);
+        }, 300);
+        return ()=>clearTimeout(timer);
+    }, [
+        search
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        let result = tools || [];
+        if (origin === 'bharat') {
+            result = result.filter((tool)=>tool.category.includes('india'));
+        }
+        if (category !== 'All') {
+            result = result.filter((tool)=>tool.category.includes(category));
+        }
+        if (exam !== 'All') {
+            result = result.filter((tool)=>tool.exam_tags.includes(exam));
+        }
+        if (pricing !== 'All') {
+            result = result.filter((tool)=>tool.pricing === pricing.toLowerCase());
+        }
+        if (debouncedSearch) {
+            const q = debouncedSearch.toLowerCase();
+            result = result.filter((t)=>t.name.toLowerCase().includes(q) || t.description.toLowerCase().includes(q) || t.exam_tags.some((tag)=>tag.toLowerCase().includes(q)) || t.category.some((cat)=>cat.toLowerCase().includes(q)));
+        }
+        setFiltered(result);
+    }, [
+        debouncedSearch,
+        category,
+        exam,
+        pricing,
+        tools,
+        origin
+    ]);
+    const handleCompare = (tool)=>{
+        setCompareList((prev)=>{
+            if (prev.find((t)=>t.id === tool.id)) {
+                return prev.filter((t)=>t.id !== tool.id);
+            }
+            if (prev.length >= 3) return prev;
+            return [
+                ...prev,
+                tool
+            ];
+        });
+    };
+    const filterBtn = (val, current, setter)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+            onClick: ()=>setter(val),
+            style: {
+                padding: '8px 20px',
+                borderRadius: 12,
+                border: '1px solid',
+                borderColor: current === val ? 'var(--accent)' : 'var(--border)',
+                background: current === val ? 'var(--accent-glow)' : 'var(--card-bg)',
+                color: current === val ? 'var(--accent)' : 'var(--text-secondary)',
+                fontSize: 13,
+                fontWeight: 600,
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+                transition: 'all 0.3s var(--ease)'
+            },
+            className: "premium-filter-btn",
+            children: val
+        }, val, false, {
+            fileName: "[project]/aitdl4/pages/index.js",
+            lineNumber: 245,
+            columnNumber: 5
+        }, this);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+        style: {
+            minHeight: '100vh',
+            background: 'var(--bg-primary)',
+            color: 'var(--text-primary)'
+        },
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$node_modules$2f$next$2f$head$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("title", {
+                        children: "AITDL — Best Free AI Tools for JEE, NEET, UPSC Students India"
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 271,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("meta", {
+                        name: "description",
+                        content: "India's #1 free AI tools directory for students. 100+ verified AI tools for JEE, NEET, UPSC, CBSE. No signup required. Made for Bharat."
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 272,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("link", {
+                        rel: "canonical",
+                        href: "https://aitdl.com"
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 273,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("meta", {
+                        property: "og:title",
+                        content: "AITDL — Right AI Tool At The Right Time"
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 275,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("meta", {
+                        property: "og:description",
+                        content: "India's #1 free AI tools platform for students. 100+ tools for JEE, NEET, UPSC."
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 276,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("meta", {
+                        property: "og:url",
+                        content: "https://aitdl.com"
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 277,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("meta", {
+                        property: "og:type",
+                        content: "website"
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 278,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("meta", {
+                        name: "twitter:card",
+                        content: "summary_large_image"
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 279,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/aitdl4/pages/index.js",
+                lineNumber: 270,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$Header$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                lang: lang,
+                setLang: setLang
+            }, void 0, false, {
+                fileName: "[project]/aitdl4/pages/index.js",
+                lineNumber: 282,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("main", {
+                style: {
+                    maxWidth: 1200,
+                    margin: '0 auto',
+                    padding: '64px 24px'
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$NeuralNetwork$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 285,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        style: {
+                            textAlign: 'center',
+                            position: 'relative',
+                            zIndex: 1,
+                            marginBottom: 80
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    marginBottom: 24,
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                },
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                    style: {
+                                        width: 120,
+                                        height: 120,
+                                        filter: 'drop-shadow(0 0 30px var(--accent-glow))'
+                                    },
+                                    className: "logo-glow",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("img", {
+                                        src: "/logo-singularity.svg",
+                                        alt: "AITDL Singularity",
+                                        style: {
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'contain'
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/pages/index.js",
+                                        lineNumber: 291,
+                                        columnNumber: 15
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/aitdl4/pages/index.js",
+                                    lineNumber: 290,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 289,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    display: 'inline-block',
+                                    fontSize: 12,
+                                    fontWeight: 800,
+                                    letterSpacing: '0.15em',
+                                    color: 'var(--accent)',
+                                    background: 'var(--accent-glow)',
+                                    border: '1px solid var(--accent)',
+                                    borderRadius: 30,
+                                    padding: '6px 20px',
+                                    marginBottom: 32
+                                },
+                                children: "INDIA'S NO. 1 AI COMMAND CENTER"
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 295,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h1", {
+                                style: {
+                                    fontSize: uiMode === 'command' ? 'clamp(48px, 10vw, 112px)' : 'clamp(42px, 10vw, 84px)',
+                                    fontWeight: 950,
+                                    lineHeight: 0.95,
+                                    marginBottom: 24,
+                                    letterSpacing: '-0.05em'
+                                },
+                                children: uiMode === 'command' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                    className: "pulse-glow",
+                                    style: {
+                                        color: 'var(--text-primary)',
+                                        background: 'linear-gradient(to bottom, var(--text-primary), var(--text-tertiary))',
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent'
+                                    },
+                                    children: t.cmdHero
+                                }, void 0, false, {
+                                    fileName: "[project]/aitdl4/pages/index.js",
+                                    lineNumber: 318,
+                                    columnNumber: 15
+                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["Fragment"], {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                            style: {
+                                                color: 'var(--text-primary)'
+                                            },
+                                            children: "Right AI Tool"
+                                        }, void 0, false, {
+                                            fileName: "[project]/aitdl4/pages/index.js",
+                                            lineNumber: 328,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("br", {}, void 0, false, {
+                                            fileName: "[project]/aitdl4/pages/index.js",
+                                            lineNumber: 329,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                            style: {
+                                                color: 'var(--accent)',
+                                                background: 'linear-gradient(to bottom, var(--text-primary), var(--accent))',
+                                                WebkitBackgroundClip: 'text',
+                                                WebkitTextFillColor: 'transparent'
+                                            },
+                                            children: "At The Right Time"
+                                        }, void 0, false, {
+                                            fileName: "[project]/aitdl4/pages/index.js",
+                                            lineNumber: 330,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true)
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 310,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
+                                style: {
+                                    fontSize: 20,
+                                    color: 'var(--text-secondary)',
+                                    maxWidth: 700,
+                                    margin: '0 auto 48px',
+                                    lineHeight: 1.6
+                                },
+                                children: t.cmdSub
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 340,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    display: 'flex',
+                                    gap: 20,
+                                    justifyContent: 'center',
+                                    marginBottom: 64
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                        style: {
+                                            padding: '20px 48px',
+                                            background: 'var(--accent)',
+                                            color: '#fff',
+                                            border: 'none',
+                                            borderRadius: 50,
+                                            fontSize: 13,
+                                            fontWeight: 900,
+                                            cursor: 'pointer',
+                                            boxShadow: '0 10px 40px var(--accent-glow)'
+                                        },
+                                        className: "btn-primary-glow",
+                                        children: t.explore
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/pages/index.js",
+                                        lineNumber: 351,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                        style: {
+                                            padding: '20px 48px',
+                                            background: 'transparent',
+                                            color: 'var(--text-primary)',
+                                            border: '1px solid var(--border)',
+                                            borderRadius: 50,
+                                            fontSize: 13,
+                                            fontWeight: 800,
+                                            cursor: 'pointer'
+                                        },
+                                        className: "btn-secondary-border",
+                                        children: t.learn
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/pages/index.js",
+                                        lineNumber: 354,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 350,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 287,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$TrustBar$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 360,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        style: {
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                            gap: 24,
+                            marginBottom: 80,
+                            position: 'relative',
+                            zIndex: 1
+                        },
+                        children: [
+                            {
+                                label: t.stats.tools,
+                                val: `${tools.length}+`,
+                                color: 'var(--accent)'
+                            },
+                            {
+                                label: t.stats.visited,
+                                val: visitorCount.toLocaleString(),
+                                color: '#00B4D8'
+                            },
+                            {
+                                label: t.stats.free,
+                                val: 'FREE',
+                                color: '#22C55E'
+                            },
+                            {
+                                label: t.stats.india,
+                                val: '🇮🇳 BHARAT',
+                                color: '#FF6B35'
+                            }
+                        ].map((stat, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                className: "stat-card",
+                                style: {
+                                    padding: 32,
+                                    background: 'var(--bg-secondary)',
+                                    border: '1px solid var(--border)',
+                                    borderRadius: 24,
+                                    textAlign: 'center',
+                                    transition: 'all 0.4s var(--ease)'
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                        style: {
+                                            fontSize: 36,
+                                            fontWeight: 950,
+                                            color: stat.color,
+                                            marginBottom: 8,
+                                            fontFamily: 'Outfit'
+                                        },
+                                        children: stat.val
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/pages/index.js",
+                                        lineNumber: 385,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                        style: {
+                                            fontSize: 12,
+                                            fontWeight: 800,
+                                            color: 'var(--text-tertiary)',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.1em'
+                                        },
+                                        children: stat.label
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/pages/index.js",
+                                        lineNumber: 386,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, i, true, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 377,
+                                columnNumber: 13
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 363,
+                        columnNumber: 9
+                    }, this),
+                    uiMode === 'directory' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        style: {
+                            maxWidth: 640,
+                            margin: '0 auto 48px',
+                            position: 'relative'
+                        },
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
+                            type: "text",
+                            value: search,
+                            onChange: (e)=>setSearch(e.target.value),
+                            placeholder: t.search,
+                            style: {
+                                width: '100%',
+                                padding: '20px 28px',
+                                background: 'var(--search-bg)',
+                                backdropFilter: 'blur(10px)',
+                                border: '1px solid var(--border)',
+                                borderRadius: 16,
+                                fontSize: 16,
+                                color: 'var(--text-primary)',
+                                outline: 'none',
+                                transition: 'all 0.3s var(--ease)',
+                                boxShadow: '0 8px 32px rgba(0,0,0,0.15)'
+                            },
+                            className: "premium-search"
+                        }, void 0, false, {
+                            fileName: "[project]/aitdl4/pages/index.js",
+                            lineNumber: 394,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 393,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        className: "floating-dock",
+                        style: {
+                            maxWidth: 900,
+                            margin: '0 auto 48px',
+                            padding: 24,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 24
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                        style: {
+                                            fontSize: 11,
+                                            fontWeight: 800,
+                                            color: 'var(--text-tertiary)',
+                                            marginBottom: 12,
+                                            textTransform: 'uppercase'
+                                        },
+                                        children: t.category
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/pages/index.js",
+                                        lineNumber: 413,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                        style: {
+                                            display: 'flex',
+                                            gap: 10,
+                                            overflowX: 'auto',
+                                            paddingBottom: 8,
+                                            WebkitOverflowScrolling: 'touch'
+                                        },
+                                        children: CATEGORIES.map((c)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                                onClick: ()=>setCategory(c),
+                                                style: {
+                                                    padding: '8px 20px',
+                                                    borderRadius: 12,
+                                                    border: '1px solid',
+                                                    borderColor: category === c ? 'var(--accent)' : 'var(--border)',
+                                                    background: category === c ? 'var(--accent-glow)' : 'var(--card-bg)',
+                                                    color: category === c ? 'var(--accent)' : 'var(--text-secondary)',
+                                                    fontSize: 13,
+                                                    fontWeight: 600,
+                                                    cursor: 'pointer',
+                                                    whiteSpace: 'nowrap',
+                                                    flexShrink: 0,
+                                                    transition: 'all 0.3s var(--ease)'
+                                                },
+                                                className: "premium-filter-btn",
+                                                children: c
+                                            }, c, false, {
+                                                fileName: "[project]/aitdl4/pages/index.js",
+                                                lineNumber: 422,
+                                                columnNumber: 17
+                                            }, this))
+                                    }, void 0, false, {
+                                        fileName: "[project]/aitdl4/pages/index.js",
+                                        lineNumber: 414,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 412,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    display: 'grid',
+                                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                                    gap: 24
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                style: {
+                                                    fontSize: 11,
+                                                    fontWeight: 800,
+                                                    color: 'var(--text-tertiary)',
+                                                    marginBottom: 12,
+                                                    textTransform: 'uppercase'
+                                                },
+                                                children: t.exam
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/pages/index.js",
+                                                lineNumber: 448,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                style: {
+                                                    display: 'flex',
+                                                    gap: 8,
+                                                    flexWrap: 'wrap'
+                                                },
+                                                children: EXAMS.map((e)=>filterBtn(e, exam, setExam))
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/pages/index.js",
+                                                lineNumber: 449,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/aitdl4/pages/index.js",
+                                        lineNumber: 447,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                style: {
+                                                    fontSize: 11,
+                                                    fontWeight: 800,
+                                                    color: 'var(--text-tertiary)',
+                                                    marginBottom: 12,
+                                                    textTransform: 'uppercase'
+                                                },
+                                                children: t.pricing
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/pages/index.js",
+                                                lineNumber: 454,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                style: {
+                                                    display: 'flex',
+                                                    gap: 8
+                                                },
+                                                children: [
+                                                    'All',
+                                                    'Free',
+                                                    'Freemium',
+                                                    'Paid'
+                                                ].map((p)=>filterBtn(p, pricing, setPricing))
+                                            }, void 0, false, {
+                                                fileName: "[project]/aitdl4/pages/index.js",
+                                                lineNumber: 455,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/aitdl4/pages/index.js",
+                                        lineNumber: 453,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 446,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 411,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        style: {
+                            fontSize: 13,
+                            color: 'var(--text-tertiary)',
+                            marginBottom: 16
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                style: {
+                                    color: 'var(--accent)',
+                                    fontWeight: 700
+                                },
+                                children: filtered.length
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 464,
+                                columnNumber: 11
+                            }, this),
+                            " ",
+                            t.found
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 463,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        style: {
+                            display: 'grid',
+                            gridTemplateColumns: viewMode === 'list' ? '1fr' : 'repeat(auto-fill, minmax(300px, 1fr))',
+                            gap: 'var(--grid-gap)'
+                        },
+                        children: loading ? Array(6).fill(0).map((_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(SkeletonCard, {}, i, false, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 474,
+                                columnNumber: 44
+                            }, this)) : filtered.map((tool)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$ToolCard$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                tool: tool,
+                                viewMode: viewMode,
+                                onCompare: handleCompare,
+                                isSelected: compareList.some((t)=>t.id === tool.id)
+                            }, tool.id, false, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 477,
+                                columnNumber: 15
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 468,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        style: {
+                            margin: '48px auto',
+                            maxWidth: 600,
+                            textAlign: 'center',
+                            padding: '36px 32px',
+                            borderRadius: 16,
+                            border: '0.5px solid var(--border)',
+                            background: 'var(--bg-secondary)'
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                style: {
+                                    fontSize: 11,
+                                    fontWeight: 600,
+                                    color: 'var(--accent)',
+                                    border: '0.5px solid var(--accent)',
+                                    borderRadius: 20,
+                                    padding: '4px 14px',
+                                    display: 'inline-block',
+                                    marginBottom: 16
+                                },
+                                children: "Coming Soon"
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 490,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
+                                style: {
+                                    fontSize: 20,
+                                    fontWeight: 600,
+                                    color: 'var(--text-primary)',
+                                    marginBottom: 10
+                                },
+                                children: "200+ tools being added"
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 491,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
+                                style: {
+                                    fontSize: 13,
+                                    color: 'var(--text-secondary)',
+                                    lineHeight: 1.7
+                                },
+                                children: "Curating best AI tools across design, productivity, coding, research — verified for Indian users."
+                            }, void 0, false, {
+                                fileName: "[project]/aitdl4/pages/index.js",
+                                lineNumber: 492,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 489,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/aitdl4/pages/index.js",
+                lineNumber: 284,
+                columnNumber: 7
+            }, this),
+            compareList.length >= 2 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                style: {
+                    position: 'fixed',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    background: 'var(--bg-secondary)',
+                    borderTop: '1px solid var(--accent)',
+                    padding: '12px 24px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 16,
+                    zIndex: 200
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                        style: {
+                            fontSize: 13,
+                            color: 'var(--text-secondary)'
+                        },
+                        children: [
+                            compareList.length,
+                            " tools selected"
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 501,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                        onClick: ()=>router.push('/compare'),
+                        style: {
+                            padding: '8px 20px',
+                            background: 'var(--accent)',
+                            color: '#fff',
+                            border: 'none',
+                            borderRadius: 8,
+                            fontSize: 13,
+                            fontWeight: 600,
+                            cursor: 'pointer'
+                        },
+                        children: "Compare Now →"
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 502,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                        onClick: ()=>setCompareList([]),
+                        style: {
+                            padding: '8px 12px',
+                            background: 'transparent',
+                            color: 'var(--text-tertiary)',
+                            border: '0.5px solid var(--border)',
+                            borderRadius: 8,
+                            fontSize: 12,
+                            cursor: 'pointer'
+                        },
+                        children: "Clear"
+                    }, void 0, false, {
+                        fileName: "[project]/aitdl4/pages/index.js",
+                        lineNumber: 503,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/aitdl4/pages/index.js",
+                lineNumber: 500,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$aitdl4$2f$components$2f$Footer$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                fileName: "[project]/aitdl4/pages/index.js",
+                lineNumber: 507,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/aitdl4/pages/index.js",
+        lineNumber: 269,
+        columnNumber: 5
+    }, this);
+}
+async function getStaticProps() {
+    const data = __turbopack_context__.r("[project]/aitdl4/data/tools.json (json)");
+    const tools = data.tools || data;
+    return {
+        props: {
+            tools
+        }
+    };
+}
+__turbopack_async_result__();
+} catch(e) { __turbopack_async_result__(e); } }, false);}),
+"[externals]/next/dist/shared/lib/no-fallback-error.external.js [external] (next/dist/shared/lib/no-fallback-error.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/shared/lib/no-fallback-error.external.js", () => require("next/dist/shared/lib/no-fallback-error.external.js"));
+
+module.exports = mod;
+}),
+];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__fb414fbe._.js.map

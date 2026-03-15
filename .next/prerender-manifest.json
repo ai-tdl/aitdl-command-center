@@ -1,0 +1,1340 @@
+{
+  "version": 4,
+  "routes": {
+    "/tools/chatgpt": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/chatgpt.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/gemini": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/gemini.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/claude": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/claude.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/copilot": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/copilot.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/perplexity": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/perplexity.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/wolfram-alpha": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/wolfram-alpha.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/photomath": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/photomath.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/quizlet": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/quizlet.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/grammarly": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/grammarly.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/notebooklm": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/notebooklm.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/sarvam-ai": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/sarvam-ai.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/krutrim-ai": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/krutrim-ai.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/bhashini": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/bhashini.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/bharatgpt": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/bharatgpt.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/ai4bharat": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/ai4bharat.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/anuvadini": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/anuvadini.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/github-copilot": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/github-copilot.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/cursor": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/cursor.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/replit": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/replit.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/midjourney": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/midjourney.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/canva-ai": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/canva-ai.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/adobe-firefly": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/adobe-firefly.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/dalle": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/dalle.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/stable-diffusion": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/stable-diffusion.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/notion-ai": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/notion-ai.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/otter-ai": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/otter-ai.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/consensus": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/consensus.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/elicit": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/elicit.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/scispace": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/scispace.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/runway": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/runway.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/elevenlabs": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/elevenlabs.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/descript": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/descript.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/pictory": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/pictory.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/resume-io": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/resume-io.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/linkedin-ai": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/linkedin-ai.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/interviewing-io": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/interviewing-io.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/khanmigo": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/khanmigo.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/duolingo": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/duolingo.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/socratic": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/socratic.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/brainly": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/brainly.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/copy-ai": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/copy-ai.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/jasper": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/jasper.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/quillbot": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/quillbot.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/hemingway": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/hemingway.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/tabnine": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/tabnine.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/codeium": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/codeium.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/blackbox": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/blackbox.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/miro-ai": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/miro-ai.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/todoist": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/todoist.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/motion": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/motion.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/mathway": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/mathway.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/symbolab": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/symbolab.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/geogebra": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/geogebra.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/desmos": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/desmos.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/pika": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/pika.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/suno": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/suno.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/udio": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/udio.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/murf": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/murf.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/tome": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/tome.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/beautiful-ai": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/beautiful-ai.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/gamma": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/gamma.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/writesonic": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/writesonic.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/anyword": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/anyword.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/scite": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/scite.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/research-rabbit": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/research-rabbit.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/semantic-scholar": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/semantic-scholar.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/scholarcy": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/scholarcy.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/woebot": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/woebot.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/forest": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/forest.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/anki": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/anki.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/explain-everything": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/explain-everything.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/lumosity": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/lumosity.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/codecademy": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/codecademy.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/leetcode": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/leetcode.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/hugging-face": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/hugging-face.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/ideogram": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/ideogram.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/leonardo": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/leonardo.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/remove-bg": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/remove-bg.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/upscayl": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/upscayl.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/d-id": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/d-id.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/heygen": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/heygen.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/loom": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/loom.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/notta": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/notta.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/taskade": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/taskade.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/reclaim": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/reclaim.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/glasp": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/glasp.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/humata": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/humata.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/tactiq": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/tactiq.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/wix-ai": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/wix-ai.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/framer": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/framer.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/interviews-ai": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/interviews-ai.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/kickresume": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/kickresume.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/jobscan": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/jobscan.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/rytr": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/rytr.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/sudowrite": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/sudowrite.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/magic-school": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/magic-school.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/diffit": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/diffit.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/bharatgen": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/bharatgen.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/imerit": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/imerit.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/tools/zoho-ai": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tools/[slug]",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/zoho-ai.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": null,
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/index.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    }
+  },
+  "dynamicRoutes": {
+    "/tools/[slug]": {
+      "routeRegex": "^/tools/([^/]+?)(?:/)?$",
+      "dataRoute": "/_next/data/cUVnoG2-M6aVpoGhh3Lqj/tools/[slug].json",
+      "fallback": false,
+      "dataRouteRegex": "^/_next/data/cUVnoG2\\-M6aVpoGhh3Lqj/tools/([^/]+?)\\.json$",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    }
+  },
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "054292debe622a6107e3c8c3f670c033",
+    "previewModeSigningKey": "7265219e23355a5f60993c4275084dfcd6de6526cfa941bbd8dc57ba977f3d2b",
+    "previewModeEncryptionKey": "afb51125e54a5f51256db11ab527fef3ab1eafad9fdb74bf7bbafe300df659a1"
+  }
+}

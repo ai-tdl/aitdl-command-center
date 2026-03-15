@@ -1,0 +1,13 @@
+__turbopack_load_page_chunks__("/_app", [
+  "static/chunks/db90b_next_dist_compiled_deed7559._.js",
+  "static/chunks/db90b_next_dist_shared_lib_c53e59ca._.js",
+  "static/chunks/db90b_next_dist_client_76d318d8._.js",
+  "static/chunks/db90b_next_dist_34fdbc4e._.js",
+  "static/chunks/db90b_next_head_ad217fe3.js",
+  "static/chunks/db90b_react-dom_93d6a851._.js",
+  "static/chunks/db90b_44a5de76._.js",
+  "static/chunks/[root-of-the-server]__552890b5._.js",
+  "static/chunks/aitdl4_styles_globals_8716d418.css",
+  "static/chunks/aitdl4_pages__app_2da965e7._.js",
+  "static/chunks/turbopack-aitdl4_pages__app_d0e1f8d7._.js"
+])
