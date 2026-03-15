@@ -32,7 +32,7 @@ export default function App({
 }) {
   useEffect(() => {
     // Initial theme loading
-    const saved = localStorage.getItem('aitdl_theme') || 'dark'
+    const saved = localStorage.getItem('aitdl_theme') || 'light'
     document.documentElement.setAttribute('data-theme', saved)
   }, [])
 

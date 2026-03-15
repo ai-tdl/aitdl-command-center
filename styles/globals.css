@@ -7,18 +7,24 @@
 :root {
   --accent: #FF6B35;
   --accent-glow: rgba(255, 107, 53, 0.25);
-  --bg-primary: #030306;
-  --bg-secondary: #080812;
-  --bg-tertiary: #0C0C18;
-  --text-primary: #F8F9FA;
-  --text-secondary: rgba(248, 249, 250, 0.7);
-  --text-tertiary: rgba(248, 249, 250, 0.4);
-  --border: rgba(255, 255, 255, 0.08);
-  --card-bg: rgba(255, 255, 255, 0.03);
+  
+  /* LIGHT MODE DEFAULT */
+  --bg-primary: #F4F3F0;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #ECEAE5;
+  --bg-primary-blur: rgba(244, 243, 240, 0.88);
+  --text-primary: #1A1A1A;
+  --text-secondary: rgba(0,0,0,0.6);
+  --text-tertiary: rgba(0,0,0,0.35);
+  --text3: rgba(0,0,0,0.35);
+  --border: rgba(0,0,0,0.08);
+  --card-bg: rgba(0,0,0,0.04);
   /* Theme-aware component tokens */
-  --dock-bg: rgba(12, 12, 24, 0.75);
-  --glass-card-bg: rgba(13, 13, 21, 0.7);
-  --dock-border: rgba(255, 255, 255, 0.1);
+  --dock-bg: rgba(255,255,255,0.85);
+  --glass-card-bg: rgba(255,255,255,0.9);
+  --dock-border: rgba(0,0,0,0.08);
+  --search-bg: rgba(255,255,255,0.95);
+  
   --radius: 16px;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --font-base: 15px;
@@ -26,40 +32,47 @@
   --grid-gap: 32px;
 }
 
-html[data-theme="light"] {
-  --bg-primary: #F4F3F0;
-  --bg-secondary: #FFFFFF;
-  --bg-tertiary: #ECEAE5;
-  --text-primary: #1A1A1A;
-  --text-secondary: rgba(0,0,0,0.6);
-  --text-tertiary: rgba(0,0,0,0.35);
-  --border: rgba(0,0,0,0.08);
-  --card-bg: rgba(0,0,0,0.04);
-  --dock-bg: rgba(255,255,255,0.85);
-  --glass-card-bg: rgba(255,255,255,0.9);
-  --dock-border: rgba(0,0,0,0.08);
+html[data-theme="dark"] {
+  --bg-primary: #030306;
+  --bg-secondary: #080812;
+  --bg-tertiary: #0C0C18;
+  --bg-primary-blur: rgba(3, 3, 6, 0.75);
+  --text-primary: #F8F9FA;
+  --text-secondary: rgba(248, 249, 250, 0.7);
+  --text-tertiary: rgba(248, 249, 250, 0.4);
+  --text3: rgba(248, 249, 250, 0.4);
+  --border: rgba(255, 255, 255, 0.08);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --dock-bg: rgba(12, 12, 24, 0.75);
+  --glass-card-bg: rgba(13, 13, 21, 0.7);
+  --dock-border: rgba(255, 255, 255, 0.1);
+  --search-bg: rgba(13, 13, 21, 0.8);
 }
 
 html[data-theme="glass"] {
   --bg-primary: #030306;
   --bg-secondary: rgba(255, 255, 255, 0.03);
   --bg-tertiary: rgba(255, 255, 255, 0.05);
+  --bg-primary-blur: rgba(3, 3, 6, 0.6);
   --border: rgba(255, 255, 255, 0.1);
   --card-bg: rgba(255, 255, 255, 0.04);
   --dock-bg: rgba(255, 255, 255, 0.06);
   --glass-card-bg: rgba(255, 255, 255, 0.05);
   --dock-border: rgba(255, 255, 255, 0.12);
+  --search-bg: rgba(255, 255, 255, 0.06);
 }
 
 html[data-theme="midnight"] {
   --bg-primary: #000000;
   --bg-secondary: #05050A;
   --bg-tertiary: #0A0A15;
+  --bg-primary-blur: rgba(0, 0, 0, 0.85);
   --border: rgba(255, 255, 255, 0.04);
   --card-bg: rgba(255, 255, 255, 0.02);
   --dock-bg: rgba(0, 0, 0, 0.8);
   --glass-card-bg: rgba(5, 5, 10, 0.9);
   --dock-border: rgba(255, 255, 255, 0.04);
+  --search-bg: rgba(0, 0, 0, 0.7);
 }
 
 body {
@@ -91,14 +104,14 @@ body {
 
 /* Premium Utilities */
 .glass {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--card-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
 }
 
 .premium-text-gradient {
-  background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-tertiary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -152,8 +165,8 @@ body {
 
 .premium-search:focus {
   border-color: var(--accent) !important;
-  box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1), 0 8px 32px rgba(0,0,0,0.4) !important;
-  background: rgba(13, 13, 21, 0.95) !important;
+  box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1), 0 8px 32px rgba(0,0,0,0.2) !important;
+  background: var(--search-bg) !important;
 }
 
 /* Cinematic Animations */

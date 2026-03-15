@@ -71,7 +71,7 @@ const ls = {
 }
 
 export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
-  const [theme,    setTheme]    = useState('dark')
+  const [theme,    setTheme]    = useState('light')
   const [view,     setView]     = useState('grid')
   const [uiMode,   setUiMode]   = useState('directory')
   const [fontSize, setFontSize] = useState('medium')
@@ -82,7 +82,7 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
 
   // ── Load from storage ──────────────────────────────────────────────────
   useEffect(() => {
-    const sTheme    = ls.get('aitdl_theme',     'dark')
+    const sTheme    = ls.get('aitdl_theme',     'light')
     const sLang     = ls.get('aitdl_lang',      'en')
     const sView     = ls.get('aitdl_view',      'grid')
     const sUiMode   = ls.get('aitdl_ui_mode',   'directory')

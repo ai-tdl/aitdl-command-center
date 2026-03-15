@@ -136,11 +136,11 @@ const SkeletonCard = () => (
     flexDirection: 'column',
     gap: 16
   }}>
-    <div style={{ height: 40, width: 40, background: 'rgba(255,255,255,0.05)', borderRadius: 12 }} />
-    <div style={{ height: 24, width: '60%', background: 'rgba(255,255,255,0.08)', borderRadius: 4 }} />
-    <div style={{ height: 16, width: '90%', background: 'rgba(255,255,255,0.04)', borderRadius: 4 }} />
-    <div style={{ height: 16, width: '70%', background: 'rgba(255,255,255,0.04)', borderRadius: 4 }} />
-    <div style={{ marginTop: 'auto', height: 44, width: '100%', background: 'rgba(255,255,255,0.02)', borderRadius: 12 }} />
+    <div style={{ height: 40, width: 40, background: 'var(--border)', borderRadius: 12 }} />
+    <div style={{ height: 24, width: '60%', background: 'var(--text-tertiary)', borderRadius: 4 }} />
+    <div style={{ height: 16, width: '90%', background: 'var(--border)', borderRadius: 4 }} />
+    <div style={{ height: 16, width: '70%', background: 'var(--border)', borderRadius: 4 }} />
+    <div style={{ marginTop: 'auto', height: 44, width: '100%', background: 'var(--border)', borderRadius: 12 }} />
   </div>
 )
 
@@ -311,7 +311,7 @@ export default function Home({ tools }) {
             {uiMode === 'command' ? (
               <span className="pulse-glow" style={{ 
                 color: 'var(--text-primary)', 
-                background: 'linear-gradient(to bottom, #fff, #888)',
+                background: 'linear-gradient(to bottom, var(--text-primary), var(--text-tertiary))',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}>
@@ -391,10 +391,10 @@ export default function Home({ tools }) {
               onChange={e => setSearch(e.target.value)}
               placeholder={t.search}
               style={{
-                width: '100%', padding: '20px 28px', background: 'rgba(13, 13, 21, 0.8)',
+                width: '100%', padding: '20px 28px', background: 'var(--search-bg)',
                 backdropFilter: 'blur(10px)', border: '1px solid var(--border)',
                 borderRadius: 16, fontSize: 16, color: 'var(--text-primary)', outline: 'none',
-                transition: 'all 0.3s var(--ease)', boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+                transition: 'all 0.3s var(--ease)', boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
               }}
               className="premium-search"
             />

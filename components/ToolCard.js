@@ -146,11 +146,11 @@ export default function ToolCard({
         }}>
           <div style={{ 
             fontSize: 42,
-            filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.5))',
-            background: 'rgba(255,255,255,0.03)',
+            filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.2))',
+            background: 'var(--card-bg)',
             padding: 12,
             borderRadius: 16,
-            border: '1px solid rgba(255,255,255,0.05)',
+            border: '1px solid var(--border)',
             transition: 'all 0.3s ease',
           }} className="emoji-box" aria-hidden="true">{tool.emoji}</div>
           <h3 style={{ 
@@ -190,12 +190,12 @@ export default function ToolCard({
               fontSize: 11,
               padding: '4px 14px',
               borderRadius: 12,
-              background: 'rgba(255,255,255,0.03)',
+              background: 'var(--card-bg)',
               color: 'var(--text-tertiary)',
               fontWeight: 700,
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
-              border: '1px solid rgba(255,255,255,0.05)',
+              border: '1px solid var(--border)',
             }}>
               {cat}
             </span>
@@ -215,8 +215,8 @@ export default function ToolCard({
           style={{
             flex: 1.5,
             padding: '14px',
-            background: 'rgba(255,255,255,0.03)',
-            border: '1px solid rgba(255,255,255,0.1)',
+            background: 'var(--card-bg)',
+            border: '1px solid var(--border)',
             borderRadius: 14,
             fontSize: 14,
             fontWeight: 800,
@@ -239,7 +239,7 @@ export default function ToolCard({
             background: isSelected 
               ? 'var(--accent)' 
               : 'transparent',
-            border: `1px solid ${isSelected ? 'var(--accent)' : 'rgba(255,255,255,0.1)'}`,
+            border: `1px solid ${isSelected ? 'var(--accent)' : 'var(--border)'}`,
             borderRadius: 14,
             fontSize: 13,
             fontWeight: 800,

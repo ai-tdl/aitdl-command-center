@@ -32,6 +32,20 @@ export default function Document() {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet" />
         
         <link rel="icon" href="/favicon.svg"/>
+        
+        {/* Anti-Flicker Script for Theme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('aitdl_theme') || 'light';
+                  document.documentElement.setAttribute('data-theme', saved);
+                } catch (e) {}
+              })();
+            `
+          }}
+        />
       </Head>
       <body>
         <Main />

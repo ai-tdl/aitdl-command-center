@@ -54,12 +54,12 @@ export default function Header({
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      background: 'var(--bg-primary-blur, rgba(3, 3, 6, 0.7))',
+      background: 'var(--bg-primary-blur)',
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
       borderBottom: '1px solid var(--border)',
       padding: '0 var(--header-px, 24px)',
-      transition: 'all 0.3s var(--ease)',
+      transition: 'background 0.3s ease, border-color 0.3s ease',
     }}>
       <div style={{
         maxWidth: 1200,
