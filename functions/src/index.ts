@@ -5,3 +5,4 @@ export { checkSiteHealth } from "./checkSiteHealth";
 export { getGithubActivity } from "./getGithubActivity";
 export { rollbackDeploy } from "./rollbackDeploy";
 export { logEvent } from "./logEvent";
+export { scheduledBackup, triggerManualBackup } from "./backupSystem";

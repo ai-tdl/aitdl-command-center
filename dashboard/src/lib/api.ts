@@ -44,3 +44,7 @@ export async function mergeBranch(from: string, to: string) {
 export async function rollbackDeploy() {
   return await callFunction("rollbackDeploy");
 }
+
+export async function triggerManualBackup() {
+  return await callFunction("triggerManualBackup");
+}

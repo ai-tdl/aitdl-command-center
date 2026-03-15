@@ -8,6 +8,7 @@ import RepoActivity from './components/RepoActivity';
 import HealthMonitor from './components/HealthMonitor';
 import BuildLogs from './components/BuildLogs';
 import IncidentTracker from './components/IncidentTracker';
+import BackupManager from './components/BackupManager';
 
 function App() {
   const [user, setUser] = useState<any>(null);
@@ -94,6 +95,7 @@ function App() {
 
         <div className="lg:col-span-4 flex flex-col gap-6">
           <BranchPanel />
+          <BackupManager />
           <Timeline />
           <RepoActivity />
         </div>
