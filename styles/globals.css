@@ -221,3 +221,18 @@ body {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+/* Responsive Utilities */
+.hidden {
+  display: none !important;
+}
+
+.lg-block {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .lg-block {
+    display: block !important;
+  }
+}
