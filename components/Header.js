@@ -23,6 +23,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import SettingsPanel from './SettingsPanel'
+import { useAuth } from '../lib/useAuth'
 
 const LANG = {
   en: {
@@ -46,6 +47,7 @@ export default function Header({
   lang, setLang 
 }) {
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const { user } = useAuth()
 
   const t = LANG[lang]
 
@@ -157,6 +159,60 @@ export default function Header({
 
           {/* Action Hub */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            {user ? (
+              <Link href="/profile" style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                textDecoration: 'none',
+              }}>
+                {user.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt={user.displayName}
+                    style={{
+                      width: 32,
+                      height: 32,
+                      borderRadius: '50%',
+                      border: '2px solid var(--accent)',
+                      transition: 'transform 0.2s',
+                    }}
+                    onMouseOver={e => e.currentTarget.style.transform = 'scale(1.1)'}
+                    onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+                  />
+                ) : (
+                  <div style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: '50%',
+                    background: 'var(--accent)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: 14,
+                    fontWeight: 800,
+                    color: '#fff',
+                  }}>
+                    {(user.displayName || user.email || 'U')[0].toUpperCase()}
+                  </div>
+                )}
+              </Link>
+            ) : (
+              <Link href="/login" style={{
+                fontSize: 13,
+                fontWeight: 700,
+                color: 'var(--text-secondary)',
+                textDecoration: 'none',
+                padding: '8px 16px',
+                border: '1px solid var(--border)',
+                borderRadius: 10,
+                transition: 'all 0.2s',
+                background: 'var(--bg-tertiary)',
+              }} className="login-btn">
+                Login
+              </Link>
+            )}
+
             {/* GEAR BUTTON */}
             <button 
               onClick={() => setSettingsOpen(true)}
