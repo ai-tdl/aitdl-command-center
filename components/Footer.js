@@ -21,6 +21,7 @@
  */
 
 import { useState, useEffect } from 'react'
+import FooterHistory from './FooterHistory'
 
 const LANG = {
   en: {
@@ -193,29 +194,63 @@ export default function Footer() {
         textAlign: 'center',
       }}>
         <div style={{
-          fontSize: 13,
-          color: 'var(--text3)',
-          lineHeight: 2,
-          fontWeight: 500,
+          fontSize: 14,
+          color: 'var(--text-primary)',
+          fontWeight: 700,
+          marginBottom: 8,
+          fontFamily: 'Outfit',
+          letterSpacing: '0.05em',
         }}>
-          {t.built} 
-          <span style={{ 
-            color: 'var(--text-primary)', 
-            fontWeight: 800, 
-            marginLeft: 6,
-            fontFamily: 'Outfit',
-            letterSpacing: '0.05em',
-          }}>
-            JRM
-          </span>
-          <br />
-          <span style={{ fontSize: 11, opacity: 0.8 }}>{t.dev}</span>
-          <br />
-          <span style={{ fontSize: 11, opacity: 0.5, marginTop: 12, display: 'block' }}>
-            © {new Date().getFullYear()} AITDL — Artificial Intelligence Technology & Deep Learning | All Rights Reserved
-          </span>
+          Jawahar Ramkripal Mallah
         </div>
+        
+        <p style={{ 
+          fontSize: 11, 
+          color: 'var(--text-tertiary)', 
+          marginBottom: 20,
+          lineHeight: 1.6
+        }}>
+          Software Developer & Service Provider since 2007 · Published Author
+        </p>
+
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 8,
+          justifyContent: 'center',
+          marginBottom: 24
+        }}>
+          {[
+            'Built with ❤️ for Bharat',
+            'MIT License 2026',
+            'aitdl.com'
+          ].map(pill => (
+            <span key={pill} style={{
+              fontSize: 10,
+              fontWeight: 700,
+              padding: '4px 12px',
+              borderRadius: 100,
+              background: 'rgba(255,255,255,0.03)',
+              border: '1px solid var(--border)',
+              color: 'var(--text-secondary)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em'
+            }}>
+              {pill}
+            </span>
+          ))}
+        </div>
+
+        <p style={{ 
+          fontSize: 11, 
+          color: 'var(--text-tertiary)', 
+          opacity: 0.5 
+        }}>
+          © 2026 AITDL
+        </p>
       </div>
+
+      <FooterHistory />
     </footer>
   )
 }
