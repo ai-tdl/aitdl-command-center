@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import { verifyAdminToken } from "./auth";
 
 export const mergeBranch = functions.https.onRequest(async (req, res) => {
-  if (!verifyAdminToken(req)) { res.status(401).send("Unauthorized"); return; }
+  if (!await verifyAdminToken(req)) { res.status(401).send("Unauthorized"); return; }
 
   const { from, to } = req.body as { from: string; to: string };
 
