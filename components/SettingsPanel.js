@@ -66,8 +66,18 @@ const ACCENTS = [
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 const ls = {
-  get: (k, def) => { try { return localStorage.getItem(k) || def } catch { return def } },
-  set: (k, v)  => { try { localStorage.setItem(k, v) } catch {} },
+  get: (k, def) => { 
+    try { 
+      const key = k === 'aitdl_theme' ? 'theme' : k;
+      return localStorage.getItem(key) || def 
+    } catch { return def } 
+  },
+  set: (k, v)  => { 
+    try { 
+      const key = k === 'aitdl_theme' ? 'theme' : k;
+      localStorage.setItem(key, v) 
+    } catch {} 
+  },
 }
 
 export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
@@ -76,13 +86,21 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
   const [uiMode,   setUiMode]   = useState('directory')
   const [fontSize, setFontSize] = useState('medium')
   const [indiaMode, setIndiaMode] = useState(false)
+  const [indiaOrigin, setIndiaOrigin] = useState('all')
   const [accent,   setAccent]   = useState('#FF6B35')
   const [tab,      setTab]      = useState('appearance') // appearance | language | more
   const panelRef = useRef(null)
 
   // ── Load from storage ──────────────────────────────────────────────────
   useEffect(() => {
-    const sTheme    = ls.get('aitdl_theme',     'light')
+    const savedTheme = localStorage.getItem('theme');
+    let sTheme = savedTheme;
+    
+    if (!savedTheme) {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      sTheme = prefersDark ? 'dark' : 'light';
+    }
+
     const sLang     = ls.get('aitdl_lang',      'en')
     const sView     = ls.get('aitdl_view',      'grid')
     const sUiMode   = ls.get('aitdl_ui_mode',   'directory')
@@ -90,7 +108,7 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
     const sIndia    = ls.get('aitdl_india_mode','false') === 'true'
     const sAccent   = ls.get('aitdl_accent',    '#FF6B35')
 
-    setTheme(sTheme);    applyTheme(sTheme, false)
+    setTheme(sTheme);    applyTheme(sTheme, !!savedTheme)
     setLang(sLang)
     setView(sView)
     setUiMode(sUiMode)
@@ -109,8 +127,47 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
   // ── Apply fns ─────────────────────────────────────────────────────────
   const applyTheme = (t, save = true) => {
     document.documentElement.setAttribute('data-theme', t)
+    document.documentElement.classList.remove('dark','glass','midnight');
+    
+    if (t === 'dark' || t === 'midnight') {
+      document.documentElement.classList.add('dark');
+    }
+    
     setTheme(t)
-    if (save) { ls.set('aitdl_theme', t); dispatch() }
+    if (save) { 
+      localStorage.setItem('theme', t); 
+      dispatch() 
+    }
+  }
+
+  const resetTheme = () => {
+    // 1. Clear saved preference
+    localStorage.removeItem('theme');
+    
+    // 2. Remove all theme classes/attrs
+    document.documentElement
+      .classList.remove(
+        'dark', 'light', 'glass', 'midnight'
+      );
+    document.documentElement
+      .removeAttribute('data-theme');
+    
+    // 3. Follow OS preference
+    const prefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches;
+    
+    if (prefersDark) {
+      document.documentElement
+        .classList.add('dark');
+      document.documentElement.setAttribute('data-theme', 'dark');
+      setTheme('dark');
+    } else {
+      document.documentElement
+        .classList.remove('dark');
+      document.documentElement.setAttribute('data-theme', 'light');
+      setTheme('light');
+    }
   }
 
   const applyFontSize = (fs, save = true) => {
@@ -152,7 +209,7 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
   const dispatch = () => window.dispatchEvent(new Event('storage'))
 
   const resetAll = () => {
-    applyTheme('dark')
+    resetTheme()
     applyLang('en')
     applyView('grid')
     applyUiMode('directory')

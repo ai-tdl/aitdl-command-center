@@ -39,8 +39,16 @@ export default function Document() {
             __html: `
               (function() {
                 try {
-                  var saved = localStorage.getItem('aitdl_theme') || 'light';
-                  document.documentElement.setAttribute('data-theme', saved);
+                  var saved = localStorage.getItem('theme');
+                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  var theme = saved || (prefersDark ? 'dark' : 'light');
+                  
+                  document.documentElement.setAttribute('data-theme', theme);
+                  if (theme === 'dark' || theme === 'midnight') {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
                 } catch (e) {}
               })();
             `
