@@ -816,12 +816,26 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
         .sp-full-reset:hover { border-color: #ff4444; color: #ff4444; background: rgba(255,68,68,0.05); }
 
         /* ── Mobile ── */
-        @media (max-width: 480px) {
-          .sp-overlay { padding: 0; align-items: flex-end; justify-content: stretch; }
+        @media (max-width: 768px) {
+          .sp-overlay {
+            padding: 0;
+            align-items: flex-end;
+            justify-content: stretch;
+            overflow: hidden;
+          }
           .sp-panel {
             width: 100%;
+            max-width: 100%;
             border-radius: 20px 20px 0 0;
-            max-height: 80vh;
+            max-height: 85vh;
+            min-height: 200px;
+            overflow-y: auto;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: auto;
+            transform: none;
             animation: sp-slide-up 0.25s cubic-bezier(0.34,1.56,0.64,1) forwards;
           }
           @keyframes sp-slide-up {
