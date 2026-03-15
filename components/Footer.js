@@ -8,7 +8,7 @@
  *            Published Author | Tech Entrepreneur
  * @website   https://aitdl.com
  * @email     hello@aitdl.com
- * @copyright © 2025 All Rights Reserved
+ * @copyright © 2026 All Rights Reserved
  * ============================================
  * @books
  * - When Code Learned to Feel:
@@ -33,7 +33,7 @@ const LANG = {
     connect: 'Connect',
     built: 'Built with ❤️ for Bharat by',
     dev: 'Software Developer since 2007 | Published Author',
-    rights: '© 2025 AITDL — All Rights Reserved',
+    rights: '© 2026 AITDL — All Rights Reserved',
     suggest: 'Suggest a Tool'
   },
   hi: {
@@ -46,7 +46,7 @@ const LANG = {
     connect: 'संपर्क',
     built: 'भारत के लिए ❤️ के साथ निर्मित',
     dev: '2007 से सॉफ्टवेयर डेवलपर | प्रकाशित लेखक',
-    rights: '© 2025 AITDL — सर्वाधिकार सुरक्षित',
+    rights: '© 2026 AITDL — सर्वाधिकार सुरक्षित',
     suggest: 'टूल का सुझाव दें'
   },
   sa: {

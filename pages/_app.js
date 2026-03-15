@@ -8,7 +8,7 @@
  *            Published Author | Tech Entrepreneur
  * @website   https://aitdl.com
  * @email     hello@aitdl.com
- * @copyright © 2025 All Rights Reserved
+ * @copyright © 2026 All Rights Reserved
  * ============================================
  * @books
  * - When Code Learned to Feel:
@@ -26,6 +26,7 @@ import { useEffect } from 'react'
 import ErrorBoundary from '../components/ErrorBoundary'
 import { GlobalSEO } from '../lib/seo'
 import { HomeJsonLD } from '../lib/jsonld'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function App({ 
   Component, pageProps 
@@ -43,6 +44,7 @@ export default function App({
       </Head>
       <HomeJsonLD toolCount={100} />
       <Component {...pageProps} />
+      <Analytics />
     </ErrorBoundary>
   )
 }

@@ -8,7 +8,7 @@
  *            Published Author | Tech Entrepreneur
  * @website   https://aitdl.com
  * @email     hello@aitdl.com
- * @copyright © 2025 AITDL - Artificial Intelligence Technology & Deep Learning
+ * @copyright © 2026 AITDL - Artificial Intelligence Technology & Deep Learning
  * ============================================
  * @books
  * - When Code Learned to Feel:
@@ -157,6 +157,7 @@ export default function Home({ tools }) {
   const [compareList, setCompareList] = useState([])
   const [filtered, setFiltered] = useState([])
   const [loading, setLoading] = useState(true)
+  // TODO: Replace with real Vercel Analytics pageview count via API when available
   const [visitorCount, setVisitorCount] = useState(8506)
   const router = useRouter()
   const t = LANG_TEXT[lang] || LANG_TEXT.en
@@ -174,6 +175,7 @@ export default function Home({ tools }) {
 
     // Stats
     const savedVisitors = localStorage.getItem('aitdl_visitors')
+    // TODO: Replace with real Vercel Analytics pageview count via API when available
     const count = savedVisitors ? parseInt(savedVisitors) + 1 : 8506
     setVisitorCount(count)
     localStorage.setItem('aitdl_visitors', count)

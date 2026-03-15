@@ -6,7 +6,7 @@
  * Software Developer & Service Provider since 2007
  * Published Author | Tech Entrepreneur
  * https://aitdl.com | hello@aitdl.com
- * © 2025 All Rights Reserved
+ * © 2026 All Rights Reserved
  */
 
 const nextConfig = {

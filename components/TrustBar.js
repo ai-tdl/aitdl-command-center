@@ -3,7 +3,7 @@
  * AITDL — India's AI Command Center
  * ============================================
  * @author    Jawahar Ramkripal Mallah
- * @copyright © 2025 All Rights Reserved
+ * @copyright © 2026 All Rights Reserved
  * ============================================
  */
 
