@@ -1,6 +1,6 @@
 self.__BUILD_MANIFEST = {
   "/": [
-    "static/chunks/5399dc56f9d3237d.js"
+    "static/chunks/a1f920423b894331.js"
   ],
   "/404": [
     "static/chunks/96dccba5101787da.js"
@@ -9,19 +9,19 @@ self.__BUILD_MANIFEST = {
     "static/chunks/58fa547df922b53d.js"
   ],
   "/about": [
-    "static/chunks/fc96ee18aeee0462.js"
+    "static/chunks/fc7ef7110846b608.js"
   ],
   "/about-founder": [
     "static/chunks/55d47d3cdd6e297a.js"
   ],
   "/ai-battle": [
-    "static/chunks/720ffcf47be5627e.js"
+    "static/chunks/79756ec4cb1ee36c.js"
   ],
   "/compare": [
-    "static/chunks/a15ff61835d58393.js"
+    "static/chunks/57dc12a11cc95bb2.js"
   ],
   "/tools/[slug]": [
-    "static/chunks/54b036fb603d7765.js"
+    "static/chunks/ba46f29d6363c1ef.js"
   ],
   "__rewrites": {
     "afterFiles": [],
