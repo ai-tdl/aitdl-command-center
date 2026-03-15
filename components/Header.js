@@ -75,7 +75,7 @@ export default function Header({
           alignItems: 'center',
           gap: 12,
           textDecoration: 'none',
-        }} title="Artificial Intelligence Technology & Deep Learning">
+        }} title="AITDL — India's AI Command Center Home" aria-label="AITDL Home">
           <div style={{
             width: 48, height: 48,
             display: 'flex',
@@ -175,6 +175,7 @@ export default function Header({
                 transition: 'all 0.3s var(--ease)',
               }}
               className="gear-btn"
+              aria-label="Open Settings"
             >
               ⚙️
             </button>

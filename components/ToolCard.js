@@ -152,7 +152,7 @@ export default function ToolCard({
             borderRadius: 16,
             border: '1px solid rgba(255,255,255,0.05)',
             transition: 'all 0.3s ease',
-          }} className="emoji-box">{tool.emoji}</div>
+          }} className="emoji-box" aria-hidden="true">{tool.emoji}</div>
           <h3 style={{ 
             fontSize: 22, 
             fontWeight: 900, 

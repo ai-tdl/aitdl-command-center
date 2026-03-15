@@ -20,9 +20,12 @@
  * ============================================
  */
 
+import Head from 'next/head'
 import '../styles/globals.css'
 import { useEffect } from 'react'
 import ErrorBoundary from '../components/ErrorBoundary'
+import { GlobalSEO } from '../lib/seo'
+import { HomeJsonLD } from '../lib/jsonld'
 
 export default function App({ 
   Component, pageProps 
@@ -35,6 +38,10 @@ export default function App({
 
   return (
     <ErrorBoundary>
+      <Head>
+        {GlobalSEO()}
+      </Head>
+      <HomeJsonLD toolCount={100} />
       <Component {...pageProps} />
     </ErrorBoundary>
   )

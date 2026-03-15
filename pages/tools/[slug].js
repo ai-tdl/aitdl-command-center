@@ -22,6 +22,8 @@
 
 import Head from 'next/head'
 import Link from 'next/link'
+import { ToolSEO } from '../../lib/seo'
+import { ToolJsonLD } from '../../lib/jsonld'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import ToolCard from '../../components/ToolCard'
@@ -51,34 +53,9 @@ export default function ToolPage({
   return (
     <>
       <Head>
-        <title>
-          {tool.name} — Free AI Tool | AITDL
-        </title>
-        <meta name="description"
-          content={`${tool.description} 
-          India Score: ${tool.india_score}/5. 
-          ${tool.pricing}. Best for 
-          Indian students.`}
-        />
-        <link rel="canonical"
-          href={`https://aitdl.com/tools/${tool.slug}`}
-        />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": tool.name,
-            "description": tool.description,
-            "url": tool.url,
-            "applicationCategory": "AIApplication",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "INR"
-            }
-          })
-        }} />
+        {ToolSEO({ tool })}
       </Head>
+      <ToolJsonLD tool={tool} />
 
       <Header lang={lang} setLang={setLang}/>
 

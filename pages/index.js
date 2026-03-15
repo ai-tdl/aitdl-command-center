@@ -21,8 +21,9 @@
  * Updated: 2026-03-14 - Final UI Restoration Verified
  */
 
-import { useState, useEffect } from 'react'
 import Head from 'next/head'
+import { useState, useEffect } from 'react'
+import { PageSEO } from '../lib/seo'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import ToolCard from '../components/ToolCard'
@@ -262,8 +263,11 @@ export default function Home({ tools }) {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
       <Head>
-        <title>AITDL — India's AI Command Center</title>
-        <meta name="description" content="Artificial Intelligence Technology & Deep Learning - Empowering India's Future with Advanced AI" />
+        {PageSEO({
+          title: "AITDL — India's #1 AI Command Center",
+          description: "100+ verified AI tools for Indian students. JEE, NEET, UPSC ke liye best free AI tools — ek jagah. Artificial Intelligence Technology & Deep Learning.",
+          slug: "/"
+        })}
       </Head>
 
       <Header lang={lang} setLang={setLang} />
@@ -291,7 +295,7 @@ export default function Home({ tools }) {
             padding: '6px 20px',
             marginBottom: 32,
           }}>
-            INDIA'S NO. 1 AI COMMAND CENTER
+            INDIA&apos;S NO. 1 AI COMMAND CENTER
           </div>
 
           <h1 style={{
