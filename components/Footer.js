@@ -32,7 +32,7 @@ const LANG = {
     about: 'About the Project',
     connect: 'Connect',
     built: 'Built with ❤️ for Bharat by',
-    dev: 'Software Developer since 2007 | Published Author',
+    dev: 'Software Developer & Service Provider since 2007 | Published Author',
     rights: '© 2026 AITDL — All Rights Reserved',
     suggest: 'Suggest a Tool'
   },
