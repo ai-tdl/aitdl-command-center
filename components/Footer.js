@@ -233,6 +233,7 @@ export default function Footer() {
           ))}
         </div>
 
+        <FooterHistory />
         <p style={{ 
           fontSize: 11, 
           color: 'var(--text-tertiary)', 
@@ -241,8 +242,6 @@ export default function Footer() {
           © 2026 AITDL
         </p>
       </div>
-
-      <FooterHistory />
     </footer>
   )
 }
