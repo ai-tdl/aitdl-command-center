@@ -210,8 +210,8 @@ export default function ProfilePage() {
               ['❤️', profile.savedTools?.length || 0, 'Saved Tools'],
               ['📋', profile.toolLists?.length || 0, 'Custom Lists'],
               ['🔍', profile.searchHistory?.length || 0, 'Analytic Queries'],
-              ['⚙️', (profile.dashboardModules || []).length, 'Active Modules'],
-            ].map(([icon, count, label]) => (
+              user?.isAdmin ? ['⚙️', (profile.dashboardModules || []).length, 'Active Modules'] : null,
+            ].filter(Boolean).map(([icon, count, label]) => (
               <div key={label} style={{
                 background: 'rgba(255,255,255,0.02)',
                 border: '1px solid rgba(255,255,255,0.05)',
@@ -240,8 +240,8 @@ export default function ProfilePage() {
               ['saved', '❤️ SAVED TOOLS'],
               ['lists', '📋 LISTS'],
               ['history', '🔍 HISTORY'],
-              ['settings', '⚙️ SETTINGS'],
-            ].map(([id, label]) => (
+              user?.isAdmin && ['settings', '⚙️ SETTINGS'],
+            ].filter(Boolean).map(([id, label]) => (
               <button
                 key={id}
                 onClick={() => setActiveTab(id)}
