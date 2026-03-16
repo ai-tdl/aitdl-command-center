@@ -379,32 +379,36 @@ export default function Footer() {
           © 2026 AITDL
         </p>
 
-        {/* Vedic Timestamp Badge - Bottom Flat View */}
+        {/* Vedic Timestamp Badge - Embossed View */}
         {mounted && vs && (
           <div style={{ 
-            display: 'flex', 
+            display: 'inline-flex', 
             flexDirection: 'column', 
             alignItems: 'center', 
-            gap: 2, 
+            gap: 6, 
             marginTop: 24,
-            opacity: 0.9
+            padding: '12px 28px',
+            borderRadius: '12px',
+            background: 'linear-gradient(145deg, rgba(255,255,255,0.03), rgba(0,0,0,0.3))',
+            boxShadow: 'inset 1px 1px 2px rgba(255,255,255,0.05), inset -1px -1px 2px rgba(0,0,0,0.4), 2px 2px 6px rgba(0,0,0,0.5)',
+            border: '1px solid rgba(255,255,255,0.02)',
           }}>
             <div style={{ 
-              fontSize: 12, 
+              fontSize: 14, 
               fontWeight: 800, 
               color: '#BA7517', 
               letterSpacing: '0.05em', 
-              textShadow: '0 0 10px rgba(186,117,23,0.2)' 
+              textShadow: '1px 1px 2px rgba(0,0,0,0.8), -1px -1px 0px rgba(255,255,255,0.1)' 
             }}>
               {vs.line1}
             </div>
             <div style={{ 
-              fontSize: 10, 
-              fontWeight: 600, 
-              color: 'var(--text-tertiary)', 
+              fontSize: 12, 
+              fontWeight: 700, 
+              color: 'orange', 
               letterSpacing: '0.1em', 
               textTransform: 'uppercase', 
-              opacity: 0.8 
+              textShadow: '1px 1px 2px rgba(0,0,0,0.8), -1px -1px 0px rgba(255,255,255,0.1)'
             }}>
               {vs.line2}
             </div>
