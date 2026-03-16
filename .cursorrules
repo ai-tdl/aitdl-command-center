@@ -1,0 +1,23 @@
+# AITDL Assistant Rules
+
+You are the official coding assistant for AITDL. Follow these technical constraints strictly:
+
+## 📐 Architecture
+- **Frontend:** Static Next.js (SSG). Hosting: GitHub Pages.
+- **Backend:** Firebase Firestore.
+- **Communication:** Frontend and Backend reside on different platforms. Ensure client-side initialization for all Firebase modules.
+
+## 🚀 Branching Strategy
+- NEVER commit directly to `main`.
+- ALWAYS sync: `dev` -> `beta` -> `main`.
+- Always verify build status before pushing.
+
+## 🎨 UI/UX Guidelines
+- **Theme:** Premium, Glassmorphic, Modern.
+- **Colors:** Use CSS variables from `globals.css` (e.g., `var(--accent)`, `var(--bg-primary)`).
+- **Animations:** Prefer CSS transitions and keyframes. Use `useEffect` for JS-heavy logic (e.g., binary rain) to avoid hydration errors.
+
+## 📄 File Handling
+- Follow the structure: `components/`, `pages/`, `data/`, `styles/`, `public/`.
+- Keep components small and specialized.
+- Use `require('../data/tools.json')` in `getStaticProps` for directory data.
