@@ -82,6 +82,69 @@ export default function Footer() {
 
   const t = LANG[lang]
 
+  // Binary morph animation
+  useEffect(() => {
+    const letters = [
+      {id:'fl-A', letter:'A', bin:'0100', mirror:false},
+      {id:'fl-I', letter:'I', bin:'0100', mirror:false},
+      {id:'fl-T', letter:'T', bin:'0101', mirror:false},
+      {id:'fl-D', letter:'D', bin:'0100', mirror:true},
+      {id:'fl-L', letter:'L', bin:'0100', mirror:true},
+    ]
+
+    const morphFooter = () => {
+      letters.forEach(({id, letter, bin, mirror}, i) => {
+        const el = document.getElementById(id)
+        if (!el) return
+        setTimeout(() => {
+          el.style.opacity = '0.3'
+          el.style.color = 'var(--accent)'
+          el.style.fontSize = '12px'
+          el.style.fontFamily = "'Courier New', monospace"
+          el.style.transform = mirror ? 'scaleX(-1) scaleY(0.5)' : 'scaleY(0.5)'
+          el.textContent = bin
+          setTimeout(() => {
+            el.style.opacity = '1'
+            el.style.transform = mirror ? 'scaleX(-1) scaleY(1)' : 'scaleY(1)'
+            setTimeout(() => {
+              el.style.opacity = '0.3'
+              el.style.transform = mirror ? 'scaleX(-1) scaleY(0.5)' : 'scaleY(0.5)'
+              setTimeout(() => {
+                el.textContent = letter
+                el.style.fontSize = '56px'
+                el.style.fontFamily = "'Arial Black', Arial"
+                el.style.color = 'var(--text-primary)'
+                el.style.opacity = '1'
+                el.style.transform = mirror ? 'scaleX(-1)' : 'none'
+              }, 200)
+            }, 500)
+          }, 100)
+        }, i * 120)
+      })
+    }
+
+    const t1 = setTimeout(morphFooter, 800)
+    const t2 = setInterval(morphFooter, 8000)
+    return () => { clearTimeout(t1); clearInterval(t2) }
+  }, [])
+
+  // Tagline words reveal
+  useEffect(() => {
+    const ids = ['ftw1','fts1','ftw2','fts2','ftw3','fts3','ftw4','fts4','ftw5']
+    const t1 = setTimeout(() => {
+      ids.forEach((id, i) => {
+        setTimeout(() => {
+          const el = document.getElementById(id)
+          if (el) {
+            el.style.opacity = '1'
+            el.style.transform = 'translateY(0)'
+          }
+        }, i * 150)
+      })
+    }, 1200)
+    return () => clearTimeout(t1)
+  }, [])
+
   return (
     <footer style={{
       borderTop: '1px solid var(--border)',
@@ -194,23 +257,91 @@ export default function Footer() {
         paddingTop: 48,
         textAlign: 'center',
       }}>
+
+        {/* Large AITDⅅ with binary morph */}
         <div style={{
-          fontSize: 16,
-          color: 'var(--text-primary)',
-          fontWeight: 800,
+          display: 'inline-flex',
+          alignItems: 'baseline',
+          justifyContent: 'center',
           marginBottom: 12,
-          fontFamily: 'Outfit',
-          letterSpacing: '0.1em',
+          gap: 0,
         }}>
-          AITDL
+          {[
+            {id:'fl-A', l:'A', mirror:false},
+            {id:'fl-I', l:'I', mirror:false},
+            {id:'fl-T', l:'T', mirror:false},
+            {id:'fl-D', l:'D', mirror:true},
+            {id:'fl-L', l:'L', mirror:true},
+          ].map(({id, l, mirror}) => (
+            <span
+              key={id}
+              id={id}
+              style={{
+                fontFamily: "'Arial Black', Arial",
+                fontSize: '56px',
+                fontWeight: 900,
+                color: 'var(--text-primary)',
+                lineHeight: 1,
+                display: 'inline-block',
+                transform: mirror ? 'scaleX(-1)' : 'none',
+                transition: 'opacity 0.15s ease, transform 0.2s ease, color 0.2s ease, font-size 0.15s ease',
+                minWidth: l==='I' ? '32px' : '48px',
+                textAlign: 'center',
+              }}
+            >
+              {l}
+            </span>
+          ))}
         </div>
 
+        {/* Full tagline — word by word */}
+        <div style={{
+          height: '16px',
+          overflow: 'hidden',
+          marginBottom: 20,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 0,
+        }}>
+          {[
+            {id:'ftw1', text:'ARTIFICIAL', sep:false},
+            {id:'fts1', text:' · ', sep:true},
+            {id:'ftw2', text:'INTELLIGENCE', sep:false},
+            {id:'fts2', text:' · ', sep:true},
+            {id:'ftw3', text:'TECHNOLOGY', sep:false},
+            {id:'fts3', text:' · ', sep:true},
+            {id:'ftw4', text:'DEEP', sep:false},
+            {id:'fts4', text:' · ', sep:true},
+            {id:'ftw5', text:'LEARNING', sep:false},
+          ].map(({id, text, sep}) => (
+            <span
+              key={id}
+              id={id}
+              style={{
+                fontFamily: "'Courier New', monospace",
+                fontSize: '9px',
+                fontWeight: 700,
+                letterSpacing: '2px',
+                color: 'var(--accent)',
+                opacity: 0,
+                transform: 'translateY(8px)',
+                transition: 'opacity 0.3s ease, transform 0.3s ease',
+                display: 'inline-block',
+              }}
+            >
+              {text}
+            </span>
+          ))}
+        </div>
+
+        {/* Pills */}
         <div style={{
           display: 'flex',
           flexWrap: 'wrap',
           gap: 8,
           justifyContent: 'center',
-          marginBottom: 24
+          marginBottom: 20,
         }}>
           {[
             'Built with ❤️ for Bharat',
@@ -226,21 +357,21 @@ export default function Footer() {
               border: '1px solid var(--border)',
               color: 'var(--text-secondary)',
               textTransform: 'uppercase',
-              letterSpacing: '0.05em'
+              letterSpacing: '0.05em',
             }}>
               {pill}
             </span>
           ))}
         </div>
 
-        
-        <p style={{ 
-          fontSize: 11, 
-          color: 'var(--text-tertiary)', 
-          opacity: 0.5 
+        <p style={{
+          fontSize: 11,
+          color: 'var(--text-tertiary)',
+          opacity: 0.5,
         }}>
           © 2026 AITDL
         </p>
+
       </div>
     </footer>
   )
