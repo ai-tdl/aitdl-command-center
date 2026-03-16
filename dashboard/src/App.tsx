@@ -11,6 +11,8 @@ import IncidentTracker from './components/IncidentTracker';
 import BackupManager from './components/BackupManager';
 import DeploymentAnalytics from './components/DeploymentAnalytics';
 import ReleaseManager from './components/ReleaseManager';
+import { db } from './lib/firebase';
+import { doc, onSnapshot } from 'firebase/firestore';
 
 function App() {
   const [user, setUser] = useState<any>(null);
@@ -18,9 +20,20 @@ function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [profile, setProfile] = useState<any>(null);
+
   useEffect(() => {
     return onAuthStateChanged(auth, (u) => {
       setUser(u);
+      if (u) {
+        // Listen for profile changes
+        const unsubscribe = onSnapshot(doc(db, 'users', u.uid), (doc) => {
+          if (doc.exists()) setProfile(doc.data());
+        });
+        return () => unsubscribe();
+      } else {
+        setProfile(null);
+      }
       setLoading(false);
     });
   }, []);
@@ -108,20 +121,20 @@ function App() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-8 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <DeploymentStatus />
-            <HealthMonitor />
+            {profile?.dashboardModules?.includes('DeploymentStatus') !== false && <DeploymentStatus />}
+            {profile?.dashboardModules?.includes('HealthMonitor') !== false && <HealthMonitor />}
           </div>
-          <DeploymentAnalytics />
-          <IncidentTracker />
+          {profile?.dashboardModules?.includes('PerformancePulse') !== false && <DeploymentAnalytics />}
+          {profile?.dashboardModules?.includes('IncidentTracker') !== false && <IncidentTracker />}
           <BuildLogs />
         </div>
 
         <div className="lg:col-span-4 flex flex-col gap-6">
           <BranchPanel />
-          <ReleaseManager />
-          <BackupManager />
-          <Timeline />
-          <RepoActivity />
+          {profile?.dashboardModules?.includes('ReleaseManager') !== false && <ReleaseManager />}
+          {profile?.dashboardModules?.includes('BackupManager') !== false && <BackupManager />}
+          {profile?.dashboardModules?.includes('Timeline') !== false && <Timeline />}
+          {profile?.dashboardModules?.includes('RepoActivity') !== false && <RepoActivity />}
         </div>
       </div>
     </div>
