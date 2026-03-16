@@ -678,7 +678,7 @@ export default function Home({ tools }) {
       {compareList.length >= 2 && (
         <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: 'var(--bg-secondary)', borderTop: '1px solid var(--accent)', padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, zIndex: 200 }}>
           <span style={{ fontSize: 13, color: 'var(--text-secondary)' }}>{compareList.length} tools selected</span>
-          <button onClick={() => router.push('/compare')} style={{ padding: '8px 20px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Compare Now →</button>
+          <button onClick={() => { localStorage.setItem('aitdl_compare', JSON.stringify(compareList)); router.push('/compare') }} style={{ padding: '8px 20px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Compare Now →</button>
           <button onClick={() => setCompareList([])} style={{ padding: '8px 12px', background: 'transparent', color: 'var(--text-tertiary)', border: '0.5px solid var(--border)', borderRadius: 8, fontSize: 12, cursor: 'pointer' }}>Clear</button>
         </div>
       )}
