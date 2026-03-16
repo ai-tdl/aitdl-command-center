@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { auth } from './lib/firebase';
-import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import DeploymentStatus from './components/DeploymentStatus';
 import BranchPanel from './components/BranchPanel';
 import Timeline from './components/Timeline';
@@ -9,6 +9,7 @@ import HealthMonitor from './components/HealthMonitor';
 import BuildLogs from './components/BuildLogs';
 import IncidentTracker from './components/IncidentTracker';
 import BackupManager from './components/BackupManager';
+import DeploymentAnalytics from './components/DeploymentAnalytics';
 
 function App() {
   const [user, setUser] = useState<any>(null);
@@ -27,6 +28,15 @@ function App() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
     } catch (err: any) {
       alert(err.message);
     }
@@ -52,8 +62,21 @@ function App() {
               className="w-full p-3 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-premium-accent"
             />
           </div>
-          <button className="w-full py-3 bg-premium-accent rounded-xl font-bold hover:shadow-[0_0_20px_rgba(94,17,255,0.4)] transition-all">
+          <button type="submit" className="w-full py-3 bg-premium-accent rounded-xl font-bold hover:shadow-[0_0_20px_rgba(94,17,255,0.4)] transition-all">
             Unlock Interface
+          </button>
+          
+          <div className="relative py-2">
+            <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-white/10"></span></div>
+            <div className="relative flex justify-center text-xs uppercase"><span className="bg-premium-bg px-2 text-white/30">or</span></div>
+          </div>
+
+          <button 
+            type="button"
+            onClick={handleGoogleLogin}
+            className="w-full py-3 bg-white/5 border border-white/10 rounded-xl font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2"
+          >
+            <span>🌐</span> Login with Google
           </button>
         </form>
       </div>
@@ -82,15 +105,14 @@ function App() {
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <DeploymentStatus />
-          <HealthMonitor />
-          <div className="md:col-span-2">
-            <IncidentTracker />
+        <div className="lg:col-span-8 space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <DeploymentStatus />
+            <HealthMonitor />
           </div>
-          <div className="md:col-span-2">
-            <BuildLogs />
-          </div>
+          <DeploymentAnalytics />
+          <IncidentTracker />
+          <BuildLogs />
         </div>
 
         <div className="lg:col-span-4 flex flex-col gap-6">

@@ -3,6 +3,14 @@ import fetch from "node-fetch";
 import { verifyAdminToken } from "./auth";
 
 export const mergeBranch = functions.https.onRequest(async (req, res) => {
+  const origin = req.headers.origin || "";
+  if (origin === "https://aitdl.com" || origin.startsWith("http://localhost:")) {
+    res.set("Access-Control-Allow-Origin", origin);
+  }
+  res.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (req.method === "OPTIONS") { res.status(204).send(""); return; }
+
   if (!await verifyAdminToken(req)) { res.status(401).send("Unauthorized"); return; }
 
   const { from, to } = req.body as { from: string; to: string };

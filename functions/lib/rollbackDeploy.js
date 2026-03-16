@@ -8,6 +8,16 @@ const auth_1 = require("./auth");
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const REPO = process.env.REPO || "ai-tdl/aitdl-command-center";
 exports.rollbackDeploy = functions.https.onRequest(async (req, res) => {
+    const origin = req.headers.origin || "";
+    if (origin === "https://aitdl.com" || origin.startsWith("http://localhost:")) {
+        res.set("Access-Control-Allow-Origin", origin);
+    }
+    res.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    if (req.method === "OPTIONS") {
+        res.status(204).send("");
+        return;
+    }
     if (!await (0, auth_1.verifyAdminToken)(req)) {
         res.status(401).send("Unauthorized");
         return;
