@@ -232,6 +232,74 @@ export default function Home({ tools }) {
     setFiltered(result)
   }, [debouncedSearch, category, exam, pricing, tools, origin])
 
+  // WOW Hero: binary rain + particles + countUp — runs client-side only
+  useEffect(() => {
+    const rain = document.getElementById('wow-brain')
+    const hero = document.getElementById('wow-hero')
+    if (!rain || !hero) return
+
+    // Binary rain columns
+    for (let i = 0; i < 12; i++) {
+      const col = document.createElement('div')
+      let str = ''
+      for (let j = 0; j < 30; j++) str += (Math.random() > 0.5 ? '1' : '0') + '\n'
+      col.textContent = str
+      col.style.cssText = [
+        'position:absolute',
+        'font-family:Courier New,monospace',
+        `font-size:${8 + Math.random() * 4}px`,
+        'color:#FF6B35',
+        'opacity:0',
+        'writing-mode:vertical-rl',
+        'letter-spacing:4px',
+        `animation:wowBRain ${4 + Math.random() * 6}s linear ${Math.random() * 5}s infinite`,
+        'user-select:none',
+        `left:${Math.random() * 100}%`,
+      ].join(';')
+      rain.appendChild(col)
+    }
+
+    // Floating particles
+    const colors = ['#FF6B35', '#E84C1E', '#FF8C5A']
+    for (let p = 0; p < 12; p++) {
+      const dot = document.createElement('div')
+      const size = 3 + Math.random() * 5
+      dot.style.cssText = [
+        'position:absolute',
+        'border-radius:50%',
+        'pointer-events:none',
+        `width:${size}px`,
+        `height:${size}px`,
+        `left:${Math.random() * 100}%`,
+        `top:${Math.random() * 100}%`,
+        `background:${colors[Math.floor(Math.random() * colors.length)]}`,
+        `animation:wowFloat ${3 + Math.random() * 4}s ease-in-out ${Math.random() * 3}s infinite`,
+        'opacity:0.3',
+      ].join(';')
+      hero.appendChild(dot)
+    }
+
+    // CountUp stats
+    const countUp = (id, target, duration) => {
+      const el = document.getElementById(id)
+      if (!el) return
+      let val = 0
+      const step = target / (duration / 16)
+      const timer = setInterval(() => {
+        val += step
+        if (val >= target) { val = target; clearInterval(timer) }
+        el.textContent = Math.floor(val).toLocaleString()
+      }, 16)
+    }
+    const t = setTimeout(() => {
+      countUp('ws1', tools.length, 1200)
+      countUp('ws2', visitorCount, 1500)
+      countUp('ws3', 100, 800)
+      countUp('ws4', 22, 600)
+    }, 600)
+    return () => clearTimeout(t)
+  }, [tools, visitorCount])
+
   const handleCompare = (tool) => {
     setCompareList(prev => {
       if (prev.find(t => t.id === tool.id)) {
@@ -483,75 +551,6 @@ export default function Home({ tools }) {
                 }
               `}</style>
             </div>
-
-            {/* JS animations: binary rain + particles + countUp */}
-            <script dangerouslySetInnerHTML={{ __html: `
-              (function() {
-                function init() {
-                  var rain = document.getElementById('wow-brain');
-                  var hero = document.getElementById('wow-hero');
-                  if (!rain || !hero) return;
-
-                  // Binary rain
-                  for (var i = 0; i < 12; i++) {
-                    var col = document.createElement('div');
-                    col.style.cssText = [
-                      'position:absolute',
-                      'font-family:Courier New,monospace',
-                      'font-size:'+(8+Math.random()*4)+'px',
-                      'color:#FF6B35',
-                      'opacity:0',
-                      'writing-mode:vertical-rl',
-                      'letter-spacing:4px',
-                      'animation:wowBRain '+(4+Math.random()*6)+'s linear '+(Math.random()*5)+'s infinite',
-                      'user-select:none',
-                      'left:'+(Math.random()*100)+'%',
-                    ].join(';');
-                    var str=''; for(var j=0;j<30;j++) str+=(Math.random()>0.5?'1':'0')+'\\n';
-                    col.textContent=str;
-                    rain.appendChild(col);
-                  }
-
-                  // Particles
-                  var colors=['#FF6B35','#E84C1E','#FF8C5A'];
-                  for(var p=0;p<12;p++){
-                    var dot=document.createElement('div');
-                    var size=3+Math.random()*5;
-                    dot.style.cssText=[
-                      'position:absolute',
-                      'border-radius:50%',
-                      'pointer-events:none',
-                      'width:'+size+'px','height:'+size+'px',
-                      'left:'+(Math.random()*100)+'%',
-                      'top:'+(Math.random()*100)+'%',
-                      'background:'+colors[Math.floor(Math.random()*colors.length)],
-                      'animation:wowFloat '+(3+Math.random()*4)+'s ease-in-out '+(Math.random()*3)+'s infinite',
-                      'opacity:0.3',
-                    ].join(';');
-                    hero.appendChild(dot);
-                  }
-
-                  // CountUp
-                  function countUp(id, target, duration) {
-                    var el=document.getElementById(id); if(!el) return;
-                    var start=0, step=target/(duration/16);
-                    var timer=setInterval(function(){
-                      start+=step;
-                      if(start>=target){start=target;clearInterval(timer);}
-                      el.textContent=Math.floor(start).toLocaleString();
-                    },16);
-                  }
-                  setTimeout(function(){
-                    countUp('ws1', ${tools.length}, 1200);
-                    countUp('ws2', ${visitorCount}, 1500);
-                    countUp('ws3', 100, 800);
-                    countUp('ws4', 22, 600);
-                  }, 600);
-                }
-                if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
-                else init();
-              })();
-            ` }} />
 
             {/* Search Bar */}
             {uiMode === 'directory' && (
