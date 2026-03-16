@@ -379,7 +379,7 @@ export default function Footer() {
           © 2026 AITDL
         </p>
 
-        {/* Vedic Timestamp Badge - Embossed View */}
+        {/* Vedic Timestamp Badge - Hidden as per request 
         {mounted && vs && (
           <div style={{ 
             display: 'inline-flex', 
@@ -414,6 +414,7 @@ export default function Footer() {
             </div>
           </div>
         )}
+        */}
 
       </div>
     </footer>
