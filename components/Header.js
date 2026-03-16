@@ -49,6 +49,90 @@ export default function Header({
   const [settingsOpen, setSettingsOpen] = useState(false)
   const { user } = useAuth()
 
+  // ── BINARY MORPH ANIMATION ──────────
+  useEffect(() => {
+    const letters = [
+      {id:'aitdl-letter-A', bin:'01000001', mirror:false},
+      {id:'aitdl-letter-I', bin:'01001001', mirror:false},
+      {id:'aitdl-letter-T', bin:'01010100', mirror:false},
+      {id:'aitdl-letter-D', bin:'01000100', mirror:true},
+      {id:'aitdl-letter-L', bin:'01001100', mirror:true},
+    ]
+
+    const runMorph = () => {
+      letters.forEach(({id, bin, mirror}, i) => {
+        const el = document.getElementById(id)
+        if (!el) return
+        const orig = el.dataset.letter
+
+        setTimeout(() => {
+          el.style.opacity = '0.3'
+          el.style.color = 'var(--accent)'
+          el.style.fontSize = '8px'
+          el.style.fontFamily = "'Courier New', monospace"
+          el.style.transform = mirror ? 'scaleX(-1) scaleY(0.5)' : 'scaleY(0.5)'
+          el.textContent = bin.slice(0,4)
+
+          setTimeout(() => {
+            el.style.opacity = '1'
+            el.style.transform = mirror ? 'scaleX(-1) scaleY(1)' : 'scaleY(1)'
+            el.textContent = bin.slice(0,4)
+
+            setTimeout(() => {
+              el.style.opacity = '0.3'
+              el.style.transform = mirror ? 'scaleX(-1) scaleY(0.5)' : 'scaleY(0.5)'
+
+              setTimeout(() => {
+                el.textContent = orig
+                el.style.fontSize = '24px'
+                el.style.fontFamily = "'Arial Black', Arial"
+                el.style.color = 'var(--text-primary)'
+                el.style.opacity = '1'
+                el.style.transform = mirror ? 'scaleX(-1)' : 'none'
+              }, 200)
+            }, 400)
+          }, 100)
+        }, i * 100)
+      })
+    }
+
+    const t1 = setTimeout(runMorph, 1000)
+    const t2 = setInterval(runMorph, 6000)
+    return () => { clearTimeout(t1); clearInterval(t2) }
+  }, [])
+
+  // ── WORD CYCLE TAGLINE ──────────────
+  useEffect(() => {
+    const words = ['ARTIFICIAL','INTELLIGENCE','TECHNOLOGY','DEEP','LEARNING']
+    let idx = 0
+    let timer
+
+    const showWord = () => {
+      const el = document.getElementById('aitdl-tagword')
+      if (!el) return
+      el.textContent = words[idx]
+      el.style.opacity = '0'
+      el.style.transform = 'translateY(6px)'
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          el.style.opacity = '1'
+          el.style.transform = 'translateY(0)'
+        })
+      })
+      timer = setTimeout(() => {
+        el.style.opacity = '0'
+        el.style.transform = 'translateY(-6px)'
+        timer = setTimeout(() => {
+          idx = (idx + 1) % words.length
+          showWord()
+        }, 350)
+      }, 1200)
+    }
+
+    const startTimer = setTimeout(showWord, 800)
+    return () => { clearTimeout(startTimer); clearTimeout(timer) }
+  }, [])
+
   const t = LANG[lang]
 
   return (
@@ -74,48 +158,78 @@ export default function Header({
         {/* Logo */}
         <Link href="/" style={{
           display: 'flex',
-          alignItems: 'center',
-          gap: 12,
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          gap: 2,
           textDecoration: 'none',
         }} title="AITDL — India's AI Command Center Home" aria-label="AITDL Home">
+
+          {/* Logo letters with binary morph */}
           <div style={{
             display: 'inline-flex',
             alignItems: 'baseline',
             gap: 0,
+            position: 'relative',
           }}>
-            {/* AIT — slide up + sweep */}
-            {['A','I','T'].map((l, i) => (
-              <span key={l} style={{
-                fontFamily: "'Arial Black', Arial",
-                fontSize: '24px',
-                fontWeight: 900,
-                color: 'var(--text-primary)',
-                lineHeight: 1,
-                display: 'inline-block',
-                animation: `
-                  aitdlSlideUp 0.4s forwards ${i * 0.08}s,
-                  aitdlSweep 2.5s ease-in-out ${1.3 + i * 0.05}s infinite
-                `,
-                opacity: 0,
-              }}>{l}</span>
-            ))}
-            {/* D L — flip reveal + sweep */}
-            {['D','L'].map((l, i) => (
-              <span key={l} style={{
-                fontFamily: "'Arial Black', Arial",
-                fontSize: '24px',
-                fontWeight: 900,
-                color: 'var(--text-primary)',
-                lineHeight: 1,
-                display: 'inline-block',
-                animation: `
-                  aitdlFlip 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards ${0.4 + i * 0.25}s,
-                  aitdlSweepMirror 2.5s ease-in-out ${1.5 + i * 0.2}s infinite
-                `,
-                opacity: 0,
-              }}>{l}</span>
+            {[
+              {l:'A', bin:'01000001', mirror:false},
+              {l:'I', bin:'01001001', mirror:false},
+              {l:'T', bin:'01010100', mirror:false},
+              {l:'D', bin:'01000100', mirror:true},
+              {l:'L', bin:'01001100', mirror:true},
+            ].map(({l, bin, mirror}, i) => (
+              <span
+                key={l}
+                id={`aitdl-letter-${l}`}
+                data-letter={l}
+                data-bin={bin}
+                style={{
+                  fontFamily: "'Arial Black', Arial",
+                  fontSize: '24px',
+                  fontWeight: 900,
+                  color: 'var(--text-primary)',
+                  lineHeight: 1,
+                  display: 'inline-block',
+                  transform: mirror ? 'scaleX(-1)' : 'none',
+                  transition: 'opacity 0.15s ease, transform 0.2s ease, color 0.2s ease',
+                  position: 'relative',
+                  minWidth: mirror ? '18px' : l==='I' ? '10px' : '18px',
+                  textAlign: 'center',
+                }}
+              >
+                {l}
+              </span>
             ))}
           </div>
+
+          {/* Word cycle tagline */}
+          <div style={{
+            height: '11px',
+            overflow: 'hidden',
+            position: 'relative',
+            width: '130px',
+          }}>
+            <span
+              id="aitdl-tagword"
+              style={{
+                fontFamily: "'Courier New', monospace",
+                fontSize: '7px',
+                fontWeight: 700,
+                letterSpacing: '2px',
+                color: 'var(--accent)',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                opacity: 0,
+                transform: 'translateY(6px)',
+                transition: 'opacity 0.3s ease, transform 0.3s ease',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              ARTIFICIAL
+            </span>
+          </div>
+
         </Link>
 
         {/* Desktop Nav */}
