@@ -5,3 +5,10 @@ out/
 .env.local
 .DS_Store
 *.log
+
+Archive/
+
+Archive/
+
+skeleton.txt
+skeleton2.txt
