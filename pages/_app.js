@@ -33,11 +33,11 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     const saved = localStorage.getItem('theme');
-    
+
     // No saved preference → follow OS
     if (!saved) {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
+
       if (prefersDark) {
         document.documentElement.classList.add('dark');
         document.documentElement.setAttribute('data-theme', 'dark');
@@ -49,20 +49,20 @@ export default function App({ Component, pageProps }) {
       }
       return;
     }
-    
+
     // Apply saved theme
     setTheme(saved);
-    document.documentElement.classList.remove('dark','glass','midnight');
+    document.documentElement.classList.remove('dark', 'glass', 'midnight');
     document.documentElement.setAttribute('data-theme', saved);
-    
+
     if (saved === 'dark' || saved === 'midnight') {
       document.documentElement.classList.add('dark');
     }
     if (saved === 'glass') {
-      document.documentElement.setAttribute('data-theme','glass');
+      document.documentElement.setAttribute('data-theme', 'glass');
     }
     if (saved === 'midnight') {
-      document.documentElement.setAttribute('data-theme','midnight');
+      document.documentElement.setAttribute('data-theme', 'midnight');
     }
   }, []);
 
@@ -70,7 +70,7 @@ export default function App({ Component, pageProps }) {
     // Only auto-follow OS if no saved preference
     const saved = localStorage.getItem('theme');
     if (saved) return;
-    
+
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handler = (e) => {
       if (e.matches) {
@@ -83,7 +83,7 @@ export default function App({ Component, pageProps }) {
         setTheme('light');
       }
     };
-    
+
     mediaQuery.addEventListener('change', handler);
     return () => mediaQuery.removeEventListener('change', handler);
   }, []);
@@ -97,7 +97,6 @@ export default function App({ Component, pageProps }) {
       </Head>
       <HomeJsonLD toolCount={100} />
       <Component {...pageProps} />
-#      <SidebarCard />
     </ErrorBoundary>
   )
 }
