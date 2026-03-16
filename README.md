@@ -30,6 +30,8 @@ Published Author | Tech Entrepreneur
 - 🇮🇳 **Bharat AI**: Dedicated section for Made-in-India AI innovations.
 - ⚔️ **AI Battle**: Weekly community voting for the best tools.
 - 🔄 **Comparison Engine**: Side-by-side analysis of AI capabilities.
+- ⌚ **Command Center**: Enterprise-grade dashboard for system monitoring (v5.2.0).
+- ⚙️ **Operator Console**: Personalized module management with persistence.
 - 📱 **Command HUD**: Multilingual UI (English, Hindi, Sanskrit).
 - ⚡ **Performance**: Static site generation for near-instant load times.
 
