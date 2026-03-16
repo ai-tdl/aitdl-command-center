@@ -79,36 +79,31 @@ export default function Header({
           textDecoration: 'none',
         }} title="AITDL — India's AI Command Center Home" aria-label="AITDL Home">
           <div style={{
-            width: 48, height: 48,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'all 0.5s var(--ease)',
-          }} className="logo-glow">
-            <img src="/logo-singularity.svg" alt="AITDL Singularity" style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain',
-              filter: 'drop-shadow(0 0 10px var(--accent-glow))',
-            }} />
-          </div>
-          <div className="logo-text">
-            <div style={{
-              fontSize: 22,
-              fontWeight: 950,
-              color: 'var(--text-primary)',
-              letterSpacing: '-0.03em',
-              fontFamily: 'Outfit',
-              lineHeight: 1,
-            }}>AITDL<span style={{ color: 'var(--accent)' }}>.</span></div>
-            <div style={{
-              fontSize: 9,
-              fontWeight: 800,
-              color: 'var(--text-tertiary)',
-              letterSpacing: '0.08em',
-              marginTop: 4,
-              textTransform: 'uppercase',
-            }}>Artificial Intelligence Technology & Deep Learning</div>
+            display: 'inline-flex',
+            alignItems: 'baseline',
+            gap: 0,
+          }}>
+            {['A','I','T'].map(l => (
+              <span key={l} style={{
+                fontFamily: "'Arial Black', Arial",
+                fontSize: '24px',
+                fontWeight: 900,
+                color: 'var(--text-primary)',
+                lineHeight: 1,
+                display: 'inline-block',
+              }}>{l}</span>
+            ))}
+            {['D','L'].map(l => (
+              <span key={l} style={{
+                fontFamily: "'Arial Black', Arial",
+                fontSize: '24px',
+                fontWeight: 900,
+                color: 'var(--accent)',
+                lineHeight: 1,
+                display: 'inline-block',
+                transform: 'scaleX(-1)',
+              }}>{l}</span>
+            ))}
           </div>
         </Link>
 
