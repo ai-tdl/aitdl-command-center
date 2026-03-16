@@ -162,10 +162,12 @@ export default function Home({ tools }) {
   // TODO: Replace with real Vercel Analytics pageview count via API when available
   const [visitorCount, setVisitorCount] = useState(8506)
   const [vs, setVs] = useState(null)
+  const [mounted, setMounted] = useState(false)
   const router = useRouter()
   const t = LANG_TEXT[lang] || LANG_TEXT.en
 
   useEffect(() => {
+    setMounted(true)
     // Initial load from storage
     const savedLang = localStorage.getItem('aitdl_lang') || 'en'
     setLang(savedLang)
@@ -416,7 +418,7 @@ export default function Home({ tools }) {
                 </div>
 
                 {/* Vedic Timestamp Badge */}
-                {vs && (
+                {mounted && vs && (
                   <div style={{
                     display: 'flex',
                     flexDirection: 'column',
