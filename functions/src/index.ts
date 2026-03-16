@@ -6,3 +6,4 @@ export { getGithubActivity } from "./getGithubActivity";
 export { rollbackDeploy } from "./rollbackDeploy";
 export { logEvent } from "./logEvent";
 export { scheduledBackup, triggerManualBackup } from "./backupSystem";
+export { aiBattle } from "./aiBattle";
