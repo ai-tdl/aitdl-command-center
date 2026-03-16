@@ -83,7 +83,8 @@ export default function Header({
             alignItems: 'baseline',
             gap: 0,
           }}>
-            {['A','I','T'].map(l => (
+            {/* AIT — slide up + sweep */}
+            {['A','I','T'].map((l, i) => (
               <span key={l} style={{
                 fontFamily: "'Arial Black', Arial",
                 fontSize: '24px',
@@ -91,17 +92,27 @@ export default function Header({
                 color: 'var(--text-primary)',
                 lineHeight: 1,
                 display: 'inline-block',
+                animation: `
+                  aitdlSlideUp 0.4s forwards ${i * 0.08}s,
+                  aitdlSweep 2.5s ease-in-out ${1.3 + i * 0.05}s infinite
+                `,
+                opacity: 0,
               }}>{l}</span>
             ))}
-            {['D','L'].map(l => (
+            {/* D L — flip reveal + sweep */}
+            {['D','L'].map((l, i) => (
               <span key={l} style={{
                 fontFamily: "'Arial Black', Arial",
                 fontSize: '24px',
                 fontWeight: 900,
-                color: 'var(--accent)',
+                color: 'var(--text-primary)',
                 lineHeight: 1,
                 display: 'inline-block',
-                transform: 'scaleX(-1)',
+                animation: `
+                  aitdlFlip 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards ${0.4 + i * 0.25}s,
+                  aitdlSweepMirror 2.5s ease-in-out ${1.5 + i * 0.2}s infinite
+                `,
+                opacity: 0,
               }}>{l}</span>
             ))}
           </div>
@@ -251,6 +262,34 @@ export default function Header({
           border-color: var(--accent);
           transform: rotate(45deg);
           box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* AITDL Logo Animations */
+        @keyframes aitdlSlideUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes aitdlFlip {
+          0%   { opacity: 0; transform: scaleX(1) perspective(400px) rotateY(-90deg); }
+          60%  { opacity: 1; transform: scaleX(-1) perspective(400px) rotateY(10deg); }
+          100% { opacity: 1; transform: scaleX(-1) rotateY(0deg); }
+        }
+
+        @keyframes aitdlSweep {
+          0%,100% { color: var(--text-primary); }
+          50%     { color: var(--accent); }
+        }
+
+        @keyframes aitdlSweepMirror {
+          0%,100% {
+            color: var(--text-primary);
+            transform: scaleX(-1);
+          }
+          50% {
+            color: var(--accent);
+            transform: scaleX(-1);
+          }
         }
         @media (max-width: 768px) {
           :root {
