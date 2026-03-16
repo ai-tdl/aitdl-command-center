@@ -21,11 +21,16 @@ function App() {
   const [password, setPassword] = useState('');
 
   const [profile, setProfile] = useState<any>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    return onAuthStateChanged(auth, (u) => {
+    return onAuthStateChanged(auth, async (u) => {
       setUser(u);
       if (u) {
+        const token = await u.getIdTokenResult();
+        const adminStatus = !!token.claims.admin;
+        setIsAdmin(adminStatus);
+
         // Listen for profile changes
         const unsubscribe = onSnapshot(doc(db, 'users', u.uid), (doc) => {
           if (doc.exists()) setProfile(doc.data());
@@ -33,6 +38,7 @@ function App() {
         return () => unsubscribe();
       } else {
         setProfile(null);
+        setIsAdmin(false);
       }
       setLoading(false);
     });
@@ -93,6 +99,28 @@ function App() {
             <span>🌐</span> Login with Google
           </button>
         </form>
+      </div>
+    );
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen bg-premium-bg flex items-center justify-center p-4">
+        <div className="w-full max-w-md p-12 bg-premium-card border border-premium-border rounded-3xl text-center space-y-6">
+          <div className="text-6xl text-premium-accent">🔒</div>
+          <h1 className="text-3xl font-extrabold gradient-text">Access Denied</h1>
+          <p className="text-white/50 text-sm leading-relaxed">
+            This workspace is restricted to authorized operators. Your account does not have the necessary clearance level.
+          </p>
+          <div className="pt-6">
+            <button 
+              onClick={() => signOut(auth)}
+              className="px-8 py-3 bg-white/5 border border-white/10 rounded-xl font-bold hover:bg-white/10 transition-all text-sm"
+            >
+              Switch Account
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
