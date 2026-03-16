@@ -9,7 +9,7 @@ export default function RightPanel() {
   const [vs, setVs]         = useState(null);
   const [fact, setFact]     = useState(null);
   const [bh, setBh]         = useState(null);
-  const [vsOpen, setVsOpen] = useState(false);
+  const [vsOpen, setVsOpen] = useState(true);
   const [open, setOpen]     = useState(true);  // hide/show state
 
   useEffect(() => {
@@ -213,7 +213,7 @@ export default function RightPanel() {
             <p style={{ fontSize: '12px', fontWeight: 600, color: '#BA7517', marginBottom: '2px' }}>
               {vs.line1}
             </p>
-            <p style={{ fontSize: '10px', color: '#854F0B', opacity: 0.8, marginBottom: '6px' }}>
+            <p style={{ fontSize: '10px', color: '#854F0B', opacity: 0.8, marginBottom: '6px', fontWeight: 700 }}>
               {vs.line2}
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
@@ -246,9 +246,10 @@ export default function RightPanel() {
                 {VS_RITUS.map(r => (
                   <div key={r.name} style={{
                     textAlign: 'center', padding: '5px 2px',
-                    border: vs.ritu?.name===r.name ? '0.5px solid #BA7517' : '0.5px solid var(--border)',
+                    border: vs.ritu?.name===r.name ? '1.5px solid #BA7517' : '0.5px solid var(--border)',
                     borderRadius: '6px',
-                    background: vs.ritu?.name===r.name ? '#FAEEDA44' : 'transparent',
+                    background: vs.ritu?.name===r.name ? '#FAEEDA' : 'transparent',
+                    boxShadow: vs.ritu?.name===r.name ? '0 0 10px rgba(186,117,23,0.1)' : 'none',
                   }}>
                     <div style={{ fontSize: '12px' }}>{r.icon}</div>
                     <div style={{ fontSize: '8px', fontWeight: 500, color: vs.ritu?.name===r.name ? '#BA7517' : 'var(--text-tertiary)' }}>
