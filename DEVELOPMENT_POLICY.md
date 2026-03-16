@@ -60,3 +60,31 @@ The AITDL platform is built on the principle of **Zero Cost**.
 - **Infrastructure:** All hosting (GitHub Pages) and backend services (Firebase Spark Plan) must remain within the free-usage tiers.
 - **Zero Dependencies:** Do not integrate any third-party APIs or services that require a subscription or credit card for core functionality.
 - **Developer Rule:** Any new code or feature must be implemented using free resources only.
+
+---
+
+## 🌟 Unique Feature — vikramSamvat.js (DO NOT REMOVE)
+`lib/vikramSamvat.js` is AITDL's most unique global differentiator — no other AI directory has this.
+- **Never remove or refactor** without explicit owner approval.
+- Always use `getVikramSamvatFull()` for any calendar/date features.
+- Must be surfaced visibly in the UI (sidebar widget, header, or dedicated Panchang page).
+
+---
+
+## 🔐 aiBattle.ts Security Rule
+- All AI Battle Cloud Function requests **must** verify Firebase Auth token before processing.
+- Implement **rate limiting** (max 10 req/user/hour) to protect Firestore read quota.
+- Keep `aiBattle.ts` out of the `Archive/` folder — it belongs in live `functions/`.
+
+---
+
+## 🎭 View Transition API
+Add to `styles/globals.css` for smooth page transitions:
+```css
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 0.25s;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+```
