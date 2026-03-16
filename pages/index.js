@@ -417,36 +417,6 @@ export default function Home({ tools }) {
                   🇮🇳 INDIA&apos;S NO. 1 AI COMMAND CENTER
                 </div>
 
-                {/* Vedic Timestamp Badge */}
-                {mounted && vs && (
-                  <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: 2,
-                    marginBottom: 24,
-                  }}>
-                    <div style={{
-                      fontSize: 12,
-                      fontWeight: 800,
-                      color: '#BA7517',
-                      letterSpacing: '0.05em',
-                      textShadow: '0 0 10px rgba(186,117,23,0.2)',
-                    }}>
-                      {vs.line1}
-                    </div>
-                    <div style={{
-                      fontSize: 10,
-                      fontWeight: 600,
-                      color: 'var(--text-tertiary)',
-                      letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
-                      opacity: 0.8,
-                    }}>
-                      {vs.line2}
-                    </div>
-                  </div>
-                )}
 
                 {/* Title */}
                 <h1 style={{
