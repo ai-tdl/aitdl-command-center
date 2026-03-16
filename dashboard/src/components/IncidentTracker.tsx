@@ -25,7 +25,11 @@ const IncidentTracker = () => {
     return () => unsubscribe();
   }, []);
 
-  if (loading) return <div className="p-6 bg-premium-card border border-premium-border rounded-2xl animate-pulse">Scanning for incidents...</div>;
+  if (loading) return (
+    <div className="p-6 bg-premium-card border border-premium-border rounded-2xl animate-pulse min-h-[300px] flex items-center justify-center font-bold tracking-widest uppercase text-[10px] opacity-50">
+      Scanning for incidents...
+    </div>
+  );
 
   return (
     <div className="p-6 bg-premium-card border border-premium-border rounded-2xl h-full flex flex-col">

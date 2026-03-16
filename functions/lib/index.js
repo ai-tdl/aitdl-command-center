@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.triggerManualBackup = exports.scheduledBackup = exports.logEvent = exports.rollbackDeploy = exports.getGithubActivity = exports.checkSiteHealth = exports.mergeBranch = exports.triggerDeploy = exports.deployLog = void 0;
+exports.aiBattle = exports.triggerManualBackup = exports.scheduledBackup = exports.logEvent = exports.rollbackDeploy = exports.getGithubActivity = exports.checkSiteHealth = exports.mergeBranch = exports.triggerDeploy = exports.deployLog = void 0;
 var deployLog_1 = require("./deployLog");
 Object.defineProperty(exports, "deployLog", { enumerable: true, get: function () { return deployLog_1.deployLog; } });
 var triggerDeploy_1 = require("./triggerDeploy");
@@ -18,4 +18,6 @@ Object.defineProperty(exports, "logEvent", { enumerable: true, get: function () 
 var backupSystem_1 = require("./backupSystem");
 Object.defineProperty(exports, "scheduledBackup", { enumerable: true, get: function () { return backupSystem_1.scheduledBackup; } });
 Object.defineProperty(exports, "triggerManualBackup", { enumerable: true, get: function () { return backupSystem_1.triggerManualBackup; } });
+var aiBattle_1 = require("./aiBattle");
+Object.defineProperty(exports, "aiBattle", { enumerable: true, get: function () { return aiBattle_1.aiBattle; } });
 //# sourceMappingURL=index.js.map

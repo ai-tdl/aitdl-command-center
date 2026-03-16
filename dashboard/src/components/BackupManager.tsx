@@ -39,7 +39,11 @@ const BackupManager = () => {
     }
   };
 
-  if (fetching) return <div className="p-6 bg-premium-card border border-premium-border rounded-2xl animate-pulse">Checking backup status...</div>;
+  if (fetching) return (
+    <div className="p-6 bg-premium-card border border-premium-border rounded-2xl animate-pulse min-h-[160px] flex items-center justify-center">
+      <p className="text-[10px] opacity-50 uppercase tracking-widest text-center">Synchronizing backup state...</p>
+    </div>
+  );
 
   return (
     <div className="p-6 bg-premium-card border border-premium-border rounded-2xl">
