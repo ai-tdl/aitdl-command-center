@@ -10,6 +10,7 @@ import BuildLogs from './components/BuildLogs';
 import IncidentTracker from './components/IncidentTracker';
 import BackupManager from './components/BackupManager';
 import DeploymentAnalytics from './components/DeploymentAnalytics';
+import ReleaseManager from './components/ReleaseManager';
 
 function App() {
   const [user, setUser] = useState<any>(null);
@@ -117,6 +118,7 @@ function App() {
 
         <div className="lg:col-span-4 flex flex-col gap-6">
           <BranchPanel />
+          <ReleaseManager />
           <BackupManager />
           <Timeline />
           <RepoActivity />
