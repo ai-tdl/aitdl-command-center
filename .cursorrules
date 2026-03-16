@@ -21,3 +21,8 @@ You are the official coding assistant for AITDL. Follow these technical constrai
 - Follow the structure: `components/`, `pages/`, `data/`, `styles/`, `public/`.
 - Keep components small and specialized.
 - Use `require('../data/tools.json')` in `getStaticProps` for directory data.
+
+## 💰 0.00 Cost Policy
+- Prioritize free tools and zero-cost infrastructure.
+- No paid dependencies or APIs.
+- Ensure all features work within the free tiers of GitHub and Firebase.

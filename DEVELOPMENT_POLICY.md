@@ -51,3 +51,12 @@ git checkout dev
 - **No Placeholders:** All demo content must use generated assets or real data.
 - **Dark Mode First:** Ensure all designs are compatible with white/midnight theme transitions using CSS variables.
 - **Performance:** Avoid heavy libraries; favor vanilla CSS and optimized JS logic for animations.
+
+---
+
+## 💰 0.00 Cost Policy
+The AITDL platform is built on the principle of **Zero Cost**.
+- **Tool Listing:** Prioritize tools that are 100% free or have a generous "Free Forever" tier.
+- **Infrastructure:** All hosting (GitHub Pages) and backend services (Firebase Spark Plan) must remain within the free-usage tiers.
+- **Zero Dependencies:** Do not integrate any third-party APIs or services that require a subscription or credit card for core functionality.
+- **Developer Rule:** Any new code or feature must be implemented using free resources only.
