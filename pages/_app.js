@@ -24,7 +24,7 @@ import Head from 'next/head'
 import '../styles/globals.css'
 import { useEffect, useState } from 'react'
 import ErrorBoundary from '../components/ErrorBoundary'
-import SidebarCard from '../components/SidebarCard'
+#	import SidebarCard from '../components/SidebarCard'
 import { GlobalSEO } from '../lib/seo'
 import { HomeJsonLD } from '../lib/jsonld'
 
@@ -97,7 +97,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       <HomeJsonLD toolCount={100} />
       <Component {...pageProps} />
-      <SidebarCard />
+#      <SidebarCard />
     </ErrorBoundary>
   )
 }
