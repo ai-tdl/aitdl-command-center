@@ -292,109 +292,266 @@ export default function Home({ tools }) {
           <div style={{ flex: 1, minWidth: 0 }}>
             <NeuralNetwork />
             
-            <div style={{ textAlign: 'center', position: 'relative', zIndex: 1, marginBottom: 80 }}>
-              {/* Hero Branding */}
-              <div style={{ marginBottom: 24, display: 'flex', justifyContent: 'center' }}>
-                <div style={{ width: 120, height: 120, filter: 'drop-shadow(0 0 30px var(--accent-glow))' }} className="logo-glow">
-                  <img src="/logo-singularity.svg" alt="AITDL Singularity" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                </div>
-              </div>
-
-              <div style={{
-                display: 'inline-block',
-                fontSize: 12,
-                fontWeight: 800,
-                letterSpacing: '0.15em',
-                color: 'var(--accent)',
-                background: 'var(--accent-glow)',
-                border: '1px solid var(--accent)',
-                borderRadius: 30,
-                padding: '6px 20px',
-                marginBottom: 32,
-              }}>
-                INDIA&apos;S NO. 1 AI COMMAND CENTER
-              </div>
-
-              <h1 style={{
-                fontSize: uiMode === 'command' ? 'clamp(48px, 10vw, 112px)' : 'clamp(42px, 10vw, 84px)',
-                fontWeight: 950,
-                lineHeight: 0.95,
-                marginBottom: 24,
-                letterSpacing: '-0.05em',
-              }}>
-                {uiMode === 'command' ? (
-                  <span className="pulse-glow" style={{ 
-                    color: 'var(--text-primary)', 
-                    background: 'linear-gradient(to bottom, var(--text-primary), var(--text-tertiary))',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                  }}>
-                    {t.cmdHero}
-                  </span>
-                ) : (
-                  <>
-                    <span style={{ color: 'var(--text-primary)' }}>Right AI Tool</span>
-                    <br/>
-                    <span style={{ 
-                      color: 'var(--accent)',
-                      background: 'linear-gradient(to bottom, var(--text-primary), var(--accent))',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                    }}>At The Right Time</span>
-                  </>
-                )}
-              </h1>
-
-              <p style={{
-                fontSize: 20,
-                color: 'var(--text-secondary)',
-                maxWidth: 700,
-                margin: '0 auto 48px',
-                lineHeight: 1.6,
-              }}>
-                {t.cmdSub}
-              </p>
-
-                <div style={{ display: 'flex', gap: 20, justifyContent: 'center', marginBottom: 64 }}>
-                  <button style={{ padding: '20px 48px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 50, fontSize: 13, fontWeight: 900, cursor: 'pointer', boxShadow: '0 10px 40px var(--accent-glow)' }} className="btn-primary-glow">
-                    {t.explore}
-                  </button>
-                  <button style={{ padding: '20px 48px', background: 'transparent', color: 'var(--text-primary)', border: '1px solid var(--border)', borderRadius: 50, fontSize: 13, fontWeight: 800, cursor: 'pointer' }} className="btn-secondary-border">
-                    {t.learn}
-                  </button>
-                </div>
-            </div>
-
-            <TrustBar />
-
-            {/* Stats Section */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: 24,
-              marginBottom: 80,
+            {/* ── WOW Hero ── */}
+            <div id="wow-hero" style={{
               position: 'relative',
-              zIndex: 1,
+              minHeight: 520,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              padding: '60px 24px',
+              overflow: 'hidden',
+              marginBottom: 48,
+              borderRadius: 24,
             }}>
-              {[
-                { label: t.stats.tools, val: `${tools.length}+`, color: 'var(--accent)' },
-                { label: t.stats.visited, val: visitorCount.toLocaleString(), color: '#00B4D8' },
-                { label: t.stats.free, val: 'FREE', color: '#22C55E' },
-                { label: t.stats.india, val: '🇮🇳 BHARAT', color: '#FF6B35' },
-              ].map((stat, i) => (
-                <div key={i} className="stat-card" style={{
-                  padding: 32,
-                  background: 'var(--bg-secondary)',
-                  border: '1px solid var(--border)',
-                  borderRadius: 24,
-                  textAlign: 'center',
-                  transition: 'all 0.4s var(--ease)',
+              {/* Grid overlay */}
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                backgroundImage: 'linear-gradient(rgba(255,107,53,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,107,53,0.04) 1px, transparent 1px)',
+                backgroundSize: '40px 40px',
+                zIndex: 0,
+                borderRadius: 24,
+                pointerEvents: 'none',
+              }} />
+
+              {/* Binary rain container */}
+              <div id="wow-brain" style={{ position:'absolute', inset:0, overflow:'hidden', pointerEvents:'none', zIndex:0 }} />
+
+              {/* Hero content */}
+              <div style={{ position:'relative', zIndex:2, maxWidth:800 }}>
+
+                {/* Badge */}
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  fontSize: 10,
+                  fontWeight: 700,
+                  letterSpacing: '2px',
+                  color: 'var(--accent)',
+                  border: '1px solid rgba(255,107,53,0.25)',
+                  padding: '5px 14px',
+                  borderRadius: 99,
+                  marginBottom: 24,
+                  background: 'rgba(255,107,53,0.05)',
+                  animation: 'wowBadgePulse 2s ease-in-out infinite',
                 }}>
-                  <div style={{ fontSize: 36, fontWeight: 950, color: stat.color, marginBottom: 8, fontFamily: 'Outfit' }}>{stat.val}</div>
-                  <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{stat.label}</div>
+                  🇮🇳 INDIA&apos;S NO. 1 AI COMMAND CENTER
                 </div>
-              ))}
+
+                {/* Title */}
+                <h1 style={{
+                  fontSize: 'clamp(36px, 6vw, 64px)',
+                  fontWeight: 900,
+                  lineHeight: 1.1,
+                  color: 'var(--text-primary)',
+                  marginBottom: 8,
+                }}>
+                  {uiMode === 'command' ? t.cmdHero : (
+                    <>
+                      Right AI Tool<br/>
+                      <span style={{ color: 'var(--accent)', position: 'relative' }} className="wow-orange">
+                        At The Right Time
+                      </span>
+                    </>
+                  )}
+                </h1>
+
+                {/* Subtitle */}
+                <p style={{
+                  fontSize: 15,
+                  color: 'var(--text-secondary)',
+                  lineHeight: 1.7,
+                  margin: '20px auto 32px',
+                  maxWidth: 520,
+                }}>
+                  {t.cmdSub}
+                </p>
+
+                {/* Stats */}
+                <div style={{ display:'flex', gap:32, justifyContent:'center', marginBottom:36, flexWrap:'wrap' }}>
+                  {[
+                    { id:'ws1', target: tools.length, suffix:'', label:'AI Tools' },
+                    { id:'ws2', target: visitorCount, suffix:'', label:'Students' },
+                    { id:'ws3', target: 100, suffix:'%', label:'Free Tools' },
+                    { id:'ws4', target: 22, suffix:'', label:'Languages' },
+                  ].map(s => (
+                    <div key={s.id} style={{ textAlign:'center' }}>
+                      <div style={{ fontSize:28, fontWeight:900, color:'var(--text-primary)', fontFamily:"'Arial Black',Arial", lineHeight:1 }}>
+                        <span id={s.id}>0</span><span style={{ color:'var(--accent)' }}>{s.suffix}</span>
+                      </div>
+                      <div style={{ fontSize:9, color:'var(--text-tertiary)', letterSpacing:'2px', fontWeight:600, textTransform:'uppercase', marginTop:2 }}>
+                        {s.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Buttons */}
+                <div style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap' }}>
+                  <a href="#tools" style={{
+                    padding: '14px 32px',
+                    background: 'var(--accent)',
+                    color: '#fff',
+                    fontWeight: 800,
+                    fontSize: 13,
+                    letterSpacing: '1.5px',
+                    border: 'none',
+                    borderRadius: 99,
+                    cursor: 'pointer',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    boxShadow: '0 4px 20px rgba(255,107,53,0.4)',
+                    animation: 'wowBtnGlow 2s ease-in-out infinite',
+                  }} className="btn-primary-glow">
+                    ⚡ {t.explore}
+                  </a>
+                  <a href="/about" style={{
+                    padding: '14px 32px',
+                    background: 'transparent',
+                    color: 'var(--text-primary)',
+                    fontWeight: 700,
+                    fontSize: 13,
+                    letterSpacing: '1px',
+                    border: '1.5px solid var(--border)',
+                    borderRadius: 99,
+                    cursor: 'pointer',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    transition: 'all 0.3s',
+                  }} className="btn-secondary-border">
+                    {t.learn} →
+                  </a>
+                </div>
+              </div>
+
+              {/* Scroll indicator */}
+              <div style={{
+                position:'absolute', bottom:20, left:'50%',
+                transform:'translateX(-50%)',
+                display:'flex', flexDirection:'column', alignItems:'center', gap:4,
+                opacity:0.4, animation:'wowScrollBounce 1.5s ease-in-out infinite', zIndex:2,
+              }}>
+                <div style={{ width:1, height:24, background:'linear-gradient(var(--accent), transparent)' }} />
+                <span style={{ fontSize:8, letterSpacing:'2px', color:'var(--accent)' }}>SCROLL</span>
+              </div>
+
+              {/* Inline keyframes */}
+              <style>{`
+                @keyframes wowBRain {
+                  0%   { opacity:0; top:-20%; }
+                  10%  { opacity:0.06; }
+                  90%  { opacity:0.06; }
+                  100% { opacity:0; top:110%; }
+                }
+                @keyframes wowFloat {
+                  0%,100% { transform:translateY(0) scale(1); opacity:0.4; }
+                  50%     { transform:translateY(-20px) scale(1.2); opacity:0.8; }
+                }
+                @keyframes wowBadgePulse {
+                  0%,100% { box-shadow:0 0 0 0 rgba(255,107,53,0.2); }
+                  50%     { box-shadow:0 0 0 8px rgba(255,107,53,0); }
+                }
+                @keyframes wowBtnGlow {
+                  0%,100% { box-shadow:0 4px 20px rgba(255,107,53,0.4); }
+                  50%     { box-shadow:0 4px 32px rgba(255,107,53,0.6); }
+                }
+                @keyframes wowScrollBounce {
+                  0%,100% { transform:translateX(-50%) translateY(0); }
+                  50%     { transform:translateX(-50%) translateY(6px); }
+                }
+                @keyframes wowUnderline {
+                  to { transform:scaleX(1); }
+                }
+                .wow-orange::after {
+                  content:'';
+                  position:absolute;
+                  bottom:-4px; left:0; right:0;
+                  height:3px;
+                  background:linear-gradient(90deg, var(--accent), #E84C1E);
+                  border-radius:2px;
+                  transform:scaleX(0);
+                  transform-origin:left;
+                  animation:wowUnderline 0.8s ease 0.5s forwards;
+                }
+              `}</style>
             </div>
+
+            {/* JS animations: binary rain + particles + countUp */}
+            <script dangerouslySetInnerHTML={{ __html: `
+              (function() {
+                function init() {
+                  var rain = document.getElementById('wow-brain');
+                  var hero = document.getElementById('wow-hero');
+                  if (!rain || !hero) return;
+
+                  // Binary rain
+                  for (var i = 0; i < 12; i++) {
+                    var col = document.createElement('div');
+                    col.style.cssText = [
+                      'position:absolute',
+                      'font-family:Courier New,monospace',
+                      'font-size:'+(8+Math.random()*4)+'px',
+                      'color:#FF6B35',
+                      'opacity:0',
+                      'writing-mode:vertical-rl',
+                      'letter-spacing:4px',
+                      'animation:wowBRain '+(4+Math.random()*6)+'s linear '+(Math.random()*5)+'s infinite',
+                      'user-select:none',
+                      'left:'+(Math.random()*100)+'%',
+                    ].join(';');
+                    var str=''; for(var j=0;j<30;j++) str+=(Math.random()>0.5?'1':'0')+'\\n';
+                    col.textContent=str;
+                    rain.appendChild(col);
+                  }
+
+                  // Particles
+                  var colors=['#FF6B35','#E84C1E','#FF8C5A'];
+                  for(var p=0;p<12;p++){
+                    var dot=document.createElement('div');
+                    var size=3+Math.random()*5;
+                    dot.style.cssText=[
+                      'position:absolute',
+                      'border-radius:50%',
+                      'pointer-events:none',
+                      'width:'+size+'px','height:'+size+'px',
+                      'left:'+(Math.random()*100)+'%',
+                      'top:'+(Math.random()*100)+'%',
+                      'background:'+colors[Math.floor(Math.random()*colors.length)],
+                      'animation:wowFloat '+(3+Math.random()*4)+'s ease-in-out '+(Math.random()*3)+'s infinite',
+                      'opacity:0.3',
+                    ].join(';');
+                    hero.appendChild(dot);
+                  }
+
+                  // CountUp
+                  function countUp(id, target, duration) {
+                    var el=document.getElementById(id); if(!el) return;
+                    var start=0, step=target/(duration/16);
+                    var timer=setInterval(function(){
+                      start+=step;
+                      if(start>=target){start=target;clearInterval(timer);}
+                      el.textContent=Math.floor(start).toLocaleString();
+                    },16);
+                  }
+                  setTimeout(function(){
+                    countUp('ws1', ${tools.length}, 1200);
+                    countUp('ws2', ${visitorCount}, 1500);
+                    countUp('ws3', 100, 800);
+                    countUp('ws4', 22, 600);
+                  }, 600);
+                }
+                if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
+                else init();
+              })();
+            ` }} />
 
             {/* Search Bar */}
             {uiMode === 'directory' && (
