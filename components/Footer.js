@@ -21,6 +21,7 @@
  */
 
 import { useState, useEffect } from 'react'
+import { getVikramSamvatFull } from '../lib/vikramSamvat'
 
 
 const LANG = {
@@ -67,8 +68,13 @@ const LANG = {
 
 export default function Footer() {
   const [lang, setLang] = useState('en')
+  const [vs, setVs] = useState(null)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
+    setVs(getVikramSamvatFull())
+
     const saved = localStorage.getItem('aitdl_lang') || 'en'
     setLang(saved)
     
@@ -368,9 +374,42 @@ export default function Footer() {
           fontSize: 11,
           color: 'var(--text-tertiary)',
           opacity: 0.5,
+          marginBottom: 24
         }}>
           © 2026 AITDL
         </p>
+
+        {/* Vedic Timestamp Badge - Bottom Flat View */}
+        {mounted && vs && (
+          <div style={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center', 
+            gap: 2, 
+            marginTop: 24,
+            opacity: 0.9
+          }}>
+            <div style={{ 
+              fontSize: 12, 
+              fontWeight: 800, 
+              color: '#BA7517', 
+              letterSpacing: '0.05em', 
+              textShadow: '0 0 10px rgba(186,117,23,0.2)' 
+            }}>
+              {vs.line1}
+            </div>
+            <div style={{ 
+              fontSize: 10, 
+              fontWeight: 600, 
+              color: 'var(--text-tertiary)', 
+              letterSpacing: '0.1em', 
+              textTransform: 'uppercase', 
+              opacity: 0.8 
+            }}>
+              {vs.line2}
+            </div>
+          </div>
+        )}
 
       </div>
     </footer>
