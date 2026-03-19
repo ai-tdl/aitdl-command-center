@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import Link from 'next/link'
 import { signOut } from 'firebase/auth'
 import { auth, db } from '../lib/firebase'
 import { useAuth } from '../lib/useAuth'
@@ -35,7 +36,7 @@ export default function ProfilePage() {
     if (user) {
       getUserProfile(user.uid).then(setProfile)
     }
-  }, [user, loading])
+  }, [user, loading, router])
 
   const handleLogout = async () => {
     await signOut(auth)
@@ -105,7 +106,7 @@ export default function ProfilePage() {
         }}>
 
           {/* Back Navigation */}
-          <a href="/" style={{
+          <Link href="/" style={{
             fontSize: 12,
             color: 'var(--text-tertiary)',
             textDecoration: 'none',
@@ -117,7 +118,7 @@ export default function ProfilePage() {
             transition: 'color 0.2s'
           }} onMouseOver={e => e.currentTarget.style.color = 'var(--text-primary)'} onMouseOut={e => e.currentTarget.style.color = 'var(--text-tertiary)'}>
             ← RETURN TO SITE
-          </a>
+          </Link>
 
           {/* Profile Header (Premium Glass) */}
           <div style={{
@@ -133,6 +134,7 @@ export default function ProfilePage() {
             boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
           }}>
             {profile.photo ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
               <img
                 src={profile.photo}
                 alt={profile.name}
@@ -302,7 +304,7 @@ export default function ProfilePage() {
                 <div style={{ textAlign: 'center', padding: '80px 0' }}>
                   <div style={{ fontSize: 40, marginBottom: 16 }}>🔍</div>
                   <p style={{ color: 'var(--text-secondary)', fontSize: 14, marginBottom: 20 }}>Your workspace is empty.</p>
-                  <a href="/" style={{ color: '#5e11ff', textDecoration: 'none', fontWeight: 800, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', border: '1px solid rgba(94,17,255,0.3)', padding: '10px 20px', borderRadius: 99 }}>Explore Features</a>
+                  <Link href="/" style={{ color: '#5e11ff', textDecoration: 'none', fontWeight: 800, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', border: '1px solid rgba(94,17,255,0.3)', padding: '10px 20px', borderRadius: 99 }}>Explore Features</Link>
                 </div>
               )
             )}

@@ -61,7 +61,7 @@ export default function AboutFounder() {
               Jawahar Ramkripal Mallah is a Software Developer & Service Provider based in India with over 17 years of experience building digital products and services.
             </p>
             <p>
-              A Published Author and system architect, he built AITDL — India's #1 AI Tools Discovery Platform — to help 1.4 billion Indians find the right AI tool at the right time, completely free and without signup.
+              A Published Author and system architect, he built AITDL — India&apos;s #1 AI Tools Discovery Platform — to help 1.4 billion Indians find the right AI tool at the right time, completely free and without signup.
             </p>
             <p>
               AITDL was designed, built, and deployed entirely by Jawahar — solo — from infrastructure to CI/CD pipeline to frontend design, using modern AI-assisted development.
