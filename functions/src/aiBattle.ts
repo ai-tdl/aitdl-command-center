@@ -23,7 +23,12 @@ const WINDOW_MS  = 60 * 60 * 1000; // 1 hour window
 
 export const aiBattle = functions.https.onRequest(async (req, res) => {
   // ── CORS ─────────────────────────────────────────────────────────────────
-  res.set("Access-Control-Allow-Origin", "https://aitdl.com");
+  const origin = req.headers.origin || "";
+  if (origin === "http://localhost:3000" || origin === "https://aitdl.com") {
+    res.set("Access-Control-Allow-Origin", origin);
+  } else {
+    res.set("Access-Control-Allow-Origin", "https://aitdl.com");
+  }
   res.set("Access-Control-Allow-Methods", "POST");
   res.set("Access-Control-Allow-Headers", "Authorization, Content-Type");
   if (req.method === "OPTIONS") { res.status(204).send(""); return; }

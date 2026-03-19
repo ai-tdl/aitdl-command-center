@@ -7,7 +7,7 @@
     "copyright": "© 2026 AITDL - Artificial Intelligence Technology & Deep Learning",
     "version": "5.0.0",
     "lastUpdated": "2026-03-20",
-    "totalTools": 214
+    "totalTools": 182
   },
   "tools": [
     {
@@ -3615,50 +3615,25 @@
       "verified": true
     },
     {
-      "id": 205,
-      "name": "Socratic by Google",
-      "slug": "socratic",
-      "description": "Google's free homework assistant. Take a photo of math or science problems for step-by-step help.",
-      "category": ["study", "maths"],
-      "pricing": "free",
-      "url": "https://socratic.org",
-      "emoji": "🦉",
-      "hindi_support": true,
-      "india_score": 5,
-      "low_data": true,
-      "exam_tags": ["JEE", "NEET", "Boards"],
-      "featured": false,
-      "verified": true
-    },
-    {
-      "id": 206,
-      "name": "QuillBot",
-      "slug": "quillbot",
-      "description": "The best paraphrasing and grammar checker. Highly used by university students and UPSC aspirants.",
-      "category": ["writing", "study"],
-      "pricing": "freemium",
-      "url": "https://quillbot.com",
-      "emoji": "✍️",
-      "hindi_support": false,
-      "india_score": 4,
-      "low_data": true,
-      "exam_tags": ["UPSC", "Boards"],
-      "featured": false,
-      "verified": true
-    },
-    {
       "id": 207,
       "name": "ChatPDF",
       "slug": "chatpdf",
       "description": "Chat directly with textbook PDFs or research papers to extract answers instantly.",
-      "category": ["study", "research"],
+      "category": [
+        "study",
+        "research"
+      ],
       "pricing": "freemium",
       "url": "https://www.chatpdf.com",
       "emoji": "📄",
       "hindi_support": true,
       "india_score": 4,
       "low_data": true,
-      "exam_tags": ["UPSC", "JEE", "NEET"],
+      "exam_tags": [
+        "UPSC",
+        "JEE",
+        "NEET"
+      ],
       "featured": false,
       "verified": true
     },
@@ -3667,62 +3642,19 @@
       "name": "Jenni AI",
       "slug": "jenni-ai",
       "description": "AI auto-complete text editor designed specifically for academic research and essays.",
-      "category": ["writing", "research"],
+      "category": [
+        "writing",
+        "research"
+      ],
       "pricing": "freemium",
       "url": "https://jenni.ai",
       "emoji": "✒️",
       "hindi_support": false,
       "india_score": 3,
       "low_data": true,
-      "exam_tags": ["UPSC"],
-      "featured": false,
-      "verified": true
-    },
-    {
-      "id": 209,
-      "name": "Gamma AI",
-      "slug": "gamma",
-      "description": "Generate beautiful presentations, documents, and webpages in seconds using just a prompt.",
-      "category": ["productivity", "writing"],
-      "pricing": "freemium",
-      "url": "https://gamma.app",
-      "emoji": "✨",
-      "hindi_support": false,
-      "india_score": 4,
-      "low_data": false,
-      "exam_tags": [],
-      "featured": false,
-      "verified": true
-    },
-    {
-      "id": 210,
-      "name": "Fireflies.ai",
-      "slug": "fireflies",
-      "description": "Automates meeting notes. Records, transcribes, and summarizes online meetings.",
-      "category": ["productivity"],
-      "pricing": "freemium",
-      "url": "https://fireflies.ai",
-      "emoji": "🪰",
-      "hindi_support": true,
-      "india_score": 4,
-      "low_data": true,
-      "exam_tags": [],
-      "featured": false,
-      "verified": true
-    },
-    {
-      "id": 211,
-      "name": "Beautiful.ai",
-      "slug": "beautiful-ai",
-      "description": "Generative AI presentation maker with automatic design syncing.",
-      "category": ["productivity", "image"],
-      "pricing": "freemium",
-      "url": "https://www.beautiful.ai",
-      "emoji": "📊",
-      "hindi_support": false,
-      "india_score": 3,
-      "low_data": false,
-      "exam_tags": [],
+      "exam_tags": [
+        "UPSC"
+      ],
       "featured": false,
       "verified": true
     },
@@ -3731,30 +3663,18 @@
       "name": "Blackbox AI",
       "slug": "blackbox-ai",
       "description": "AI coding assistant designed to answer coding questions and write code snippets instantly.",
-      "category": ["coding"],
+      "category": [
+        "coding"
+      ],
       "pricing": "freemium",
       "url": "https://www.blackbox.ai",
       "emoji": "⬛",
       "hindi_support": false,
       "india_score": 4,
       "low_data": true,
-      "exam_tags": ["JEE"],
-      "featured": false,
-      "verified": true
-    },
-    {
-      "id": 213,
-      "name": "Tabnine",
-      "slug": "tabnine",
-      "description": "AI code completion tool running directly in your IDE.",
-      "category": ["coding"],
-      "pricing": "freemium",
-      "url": "https://www.tabnine.com",
-      "emoji": "⌨️",
-      "hindi_support": false,
-      "india_score": 3,
-      "low_data": true,
-      "exam_tags": ["JEE"],
+      "exam_tags": [
+        "JEE"
+      ],
       "featured": false,
       "verified": true
     },
@@ -3763,7 +3683,9 @@
       "name": "Synthesia",
       "slug": "synthesia",
       "description": "Generate high-quality marketing and training videos with digital AI avatars.",
-      "category": ["video"],
+      "category": [
+        "video"
+      ],
       "pricing": "paid",
       "url": "https://www.synthesia.io",
       "emoji": "🎬",
