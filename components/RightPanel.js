@@ -13,6 +13,7 @@ export default function RightPanel() {
   const [open, setOpen]     = useState(true);  // hide/show state
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setVs(getVikramSamvatFull());
     setFact(getTodayFact());
     setBh(getRandomBharatFact());

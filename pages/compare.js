@@ -37,6 +37,7 @@ export default function Compare() {
   useEffect(() => {
     // Read lang
     const savedLang = localStorage.getItem('aitdl_lang') || 'en'
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLang(savedLang)
     // Read compare list saved by index.js
     try {

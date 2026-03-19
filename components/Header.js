@@ -287,6 +287,7 @@ export default function Header({
                 textDecoration: 'none',
               }}>
                 {user.photoURL ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
                   <img
                     src={user.photoURL}
                     alt={user.displayName}

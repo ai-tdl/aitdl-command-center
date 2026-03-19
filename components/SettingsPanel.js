@@ -91,40 +91,9 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
   const [tab,      setTab]      = useState('appearance') // appearance | language | more
   const panelRef = useRef(null)
 
-  // ── Load from storage ──────────────────────────────────────────────────
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    let sTheme = savedTheme;
-    
-    if (!savedTheme) {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      sTheme = prefersDark ? 'dark' : 'light';
-    }
-
-    const sLang     = ls.get('aitdl_lang',      'en')
-    const sView     = ls.get('aitdl_view',      'grid')
-    const sUiMode   = ls.get('aitdl_ui_mode',   'directory')
-    const sFontSize = ls.get('aitdl_fontsize',  'medium')
-    const sIndia    = ls.get('aitdl_india_mode','false') === 'true'
-    const sAccent   = ls.get('aitdl_accent',    '#FF6B35')
-
-    setTheme(sTheme);    applyTheme(sTheme, !!savedTheme)
-    setLang(sLang)
-    setView(sView)
-    setUiMode(sUiMode)
-    setFontSize(sFontSize); applyFontSize(sFontSize, false)
-    setIndiaMode(sIndia)
-    setAccent(sAccent);  applyAccent(sAccent, false)
-  }, [])
-
-  // ── ESC to close ──────────────────────────────────────────────────────
-  useEffect(() => {
-    const fn = e => { if (e.key === 'Escape') onClose() }
-    if (isOpen) window.addEventListener('keydown', fn)
-    return () => window.removeEventListener('keydown', fn)
-  }, [isOpen])
-
   // ── Apply fns ─────────────────────────────────────────────────────────
+  const dispatch = () => window.dispatchEvent(new Event('storage'))
+
   const applyTheme = (t, save = true) => {
     document.documentElement.setAttribute('data-theme', t)
     document.documentElement.classList.remove('dark','glass','midnight');
@@ -206,7 +175,39 @@ export default function SettingsPanel({ isOpen, onClose, lang, setLang }) {
     dispatch()
   }
 
-  const dispatch = () => window.dispatchEvent(new Event('storage'))
+  // ── Load from storage ──────────────────────────────────────────────────
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    let sTheme = savedTheme;
+    
+    if (!savedTheme) {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      sTheme = prefersDark ? 'dark' : 'light';
+    }
+
+    const sLang     = ls.get('aitdl_lang',      'en')
+    const sView     = ls.get('aitdl_view',      'grid')
+    const sUiMode   = ls.get('aitdl_ui_mode',   'directory')
+    const sFontSize = ls.get('aitdl_fontsize',  'medium')
+    const sIndia    = ls.get('aitdl_india_mode','false') === 'true'
+    const sAccent   = ls.get('aitdl_accent',    '#FF6B35')
+
+    setTheme(sTheme);    applyTheme(sTheme, !!savedTheme)
+    setLang(sLang)
+    setView(sView)
+    setUiMode(sUiMode)
+    setFontSize(sFontSize); applyFontSize(sFontSize, false)
+    setIndiaMode(sIndia)
+    setAccent(sAccent);  applyAccent(sAccent, false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // ── ESC to close ──────────────────────────────────────────────────────
+  useEffect(() => {
+    const fn = e => { if (e.key === 'Escape') onClose() }
+    if (isOpen) window.addEventListener('keydown', fn)
+    return () => window.removeEventListener('keydown', fn)
+  }, [isOpen, onClose])
 
   const resetAll = () => {
     resetTheme()

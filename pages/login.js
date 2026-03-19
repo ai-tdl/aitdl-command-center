@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import Link from 'next/link'
 import { 
   signInWithPopup,
   signInWithEmailAndPassword,
@@ -126,7 +127,7 @@ export default function LoginPage() {
               color: 'var(--text-tertiary)',
               marginTop: 4,
             }}>
-              India's AI Command Center
+              India&apos;s AI Command Center
             </p>
           </div>
 
@@ -394,13 +395,13 @@ export default function LoginPage() {
             textAlign: 'center', 
             marginTop: 20 
           }}>
-            <a href="/" style={{
+            <Link href="/" style={{
               fontSize: 12,
               color: 'var(--text-tertiary)',
               textDecoration: 'none',
             }}>
               ← Back to AITDL
-            </a>
+            </Link>
           </div>
 
         </div>

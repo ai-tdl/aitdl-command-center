@@ -21,6 +21,7 @@
  */
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { getVikramSamvatFull } from '../lib/vikramSamvat'
 
 
@@ -72,6 +73,7 @@ export default function Footer() {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
     setVs(getVikramSamvatFull())
 
@@ -169,7 +171,7 @@ export default function Footer() {
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div style={{ marginBottom: 20 }}>
-            <img src="/logo-horizontal.svg" alt="AITDL Branding" style={{
+            <Image src="/logo-horizontal.svg" alt="AITDL Branding" width={200} height={60} style={{
               height: 60,
               width: 'auto',
               filter: 'drop-shadow(0 0 10px var(--accent-glow))',

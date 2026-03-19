@@ -22,6 +22,7 @@
  */
 
 import Head from 'next/head'
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { PageSEO } from '../lib/seo'
 import Header from '../components/Header'
@@ -167,6 +168,7 @@ export default function Home({ tools }) {
   const t = LANG_TEXT[lang] || LANG_TEXT.en
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
     // Initial load from storage
     const savedLang = localStorage.getItem('aitdl_lang') || 'en'
@@ -236,6 +238,7 @@ export default function Home({ tools }) {
         t.category.some(cat => cat.toLowerCase().includes(q))
       )
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFiltered(result)
   }, [debouncedSearch, category, exam, pricing, tools, origin])
 
@@ -487,7 +490,7 @@ export default function Home({ tools }) {
                   }} className="btn-primary-glow">
                     ⚡ {t.explore}
                   </a>
-                  <a href="/about" style={{
+                  <Link href="/about" style={{
                     padding: '14px 32px',
                     background: 'transparent',
                     color: 'var(--text-primary)',
@@ -504,7 +507,7 @@ export default function Home({ tools }) {
                     transition: 'all 0.3s',
                   }} className="btn-secondary-border">
                     {t.learn} →
-                  </a>
+                  </Link>
                 </div>
               </div>
 

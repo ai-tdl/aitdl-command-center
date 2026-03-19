@@ -46,6 +46,7 @@ export default function AIBattle() {
   const [lang, setLang] = useState('en')
   useEffect(() => {
     const saved = localStorage.getItem('aitdl_lang') || 'en'
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLang(saved)
   }, [])
 
